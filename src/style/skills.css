@@ -1,0 +1,42 @@
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(6, 15.6%);
+    justify-content: space-between;
+    align-content: start;
+    gap: 1rem;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    /* min-height: 100vh; */
+}
+
+.skills-container .skill-container {
+    border-radius: 0.3rem;
+    background: #F5FCFF;
+    transition: 0.3s;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.skills-container .skill-container:hover {
+    background: #bfe5ff;
+}
+
+.skills-container .skill-name-container {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skills-container .skill-name-container img {
+    width: 40px;
+}
+
+.skills-container .skill-name-container .skill-name {
+    font-weight: bold;
+}
+
+.skills-container .skill-container .skill-details {
+    display: none;
+}

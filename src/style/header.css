@@ -1,0 +1,56 @@
+.header {
+    height: 100vh;
+    background: #F5FCFF;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.intro,
+.photo,
+.intro .main-intro {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.intro {
+    width: 90%;
+    position: relative;
+    left: 10%;
+}
+
+.intro .main-intro {
+    font-size: 2rem;
+}
+
+.intro .main-intro .name {
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: var(--blue-color);
+}
+
+.intro .sub-intro-container {
+    font-size: 1.2rem;
+}
+
+.intro .sub-intro-container .sub-intro {
+    font-weight: bold;
+}
+
+.intro .sub-intro-heading {
+    font-size: 2rem;
+    color: var(--blue-color);
+    font-weight: bold;
+}
+
+.intro .download-btn {
+    background: var(--blue-color);
+    padding: 0.8rem 1rem;
+    width: 22%;
+    display: grid;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 5rem;
+}

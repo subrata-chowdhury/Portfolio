@@ -1,0 +1,53 @@
+* {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --blue-color: #2F6CE5;
+}
+
+html {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 4.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    /* font-family: IBM Plex Sans; */
+}
+
+.heading {
+    scroll-snap-align: start;
+    width: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    left: 5%;
+    padding: 2rem 0;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heading.zero-padding {
+    padding: 0 !important;
+}
+
+.heading#project {
+    width: 90%;
+}
+
+.heading img {
+    width: 1.2rem;
+}
+
+.screen-container {
+    min-height: 100vh;
+}
