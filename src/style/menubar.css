@@ -63,11 +63,6 @@
     background: transparent;
 }
 
-.search-container .search-box::placeholder {
-    font-family: IBM Plex Sans;
-
-}
-
 .search-container .search-icon {
     width: 1rem;
     cursor: pointer;
@@ -76,6 +71,58 @@
 .search-container .search-icon img {
     width: 100%;
 }
+
+.search-result-container.active {
+    display: block;
+}
+
+.search-result-container {
+    position: absolute;
+    top: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.10);
+    transition: 0.3s;
+    display: none;
+}
+
+.menubar.active .search-result-container {
+    top: 4rem;
+}
+
+.search-result-container .skills-container {
+    left: 0;
+    width: 300px;
+    max-height: 300px;
+    overflow-y: scroll;
+    grid-template-columns: none;
+    border-radius: 10px;
+    gap: 0;
+}
+
+.search-result-container .skills-container::-webkit-scrollbar {
+    display: none;
+}
+
+.search-result-container .skills-container .skill-container {
+    border-radius: 0;
+    width: 300px;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.30);
+    background: #fff;
+}
+
+.search-result-container .skills-container .skill-container:hover {
+    background: #eaeaea;
+}
+
+.search-result-container .skills-container .skill-container .skill-name-container {
+    justify-content: start;
+}
+
+.search-result-container .skills-container .skill-container .skill-name-container img {
+    width: 20px;
+}
+
 
 
 

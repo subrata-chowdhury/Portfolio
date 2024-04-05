@@ -15,13 +15,6 @@ a {
     text-decoration: none;
 }
 
-body {
-    margin: 0;
-    width: 100%;
-    min-height: 100vh;
-    /* font-family: IBM Plex Sans; */
-}
-
 .heading {
     scroll-snap-align: start;
     width: 50%;

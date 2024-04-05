@@ -1,38 +1,65 @@
 import "../style/projects.css"
 
 export default function Projects() {
+    const projectData = [{
+        previewImageSrc: "assets/ATG World Croped.png",
+        name: "ATG World",
+        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+    }, {
+        previewImageSrc: "assets/Scroll Effect.png",
+        name: "Scroll Effect",
+        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+    }, {
+        previewImageSrc: "assets/Time_Table_Designer.png",
+        name: "Time Table Designer",
+        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+    }, {
+        previewImageSrc: "assets/Google Search Page.png",
+        name: "Google Search Page",
+        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+    }]
+
+    // {
+    //     previewImageSrc: "assets/All Doraemon Movies.png",
+    //     name: "List of All Doraemon Movies",
+    //     about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+    // }
+    let projectElement = [];
+    for (let index = 0; index < projectData.length; index++) {
+        projectElement.push(
+            <Project
+                previewImageSrc={projectData[index].previewImageSrc}
+                name={projectData[index].name}
+                about={projectData[index].about}
+                key={projectData[index].name} />
+        )
+    }
     return (
         <div className="screen-container">
             <div className="heading" id="project">
                 <div>My Projects</div>
-                <a className="github-page-btn" href="https://github.com/Super7000">
-                    <img src="../icons/github-white.svg" alt="" />
-                    <div>View My Github Page</div>
-                </a>
+                <GitHubButton />
             </div>
             <div className="projects-container">
-                <Project
-                    previewImageSrc="assets/ATG World Croped.png"
-                    name="ATG World"
-                    about="It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript." />
-                <Project
-                    previewImageSrc="assets/Scroll Effect.png"
-                    name="Scroll Effect"
-                    about="It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript." />
-                <Project
-                    previewImageSrc="assets/All Doraemon Movies.png"
-                    name="List of All Doraemon Movies"
-                    about="It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript." />
-                <Project
-                    previewImageSrc="assets/Google Search Page.png"
-                    name="Google Search Page"
-                    about="It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript." />
+                {projectElement}
+            </div>
+            <div className="see-more-btn-container">
+                <a href="#" className="btn">See More</a>
             </div>
         </div>
     )
 }
 
-function Project({
+function GitHubButton() {
+    return (
+        <a className="github-page-btn btn" href="https://github.com/Super7000">
+            <img src="../icons/github-white.svg" alt="" />
+            <div>View My Github Page</div>
+        </a>
+    )
+}
+
+export function Project({
     previewImageSrc = "assets/ATG World Croped.png",
     name = "ATG World",
     about = "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",

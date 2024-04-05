@@ -1,4 +1,4 @@
-.heading .github-page-btn {
+.btn {
     display: grid;
     grid-auto-flow: column;
     font-size: medium;
@@ -10,11 +10,12 @@
     transition: 0.3s;
 }
 
-.heading .github-page-btn:hover{
+.btn:hover {
     background: rgba(47, 108, 229, 0.9);
 }
 
-.heading .github-page-btn:active, .heading .github-page-btn:hover {
+.btn:active,
+.btn:hover {
     color: #fff;
 }
 
@@ -22,7 +23,7 @@
     display: grid;
     width: 90%;
     gap: 2%;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(4, auto);
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
@@ -76,4 +77,12 @@
 
 .project-link-container:active {
     color: #000;
+}
+
+.see-more-btn-container {
+    position: relative;
+    left: 5%;
+    width: 90%;
+    display: grid;
+    justify-content: end;
 }

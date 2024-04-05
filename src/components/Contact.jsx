@@ -2,11 +2,11 @@ import "../style/contact.css"
 
 export default function Contact() {
     return (
-        <div className="screen-container">
+        <form className="screen-container">
             <div className="heading" id="contact">Contact Me</div>
             <div className="contact-container">
                 <div className="left-side">
-                    <img src="assets/contact-me.png" alt="" srcset="" />
+                    <img src="assets/contact-me.png" alt="" srcSet="" />
                 </div>
                 <div className="right-side">
                     <div className="name-inputs-container input-container">
@@ -40,6 +40,6 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
