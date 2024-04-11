@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "../style/menubar.css"
 import { SkillsContainer } from "./Skills";
+import { Link } from "react-router-dom";
 
-export default function Menubar({ bodyRef = useRef(), skillsContainerRef }) {
+export default function Menubar({ bodyRef = useRef(), skillsContainerRef, activeIndex = 0 }) {
     const [themeIconSrc, setThemeIconSrc] = useState("../icons/brightness.svg")
     const menubar = useRef();
     useEffect(() => {
@@ -36,7 +37,7 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef }) {
                 </div>
             </div>
             <SearchContainer skillsContainerRef={skillsContainerRef} />
-            <Menus />
+            <Menus activeIndex={activeIndex} />
         </div>
     )
 }
@@ -89,14 +90,37 @@ export function SearchResultContainer({ forwardRef = useRef(), skillClickHandler
     )
 }
 
-export function Menus() {
+export function Menus({ links = [{
+    name: "Home",
+    link: "/"
+}, {
+    name: "Education",
+    link: "#education"
+}, {
+    name: "Projects",
+    link: "#project"
+}, {
+    name: "Internships",
+    link: "/Internships"
+}, {
+    name: "Contact Me",
+    link: "#contact"
+}], activeIndex = 0 }) {
+    let linkElement = [];
+    for (let index = 0; index < links.length; index++) {
+        if (links[index].link.indexOf("#") === 0)
+            linkElement.push(
+                <a key={index} className={"menu" + (activeIndex === index ? " active" : "")} href={links[index].link}>{links[index].name}</a>
+            )
+        else linkElement.push(
+            <Link to={links[index].link} key={index}>
+                <div className={"menu" + (activeIndex === index ? " active" : "")}>{links[index].name}</div>
+            </Link>
+        )
+    }
     return (
         <div className="menus-container">
-            <a className="menu active" href="#">Home</a>
-            <a className="menu" href="">About</a>
-            <a className="menu" href="#project">Projects</a>
-            <a className="menu" href="">Internships</a>
-            <a className="menu" href="#contact">Contact Me</a>
+            {linkElement}
         </div>
     )
 }

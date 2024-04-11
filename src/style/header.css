@@ -2,7 +2,8 @@
     height: 100vh;
     background: #F5FCFF;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 65% auto;
+    justify-content: start;
 }
 
 .intro,
@@ -17,7 +18,7 @@
 .intro {
     width: 90%;
     position: relative;
-    left: 10%;
+    left: 0%;
 }
 
 .intro .main-intro {
@@ -61,6 +62,7 @@
     width: 100%;
 }
 
+/* 
 .photo .wave {
     position: absolute;
 }
@@ -68,4 +70,4 @@
 .photo .wave g path {
     fill: dodgerblue;
     opacity: 0.5;
-}
+} */

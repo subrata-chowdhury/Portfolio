@@ -60,7 +60,7 @@
     gap: 0.7rem;
 }
 
-.project-link-container {
+.link-container {
     text-decoration: none;
     display: grid;
     grid-auto-flow: column;
@@ -71,11 +71,11 @@
     font-weight: bold;
 }
 
-.project-link-container img {
+.link-container img {
     width: 0.8rem;
 }
 
-.project-link-container:active {
+.link-container:active {
     color: #000;
 }
 

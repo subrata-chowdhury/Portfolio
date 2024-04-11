@@ -1,5 +1,5 @@
 import "../style/header.css"
-import profilePicture from "../assets/pt.png"
+import profilePicture from "../assets/profile-pic.png"
 import Wave from "../assets/wave"
 import { useEffect } from "react"
 
@@ -31,17 +31,17 @@ function Intro() {
 }
 
 function Photo() {
-    useEffect(() => {
-        KUTE.fromTo(
-            '#blob1',
-            { path: '#blob1' },
-            { path: '#blob2' },
-            { repeat: 999, duration: 5000, yoyo: true }
-        ).start();
-    }, [])
+    // useEffect(() => {
+    //     KUTE.fromTo(
+    //         '#blob1',
+    //         { path: '#blob1' },
+    //         { path: '#blob2' },
+    //         { repeat: 999, duration: 5000, yoyo: true }
+    //     ).start();
+    // }, [])
     return (
         <div className="photo">
-            <Wave />
+            {/* <Wave /> */}
             <img src={profilePicture} alt="profile picture" />
         </div>
     )

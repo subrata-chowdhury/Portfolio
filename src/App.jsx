@@ -1,24 +1,18 @@
-import { useEffect, useRef } from 'react'
 import './App.css'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Menubar from './components/Menubar'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Contact from './components/Contact'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HomePage from './Pages/HomePage'
+import InternshipsPage from './Pages/IntershipsPage'
+import ProjectsPage from './Pages/ProjectsPage'
 
 function App() {
-    const body = useRef();
-    const skillsContainer = useRef()
     return (
-        <div className='mode light' ref={body}>
-            <Menubar bodyRef={body} skillsContainerRef={skillsContainer} />
-            <Header />
-            <Skills forwardSkillContainerRef={skillsContainer} />
-            <Projects />
-            <Contact />
-            <Footer />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' exact element={<HomePage />}></Route>
+                <Route path='/Projects' exact element={<ProjectsPage />}></Route>
+                <Route path='/Internships' exact element={<InternshipsPage />}></Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 

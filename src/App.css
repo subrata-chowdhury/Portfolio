@@ -11,8 +11,18 @@ html {
     scroll-padding-top: 4.5rem;
 }
 
+body {
+    display: block !important;
+    width: 100%;
+}
+
 a {
     text-decoration: none;
+}
+
+.app {
+    display: grid;
+    gap: 2rem;
 }
 
 .heading {

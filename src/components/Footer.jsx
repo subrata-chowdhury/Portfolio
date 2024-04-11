@@ -1,12 +1,12 @@
 import "../style/footer.css"
 import { Menus } from "./Menubar"
 
-export default function Footer() {
+export default function Footer({ activeMenuIndex }) {
     return (
         <div className="footer">
             <div className="top-part">
                 <div className="logo"></div>
-                <Menus />
+                <Menus activeIndex={activeMenuIndex} />
                 <OtherPlatforms />
             </div>
             <div className="line"></div>

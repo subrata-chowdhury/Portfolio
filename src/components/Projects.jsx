@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import "../style/projects.css"
 
-export default function Projects() {
+export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
     const projectData = [{
         previewImageSrc: "assets/ATG World Croped.png",
         name: "ATG World",
@@ -17,15 +18,13 @@ export default function Projects() {
         previewImageSrc: "assets/Google Search Page.png",
         name: "Google Search Page",
         about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+    }, {
+        previewImageSrc: "assets/All Doraemon Movies.png",
+        name: "List of All Doraemon Movies",
+        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
     }]
-
-    // {
-    //     previewImageSrc: "assets/All Doraemon Movies.png",
-    //     name: "List of All Doraemon Movies",
-    //     about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
-    // }
     let projectElement = [];
-    for (let index = 0; index < projectData.length; index++) {
+    for (let index = 0; index < (showLimited ? 4 : projectData.length); index++) {
         projectElement.push(
             <Project
                 previewImageSrc={projectData[index].previewImageSrc}
@@ -43,14 +42,14 @@ export default function Projects() {
             <div className="projects-container">
                 {projectElement}
             </div>
-            <div className="see-more-btn-container">
-                <a href="#" className="btn">See More</a>
-            </div>
+            {showSeeMoreBtn && (<div className="see-more-btn-container">
+                <Link to={"/Projects"} className="btn">See More</Link>
+            </div>)}
         </div>
     )
 }
 
-function GitHubButton() {
+export function GitHubButton() {
     return (
         <a className="github-page-btn btn" href="https://github.com/Super7000">
             <img src="../icons/github-white.svg" alt="" />
@@ -73,7 +72,7 @@ export function Project({
             <div className="details">
                 <div className="project-name">{name}</div>
                 <div className="about-project">{about}</div>
-                <a className="project-link-container" href={projectLink}>
+                <a className="project link-container" href={projectLink}>
                     <div className="project-link">View in Github</div>
                     <img src="../icons/Arrow.svg" alt="" />
                 </a>
