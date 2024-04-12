@@ -84,6 +84,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.10);
     transition: 0.3s;
     display: none;
+    width: 300px;
 }
 
 .menubar.active .search-result-container {
@@ -93,7 +94,6 @@
 .search-result-container .skills-container {
     left: 0;
     width: 300px;
-    max-height: 300px;
     overflow-y: scroll;
     grid-template-columns: none;
     border-radius: 10px;
@@ -106,7 +106,7 @@
 
 .search-result-container .skills-container .skill-container {
     border-radius: 0;
-    width: 300px;
+    width: calc(300px - 2rem);
     padding: 0.7rem 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.30);
     background: #fff;

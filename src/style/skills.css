@@ -1,6 +1,6 @@
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(6, 15.6%);
+    grid-template-columns: repeat(5, 18%);
     justify-content: space-between;
     align-content: start;
     gap: 1rem;
@@ -16,6 +16,8 @@
     transition: 0.3s;
     padding: 1rem;
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 60% 40%;
 }
 
 .skills-container .skill-container:hover {
@@ -38,5 +40,15 @@
 }
 
 .skills-container .skill-container .skill-details {
-    display: none;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: 3px;
+}
+
+.skills-container .skill-container .skill-details img {
+    width: 15px;
+    height: 15px;
 }
