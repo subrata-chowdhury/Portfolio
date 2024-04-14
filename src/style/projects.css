@@ -8,6 +8,9 @@
     color: #fff;
     border-radius: 0.2rem;
     transition: 0.3s;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .btn:hover {

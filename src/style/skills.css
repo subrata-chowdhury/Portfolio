@@ -52,3 +52,8 @@
     width: 15px;
     height: 15px;
 }
+
+.sort.btn {
+    background: rgba(170, 212, 255, 0.518);
+    color: #000;
+}

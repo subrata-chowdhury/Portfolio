@@ -43,7 +43,7 @@ a {
     padding: 0 !important;
 }
 
-.heading#project {
+.heading#project, .heading#skills {
     width: 90%;
 }
 

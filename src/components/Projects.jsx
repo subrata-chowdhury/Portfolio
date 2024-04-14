@@ -9,19 +9,31 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
     }, {
         previewImageSrc: "assets/Scroll Effect.png",
         name: "Scroll Effect",
-        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+        about: "This is a webpage which is focused on scrolling animation created using HTML, CSS and JS."
     }, {
         previewImageSrc: "assets/Time_Table_Designer.png",
-        name: "Time Table Designer",
-        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+        name: "Time Table Creator",
+        about: "It's a web application UI created using ReactJS through which a Time Table can be created manually and also automatically using AI."
     }, {
         previewImageSrc: "assets/Google Search Page.png",
         name: "Google Search Page",
-        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+        about: "It's a mimic of Google search engine webpage which allow more customize feature."
+    }, {
+        previewImageSrc: "assets/Focus.png",
+        name: "Focus",
+        about: "This is a landing page created using HTML, CSS & JS. It's provide a feature like fully custom theme, bookmark, search bar (use Google search engine) and some simple apps like calculator, live weather broadcast etc."
+    }, {
+        previewImageSrc: "assets/A Music Player.png",
+        name: "A Music Player",
+        about: "It's a simple music player UI created using ReactJS and redux."
+    }, {
+        previewImageSrc: "assets/Menubar_Style.png",
+        name: "Menubar Style",
+        about: "It is a website created using HTML, CSS and JavaScript which is mainly focused on menubar style."
     }, {
         previewImageSrc: "assets/All Doraemon Movies.png",
         name: "List of All Doraemon Movies",
-        about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript."
+        about: "It a webpage that contains list of all doraemon movies created using HTML, CSS & a little bit JS. It was created by me in 11th when I started learning frontend development."
     }]
     let projectElement = [];
     for (let index = 0; index < (showLimited ? 4 : projectData.length); index++) {
@@ -71,7 +83,7 @@ export function Project({
             </div>
             <div className="details">
                 <div className="project-name">{name}</div>
-                <div className="about-project">{about}</div>
+                <div className="about-project">{about.length > 70 ? about.slice(0, 65) + '...' : about}</div>
                 <a className="project link-container" href={projectLink}>
                     <div className="project-link">View in Github</div>
                     <img src="../icons/Arrow.svg" alt="" />
