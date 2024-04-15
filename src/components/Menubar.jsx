@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import "../style/menubar.css"
 import { SkillsContainer } from "./Skills";
 import { Link } from "react-router-dom";
@@ -42,7 +42,7 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
     )
 }
 
-function SearchContainer({ skillsContainerRef }) {
+const SearchContainer = memo(({ skillsContainerRef }) => {
     const searchInputBox = useRef()
     const searchResultContainer = useRef()
     function inputBoxInputHandler(event) {
@@ -80,7 +80,7 @@ function SearchContainer({ skillsContainerRef }) {
             </div>
         </>
     )
-}
+})
 
 export function SearchResultContainer({ forwardRef = useRef(), skillClickHandler = () => { } }) {
     return (
@@ -90,7 +90,7 @@ export function SearchResultContainer({ forwardRef = useRef(), skillClickHandler
     )
 }
 
-export function Menus({ links = [{
+export const Menus = memo(({ links = [{
     name: "Home",
     link: "/"
 }, {
@@ -105,7 +105,7 @@ export function Menus({ links = [{
 }, {
     name: "Contact Me",
     link: "#contact"
-}], activeIndex = 0 }) {
+}], activeIndex = 0 }) => {
     let linkElement = [];
     for (let index = 0; index < links.length; index++) {
         if (links[index].link.indexOf("#") === 0)
@@ -123,7 +123,7 @@ export function Menus({ links = [{
             {linkElement}
         </div>
     )
-}
+})
 
 function hasElement(array, key) {
     for (let index = 0; index < array.length; index++) {

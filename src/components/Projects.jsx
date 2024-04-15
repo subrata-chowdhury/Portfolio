@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../style/projects.css"
+import { useState } from "react";
 
 export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
     const projectData = [{
@@ -76,6 +77,7 @@ export function Project({
     about = "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
     projectLink = "#"
 }) {
+    const [showAbout, setShowAbout] = useState(false)
     return (
         <div className="project-container">
             <div className="project-image">
@@ -83,7 +85,10 @@ export function Project({
             </div>
             <div className="details">
                 <div className="project-name">{name}</div>
-                <div className="about-project">{about.length > 70 ? about.slice(0, 65) + '...' : about}</div>
+                <div className="about-project" onClick={() => { setShowAbout(val => !val) }}>
+                    {(about.length > 70 && !showAbout) ? about.slice(0, 65) + '... ' : about}
+                    {(about.length > 70 && !showAbout) && <span className="read-more-btn">read more</span>}
+                </div>
                 <a className="project link-container" href={projectLink}>
                     <div className="project-link">View in Github</div>
                     <img src="../icons/Arrow.svg" alt="" />

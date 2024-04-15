@@ -1,7 +1,7 @@
 .education-container {
     display: grid;
     grid-auto-flow: row;
-    gap: 20px;
+    gap: 15px;
     padding: 0 8rem;
 }
 

@@ -89,3 +89,8 @@
     display: grid;
     justify-content: end;
 }
+
+.project-container .about-project .read-more-btn {
+    color: dodgerblue;
+    cursor: pointer;
+}
