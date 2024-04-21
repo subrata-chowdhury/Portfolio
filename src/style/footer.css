@@ -55,3 +55,26 @@
 .icon-container img {
     width: 1.3rem;
 }
+
+@media (max-width: 650px) {
+    .footer .logo {
+        display: none;
+    }
+
+    .footer .top-part {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (max-width: 475px) {
+    .privacy-policy-container {
+        grid-auto-flow: row;
+        gap: 0.5rem;
+        text-align: right;
+    }
+
+    .bottom-part .author {
+        display: grid;
+        align-items: end;
+    }
+}

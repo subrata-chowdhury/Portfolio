@@ -65,3 +65,14 @@
     display: grid;
     justify-content: center;
 }
+
+@media (max-width: 650px) {
+    .contact-container .left-side {
+        display: none;
+    }
+
+    .contact-container {
+        grid-template-columns: none;
+    }
+
+}

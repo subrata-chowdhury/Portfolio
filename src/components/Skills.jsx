@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react";
+import { memo, useRef } from "react";
 import "../style/skills.css"
 export const defaultValue = [{
     name: "Frontend Development",
@@ -23,12 +23,12 @@ export const defaultValue = [{
 }, {
     name: "SASS",
     iconSrc: "../icons/sass.svg",
-    id: "scaa",
+    id: "sass",
     lvl: 1
 }, {
     name: "Java Script",
     iconSrc: "../icons/js.svg",
-    id: "js",
+    id: "java-script",
     lvl: 3
 }, {
     name: "PHP",
@@ -147,22 +147,27 @@ export const defaultValue = [{
     lvl: 1
 }]
 export default function Skills({ forwardSkillContainerRef }) {
-    const [skillsData, setSkillData] = useState(defaultValue);
+    // const [skillsData, setSkillData] = useState(defaultValue);
+    defaultValue.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return b.lvl - a.lvl;
+    })
     return (
         <div className="screen-container">
             <div className="heading" id="skills">
                 <div>My Skills</div>
-                <SortButton onClickHandler={() => {
+                {/* <SortButton onClickHandler={() => {
                     const sortedArray = [...skillsData]
                     sortedArray.sort((a, b) => {
                         if (a.name < b.name) return -1;
                         if (a.name > b.name) return 1;
-                        return b.lvl - a.lvl; // Descending order for price
+                        return b.lvl - a.lvl;
                     })
                     setSkillData(sortedArray)
-                }} />
+                }} /> */}
             </div>
-            <SkillsContainer skillsData={skillsData} forwardSkillContainerRef={forwardSkillContainerRef} />
+            <SkillsContainer skillsData={defaultValue} forwardSkillContainerRef={forwardSkillContainerRef} />
         </div>
     )
 }
@@ -179,7 +184,7 @@ export const SkillsContainer = memo(({
             name={skillsData[index]["name"]}
             icon={skillsData[index]["iconSrc"]}
             id={excludeIds ? "" : skillsData[index]["id"]}
-            data={excludeIds ? skillsData[index]["id"] : ""}
+            data={excludeIds ? skillsData[index]["id"].toLowerCase() : ""}
             key={skillsData[index]["id"]}
             onClickHandler={skillClickHandler}
             lvl={skillsData[index].lvl}
@@ -193,8 +198,9 @@ export const SkillsContainer = memo(({
 })
 
 function Skill({ name = "Skill", icon = "../icons/js.svg", id = "", data = "", onClickHandler = () => { }, lvl = 0 }) {
+    const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';
     return (
-        <div className="skill-container" id={id} title={lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience'} data-id={data} onClick={onClickHandler}>
+        <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler}>
             <div className="skill-name-container">
                 <img src={icon} alt="icon" />
                 <div className="skill-name">{name}</div>

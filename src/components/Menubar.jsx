@@ -9,7 +9,7 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
     useEffect(() => {
         function activeMenubarOnScroll() {
             window.onscroll = () => {
-                if (document.documentElement.scrollTop > 150) {
+                if (document.documentElement.scrollTop > 150 && window.innerWidth > 650) {
                     menubar.current.classList.add("active");
                 } else {
                     menubar.current.classList.remove("active");
@@ -29,16 +29,26 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
             setThemeIconSrc("icons/brightness.svg");
         }
     }
+    function toggleMenubar() {
+        if (hasElement(menubar.current.classList, "active") !== -1) {
+            menubar.current.classList.remove("active");
+        } else {
+            menubar.current.classList.add("active");
+        }
+    }
     return (
-        <div className="menubar" ref={menubar}>
-            <div className="theme-container">
-                <div className="logo light-mode" onClick={changeTheme}>
-                    <img src={themeIconSrc} alt="theme icon" />
+        <>
+            <img src="./icons/menubar.png" className="menubar-toggle-icon" onClick={toggleMenubar} />
+            <div className="menubar" ref={menubar}>
+                <div className="theme-container">
+                    <div className="logo light-mode" onClick={changeTheme}>
+                        <img src={themeIconSrc} alt="theme icon" />
+                    </div>
                 </div>
+                <SearchContainer skillsContainerRef={skillsContainerRef} />
+                <Menus activeIndex={activeIndex} />
             </div>
-            <SearchContainer skillsContainerRef={skillsContainerRef} />
-            <Menus activeIndex={activeIndex} />
-        </div>
+        </>
     )
 }
 

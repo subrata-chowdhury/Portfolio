@@ -17,7 +17,20 @@
     height: 4rem;
 }
 
-
+.menubar-toggle-icon {
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.5rem;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
+    border-radius: 0.5rem;
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+    z-index: 6;
+}
 
 
 .theme-container {
@@ -60,7 +73,6 @@
 .search-container .search-box {
     outline: none;
     border: none;
-    font-size: 1rem;
     background: transparent;
 }
 
@@ -148,4 +160,67 @@
 .menus-container .menu.active {
     font-weight: bold;
     color: var(--blue-color);
+}
+
+@media (max-width: 960px) {
+    .menus-container {
+        gap: 1.2rem;
+    }
+
+    .menubar {
+        grid-template-columns: 5% auto auto;
+    }
+}
+
+@media (max-width: 650px) {
+    .menubar-toggle-icon {
+        display: block;
+    }
+
+    .menubar {
+        display: none;
+        grid-template-columns: none;
+        grid-template-rows: 10% 10% auto;
+        justify-content: stretch;
+    }
+
+    .menubar.active {
+        display: grid;
+        height: 100vh;
+        background: #fff;
+    }
+
+    .search-container {
+        width: 40%;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .search-container .search-box {
+        font-size: 1.2rem;
+    }
+
+    .menus-container {
+        grid-auto-flow: row;
+        text-align: center;
+    }
+
+    .menus-container .menu {
+        padding: 1rem 0;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .footer .menus-container {
+        grid-auto-flow: row;
+        gap: 0.5rem;
+        text-align: left;
+    }
+
+    .footer .menus-container .menu {
+        padding: 0;
+        font-size: 1rem;
+    }
 }
