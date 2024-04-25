@@ -12,12 +12,13 @@
 
 .skills-container .skill-container {
     border-radius: 0.3rem;
-    background: #F5FCFF;
+    background: var(--container-color);
     transition: 0.3s;
     padding: 1rem;
     cursor: pointer;
     display: grid;
     grid-template-columns: 60% 40%;
+    color: var(--text-color);
 }
 
 .skills-container .skill-container:hover {

@@ -1,6 +1,7 @@
 .contact-container {
     display: grid;
     grid-template-columns: 40% 60%;
+    color: var(--text-color);
 }
 
 .left-side img {

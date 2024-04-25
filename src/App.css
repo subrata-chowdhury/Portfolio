@@ -2,18 +2,27 @@
     scroll-behavior: smooth;
 }
 
-:root {
+.app {
     --blue-color: #2F6CE5;
+    --background-color: #fff;
+    --text-color: #000;
+    --heading-color: var(--text-color);
+    --container-color: #F5FCFF;
+    --card-container-color: #fff;
+}
+
+.app.dark {
+    --blue-color: #2F6CE5;
+    --background-color: #1c1c1c;
+    --text-color: #fff;
+    --heading-color: var(--text-color);
+    --container-color: #003c56;
+    --card-container-color: var(--container-color);
 }
 
 html {
     scroll-snap-type: y proximity;
     scroll-padding-top: 4.5rem;
-}
-
-body {
-    display: block !important;
-    width: 100%;
 }
 
 a {
@@ -23,6 +32,7 @@ a {
 .app {
     display: grid;
     gap: 2rem;
+    background: var(--background-color);
 }
 
 .heading {
@@ -37,6 +47,7 @@ a {
     grid-auto-flow: column;
     justify-content: space-between;
     align-items: center;
+    color: var(--heading-color);
 }
 
 .heading.zero-padding {

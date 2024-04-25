@@ -1,6 +1,6 @@
 .header {
     height: 100vh;
-    background: #F5FCFF;
+    background: var(--container-color);
     display: grid;
     grid-template-columns: 65% auto;
     justify-content: start;
@@ -22,6 +22,7 @@
     justify-content: start;
     position: relative;
     left: 5%;
+    color: var(--text-color);
 }
 
 .intro .main-intro {
@@ -95,7 +96,7 @@
     }
 
     .header {
-        margin-top: 3rem;
+        padding-top: 2rem;
         grid-template-columns: none;
         grid-template-areas: "img"
             "text";

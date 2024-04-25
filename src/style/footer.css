@@ -1,10 +1,11 @@
 .footer {
-    background: #F5FCFF;
+    background: var(--container-color);
     padding: 4rem 0;
     display: grid;
     grid-template-rows: auto 1px auto;
     gap: 2rem;
     width: 100%;
+    color: var(--text-color);
 }
 
 .top-part,
@@ -23,7 +24,7 @@
 }
 
 .line {
-    background: #000;
+    background: var(--text-color);
 }
 
 .bottom-part {
@@ -41,7 +42,7 @@
 .footer .menus-container a,
 .privacy-policy-container a {
     text-decoration: none;
-    color: #000;
+    color: var(--text-color);
     transition: 0.3s;
 }
 
