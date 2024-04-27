@@ -79,3 +79,9 @@ a {
         font-size: 12px;
     }
 }
+
+@media (max-width: 480px) {
+    .heading {
+        scroll-snap-align: none;
+    }
+}
