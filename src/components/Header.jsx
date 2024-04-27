@@ -1,7 +1,7 @@
 import "../style/header.css"
 import profilePicture from "../assets/profile-pic.png"
-import Wave from "../assets/wave"
-import { useEffect } from "react"
+// import Wave from "../assets/wave"
+// import { useEffect } from "react"
 
 export default function Header() {
     return (

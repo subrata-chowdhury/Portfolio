@@ -25,15 +25,15 @@ export default function Footer({ activeMenuIndex }) {
 function OtherPlatforms() {
     return (
         <div className="icon-container">
-            <LinkedIcon iconSrc="../icons/facebook.svg" />
-            <LinkedIcon iconSrc="../icons/instagram.svg" />
-            <LinkedIcon iconSrc="../icons/github.svg" linkUrl="https://github.com/Super7000" />
-            <LinkedIcon iconSrc="../icons/linkedin.svg" linkUrl="https://www.linkedin.com/in/subratachowdhury7000/" />
+            <LinkedIcon iconSrc="./icons/facebook.svg" />
+            <LinkedIcon iconSrc="./icons/instagram.svg" />
+            <LinkedIcon iconSrc="./icons/github.svg" linkUrl="https://github.com/Super7000" />
+            <LinkedIcon iconSrc="./icons/linkedin.svg" linkUrl="https://www.linkedin.com/in/subratachowdhury7000/" />
         </div>
     )
 }
 
-function LinkedIcon({ linkUrl = "#", iconSrc = "../icons/github.svg" }) {
+function LinkedIcon({ linkUrl = "#", iconSrc = "./icons/github.svg" }) {
     return (
         <a href={linkUrl}>
             <img src={iconSrc} alt="icon" />

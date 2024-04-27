@@ -6,7 +6,7 @@ import ProjectsPage from './Pages/ProjectsPage'
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/Portfolio/dist/'>
             <Routes>
                 <Route path='/' exact element={<HomePage />}></Route>
                 <Route path='/Projects' exact element={<ProjectsPage />}></Route>

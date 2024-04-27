@@ -4,7 +4,7 @@ import { SkillsContainer } from "./Skills";
 import { Link } from "react-router-dom";
 
 export default function Menubar({ bodyRef = useRef(), skillsContainerRef, activeIndex = 0 }) {
-    const [themeIconSrc, setThemeIconSrc] = useState("../icons/brightness.svg")
+    const [themeIconSrc, setThemeIconSrc] = useState("./icons/brightness.svg")
     const menubar = useRef();
     useEffect(() => {
         function activeMenubarOnScroll() {
@@ -22,7 +22,7 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
         if (hasElement(bodyRef.current.classList, "light") >= 0) {
             bodyRef.current.classList.remove("light");
             bodyRef.current.classList.add("dark");
-            setThemeIconSrc("../icons/moon-stars.svg")
+            setThemeIconSrc("./icons/moon-stars.svg")
         } else {
             bodyRef.current.classList.remove("dark");
             bodyRef.current.classList.add("light");
@@ -82,7 +82,7 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
                 <div className="search-icon" onClick={() => {
                     searchInputBox.current.focus();
                 }}>
-                    <img src="../icons/Search_icon.svg" alt="" />
+                    <img src="./icons/Search_icon.svg" alt="" />
                 </div>
                 <SearchResultContainer forwardRef={searchResultContainer} skillClickHandler={(e) => {
                     skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
