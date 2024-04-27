@@ -1,0 +1,22 @@
+.empty-heading {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-heading .heading {
+    display: block;
+    width: 100%;
+    margin-top: 5rem;
+    padding: 0;
+}
+
+.empty-heading .heading a {
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .empty-heading .heading {
+        font-size: 1.5rem;
+    }
+}

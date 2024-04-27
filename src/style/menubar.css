@@ -82,8 +82,8 @@
     cursor: pointer;
 }
 
-.search-container .search-icon img {
-    width: 100%;
+.search-container .search-icon svg {
+    fill: var(--text-color);
 }
 
 .search-result-container.active {

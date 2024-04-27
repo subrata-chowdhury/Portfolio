@@ -36,13 +36,18 @@
 .project-container {
     border-radius: 0.3rem;
     background: var(--card-container-color);
-    box-shadow: 0px 5.333px 16px 0px rgba(154, 208, 255, 0.15);
+    /* box-shadow: 0px 5.333px 16px 0px rgba(154, 208, 255, 0.15); */
     display: grid;
     grid-template-rows: 55% auto;
     gap: 0.8rem;
     padding-bottom: 0.8rem;
     border: 2px solid rgba(0, 0, 0, 0.15);
     color: var(--text-color);
+}
+
+.github-page-btn svg {
+    fill: #fff;
+    width: 1.5rem;
 }
 
 .project-container .project-image img {
@@ -76,8 +81,12 @@
     font-weight: bold;
 }
 
-.link-container img {
+.link-container svg {
     width: 0.8rem;
+}
+
+.link-container svg path {
+    stroke: var(--text-color);
 }
 
 .link-container:active {

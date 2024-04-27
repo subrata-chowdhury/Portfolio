@@ -2,9 +2,12 @@ import { memo, useEffect, useRef, useState } from "react";
 import "../style/menubar.css"
 import { SkillsContainer } from "./Skills";
 import { Link } from "react-router-dom";
+import { SearchIcon } from "../Icons/SearchIcon";
+import Brightness from "../Icons/Brightness";
+import MoonAndStars from "../Icons/MoonAndStars";
 
 export default function Menubar({ bodyRef = useRef(), skillsContainerRef, activeIndex = 0 }) {
-    const [themeIconSrc, setThemeIconSrc] = useState("./icons/brightness.svg")
+    const [onDarkMode, setOnDarkMode] = useState(false)
     const menubar = useRef();
     useEffect(() => {
         function activeMenubarOnScroll() {
@@ -22,11 +25,11 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
         if (hasElement(bodyRef.current.classList, "light") >= 0) {
             bodyRef.current.classList.remove("light");
             bodyRef.current.classList.add("dark");
-            setThemeIconSrc("./icons/moon-stars.svg")
+            setOnDarkMode(true)
         } else {
             bodyRef.current.classList.remove("dark");
             bodyRef.current.classList.add("light");
-            setThemeIconSrc("icons/brightness.svg");
+            setOnDarkMode(false)
         }
     }
     function toggleMenubar() {
@@ -42,7 +45,7 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
             <div className="menubar" ref={menubar}>
                 <div className="theme-container">
                     <div className="logo light-mode" onClick={changeTheme}>
-                        <img src={themeIconSrc} alt="theme icon" />
+                        {onDarkMode ? <MoonAndStars /> : <Brightness />}
                     </div>
                 </div>
                 <SearchContainer skillsContainerRef={skillsContainerRef} />
@@ -56,13 +59,13 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
     const searchInputBox = useRef()
     const searchResultContainer = useRef()
     function inputBoxInputHandler(event) {
-        if (event.target.value === "") {
+        if (event.target.value.trim() === "") {
             searchResultContainer.current.classList.remove("active")
         } else {
             searchResultContainer.current.classList.add("active")
             let skills = searchResultContainer.current.querySelectorAll(".skill-container")
             for (let index = 0; index < skills.length; index++) {
-                if (skills[index].dataset.id.indexOf(event.target.value.toLowerCase()) >= 0)
+                if (skills[index].dataset.id.indexOf(event.target.value.trim().toLowerCase().replace(/\s+/g, '-')) >= 0)
                     skills[index].style.cssText = "display: grid"
                 else skills[index].style.cssText = "display: none"
             }
@@ -82,7 +85,7 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
                 <div className="search-icon" onClick={() => {
                     searchInputBox.current.focus();
                 }}>
-                    <img src="./icons/Search_icon.svg" alt="" />
+                    <SearchIcon />
                 </div>
                 <SearchResultContainer forwardRef={searchResultContainer} skillClickHandler={(e) => {
                     skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()

@@ -1,3 +1,4 @@
+import Arrow from "../Icons/Arrow"
 import "../style/Education.css"
 
 export default function Education() {
@@ -23,7 +24,7 @@ function EducationCard({ name = "X", duration = "2018-2019", place = "Barjora Hi
             <div className="marks">{marks}</div>
             <a href="" className="cerificate link-container">
                 <div>View Certificate</div>
-                <img src="./icons/Arrow.svg" alt="" />
+                <Arrow />
             </a>
         </div>
     )

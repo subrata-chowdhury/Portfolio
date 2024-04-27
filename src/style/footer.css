@@ -53,8 +53,9 @@
     justify-content: end;
 }
 
-.icon-container img {
+.icon-container svg {
     width: 1.3rem;
+    fill: var(--text-color);
 }
 
 @media (max-width: 650px) {

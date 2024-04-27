@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "../style/projects.css"
 import { useState } from "react";
+import GitHub from "../Icons/Social Media/GitHub";
+import Arrow from "../Icons/Arrow";
 
 export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
     const projectData = [{
@@ -65,7 +67,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
 export function GitHubButton() {
     return (
         <a className="github-page-btn btn" href="https://github.com/Super7000">
-            <img src="./icons/github-white.svg" alt="" />
+            <GitHub /> {/* icon */}
             <div>View My Github Page</div>
         </a>
     )
@@ -91,7 +93,7 @@ export function Project({
                 </div>
                 <a className="project link-container" href={projectLink}>
                     <div className="project-link">View in Github</div>
-                    <img src="./icons/Arrow.svg" alt="" />
+                    <Arrow />
                 </a>
             </div>
         </div>

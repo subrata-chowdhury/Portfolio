@@ -25,6 +25,10 @@
     background: #bfe5ff;
 }
 
+.app.dark .skills-container .skill-container:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .skills-container .skill-name-container {
     display: grid;
     grid-auto-flow: column;

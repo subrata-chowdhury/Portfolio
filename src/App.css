@@ -13,10 +13,10 @@
 
 .app.dark {
     --blue-color: #2F6CE5;
-    --background-color: #1c1c1c;
+    --background-color: #202020;
     --text-color: #fff;
     --heading-color: var(--text-color);
-    --container-color: #003c56;
+    --container-color: #3d3d3d;
     --card-container-color: var(--container-color);
 }
 
@@ -33,6 +33,7 @@ a {
     display: grid;
     gap: 2rem;
     background: var(--background-color);
+    min-height: 100vh;
 }
 
 .heading {

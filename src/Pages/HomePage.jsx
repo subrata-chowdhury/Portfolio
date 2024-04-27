@@ -6,6 +6,7 @@ import Projects from '../components/Projects'
 import Skills from '../components/Skills'
 import Contact from '../components/Contact'
 import Education from '../components/Education'
+import TopSkills from '../components/TopSkills'
 
 export default function HomePage() {
     const body = useRef();
@@ -14,6 +15,7 @@ export default function HomePage() {
         <div className='mode light app' ref={body}>
             <Menubar bodyRef={body} skillsContainerRef={skillsContainer} />
             <Header />
+            <TopSkills />
             <Skills forwardSkillContainerRef={skillsContainer} />
             <Education />
             <Projects />

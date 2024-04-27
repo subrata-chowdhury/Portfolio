@@ -4,7 +4,8 @@ export const defaultValue = [{
     name: "Frontend Development",
     iconSrc: "./icons/Frontend2.svg",
     id: "frontend-development",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "Web Development",
     iconSrc: "./icons/Web Development.svg",
@@ -14,12 +15,14 @@ export const defaultValue = [{
     name: "HTML",
     iconSrc: "./icons/html.svg",
     id: "html",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "CSS",
     iconSrc: "./icons/css.svg",
     id: "css",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "SASS",
     iconSrc: "./icons/sass.svg",
@@ -29,7 +32,8 @@ export const defaultValue = [{
     name: "Java Script",
     iconSrc: "./icons/js.svg",
     id: "java-script",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "PHP",
     iconSrc: "./icons/php.svg",
@@ -59,17 +63,20 @@ export const defaultValue = [{
     name: "MySQL",
     iconSrc: "./icons/MySQL.svg",
     id: "mysql",
-    lvl: 2
+    lvl: 2,
+    topSkill: true
 }, {
     name: "NodeJS",
     iconSrc: "./icons/NodeJS.svg",
     id: "nodejs",
-    lvl: 1
+    lvl: 1,
+    topSkill: true
 }, {
     name: "React",
     iconSrc: "./icons/React.svg",
     id: "react",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "Teamwork",
     iconSrc: "./icons/teamwork.svg",
@@ -79,7 +86,8 @@ export const defaultValue = [{
     name: "Web Design",
     iconSrc: "./icons/web-design.png",
     id: "webDesign",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "Graphic Design",
     iconSrc: "./icons/graphic-design.png",
@@ -99,7 +107,8 @@ export const defaultValue = [{
     name: "Responsive Web Design",
     iconSrc: "./icons/ui-design.png",
     id: "responsiveWebDesign",
-    lvl: 3
+    lvl: 3,
+    topSkill: true
 }, {
     name: "Quick Learner",
     iconSrc: "./icons/laptop.png",
@@ -114,7 +123,8 @@ export const defaultValue = [{
     name: "REST API",
     iconSrc: "./icons/api.png",
     id: "restApi",
-    lvl: 2
+    lvl: 2,
+    topSkill: true
 }, {
     name: "Visual Basic",
     iconSrc: "./icons/vb-file.png",
@@ -176,9 +186,12 @@ export const SkillsContainer = memo(({
     skillsData = defaultValue,
     forwardSkillContainerRef = useRef(),
     excludeIds = false,
-    skillClickHandler = () => { }
+    skillClickHandler = () => { },
+    showOnlyTopSkills = false
 }) => {
     let skills = [];
+    if (showOnlyTopSkills)
+        skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
     for (let index = 0; index < skillsData.length; index++) {
         skills.push(<Skill
             name={skillsData[index]["name"]}

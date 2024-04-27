@@ -1,3 +1,7 @@
+import Facebook from "../Icons/Social Media/Facebook"
+import GitHub from "../Icons/Social Media/GitHub"
+import Instagram from "../Icons/Social Media/Instagram"
+import LinkedIn from "../Icons/Social Media/LinkedIn"
 import "../style/footer.css"
 import { Menus } from "./Menubar"
 
@@ -25,18 +29,18 @@ export default function Footer({ activeMenuIndex }) {
 function OtherPlatforms() {
     return (
         <div className="icon-container">
-            <LinkedIcon iconSrc="./icons/facebook.svg" />
-            <LinkedIcon iconSrc="./icons/instagram.svg" />
-            <LinkedIcon iconSrc="./icons/github.svg" linkUrl="https://github.com/Super7000" />
-            <LinkedIcon iconSrc="./icons/linkedin.svg" linkUrl="https://www.linkedin.com/in/subratachowdhury7000/" />
+            <LinkedIcon Icon={Facebook} />
+            <LinkedIcon Icon={Instagram} />
+            <LinkedIcon Icon={GitHub} linkUrl="https://github.com/Super7000" />
+            <LinkedIcon Icon={LinkedIn} linkUrl="https://www.linkedin.com/in/subratachowdhury7000/" />
         </div>
     )
 }
 
-function LinkedIcon({ linkUrl = "#", iconSrc = "./icons/github.svg" }) {
+function LinkedIcon({ linkUrl = "#", Icon }) {
     return (
         <a href={linkUrl}>
-            <img src={iconSrc} alt="icon" />
+            <Icon />
         </a>
     )
 }
