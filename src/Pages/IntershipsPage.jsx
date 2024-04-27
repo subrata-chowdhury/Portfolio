@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import Footer from "../components/Footer";
 import Menubar from "../components/Menubar";
-import { Link } from "react-router-dom";
 import "../style/Pages/InternshipsPage.css"
 
 export default function InternshipsPage() {
