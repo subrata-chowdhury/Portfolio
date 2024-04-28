@@ -64,9 +64,9 @@ a {
     width: 1.2rem;
 }
 
-.screen-container {
+/* .screen-container {
     min-height: 100vh;
-}
+} */
 
 @media (max-width: 1285px) {
     :root {

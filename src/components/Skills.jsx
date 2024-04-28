@@ -72,11 +72,16 @@ export const defaultValue = [{
     lvl: 1,
     topSkill: true
 }, {
-    name: "React",
+    name: "ReactJS",
     iconSrc: "./icons/React.svg",
-    id: "react",
+    id: "reactjs",
     lvl: 3,
     topSkill: true
+}, {
+    name: "Redux",
+    iconSrc: "./icons/redux.svg",
+    id: "redux",
+    lvl: 2,
 }, {
     name: "Teamwork",
     iconSrc: "./icons/teamwork.svg",
@@ -156,13 +161,15 @@ export const defaultValue = [{
     id: "figma",
     lvl: 1
 }]
+
+defaultValue.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return b.lvl - a.lvl;
+})
+
 export default function Skills({ forwardSkillContainerRef }) {
     // const [skillsData, setSkillData] = useState(defaultValue);
-    defaultValue.sort((a, b) => {
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return b.lvl - a.lvl;
-    })
     return (
         <div className="screen-container">
             <div className="heading" id="skills">
@@ -187,11 +194,19 @@ export const SkillsContainer = memo(({
     forwardSkillContainerRef = useRef(),
     excludeIds = false,
     skillClickHandler = () => { },
-    showOnlyTopSkills = false
+    showOnlyTopSkills = false,
+    hideLevel = false,
+    data = []
 }) => {
     let skills = [];
     if (showOnlyTopSkills)
         skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
+    if (data.length > 0) {
+        skillsData = [];
+        for (let index = 0; index < data.length; index++) {
+            skillsData.push(defaultValue.filter(e => e.name === data[index])[0])
+        }
+    }
     for (let index = 0; index < skillsData.length; index++) {
         skills.push(<Skill
             name={skillsData[index]["name"]}
@@ -201,28 +216,29 @@ export const SkillsContainer = memo(({
             key={skillsData[index]["id"]}
             onClickHandler={skillClickHandler}
             lvl={skillsData[index].lvl}
+            hideLevel={hideLevel}
         />)
     }
     return (
-        <div className="skills-container" ref={forwardSkillContainerRef}>
+        <div className="skills-container" ref={forwardSkillContainerRef} style={hideLevel ? { display: "inline-block" } : {}}>
             {skills}
         </div>
     )
 })
 
-function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", onClickHandler = () => { }, lvl = 0 }) {
+function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false }) {
     const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';
     return (
-        <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler}>
+        <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler} style={hideLevel ? { display: "inline-flex", margin: "0.3rem" } : {}}>
             <div className="skill-name-container">
-                <img src={icon} alt="icon" />
+                <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />
                 <div className="skill-name">{name}</div>
             </div>
-            <div className="skill-details">
+            {!hideLevel && <div className="skill-details">
                 <img src={`./icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
                 <img src={`./icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
                 <img src={`./icons/star${(lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
-            </div>
+            </div>}
         </div>
     )
 }
