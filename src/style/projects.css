@@ -74,6 +74,7 @@
     display: grid;
     grid-auto-flow: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 .link-container {
@@ -155,14 +156,30 @@
     padding: 0.5rem 0;
 } */
 
-.detailed-project-view-container .heading:first-child {
-    margin-top: 1.5rem;
+.detailed-project-view-container .right-side {
+    grid-auto-flow: row;
+    align-items: start;
+    align-content: start;
+    gap: 1rem;
+}
+
+.project-commit-details-container {
+    background: var(--container-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 80%;
+    font-size: 1.1rem;
+}
+
+.project-commit-details-container:first-child {
+    margin-top: 5.5rem;
 }
 
 .detailed-project-view-container .project-description {
     position: relative;
     left: 5%;
     color: var(--text-color);
+    width: 90%;
 }
 
 .close-detailed-project-view-btn {
