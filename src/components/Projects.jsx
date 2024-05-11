@@ -211,7 +211,8 @@ function ProjectsContainer({ showLimited = true, moreDetailsOfProjectBtnClickHan
                 about={projectData[index].about}
                 key={projectData[index].name}
                 repoName={projectData[index].repoName}
-                moreDetailsOfProjectBtnClickHandler={moreDetailsOfProjectBtnClickHandler} />
+                moreDetailsOfProjectBtnClickHandler={moreDetailsOfProjectBtnClickHandler}
+                animationDelay={index / 10} />
         )
     }
     return (
@@ -235,11 +236,13 @@ export function Project({
     name = "ATG World",
     about = "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
     repoName,
-    moreDetailsOfProjectBtnClickHandler = () => { }
+    moreDetailsOfProjectBtnClickHandler = () => { },
+
+    animationDelay = 0
 }) {
     const [showAbout, setShowAbout] = useState(false)
     return (
-        <div className="project-container">
+        <div className="project-container" style={{ animationDelay: animationDelay + 's' }}>
             <div className="project-image">
                 <img src={previewImageSrc} alt="project image" />
             </div>

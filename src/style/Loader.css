@@ -11,6 +11,7 @@
     left: 50%;
     bottom: 7rem;
     transform: translate(-50%, 0);
+    color: var(--text-color);
 }
 
 .inner-loader {

@@ -37,7 +37,7 @@ a {
 }
 
 .heading {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
     width: 50%;
     font-size: 2rem;
     font-weight: bold;
@@ -49,6 +49,10 @@ a {
     justify-content: space-between;
     align-items: center;
     color: var(--heading-color);
+}
+
+.heading div:first-child {
+    animation: leftToRight 1s linear, invisibleToVisible 1s linear;
 }
 
 .heading.zero-padding {

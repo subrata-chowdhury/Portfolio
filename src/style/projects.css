@@ -43,6 +43,7 @@
     padding-bottom: 0.8rem;
     border: 2px solid rgba(0, 0, 0, 0.15);
     color: var(--text-color);
+    animation: bottomToTop 0.5s linear, invisibleToVisible 1s linear;
 }
 
 .github-page-btn svg {
@@ -169,6 +170,7 @@
     border-radius: 0.5rem;
     width: 80%;
     font-size: 1.1rem;
+    color: var(--text-color);
 }
 
 .project-commit-details-container:first-child {

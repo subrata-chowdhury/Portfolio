@@ -3,8 +3,23 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './Pages/HomePage'
 import InternshipsPage from './Pages/IntershipsPage'
 import ProjectsPage from './Pages/ProjectsPage'
+import { useEffect } from 'react'
+
+import './style/Animations.css'
 
 function App() {
+    useEffect(() => {
+        const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (isDarkMode) {
+            document.querySelector(".app").classList.remove('light')
+            document.querySelector(".app").classList.add('dark')
+        } else {
+            document.querySelector(".app").classList.remove('dark')
+            document.querySelector(".app").classList.add('light')
+        }
+    }, [])
+
     return (
         <BrowserRouter basename='/Portfolio/dist/'>
             <Routes>

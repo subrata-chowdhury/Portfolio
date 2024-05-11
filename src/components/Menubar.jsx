@@ -32,6 +32,16 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
             setOnDarkMode(false)
         }
     }
+    useEffect(() => {
+        function checkIfInDarkMode() {
+            if (hasElement(bodyRef.current.classList, "light") >= 0) {
+                setOnDarkMode(false)
+            } else {
+                setOnDarkMode(true)
+            }
+        }
+        checkIfInDarkMode()
+    }, [])
     function toggleMenubar() {
         if (hasElement(menubar.current.classList, "active") !== -1) {
             menubar.current.classList.remove("active");

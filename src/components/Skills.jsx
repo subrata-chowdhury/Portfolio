@@ -55,6 +55,16 @@ export const defaultValue = [{
     id: "java",
     lvl: 2
 }, {
+    name: "OOPs",
+    iconSrc: "./icons/oop.png",
+    id: "oops",
+    lvl: 2
+}, {
+    name: "DSA",
+    iconSrc: "./icons/dsa.png",
+    id: "dsa",
+    lvl: 2
+}, {
     name: "Python",
     iconSrc: "./icons/python.svg",
     id: "python",
@@ -75,6 +85,12 @@ export const defaultValue = [{
     name: "ReactJS",
     iconSrc: "./icons/React.svg",
     id: "reactjs",
+    lvl: 3,
+    topSkill: true
+}, {
+    name: "React Native",
+    iconSrc: "./icons/React.svg",
+    id: "react-native",
     lvl: 3,
     topSkill: true
 }, {
@@ -104,9 +120,14 @@ export const defaultValue = [{
     id: "ai",
     lvl: 2
 }, {
-    name: "Database",
+    name: "DBMS",
     iconSrc: "./icons/database.png",
-    id: "database",
+    id: "dbms",
+    lvl: 2
+}, {
+    name: "Operating System",
+    iconSrc: "./icons/os.png",
+    id: "os",
     lvl: 2
 }, {
     name: "Responsive Web Design",
@@ -159,6 +180,16 @@ export const defaultValue = [{
     name: "Figma",
     iconSrc: "./icons/figma.png",
     id: "figma",
+    lvl: 1
+}, {
+    name: "IntelliJ IDEA",
+    iconSrc: "./icons/intellij-idea.svg",
+    id: "intellij-idea",
+    lvl: 1
+}, {
+    name: "Android Studio",
+    iconSrc: "./icons/android-studio.png",
+    id: "android-studio",
     lvl: 1
 }]
 
@@ -217,6 +248,7 @@ export const SkillsContainer = memo(({
             onClickHandler={skillClickHandler}
             lvl={skillsData[index].lvl}
             hideLevel={hideLevel}
+            animationDelay={index}
         />)
     }
     return (
@@ -226,10 +258,11 @@ export const SkillsContainer = memo(({
     )
 })
 
-function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false }) {
+function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false, animationDelay = 0 }) {
     const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';
+
     return (
-        <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler} style={hideLevel ? { display: "inline-flex", margin: "0.3rem" } : {}}>
+        <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler} style={hideLevel ? { display: "inline-flex", margin: "0.3rem", animationDuration: animationDelay / 10 + 's' } : { animationDuration: animationDelay / 10 + 's' }}>
             <div className="skill-name-container">
                 <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />
                 <div className="skill-name">{name}</div>

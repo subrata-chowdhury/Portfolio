@@ -26,6 +26,7 @@
 }
 
 .intro .main-intro {
+    animation: bottomToTop 1s linear;
     font-size: 2rem;
 }
 
@@ -36,6 +37,7 @@
 }
 
 .intro .sub-intro-container {
+    animation: bottomToTop 1s linear;
     font-size: 1.2rem;
 }
 
@@ -69,6 +71,7 @@
     border-radius: 20px;
     z-index: 2;
     width: 100%;
+    animation: invisibleToVisible 1s linear;
 }
 
 /* 
