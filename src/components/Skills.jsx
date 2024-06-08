@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useRef, useState } from "react";
 import "../style/skills.css"
 export const defaultValue = [{
     name: "Frontend Development",
@@ -79,7 +79,7 @@ export const defaultValue = [{
     name: "NodeJS",
     iconSrc: "./icons/NodeJS.svg",
     id: "nodejs",
-    lvl: 1,
+    lvl: 2,
     topSkill: true
 }, {
     name: "ReactJS",
@@ -191,6 +191,11 @@ export const defaultValue = [{
     iconSrc: "./icons/android-studio.png",
     id: "android-studio",
     lvl: 1
+}, {
+    name: "Firebase",
+    iconSrc: "./icons/Logomark_Full Color.svg",
+    id: "firebase",
+    lvl: 1
 }]
 
 defaultValue.sort((a, b) => {
@@ -200,22 +205,36 @@ defaultValue.sort((a, b) => {
 })
 
 export default function Skills({ forwardSkillContainerRef }) {
-    // const [skillsData, setSkillData] = useState(defaultValue);
+    const [skillsData, setSkillData] = useState(defaultValue);
+    const [showOnlyTopSkills, setShowOnlyTopSkills] = useState(false);
+    const [sortBy, setSortBy] = useState('name');
     return (
         <div className="screen-container">
             <div className="heading" id="skills">
                 <div>My Skills</div>
-                {/* <SortButton onClickHandler={() => {
-                    const sortedArray = [...skillsData]
-                    sortedArray.sort((a, b) => {
-                        if (a.name < b.name) return -1;
-                        if (a.name > b.name) return 1;
-                        return b.lvl - a.lvl;
-                    })
-                    setSkillData(sortedArray)
-                }} /> */}
+                <div style={{ display: 'grid', gridAutoFlow: "column", gap: '1rem' }}>
+                    <FilterButton onClickHandler={() => setShowOnlyTopSkills(val => !val)} active={showOnlyTopSkills} />
+                    <SortButton onClickHandler={() => {
+                        const sortedArray = [...skillsData]
+                        if (sortBy === 'name') {
+                            sortedArray.sort((a, b) => {
+                                if (a.lvl < b.lvl) return 1;
+                                if (a.lvl > b.lvl) return -1;
+                                return b.lvl - a.lvl;
+                            })
+                        } else if (sortBy === 'level') {
+                            sortedArray.sort((a, b) => {
+                                if (a.name < b.name) return -1;
+                                if (a.name > b.name) return 1;
+                                return b.lvl - a.lvl;
+                            })
+                        }
+                        setSkillData(sortedArray)
+                        setSortBy(sortBy === 'name' ? 'level' : 'name')
+                    }} active={sortBy === 'name' ? false : true} />
+                </div>
             </div>
-            <SkillsContainer skillsData={defaultValue} forwardSkillContainerRef={forwardSkillContainerRef} />
+            <SkillsContainer skillsData={skillsData} forwardSkillContainerRef={forwardSkillContainerRef} showOnlyTopSkills={showOnlyTopSkills} />
         </div>
     )
 }
@@ -276,10 +295,19 @@ function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", on
     )
 }
 
-function SortButton({ onClickHandler = () => { } }) {
+function SortButton({ onClickHandler = () => { }, active = false }) {
     return (
         <div className="sort btn" onClick={onClickHandler}>
-            <div>Sort By</div>
+            <div>{active ? 'Sort By Name' : 'Sort By Level'}</div>
+            <img src="./icons/sort.png"></img>
+        </div>
+    )
+}
+
+function FilterButton({ onClickHandler = () => { }, active = false }) {
+    return (
+        <div className="sort btn" onClick={onClickHandler}>
+            <div>{active ? 'Show All Skills' : 'Show Top Skills'}</div>
             <img src="./icons/sort.png"></img>
         </div>
     )

@@ -95,7 +95,7 @@
     .intro .download-btn {
         width: 40%;
         margin: auto;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 
     .header {
@@ -110,6 +110,7 @@
 
     .photo img {
         grid-area: img;
+        width: 60%;
     }
 
     .intro {

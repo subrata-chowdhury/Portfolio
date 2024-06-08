@@ -32,14 +32,14 @@ function OtherPlatforms() {
             <LinkedIcon Icon={Facebook} />
             <LinkedIcon Icon={Instagram} />
             <LinkedIcon Icon={GitHub} linkUrl="https://github.com/Super7000" />
-            <LinkedIcon Icon={LinkedIn} linkUrl="https://www.linkedin.com/in/subratachowdhury7000/" />
+            <LinkedIcon Icon={LinkedIn} linkUrl="https://www.linkedin.com/in/subrata7000/" />
         </div>
     )
 }
 
 function LinkedIcon({ linkUrl = "#", Icon }) {
     return (
-        <a href={linkUrl}>
+        <a href={linkUrl} target="_blank" >
             <Icon />
         </a>
     )

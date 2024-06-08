@@ -1,0 +1,10 @@
+.certification-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 15px;
+    padding: 0 5rem;
+}
+
+.certification.education-card {
+    width: auto;
+}

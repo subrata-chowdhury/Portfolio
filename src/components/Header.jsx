@@ -23,7 +23,7 @@ function Intro() {
                 <br />I've actively worked on several projects since my 11th class,
                 <br />and many of these projects can be found on my GitHub Page.
             </div>
-            <a className="download-btn" href="https://drive.google.com/file/d/12ptrr2KOgbwSO7WiKaafXR8CWwDT3kdX/view" target="_blank">Download CV</a>
+            <a className="download-btn" href="https://drive.google.com/file/d/1t-TPZiwpf_pkzDlldWxxIWuKWCCtreKe/view?usp=drive_link" target="_blank">Download CV</a>
         </div>
     )
 }
