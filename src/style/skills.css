@@ -20,6 +20,7 @@
     grid-template-columns: 60% 40%;
     color: var(--text-color);
     animation: bottomToTop linear;
+    font-size: 1rem;
 }
 
 .skills-container .skill-container:hover {
