@@ -6,7 +6,7 @@ import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
 
-export default function Menubar({ bodyRef = useRef(), skillsContainerRef, activeIndex = 0 }) {
+export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef, activeIndex = 0 }) {
     const [onDarkMode, setOnDarkMode] = useState(false)
     const menubar = useRef();
     useEffect(() => {
@@ -59,7 +59,7 @@ export default function Menubar({ bodyRef = useRef(), skillsContainerRef, active
                     </div>
                 </div>
                 <SearchContainer skillsContainerRef={skillsContainerRef} />
-                <Menus activeIndex={activeIndex} />
+                <Menus activeIndex={activeIndex} links={links} />
             </div>
         </>
     )
@@ -118,20 +118,23 @@ export const Menus = memo(({ links = [{
     link: "/"
 }, {
     name: "Education",
-    link: "#education"
+    link: "#education",
+    createHref: true
 }, {
     name: "Projects",
-    link: "#project"
+    link: "#project",
+    createHref: true
 }, {
     name: "Internships",
     link: "/Internships"
 }, {
     name: "Contact Me",
-    link: "#contact"
+    link: "#contact",
+    createHref: true
 }], activeIndex = 0 }) => {
     let linkElement = [];
     for (let index = 0; index < links.length; index++) {
-        if (links[index].link.indexOf("#") === 0)
+        if (links[index].createHref === true || links[index].link.indexOf("#") === 0)
             linkElement.push(
                 <a key={index} className={"menu" + (activeIndex === index ? " active" : "")} href={links[index].link}>{links[index].name}</a>
             )

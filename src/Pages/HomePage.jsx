@@ -21,9 +21,13 @@ export default function HomePage() {
                 urlData = pair;
                 break;
             }
-            if (urlData[0] === 'autoScroll') {
+            if (urlData[0] === 'autoscroll') {
                 if (urlData[1] === 'contact')
                     document.querySelector(".contact-container").scrollIntoView()
+                if (urlData[1] === 'education')
+                    document.querySelector(".heading#education").scrollIntoView()
+                if (urlData[1] === 'project')
+                    document.querySelector(".heading#project").scrollIntoView()
             }
         } catch (error) {
 

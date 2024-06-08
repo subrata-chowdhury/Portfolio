@@ -212,7 +212,7 @@ export default function Skills({ forwardSkillContainerRef }) {
         <div className="screen-container">
             <div className="heading" id="skills">
                 <div>My Skills</div>
-                <div style={{ display: 'grid', gridAutoFlow: "column", gap: '1rem' }}>
+                <div className="btn-container">
                     <FilterButton onClickHandler={() => setShowOnlyTopSkills(val => !val)} active={showOnlyTopSkills} />
                     <SortButton onClickHandler={() => {
                         const sortedArray = [...skillsData]
@@ -306,7 +306,7 @@ function SortButton({ onClickHandler = () => { }, active = false }) {
 
 function FilterButton({ onClickHandler = () => { }, active = false }) {
     return (
-        <div className="sort btn" onClick={onClickHandler}>
+        <div className="sort filter btn" onClick={onClickHandler}>
             <div>{active ? 'Show All Skills' : 'Show Top Skills'}</div>
             <img src="./icons/sort.png"></img>
         </div>

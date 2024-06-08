@@ -10,7 +10,25 @@ export default function ProjectsPage() {
     window.scrollTo(0, 0)
     return (
         <div className="projects-page mode light app" ref={body}>
-            <Menubar bodyRef={body} activeIndex={activeMenuIndex} />
+            <Menubar bodyRef={body} activeIndex={activeMenuIndex} links={[{
+                name: "Home",
+                link: "/"
+            }, {
+                name: "Education",
+                link: "/Portfolio/dist/?autoscroll=education",
+                createHref: true
+            }, {
+                name: "Projects",
+                link: "#",
+                createHref: true
+            }, {
+                name: "Internships",
+                link: "/Internships"
+            }, {
+                name: "Contact Me",
+                link: "/Portfolio/dist/?autoscroll=contact",
+                createHref: true
+            }]} />
             <Projects showLimited={false} showSeeMoreBtn={false} />
             <Footer activeMenuIndex={activeMenuIndex} />
         </div>

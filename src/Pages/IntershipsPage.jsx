@@ -9,7 +9,25 @@ export default function InternshipsPage() {
     const body = useRef()
     return (
         <div className="internship-page mode light app" ref={body}>
-            <Menubar bodyRef={body} activeIndex={activeMenuIndex} />
+            <Menubar bodyRef={body} activeIndex={activeMenuIndex} links={[{
+                name: "Home",
+                link: "/"
+            }, {
+                name: "Education",
+                link: "/Portfolio/dist/?autoscroll=education",
+                createHref: true
+            }, {
+                name: "Projects",
+                link: "/Projects",
+            }, {
+                name: "Internships",
+                link: "#",
+                createHref: true
+            }, {
+                name: "Contact Me",
+                link: "/Portfolio/dist/?autoscroll=contact",
+                createHref: true
+            }]} />
             <div className="empty-heading">
                 <div className="heading">
                     🥲Have not get any internship yet.<br></br>

@@ -61,7 +61,7 @@ const projectData = [{
 let moreProjectData = {
     "ATG_World": {
         languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Figma", "Responsive Web Design", "Frontend Development"],
+        skills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
