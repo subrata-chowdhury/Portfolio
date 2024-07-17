@@ -12,6 +12,9 @@ const certifications = [
         link: "https://www.hackerrank.com/certificates/c58cd6bd1b6d",
         // imgSrc: "./certifications/javascript-algorithms-and-data-structures.png"
     }, {
+        title: "SQL (Advanced) || HackerRank",
+        link: "https://www.hackerrank.com/certificates/57a73cd708d5",
+    }, {
         title: "Java (Basic) || HackerRank",
         link: "https://www.hackerrank.com/certificates/1460fea5d18d",
         // imgSrc: "./certifications/front-end-libraries.png"//
