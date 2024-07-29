@@ -71,8 +71,7 @@
 }
 
 .heading#skills .btn-container {
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
     gap: 1rem;
 }
 
@@ -112,6 +111,12 @@
     }
 
     .heading#skills:first-child {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .heading#skills .btn-container {
+        flex-direction: column;
     }
 }

@@ -228,6 +228,11 @@
         font-size: 1.5rem;
     }
 
+    .search-result-container {
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
     .footer .menus-container .menu {
         font-size: 1rem;
     }

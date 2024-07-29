@@ -34,8 +34,8 @@
     font-weight: 600;
 }
 
-@media (max-width: 605px) {
-    .about-container div .about-contact-details {
+@media (max-width: 630px) {
+    .about-container .sub-about-container .about-contact-details {
         grid-template-columns: auto;
     }
 }
@@ -43,5 +43,6 @@
 @media (max-width: 480px) {
     .about-container {
         padding: 0 2rem;
+        font-size: 1rem;
     }
 }

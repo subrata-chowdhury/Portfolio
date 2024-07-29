@@ -67,12 +67,9 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
 
 const SearchContainer = memo(({ skillsContainerRef }) => {
     const searchInputBox = useRef();
-    const [searchData, setSearchData] = useState()
-    const [filteredSkillData, setFilterSkillsData] = useState(skillsData)
+    const [filteredSkillData, setFilterSkillsData] = useState('')
     function inputBoxInputHandler(searchData) {
-        if (searchData === "") {
-
-        } else {
+        if (searchData !== "") {
             let newSkillsData = skillsData;
             newSkillsData = newSkillsData.filter(skill => skill.name.toLowerCase().includes(searchData.toLowerCase()))
             setFilterSkillsData(newSkillsData)
@@ -86,10 +83,7 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
                     type="text"
                     placeholder="Search a Skill"
                     ref={searchInputBox}
-                    value={searchData}
                     onChange={e => {
-                        console.log(e.target.value)
-                        setSearchData(e.target.value.trim())
                         inputBoxInputHandler(e.target.value.trim())
                     }} />
                 <div className="search-icon" onClick={() => {
@@ -97,7 +91,7 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
                 }}>
                     <SearchIcon />
                 </div>
-                {searchData && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
+                {filteredSkillData.length > 0 && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
                     skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
                 }} />}
             </div>
