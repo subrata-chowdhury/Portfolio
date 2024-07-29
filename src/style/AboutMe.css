@@ -1,0 +1,47 @@
+.about-container {
+    padding: 0 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.about-container .sub-about-container .points {
+    line-height: 2;
+}
+
+.about-container .sub-about-container .about-contact-details {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: start;
+    gap: 1.5rem;
+}
+
+.about-container .sub-about-container .about-contact-details div {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.about-container .sub-about-container .about-contact-details div svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--blue-color);
+}
+
+.about-contact-details .field {
+    font-weight: 600;
+}
+
+@media (max-width: 605px) {
+    .about-container div .about-contact-details {
+        grid-template-columns: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        padding: 0 2rem;
+    }
+}

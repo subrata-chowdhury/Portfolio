@@ -1,28 +1,32 @@
 import "../style/header.css"
 import profilePicture from "../assets/profile-pic.png"
+import { useEffect, useState } from "react";
+import { OtherPlatforms } from "./Footer";
 // import Wave from "../assets/wave"
 // import { useEffect } from "react"
 
 export default function Header() {
     return (
-        <div className="header">
-            <Intro />
-            <Photo />
-        </div>
+        <>
+            <div className="bg" style={{ backgroundImage: 'url(./wave.svg)' }}></div>
+            <div className="header">
+                <Intro />
+                {/* <Photo /> */}
+            </div>
+        </>
     )
 }
 
 function Intro() {
     return (
         <div className="intro">
-            <div className="main-intro">Hi, I am <span className="name">Subrata Chowdhury</span></div>
+            <div className="main-intro"><span className="name">Subrata Chowdhury</span></div>
             <div className="sub-intro-container">
-                <div className="sub-intro">I am experienced in <span className="sub-intro-heading">web development</span></div>
-                <br />I'm currently a 3rd year Computer Science Engineering student
-                <br />at Bengal College of Engineering and Technology.
-                <br />I've actively worked on several projects since my 11th class,
-                <br />and many of these projects can be found on my GitHub Page.
+                <div className="sub-intro">I am a
+                    <TypeingAnimation />
+                </div>
             </div>
+            <OtherPlatforms className="header-icons" />
             <a className="download-btn" href="https://drive.google.com/file/d/1t-TPZiwpf_pkzDlldWxxIWuKWCCtreKe/view?usp=drive_link" target="_blank">Download CV</a>
         </div>
     )
@@ -41,6 +45,56 @@ function Photo() {
         <div className="photo">
             {/* <Wave /> */}
             <img src={profilePicture} alt="profile picture" />
+        </div>
+    )
+}
+
+function TypeingAnimation() {
+    const words = ["Web Developer", "Programmer", "Designer", "Freelancer", "Engineer"];
+    const typingSpeed = 150; // Speed of typing each letter in milliseconds
+    const erasingSpeed = 100; // Speed of erasing each letter in milliseconds
+    const delayBetweenWords = 1000; // Delay between typing each word in milliseconds
+
+    const [text, setText] = useState("");
+    const [isErasing, setIsErasing] = useState(false);
+    const [wordIndex, setWordIndex] = useState(0);
+    const [charIndex, setCharIndex] = useState(0);
+
+    useEffect(() => {
+        const handleTyping = () => {
+            if (!isErasing) {
+                // Typing animation logic
+                if (charIndex < words[wordIndex].length) {
+                    setText(prevText => prevText + words[wordIndex][charIndex]);
+                    setCharIndex(prevCharIndex => prevCharIndex + 1);
+                } else {
+                    // Start erasing after typing is complete
+                    setIsErasing(true);
+                }
+            } else {
+                // Erasing animation logic
+                if (charIndex > 0) {
+                    setText(prevText => prevText.slice(0, -1));
+                    setCharIndex(prevCharIndex => prevCharIndex - 1);
+                } else {
+                    // Move to the next word after erasing is complete
+                    setIsErasing(false);
+                    setWordIndex(prevWordIndex => (prevWordIndex + 1) % words.length);
+                }
+            }
+        };
+
+        const typingDelay = isErasing ? erasingSpeed : typingSpeed;
+        const timer = setTimeout(handleTyping, typingDelay);
+
+        return () => clearTimeout(timer);
+    }, [charIndex, isErasing, wordIndex, words]);
+
+
+    return (
+        <div className="sub-intro-heading">
+            <span id="typing-text">&nbsp;{text}</span>
+            <span id="cursor">|</span>
         </div>
     )
 }

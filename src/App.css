@@ -5,9 +5,9 @@
 .app {
     --blue-color: #2F6CE5;
     --background-color: #fff;
-    --text-color: #000;
+    --text-color: #272829;
     --heading-color: var(--text-color);
-    --container-color: #F5FCFF;
+    --container-color: #f7fcff;
     --card-container-color: #fff;
 }
 
@@ -38,6 +38,7 @@ a {
 
 .heading {
     /* scroll-snap-align: start; */
+    font-family: "Raleway", sans-serif;
     width: 50%;
     font-size: 2rem;
     font-weight: bold;

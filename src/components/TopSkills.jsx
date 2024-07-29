@@ -1,4 +1,4 @@
-import { SkillsContainer, defaultValue } from "./Skills";
+import { SkillsContainer, skillsData } from "./Skills";
 
 export default function TopSkills() {
     return (
@@ -15,7 +15,7 @@ export default function TopSkills() {
                     setSkillData(sortedArray)
                 }} /> */}
             </div>
-            <SkillsContainer skillsData={defaultValue} showOnlyTopSkills={true} />
+            <SkillsContainer skillsData={skillsData} showOnlyTopSkills={true} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { memo, useEffect, useRef, useState } from "react";
 import "../style/menubar.css"
-import { SkillsContainer } from "./Skills";
+import { SkillsContainer, skillsData } from "./Skills";
 import { Link } from "react-router-dom";
 import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
@@ -12,7 +12,7 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
     useEffect(() => {
         function activeMenubarOnScroll() {
             window.onscroll = () => {
-                if (document.documentElement.scrollTop > 150 && window.innerWidth > 650) {
+                if (document.documentElement.scrollTop > 50 && window.innerWidth > 650) {
                     menubar.current.classList.add("active");
                 } else {
                     menubar.current.classList.remove("active");
@@ -66,19 +66,16 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
 }
 
 const SearchContainer = memo(({ skillsContainerRef }) => {
-    const searchInputBox = useRef()
-    const searchResultContainer = useRef()
-    function inputBoxInputHandler(event) {
-        if (event.target.value.trim() === "") {
-            searchResultContainer.current.classList.remove("active")
+    const searchInputBox = useRef();
+    const [searchData, setSearchData] = useState()
+    const [filteredSkillData, setFilterSkillsData] = useState(skillsData)
+    function inputBoxInputHandler(searchData) {
+        if (searchData === "") {
+
         } else {
-            searchResultContainer.current.classList.add("active")
-            let skills = searchResultContainer.current.querySelectorAll(".skill-container")
-            for (let index = 0; index < skills.length; index++) {
-                if (skills[index].dataset.id.indexOf(event.target.value.trim().toLowerCase().replace(/\s+/g, '-')) >= 0)
-                    skills[index].style.cssText = "display: grid"
-                else skills[index].style.cssText = "display: none"
-            }
+            let newSkillsData = skillsData;
+            newSkillsData = newSkillsData.filter(skill => skill.name.toLowerCase().includes(searchData.toLowerCase()))
+            setFilterSkillsData(newSkillsData)
         }
     }
     return (
@@ -87,28 +84,31 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
                 <input
                     className="search-box"
                     type="text"
-                    name=""
-                    id=""
                     placeholder="Search a Skill"
                     ref={searchInputBox}
-                    onInput={inputBoxInputHandler} />
+                    value={searchData}
+                    onChange={e => {
+                        console.log(e.target.value)
+                        setSearchData(e.target.value.trim())
+                        inputBoxInputHandler(e.target.value.trim())
+                    }} />
                 <div className="search-icon" onClick={() => {
                     searchInputBox.current.focus();
                 }}>
                     <SearchIcon />
                 </div>
-                <SearchResultContainer forwardRef={searchResultContainer} skillClickHandler={(e) => {
+                {searchData && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
                     skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
-                }} />
+                }} />}
             </div>
         </>
     )
 })
 
-export function SearchResultContainer({ forwardRef = useRef(), skillClickHandler = () => { } }) {
+export function SearchResultContainer({ skillsData, skillClickHandler = () => { } }) {
     return (
-        <div className="search-result-container" ref={forwardRef}>
-            <SkillsContainer excludeIds={true} skillClickHandler={skillClickHandler} />
+        <div className="search-result-container active">
+            <SkillsContainer skillsData={skillsData} excludeIds={true} skillClickHandler={skillClickHandler} />
         </div>
     )
 }

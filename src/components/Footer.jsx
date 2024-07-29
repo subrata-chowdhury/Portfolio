@@ -15,7 +15,7 @@ export default function Footer({ activeMenuIndex }) {
             </div>
             <div className="line"></div>
             <div className="bottom-part">
-                <div className="author">Made by Subrata</div>
+                <div className="author">Made with ❤️ by Subrata</div>
                 <div className="privacy-policy-container">
                     <a className="item" href="">Privacy Policy</a>
                     <a className="item" href="">Term of Services</a>
@@ -26,9 +26,9 @@ export default function Footer({ activeMenuIndex }) {
     )
 }
 
-function OtherPlatforms() {
+export function OtherPlatforms({ className = "" }) {
     return (
-        <div className="icon-container">
+        <div className={"icon-container" + (className ? (" " + className) : "")}>
             <LinkedIcon Icon={Facebook} />
             <LinkedIcon Icon={Instagram} />
             <LinkedIcon Icon={GitHub} linkUrl="https://github.com/Super7000" />

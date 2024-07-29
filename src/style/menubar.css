@@ -99,6 +99,17 @@
     transition: 0.3s;
     display: none;
     width: 300px;
+    max-height: 70vh;
+    overflow-y: scroll;
+    /* existing styles */
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* For Firefox */
+}
+
+.search-result-container::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Opera */
 }
 
 .menubar.active .search-result-container {
@@ -119,11 +130,15 @@
 }
 
 .search-result-container .skills-container .skill-container {
+    display: block;
     border-radius: 0;
-    width: calc(300px - 2rem);
     padding: 0.7rem 1rem;
+    margin: 0;
+    width: 300px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.30);
     background: var(--container-color);
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .search-result-container .skills-container .skill-container:hover {

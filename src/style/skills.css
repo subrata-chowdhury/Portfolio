@@ -1,6 +1,5 @@
 .skills-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: inline-block;
     justify-content: stretch;
     align-content: start;
     gap: 1rem;
@@ -13,14 +12,23 @@
 .skills-container .skill-container {
     border-radius: 0.3rem;
     background: var(--container-color);
-    transition: 0.3s;
+    transition: 0.5s;
     padding: 0.6rem;
     cursor: pointer;
-    display: grid;
-    grid-template-columns: 60% 40%;
+    display: inline-block;
     color: var(--text-color);
     animation: bottomToTop linear;
+    max-width: max-content;
+    margin-bottom: 0.8rem;
+    margin-left: 0.8rem;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
     /* font-size: 1rem; */
+}
+
+.skills-container .skill-container .sub-skill-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
 }
 
 .skills-container .skill-container:hover {
@@ -32,18 +40,20 @@
 }
 
 .skills-container .skill-name-container {
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.5rem;
 }
 
 .skills-container .skill-name-container img {
-    width: 40px;
+    width: 2.5rem;
 }
 
 .skills-container .skill-name-container .skill-name {
-    font-weight: bold;
+    font-weight: 600;
+    justify-self: start;
+    text-wrap: nowrap;
 }
 
 .skills-container .skill-container .skill-details {
@@ -68,19 +78,12 @@
 
 .sort.btn {
     background: rgba(170, 212, 255, 0.518);
-    color: #000;
-}
-
-@media (max-width: 1250px) {
-    .skills-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
+    color: var(--text-color);
 }
 
 @media (max-width: 1000px) {
     .skills-container .skill-name-container img {
-        width: 20px;
+        width: 2rem;
     }
 
     .skills-container .skill-container .skill-details img {
@@ -96,35 +99,6 @@
 
     .skills-container .skill-container {
         gap: 0.5rem;
-    }
-
-    .skills-container {
-        grid-template-columns: repeat(5, 1fr);
-        justify-content: stretch;
-    }
-}
-
-@media (max-width: 645px) {
-    .skills-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 550px) {
-    .skills-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .skills-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 437px) {
-    .skills-container {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 

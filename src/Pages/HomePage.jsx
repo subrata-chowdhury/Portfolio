@@ -8,6 +8,7 @@ import Contact from '../components/Contact'
 import Education from '../components/Education'
 import TopSkills from '../components/TopSkills'
 import Certifications from '../components/Certifications'
+import AboutMe from '../components/AboutMe'
 
 export default function HomePage() {
     const body = useRef();
@@ -37,6 +38,7 @@ export default function HomePage() {
         <div className='mode light app' ref={body}>
             <Menubar bodyRef={body} skillsContainerRef={skillsContainer} />
             <Header />
+            <AboutMe />
             <Skills forwardSkillContainerRef={skillsContainer} />
             <Education />
             <Projects />

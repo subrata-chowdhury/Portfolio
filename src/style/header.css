@@ -1,10 +1,22 @@
 .header {
     height: 100vh;
-    background: var(--container-color);
     display: grid;
-    grid-template-columns: 65% auto;
+    align-items: center;
     justify-content: start;
-    padding: 0 15px;
+    padding: 0 10%;
+    z-index: 2;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100%;
+    opacity: 0.6;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .intro,
@@ -17,17 +29,14 @@
 }
 
 .intro {
-    width: 100%;
-    display: grid;
-    justify-content: start;
-    position: relative;
-    left: 5%;
     color: var(--text-color);
 }
 
 .intro .main-intro {
-    animation: bottomToTop 1s linear;
+    animation: rightToLeft 0.8s linear;
     font-size: 2rem;
+    font-family: "Raleway", sans-serif;
+    line-height: 1.1;
 }
 
 .intro .main-intro .name {
@@ -38,29 +47,44 @@
 
 .intro .sub-intro-container {
     animation: bottomToTop 1s linear;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .intro .sub-intro-container .sub-intro {
-    font-weight: bold;
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.7rem;
+    font-family: "Poppins", sans-serif;
+    ;
 }
 
 .intro .sub-intro-heading {
     font-size: 2rem;
     color: var(--blue-color);
-    font-weight: bold;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.header-icons {
+    justify-self: start;
+    margin-top: 2rem;
+}
+
+.header-icons a svg {
+    margin-right: 1rem;
+    width: 1.3rem;
 }
 
 .intro .download-btn {
     background: var(--blue-color);
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 0.7rem;
     width: 22%;
     display: grid;
     justify-content: center;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .photo {
@@ -98,6 +122,14 @@
         margin-top: 1rem;
     }
 
+    .intro .sub-intro {
+        justify-content: center;
+    }
+
+    .intro .header-icons {
+        justify-self: center;
+    }
+
     .header {
         padding-top: 2rem;
         grid-template-columns: none;
@@ -121,5 +153,25 @@
 
     .intro .main-intro .name {
         font-size: 2.5rem;
+    }
+}
+
+#cursor {
+    display: inline-block;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

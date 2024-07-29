@@ -47,14 +47,20 @@ function EducationCard({
     certificateLink = '#'
 }) {
     return (
-        <div className="education-card" style={{ animationDelay: animationDelay + 's' }}>
-            <div className="education-name">{name} <span className="duration">({duration})</span></div>
-            <div className="place">{place} <span className="location">({location})</span></div>
-            <div className="marks">{marks}</div>
-            <a href={certificateLink} className="cerificate link-container" target="_blank">
-                <div>View Certificate</div>
-                <Arrow />
-            </a>
+        <div className="education-wrapper">
+            {/* <div className="education-card-icon-con">
+                <div className="education-dot"></div>
+                <div className="education-line"></div>
+            </div> */}
+            <div className="education-card" style={{ animationDelay: animationDelay + 's' }}>
+                <div className="education-name">{name} <span className="duration">({duration})</span></div>
+                <div className="place">{place} <span className="location">({location})</span></div>
+                <div className="marks">{marks}</div>
+                <a href={certificateLink} className="cerificate link-container" target="_blank">
+                    <div>View Certificate</div>
+                    <Arrow />
+                </a>
+            </div>
         </div>
     )
 }

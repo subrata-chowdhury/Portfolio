@@ -1,6 +1,6 @@
 import { memo, useRef, useState } from "react";
 import "../style/skills.css"
-export const defaultValue = [{
+const defaultValue = [{
     name: "Frontend Development",
     iconSrc: "./icons/Frontend2.svg",
     id: "frontend-development",
@@ -33,6 +33,24 @@ export const defaultValue = [{
     iconSrc: "./icons/js.svg",
     id: "java-script",
     lvl: 3,
+    topSkill: true
+}, {
+    name: "Type Script",
+    iconSrc: "./icons/typescript.svg",
+    id: "type-script",
+    lvl: 3,
+    topSkill: true
+}, {
+    name: "Bootstrap 5",
+    iconSrc: "./icons/bootstrap-5.svg",
+    id: "boostrap-5",
+    lvl: 3,
+    topSkill: true
+}, {
+    name: "MongoDB",
+    iconSrc: "./icons/mongodb-icon-1.svg",
+    id: "mongodb",
+    lvl: 2,
     topSkill: true
 }, {
     name: "PHP",
@@ -167,15 +185,15 @@ export const defaultValue = [{
     id: "excel",
     lvl: 2
 }, {
-    name: "Power Point",
+    name: "PowerPoint",
     iconSrc: "./icons/powerpoint.png",
     id: "powerpoint",
-    lvl: 2
+    lvl: 1
 }, {
     name: "Power Bi",
     iconSrc: "./icons/power-bi-2021.svg",
     id: "powerBi",
-    lvl: 2
+    lvl: 1
 }, {
     name: "Figma",
     iconSrc: "./icons/figma.png",
@@ -203,6 +221,8 @@ defaultValue.sort((a, b) => {
     if (a.name > b.name) return 1;
     return b.lvl - a.lvl;
 })
+
+export { defaultValue as skillsData }
 
 export default function Skills({ forwardSkillContainerRef }) {
     const [skillsData, setSkillData] = useState(defaultValue);
@@ -282,15 +302,17 @@ function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", on
 
     return (
         <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler} style={hideLevel ? { display: "inline-flex", margin: "0.3rem", animationDuration: animationDelay / 10 + 's' } : { animationDuration: animationDelay / 10 + 's' }}>
-            <div className="skill-name-container">
-                <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />
-                <div className="skill-name">{name}</div>
+            <div className="sub-skill-container">
+                <div className="skill-name-container">
+                    <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />
+                    <div className="skill-name">{name}</div>
+                </div>
+                {!hideLevel && <div className="skill-details">
+                    <img src={`./icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
+                    <img src={`./icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
+                    <img src={`./icons/star${(lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
+                </div>}
             </div>
-            {!hideLevel && <div className="skill-details">
-                <img src={`./icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
-                <img src={`./icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
-                <img src={`./icons/star${(lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
-            </div>}
         </div>
     )
 }
