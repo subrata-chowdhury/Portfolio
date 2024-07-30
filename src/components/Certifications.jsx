@@ -40,10 +40,12 @@ const certifications = [
     // }
 ]
 
+export const certificationCount = certifications.length
+
 export default function Certifications() {
     return (
         <div className="screen-container">
-            <div className="heading" id="project">
+            <div className="heading" id="certifications">
                 <div>Certifications</div>
             </div>
             <CertificationContainer certifications={certifications} />

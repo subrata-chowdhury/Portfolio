@@ -56,22 +56,17 @@ const RightSide = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
     const [messege, setMessege] = useState("");
 
     async function addContactDetails(event) {
         event.preventDefault();
 
         // validation
-        if (firstName === "" || lastName === "" || email === "" || phoneNumber === "" || messege === "") {
+        if (firstName === "" || lastName === "" || email === "" || messege === "") {
             alert("Please fill all the fields")
             return;
         }
-        const phoneNumberRegex = /^\d{10}$/;
-        if (!phoneNumberRegex.test(phoneNumber)) {
-            alert("Please enter a valid phone number");
-            return;
-        }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert("Please enter a valid email address");
@@ -86,7 +81,6 @@ const RightSide = () => {
             const docRef = await addDoc(collection(db, "contact-details"), {
                 name: firstName + " " + lastName,
                 email: email,
-                phoneNumber: phoneNumber,
                 messege: messege
             });
             console.log("Document written with ID: ", docRef.id);
@@ -96,7 +90,6 @@ const RightSide = () => {
             setFirstName("");
             setLastName("");
             setEmail("");
-            setPhoneNumber("");
             setMessege("");
         } catch (e) {
             console.error("Error adding document: ", e);

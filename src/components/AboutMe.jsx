@@ -1,6 +1,12 @@
 import React from 'react';
 import '../style/AboutMe.css';
 import SimpleArrow from '../Icons/SimpleArrow';
+import { projectCount } from './Projects';
+import { certificationCount } from './Certifications';
+import { skillCount } from './Skills';
+import ProjectIcon from '../Icons/ProjectIcon';
+import CertificationIcon from '../Icons/CertificationIcon';
+import SkillsIcon from '../Icons/SkillsIcon';
 
 function AboutMe() {
     return (
@@ -27,7 +33,32 @@ function AboutMe() {
                         - Able to Work well in teams as well as Individually<br />
                     </div>
                 </div>
+                <div>
+                    <Counts />
+                </div>
             </div>
+        </div>
+    );
+}
+
+function Counts() {
+    return (
+        <div className="counts-container">
+            <a className="count" href='#project'>
+                <div className="count-icon"><ProjectIcon /></div>
+                <div className="count-number">{projectCount}</div>
+                <div className="count-label">Projects</div>
+            </a>
+            <a className="count" href='#certifications'>
+                <div className="count-icon"><CertificationIcon /></div>
+                <div className="count-number">{certificationCount}</div>
+                <div className="count-label">Certifications</div>
+            </a>
+            <a className="count" href='#skills'>
+                <div className="count-icon"><SkillsIcon /></div>
+                <div className="count-number">{skillCount}</div>
+                <div className="count-label">Skills</div>
+            </a>
         </div>
     );
 }

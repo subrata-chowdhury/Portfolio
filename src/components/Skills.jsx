@@ -230,6 +230,8 @@ defaultValue.sort((a, b) => {
 
 export { defaultValue as skillsData }
 
+export const skillCount = defaultValue.length
+
 export default function Skills({ forwardSkillContainerRef }) {
     const [skillsData, setSkillData] = useState(defaultValue);
     const [showOnlyTopSkills, setShowOnlyTopSkills] = useState(false);

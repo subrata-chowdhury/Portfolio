@@ -143,6 +143,8 @@ let moreProjectData = {
     }
 }
 
+export const projectCount = projectData.length || moreProjectData.length
+
 export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
     const [projectDetails, setProjectDetails] = useState({
         repoName: "Repo-Name",
