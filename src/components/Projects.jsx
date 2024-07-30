@@ -3,28 +3,40 @@ import "../style/projects.css"
 import { useRef, useState } from "react";
 import GitHub from "../Icons/Social Media/GitHub";
 import Arrow from "../Icons/Arrow";
-import { SkillsContainer } from "./Skills";
+import { SkillsContainer, skillsData } from "./Skills";
 import Cross from "../Icons/cross";
 import Loader from "./Loader";
 
 const projectData = [{
+    previewImageSrc: "assets/To Dos.png",
+    name: "To Dos",
+    about: "It is a Full Stack To Do List Web Application created using React, Bootstrap 5, CSS, HTML in Frontend and Node.js with Express library as Backend and MySQL as Database.",
+
+    repoName: "To-Do-List"
+}, {
+    previewImageSrc: "assets/Bike Rental System.png",
+    name: "Bike Rental System",
+    about: "It is a Full Stack Bike Rental System Web Application created using ReactJS, Bootstrap 5, CSS, HTML as Frontend and Node.js with Express, Mongoose library as Backend and MongoDB as Database and TypeScript in both side.",
+
+    repoName: "Bike-Rental-System"
+}, {
     previewImageSrc: "assets/ATG World Croped.png",
     name: "ATG World",
     about: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
 
     repoName: "ATG_World"
 }, {
+    previewImageSrc: "assets/Time_Table_Designer.png",
+    name: "Time Table Creator",
+    about: "It's a web application UI created using React through which a Time Table can be created manually and also automatically using AI.",
+
+    repoName: "Time-Table-Creator-ReactJS"
+}, {
     previewImageSrc: "assets/Scroll Effect.png",
     name: "Scroll Effect",
     about: "This is a webpage which is focused on scrolling animation created using HTML, CSS and JS.",
 
     repoName: "Scroll_Effect"
-}, {
-    previewImageSrc: "assets/Time_Table_Designer.png",
-    name: "Time Table Creator",
-    about: "It's a web application UI created using ReactJS through which a Time Table can be created manually and also automatically using AI.",
-
-    repoName: "Time-Table-Creator-ReactJS"
 }, {
     previewImageSrc: "assets/Google Search Page.png",
     name: "Google Search Page",
@@ -40,7 +52,7 @@ const projectData = [{
 }, {
     previewImageSrc: "assets/A Music Player.png",
     name: "A Music Player",
-    about: "It's a simple music player UI created using ReactJS and redux.",
+    about: "It's a simple music player UI created using React and redux.",
 
     repoName: "A-Music-Player"
 }, {
@@ -59,58 +71,72 @@ const projectData = [{
 }]
 
 let moreProjectData = {
-    "ATG_World": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
+    "Bike-Rental-System": {
+        mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
+        otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
+        createdAt: "15th Jan, 2024",
+        noOfCommits: 0,
+        updatedAt: null,
+    },
+    "To-Do-List": {
+        mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
+        otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "ExpressJS", "JSON Web Token (JWT)", "REST API"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
-    "Scroll_Effect": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    "ATG_World": {
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
     "Time-Table-Creator-ReactJS": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["ReactJS", "REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development"],
+        mainSkills: ["HTML", "CSS", "JavaScript", "React"],
+        otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development"],
+        createdAt: null,
+        noOfCommits: 0,
+        updatedAt: null,
+    },
+    "Scroll_Effect": {
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
     "Google_Themed_Landing_Page": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
     "Focus": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
     "A-Music-Player": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["ReactJS", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["React", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
     "Menubar-Style": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
     },
     "All_Doraemon_Movies-v3.5": {
-        languages: ["HTML", "CSS", "Java Script"],
-        skills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
+        mainSkills: ["HTML", "CSS", "JavaScript"],
+        otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
         createdAt: null,
         noOfCommits: 0,
         updatedAt: null,
@@ -124,8 +150,8 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
         noOfCommits: 0,
         createdAt: null,
         updatedAt: null,
-        languages: [],
-        skills: []
+        mainSkills: [],
+        otherSkills: []
     })
     const [displayLoader, setDisplayLoader] = useState(false)
     const detailedProjectViewContainer = useRef();
@@ -137,14 +163,14 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
             noOfCommits: 0,
             createdAt: null,
             updatedAt: null,
-            languages: [],
-            skills: []
+            mainSkills: [],
+            otherSkills: []
         }
         const selectedProjectData = projectData.filter(e => e.repoName === repoName)[0]
         newProjectDetails.repoName = repoName;
         newProjectDetails.description = selectedProjectData.about;
-        newProjectDetails.languages = moreProjectData[repoName].languages;
-        newProjectDetails.skills = moreProjectData[repoName].skills;
+        newProjectDetails.mainSkills = moreProjectData[repoName].mainSkills;
+        newProjectDetails.otherSkills = moreProjectData[repoName].otherSkills;
         newProjectDetails.createdAt = moreProjectData[repoName].createdAt;
         newProjectDetails.noOfCommits = moreProjectData[repoName].noOfCommits;
         newProjectDetails.updatedAt = moreProjectData[repoName].updatedAt;
@@ -270,10 +296,30 @@ function DetailedProjectView({ projectDetails = {
     noOfCommits: 0,
     createdAt: 'Github Rate Limit Reached',
     updatedAt: 'Github Rate Limit Reached',
-    languages: [],
-    skills: [],
+    mainSkills: [],
+    otherSkills: [],
     previewImageSrc: ''
 }, forwardDetailsContainerRef = useRef(), forwardCloseBtnRef = useRef() }) {
+
+    let newSkillsData = [];
+    for (let index = 0; index < projectDetails.mainSkills.length; index++) {
+        let filterData = skillsData.filter(e => e.name === projectDetails.mainSkills[index])[0]
+        filterData ? newSkillsData.push(filterData) : ""
+    }
+
+    let projectSkills = [];
+    for (let index = 0; index < projectDetails.otherSkills.length; index++) {
+        let filterData = skillsData.filter(e => e.name === projectDetails.otherSkills[index])[0]
+        if (filterData)
+            projectSkills.push(filterData)
+        else projectSkills.push({
+            name: projectDetails.otherSkills[index],
+            iconSrc: "./icons/skill.png",
+            id: projectDetails.otherSkills[index].toLowerCase().split(' ').join('-'),
+            lvl: 1
+        })
+    }
+
     return (
         <>
             <div className="close-detailed-project-view-btn" ref={forwardCloseBtnRef} onClick={() => {
@@ -286,10 +332,10 @@ function DetailedProjectView({ projectDetails = {
                 <div className="left-side">
                     <div className="heading">{projectDetails.repoName}</div>
                     <div className="project-description">{projectDetails.description}</div>
-                    <div className="heading">Languages</div>
-                    <SkillsContainer showOnlyTopSkills={true} hideLevel={true} data={projectDetails.languages} excludeIds={true} />
-                    <div className="heading">Skills Used</div>
-                    <SkillsContainer showOnlyTopSkills={false} hideLevel={true} data={projectDetails.skills} excludeIds={true} />
+                    <div className="heading">Main Skills</div>
+                    <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
+                    <div className="heading">Other Skills</div>
+                    <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
                 </div>
                 <div className="right-side">
                     <div className="project-commit-details-container"><b>Created At: </b>{projectDetails.createdAt}</div>

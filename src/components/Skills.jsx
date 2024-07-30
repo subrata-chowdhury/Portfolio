@@ -29,13 +29,13 @@ const defaultValue = [{
     id: "sass",
     lvl: 1
 }, {
-    name: "Java Script",
+    name: "JavaScript",
     iconSrc: "./icons/js.svg",
     id: "java-script",
     lvl: 3,
     topSkill: true
 }, {
-    name: "Type Script",
+    name: "TypeScript",
     iconSrc: "./icons/typescript.svg",
     id: "type-script",
     lvl: 3,
@@ -94,13 +94,19 @@ const defaultValue = [{
     lvl: 2,
     topSkill: true
 }, {
-    name: "NodeJS",
+    name: "Node.js",
     iconSrc: "./icons/NodeJS.svg",
     id: "nodejs",
     lvl: 2,
     topSkill: true
 }, {
-    name: "ReactJS",
+    name: "Express.js",
+    iconSrc: "./icons/express.png",
+    id: "expressjs",
+    lvl: 2,
+    topSkill: true
+}, {
+    name: "React",
     iconSrc: "./icons/React.svg",
     id: "reactjs",
     lvl: 3,
@@ -266,17 +272,11 @@ export const SkillsContainer = memo(({
     skillClickHandler = () => { },
     showOnlyTopSkills = false,
     hideLevel = false,
-    data = []
 }) => {
     let skills = [];
     if (showOnlyTopSkills)
         skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
-    if (data.length > 0) {
-        skillsData = [];
-        for (let index = 0; index < data.length; index++) {
-            skillsData.push(defaultValue.filter(e => e.name === data[index])[0])
-        }
-    }
+
     for (let index = 0; index < skillsData.length; index++) {
         skills.push(<Skill
             name={skillsData[index]["name"]}
@@ -297,17 +297,17 @@ export const SkillsContainer = memo(({
     )
 })
 
-function Skill({ name = "Skill", icon = "./icons/js.svg", id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false, animationDelay = 0 }) {
+function Skill({ name = "Skill", icon, id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false, animationDelay = 0 }) {
     const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';
 
     return (
         <div className="skill-container" id={id} title={name + " (" + level + ")"} data-id={data} onClick={onClickHandler} style={hideLevel ? { display: "inline-flex", margin: "0.3rem", animationDuration: animationDelay / 10 + 's' } : { animationDuration: animationDelay / 10 + 's' }}>
             <div className="sub-skill-container">
                 <div className="skill-name-container">
-                    <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />
+                    {icon && <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />}
                     <div className="skill-name">{name}</div>
                 </div>
-                {!hideLevel && <div className="skill-details">
+                {lvl && !hideLevel && <div className="skill-details">
                     <img src={`./icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
                     <img src={`./icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
                     <img src={`./icons/star${(lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />

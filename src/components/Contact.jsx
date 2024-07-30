@@ -122,10 +122,6 @@ const RightSide = () => {
                     <div className="input-title">Email</div>
                     <input type="email" value={email} onChange={e => setEmail(e.currentTarget.value)} name="" id="" placeholder="Email" />
                 </div>
-                <div className="sub-container">
-                    <div className="input-title">Phone Number</div>
-                    <input type="number" value={phoneNumber} onChange={e => setPhoneNumber(e.currentTarget.value)} name="" id="" placeholder="Phone Number" />
-                </div>
             </div>
             <div className="msg-container input-container">
                 <div className="sub-container">

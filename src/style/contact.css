@@ -74,10 +74,11 @@
     font-weight: 500;
     border-radius: 0.5rem;
     margin-top: 0.3rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .right-side textarea.msg {
-    width: 93%;
     resize: vertical;
 }
 
