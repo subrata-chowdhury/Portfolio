@@ -156,8 +156,10 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
         otherSkills: []
     })
     const [displayLoader, setDisplayLoader] = useState(false)
+
     const detailedProjectViewContainer = useRef();
     const closeBtn = useRef();
+    
     async function fetchProjectDetails(repoName) {
         let newProjectDetails = {
             repoName: "Repo-Name",

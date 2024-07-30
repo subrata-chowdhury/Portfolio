@@ -27,7 +27,7 @@ function Intro() {
                 </div>
             </div>
             <OtherPlatforms className="header-icons" />
-            <a className="download-btn" href="https://drive.google.com/file/d/1t-TPZiwpf_pkzDlldWxxIWuKWCCtreKe/view?usp=drive_link" target="_blank">Download CV</a>
+            <a className="download-btn" href="https://drive.google.com/file/d/1-B_fypUj2LCkPogQxK6sjYUJFUAhsIjO/view?usp=drive_link" target="_blank">Download CV</a>
         </div>
     )
 }
@@ -85,7 +85,7 @@ function TypeingAnimation() {
         };
 
         const typingDelay = isErasing ? erasingSpeed : typingSpeed;
-        const timer = setTimeout(handleTyping, typingDelay);
+        const timer = charIndex >= words[wordIndex].length ? setTimeout(handleTyping, delayBetweenWords) : setTimeout(handleTyping, typingDelay);
 
         return () => clearTimeout(timer);
     }, [charIndex, isErasing, wordIndex, words]);

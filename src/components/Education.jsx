@@ -15,7 +15,7 @@ export default function Education() {
                     location="Barjora, Bankura"
                     marks="69.45%"
                     animationDelay={0}
-                    certificateLink="https://drive.google.com/drive/folders/1Tna6wVnX8wi3MrgLE4vG9Fe44too6V1i?usp=drive_link" />
+                    certificateLink="https://drive.google.com/file/d/16p1AJ5RHY8ACH7nFcQnelHk6nDr4vmTN/view?usp=drive_link" />
                 <EducationCard
                     name="XII"
                     duration="2020-2021"
@@ -23,7 +23,7 @@ export default function Education() {
                     location="Barjora, Bankura"
                     marks="83.2%"
                     animationDelay={0.2}
-                    certificateLink="https://drive.google.com/drive/folders/1KBMGSiWiAZQxBH8CrTImOzMCwEe0YxQ-?usp=drive_link" />
+                    certificateLink="https://drive.google.com/file/d/1gfUDUisqqbctTwH2EptCGoo35OPahHVh/view?usp=drive_link" />
                 <EducationCard
                     name="B.Tech in CSE"
                     duration="2021-2025"

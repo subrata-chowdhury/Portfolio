@@ -73,6 +73,8 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
             let newSkillsData = skillsData;
             newSkillsData = newSkillsData.filter(skill => skill.name.toLowerCase().includes(searchData.toLowerCase()))
             setFilterSkillsData(newSkillsData)
+        } else {
+            setFilterSkillsData([])
         }
     }
     return (

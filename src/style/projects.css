@@ -60,6 +60,10 @@
     object-fit: cover;
 }
 
+.project-container .project-image {
+    cursor: pointer;
+}
+
 .project-container .project-name {
     font-weight: bold;
     font-size: 1.4rem;

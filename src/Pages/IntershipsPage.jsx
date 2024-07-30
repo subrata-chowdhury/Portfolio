@@ -31,8 +31,8 @@ export default function InternshipsPage() {
             <div className="empty-heading">
                 <div className="heading">
                     🥲Have not get any internship yet.<br></br>
-                    If any one want to offer an internship.<br></br>
-                    You can contact me from <Link to={"/?autoScroll=contact"}>here</Link>.
+                    If anyone want to offer an internship.<br></br>
+                    You can <Link to={"/?autoScroll=contact"}>contact me</Link>.
                 </div>
             </div>
             <Footer />

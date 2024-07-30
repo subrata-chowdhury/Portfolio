@@ -14,20 +14,24 @@ export default function HomePage() {
     const skillsContainer = useRef()
     useEffect(() => {
         try {
-            let paramString = window.location.href.split('?')[1];
-            let queryString = new URLSearchParams(paramString);
+            const paramString = window.location.href.split('?')[1];
+            const queryString = new URLSearchParams(paramString);
+            const scrollIntoViewOpts = { behavior: 'smooth', block: 'center' }
             let urlData;
             for (let pair of queryString.entries()) {
                 urlData = pair;
                 break;
             }
-            if (urlData[0] === 'autoscroll') {
+            if (urlData[0] === 'autoScroll') {
+                let element;
                 if (urlData[1] === 'contact')
-                    document.querySelector(".contact-container").scrollIntoView()
+                    element = document.querySelector(".contact-container")
                 if (urlData[1] === 'education')
-                    document.querySelector(".heading#education").scrollIntoView()
+                    element = document.querySelector(".heading#education")
                 if (urlData[1] === 'project')
-                    document.querySelector(".heading#project").scrollIntoView()
+                    element = document.querySelector(".heading#project")
+                if (element)
+                    element.scrollIntoView(scrollIntoViewOpts)
             }
         } catch (error) {
 
