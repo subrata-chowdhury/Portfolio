@@ -70,86 +70,86 @@ const projectData = [{
     repoName: "All_Doraemon_Movies-v3.5"
 }]
 
-let moreProjectData = {
-    "Bike-Rental-System": {
-        mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
-        otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
-        createdAt: "15th Jan, 2024",
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "To-Do-List": {
-        mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
-        otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "ExpressJS", "JSON Web Token (JWT)", "REST API"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "ATG_World": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "Time-Table-Creator-ReactJS": {
-        mainSkills: ["HTML", "CSS", "JavaScript", "React"],
-        otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "Scroll_Effect": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "Google_Themed_Landing_Page": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "Focus": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "A-Music-Player": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["React", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "Menubar-Style": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    },
-    "All_Doraemon_Movies-v3.5": {
-        mainSkills: ["HTML", "CSS", "JavaScript"],
-        otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
-        createdAt: null,
-        noOfCommits: 0,
-        updatedAt: null,
-    }
-}
+let moreProjectData = [{
+    name: "Bike Rental System",
+    mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
+    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "To Dos",
+    mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
+    otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "ExpressJS", "JSON Web Token (JWT)", "REST API"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "ATG World",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "Time Table Creator",
+    mainSkills: ["HTML", "CSS", "JavaScript", "React"],
+    otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "Scroll Effect",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "Google Search Page",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "Focus",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "A Music Player",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["React", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "Menubar Style",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}, {
+    name: "List of All Doraemon Movies",
+    mainSkills: ["HTML", "CSS", "JavaScript"],
+    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
+    createdAt: null,
+    noOfCommits: null,
+    updatedAt: null,
+}]
 
 export const projectCount = projectData.length || moreProjectData.length
 
 export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
     const [projectDetails, setProjectDetails] = useState({
+        name: "Name",
         repoName: "Repo-Name",
         description: "It's a Project",
-        noOfCommits: 0,
+        noOfCommits: null,
         createdAt: null,
         updatedAt: null,
         mainSkills: [],
@@ -159,25 +159,30 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
 
     const detailedProjectViewContainer = useRef();
     const closeBtn = useRef();
-    
+
     async function fetchProjectDetails(repoName) {
         let newProjectDetails = {
+            name: "Name",
             repoName: "Repo-Name",
             description: "It's a Project",
-            noOfCommits: 0,
+            noOfCommits: null,
             createdAt: null,
             updatedAt: null,
             mainSkills: [],
             otherSkills: []
         }
         const selectedProjectData = projectData.filter(e => e.repoName === repoName)[0]
-        newProjectDetails.repoName = repoName;
+
+        let moreProjectDataIndex = null;
+        for (let index = 0; index < moreProjectData.length; index++) {
+            if (moreProjectData[index].name === selectedProjectData.name) {
+                moreProjectDataIndex = index;
+                break;
+            }
+        }
+        newProjectDetails.repoName = selectedProjectData.repoName;
         newProjectDetails.description = selectedProjectData.about;
-        newProjectDetails.mainSkills = moreProjectData[repoName].mainSkills;
-        newProjectDetails.otherSkills = moreProjectData[repoName].otherSkills;
-        newProjectDetails.createdAt = moreProjectData[repoName].createdAt;
-        newProjectDetails.noOfCommits = moreProjectData[repoName].noOfCommits;
-        newProjectDetails.updatedAt = moreProjectData[repoName].updatedAt;
+        newProjectDetails = { ...newProjectDetails, ...moreProjectData[moreProjectDataIndex] }
 
         //fetching commit details
         try {
@@ -191,11 +196,13 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
                         const commitDetails = await response.json();
                         noOfCommits = await commitDetails.length
                         if (await noOfCommits === 0) break
-                        moreProjectData[repoName].noOfCommits += await noOfCommits;
+                        moreProjectData[moreProjectDataIndex].noOfCommits += await noOfCommits;
                         newProjectDetails.noOfCommits += await noOfCommits;
                         if (pageCount === 1)
-                            moreProjectData[repoName].updatedAt = newProjectDetails.updatedAt = new Date(commitDetails[0].commit.committer.date).toUTCString();
-                        moreProjectData[repoName].createdAt = newProjectDetails.createdAt = new Date(commitDetails[(await noOfCommits - 1)].commit.committer.date).toUTCString();
+                            moreProjectData[moreProjectDataIndex].updatedAt = newProjectDetails.updatedAt = new Date(commitDetails[0].commit.committer.date).toUTCString();
+                        moreProjectData[moreProjectDataIndex].createdAt = newProjectDetails.createdAt = new Date(commitDetails[(await noOfCommits - 1)].commit.committer.date).toUTCString();
+                    } else {
+                        break;
                     }
                     pageCount++
                 }
@@ -241,6 +248,7 @@ function ProjectsContainer({ showLimited = true, moreDetailsOfProjectBtnClickHan
                 about={projectData[index].about}
                 key={projectData[index].name}
                 repoName={projectData[index].repoName}
+                link={projectData[index].link ? projectData[index].link : null}
                 moreDetailsOfProjectBtnClickHandler={moreDetailsOfProjectBtnClickHandler}
                 animationDelay={index / 10} />
         )
@@ -266,6 +274,7 @@ export function Project({
     name = "ATG World",
     about = "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
     repoName,
+    link,
     moreDetailsOfProjectBtnClickHandler = () => { },
 
     animationDelay = 0
@@ -283,8 +292,8 @@ export function Project({
                     {(about.length > 70 && !showAbout) && <span className="read-more-btn">read more</span>}
                 </div>
                 <div className="project-link-container">
-                    <a className="link-container" target="_blank" href={`https://github.com/Super7000/${repoName}`}>
-                        <div className="project-link">View in Github</div>
+                    <a className="link-container" target="_blank" href={(repoName ? `https://github.com/Super7000/${repoName}` : link)}>
+                        <div className="project-link">{repoName ? "View in Github" : "View Here"}</div>
                         <Arrow />
                     </a>
                     <div className="more-details btn" onClick={() => moreDetailsOfProjectBtnClickHandler(repoName)}>More Details</div>
@@ -295,11 +304,12 @@ export function Project({
 }
 
 function DetailedProjectView({ projectDetails = {
+    name: "Name",
     repoName: "Repo-Name",
     description: "It's a Project",
-    noOfCommits: 0,
-    createdAt: 'Github Rate Limit Reached',
-    updatedAt: 'Github Rate Limit Reached',
+    noOfCommits,
+    createdAt,
+    updatedAt,
     mainSkills: [],
     otherSkills: [],
     previewImageSrc: ''
@@ -334,7 +344,7 @@ function DetailedProjectView({ projectDetails = {
             </div>
             <div className="detailed-project-view-container" ref={forwardDetailsContainerRef} >
                 <div className="left-side">
-                    <div className="heading">{projectDetails.repoName}</div>
+                    <div className="heading">{projectDetails.name}</div>
                     <div className="project-description">{projectDetails.description}</div>
                     <div className="heading">Main Skills</div>
                     <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
@@ -342,9 +352,9 @@ function DetailedProjectView({ projectDetails = {
                     <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
                 </div>
                 <div className="right-side">
-                    <div className="project-commit-details-container"><b>Created At: </b>{projectDetails.createdAt}</div>
-                    <div className="project-commit-details-container"><b>Updated At: </b>{projectDetails.updatedAt}</div>
-                    <div className="project-commit-details-container"><b>No of Commits: </b>{projectDetails.noOfCommits}</div>
+                    {projectDetails.createdAt && <div className="project-commit-details-container"><b>Created At: </b>{projectDetails.createdAt}</div>}
+                    {projectDetails.updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{projectDetails.updatedAt}</div>}
+                    {projectDetails.noOfCommits && (projectDetails.noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{projectDetails.noOfCommits}</div>}
                 </div>
             </div>
         </>
