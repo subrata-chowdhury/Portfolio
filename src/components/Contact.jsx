@@ -62,15 +62,17 @@ const RightSide = () => {
         event.preventDefault();
 
         // validation
-        if (firstName === "" || lastName === "" || email === "" || messege === "") {
+        if (firstName === "" || lastName === "" || messege === "") {
             alert("Please fill all the fields")
             return;
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert("Please enter a valid email address");
-            return;
+        if (email !== "") {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                return;
+            }
         }
 
         const btn = event.currentTarget
@@ -113,7 +115,7 @@ const RightSide = () => {
             <div className="email-phone-container input-container">
                 <div className="sub-container">
                     <div className="input-title">Email</div>
-                    <input type="email" value={email} onChange={e => setEmail(e.currentTarget.value)} name="" id="" placeholder="Email" />
+                    <input type="email" value={email} onChange={e => setEmail(e.currentTarget.value)} name="" id="" placeholder="Enter Email to get Reply" />
                 </div>
             </div>
             <div className="msg-container input-container">
