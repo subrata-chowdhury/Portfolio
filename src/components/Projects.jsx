@@ -26,11 +26,11 @@ const projectData = [{
 
     repoName: "ATG_World"
 }, {
-    previewImageSrc: "assets/Time_Table_Designer.png",
-    name: "Time Table Creator",
+    previewImageSrc: "assets/Time_Table_Scheduler.png",
+    name: "Time Table Scheduler",
     about: "It's a web application UI created using React through which a Time Table can be created manually and also automatically using AI.",
 
-    repoName: "Time-Table-Creator-ReactJS"
+    repoName: "Time-Table-Scheduler-ReactJS"
 }, {
     previewImageSrc: "assets/Scroll Effect.png",
     name: "Scroll Effect",
@@ -153,12 +153,12 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
         createdAt: null,
         updatedAt: null,
         mainSkills: [],
-        otherSkills: []
+        otherSkills: [],
+        previewImageSrc: "",
     })
     const [displayLoader, setDisplayLoader] = useState(false)
-
-    const detailedProjectViewContainer = useRef();
-    const closeBtn = useRef();
+    const [showDetailsPopUp, setShowDetailsPopUp] = useState(false)
+    const [showImgOnly, setShowImgOnly] = useState(false)
 
     async function fetchProjectDetails(repoName) {
         let newProjectDetails = {
@@ -169,7 +169,8 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
             createdAt: null,
             updatedAt: null,
             mainSkills: [],
-            otherSkills: []
+            otherSkills: [],
+            previewImageSrc: ""
         }
         const selectedProjectData = projectData.filter(e => e.repoName === repoName)[0]
 
@@ -206,11 +207,9 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
                     }
                     pageCount++
                 }
-                detailedProjectViewContainer.current.classList.add('active')
-                closeBtn.current.classList.add('active')
+                setShowDetailsPopUp(true)
             } else {
-                detailedProjectViewContainer.current.classList.add('active')
-                closeBtn.current.classList.add('active')
+                setShowDetailsPopUp(false)
             }
         } catch (error) {
             console.error("can't fetch project commit details")
@@ -218,18 +217,23 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
             setDisplayLoader(false)
         }
         setProjectDetails(newProjectDetails)
+        setShowImgOnly(false)
     }
 
     return (
         <>
             <Loader display={displayLoader} />
-            <DetailedProjectView projectDetails={projectDetails} forwardDetailsContainerRef={detailedProjectViewContainer} forwardCloseBtnRef={closeBtn} />
+            {showDetailsPopUp && <DetailedProjectView showImgOnly={showImgOnly} projectDetails={projectDetails} onClose={() => setShowDetailsPopUp(false)} />}
             <div className="screen-container">
                 <div className="heading" id="project">
                     <div>My Projects</div>
                     <GitHubButton />
                 </div>
-                <ProjectsContainer showLimited={showLimited} moreDetailsOfProjectBtnClickHandler={fetchProjectDetails} />
+                <ProjectsContainer showLimited={showLimited} moreDetailsOfProjectBtnClickHandler={fetchProjectDetails} onImageClick={repoName => {
+                    setProjectDetails(val => { return { ...val, previewImageSrc: projectData.filter(e => e.repoName === repoName)[0].previewImageSrc } })
+                    setShowDetailsPopUp(true)
+                    setShowImgOnly(true)
+                }} />
                 {showSeeMoreBtn && (<div className="see-more-btn-container">
                     <Link to={"/Projects"} className="btn">See More</Link>
                 </div>)}
@@ -238,7 +242,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
     )
 }
 
-function ProjectsContainer({ showLimited = true, moreDetailsOfProjectBtnClickHandler }) {
+function ProjectsContainer({ showLimited = true, moreDetailsOfProjectBtnClickHandler = () => { }, onImageClick = () => { } }) {
     let projectElement = [];
     for (let index = 0; index < (showLimited ? 4 : projectData.length); index++) {
         projectElement.push(
@@ -250,6 +254,7 @@ function ProjectsContainer({ showLimited = true, moreDetailsOfProjectBtnClickHan
                 repoName={projectData[index].repoName}
                 link={projectData[index].link ? projectData[index].link : null}
                 moreDetailsOfProjectBtnClickHandler={moreDetailsOfProjectBtnClickHandler}
+                onImageClick={onImageClick}
                 animationDelay={index / 10} />
         )
     }
@@ -276,13 +281,14 @@ export function Project({
     repoName,
     link,
     moreDetailsOfProjectBtnClickHandler = () => { },
+    onImageClick = () => { },
 
     animationDelay = 0
 }) {
     const [showAbout, setShowAbout] = useState(false)
     return (
         <div className="project-container" style={{ animationDelay: animationDelay + 's' }}>
-            <div className="project-image">
+            <div className="project-image" onClick={e => onImageClick(repoName)}>
                 <img src={previewImageSrc} alt="project image" />
             </div>
             <div className="details">
@@ -313,7 +319,7 @@ function DetailedProjectView({ projectDetails = {
     mainSkills: [],
     otherSkills: [],
     previewImageSrc: ''
-}, forwardDetailsContainerRef = useRef(), forwardCloseBtnRef = useRef() }) {
+}, showImgOnly = true, onClose = () => { } }) {
 
     let newSkillsData = [];
     for (let index = 0; index < projectDetails.mainSkills.length; index++) {
@@ -336,26 +342,30 @@ function DetailedProjectView({ projectDetails = {
 
     return (
         <>
-            <div className="close-detailed-project-view-btn" ref={forwardCloseBtnRef} onClick={() => {
-                forwardDetailsContainerRef.current.classList.remove('active')
-                forwardCloseBtnRef.current.classList.remove('active')
-            }}>
+            <div className="close-detailed-project-view-btn active" onClick={onClose}>
                 <Cross />
             </div>
-            <div className="detailed-project-view-container" ref={forwardDetailsContainerRef} >
-                <div className="left-side">
-                    <div className="heading">{projectDetails.name}</div>
-                    <div className="project-description">{projectDetails.description}</div>
-                    <div className="heading">Main Skills</div>
-                    <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
-                    <div className="heading">Other Skills</div>
-                    <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
-                </div>
-                <div className="right-side">
-                    {projectDetails.createdAt && <div className="project-commit-details-container"><b>Created At: </b>{projectDetails.createdAt}</div>}
-                    {projectDetails.updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{projectDetails.updatedAt}</div>}
-                    {projectDetails.noOfCommits && (projectDetails.noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{projectDetails.noOfCommits}</div>}
-                </div>
+            <div className="detailed-project-view-container active" style={{ gridTemplateColumns: showImgOnly ? "auto" : "70% auto" }}>
+                {!showImgOnly &&
+                    <>
+                        <div className="left-side">
+                            <div className="heading">{projectDetails.name}</div>
+                            <div className="project-description">{projectDetails.description}</div>
+                            <div className="heading">Main Skills</div>
+                            <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
+                            <div className="heading">Other Skills</div>
+                            <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
+                        </div>
+                        <div className="right-side">
+                            {projectDetails.createdAt && <div className="project-commit-details-container"><b>Created At: </b>{projectDetails.createdAt}</div>}
+                            {projectDetails.updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{projectDetails.updatedAt}</div>}
+                            {projectDetails.noOfCommits && (projectDetails.noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{projectDetails.noOfCommits}</div>}
+                        </div>
+                    </>}
+                {showImgOnly &&
+                    <div style={{ width: '100%', height: '100vh', alignSelf: 'center', overflowY: 'auto' }}>
+                        <img src={projectDetails.previewImageSrc} style={{ width: "100%" }} alt="project image" />
+                    </div>}
             </div>
         </>
     )
