@@ -30,18 +30,18 @@ a {
 }
 
 ::-webkit-scrollbar {
-	width: 0.3rem;
-	height: 0.3rem;
-	background-color: #f5f5f5;
+    width: 0.3rem;
+    height: 0.3rem;
+    background-color: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #707070ba;
-	border-radius: 5px;
+    background-color: #707070ba;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #5555558e;
+    background-color: #5555558e;
 }
 
 .app {
@@ -54,17 +54,15 @@ a {
 .heading {
     /* scroll-snap-align: start; */
     font-family: "Raleway", sans-serif;
-    width: 50%;
+    width: 100%;
     font-size: 2rem;
     font-weight: bold;
-    position: relative;
-    left: 5%;
-    padding: 2rem 0;
     display: grid;
     grid-auto-flow: column;
     justify-content: space-between;
     align-items: center;
     color: var(--heading-color);
+    padding-bottom: 2rem;
 }
 
 .heading div:first-child {
@@ -75,13 +73,12 @@ a {
     padding: 0 !important;
 }
 
-.heading#project,
-.heading#skills {
-    width: 90%;
-}
-
 .heading img {
     width: 1.2rem;
+}
+
+.screen-container {
+    padding: 0 5%;
 }
 
 /* .screen-container {

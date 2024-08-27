@@ -1,14 +1,3 @@
-.skills-container {
-    display: inline-block;
-    justify-content: stretch;
-    align-content: start;
-    gap: 1rem;
-    width: 90%;
-    position: relative;
-    left: 5%;
-    /* min-height: 100vh; */
-}
-
 .skills-container .skill-container {
     border-radius: 0.3rem;
     background: var(--container-color);
@@ -78,6 +67,23 @@
 .sort.btn {
     background: rgba(170, 212, 255, 0.518);
     color: var(--text-color);
+}
+
+.skill-details-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-details-container .heading {
+    padding-bottom: 0;
+}
+
+.skill-details-container .projects-container {
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 0.5rem;
 }
 
 @media (max-width: 1000px) {

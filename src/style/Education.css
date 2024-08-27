@@ -2,7 +2,6 @@
     display: grid;
     grid-auto-flow: row;
     gap: 15px;
-    padding: 0 5rem;
 }
 
 .education-card {

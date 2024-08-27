@@ -5,9 +5,9 @@ import GitHub from "../Icons/Social Media/GitHub";
 import Arrow from "../Icons/Arrow";
 import { SkillsContainer } from "./Skills";
 import { skillsData } from "../data/skills";
-import Cross from "../Icons/cross";
 import Loader from "./Loader";
 import { projectsData as projectData } from "../data/projects";
+import Model from "./Model";
 
 export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
     return (
@@ -29,7 +29,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true }) 
     )
 }
 
-function ProjectsContainer({ projectData = [] }) {
+export function ProjectsContainer({ projectData = [] }) {
     return (
         <div className="projects-container">
             {projectData.length > 0 ?
@@ -166,10 +166,7 @@ function DetailedProjectView({
 
     return (
         <>
-            <div className="close-detailed-project-view-btn active" onClick={onClose}>
-                <Cross />
-            </div>
-            <div className="detailed-project-view-container active" style={{ gridTemplateColumns: showImgOnly ? "auto" : "70% auto" }}>
+            <Model onClose={onClose} className="detailed-project-view-container" style={{ gridTemplateColumns: showImgOnly ? "auto" : "70% auto" }}>
                 {!showImgOnly &&
                     <>
                         <div className="left-side">
@@ -188,10 +185,10 @@ function DetailedProjectView({
                     </>}
 
                 {showImgOnly &&
-                    <div style={{ width: '100%', height: '100vh', alignSelf: 'center', overflowY: 'auto' }}>
+                    <div style={{ width: '100%', height: '100%', alignSelf: 'center', overflowY: 'auto' }}>
                         <img src={previewImageSrc} style={{ width: "100%" }} alt="project image" />
                     </div>}
-            </div>
+            </Model>
         </>
     )
 }
@@ -214,7 +211,6 @@ async function fetchLatestData(repoName) {
             createdAt = new Date(commitDetails[(await noOfCommits - 1)].commit.committer.date).toUTCString();
         } else {
             throw response.body
-            break;
         }
         pageCount++
     }
