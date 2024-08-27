@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef, useState } from "react";
 import "../style/menubar.css"
-import { SkillsContainer, skillsData } from "./Skills";
+import { SkillsContainer } from "./Skills";
+import { skillsData } from "../data/skills";
 import { Link } from "react-router-dom";
 import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";

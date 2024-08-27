@@ -1,9 +1,9 @@
 import React from 'react';
 import '../style/AboutMe.css';
 import SimpleArrow from '../Icons/SimpleArrow';
-import { projectCount } from './Projects';
+import { projectCount } from '../data/projects';
 import { certificationCount } from './Certifications';
-import { skillCount } from './Skills';
+import { skillCount } from '../data/skills';
 import ProjectIcon from '../Icons/ProjectIcon';
 import CertificationIcon from '../Icons/CertificationIcon';
 import SkillsIcon from '../Icons/SkillsIcon';
