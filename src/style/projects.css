@@ -28,10 +28,9 @@
     width: 90%;
     gap: 1rem;
     grid-template-columns: repeat(4, auto);
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
     padding: 1rem;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .project-container {
