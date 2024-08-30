@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../style/projects.css"
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GitHub from "../Icons/Social Media/GitHub";
 import Arrow from "../Icons/Arrow";
 import { SkillsContainer } from "./Skills";
@@ -9,11 +9,11 @@ import Loader from "./Loader";
 import { projectsData as projectData } from "../data/projects";
 import Model from "./Model";
 
-export default function Projects({ showLimited = true, showSeeMoreBtn = true }) {
+export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = useRef() }) {
     return (
         <>
             <div className="screen-container">
-                <div className="heading" id="project">
+                <div className="heading" id="projects" ref={forwardRef}>
                     <div>My Projects</div>
                     <GitHubButton />
                 </div>

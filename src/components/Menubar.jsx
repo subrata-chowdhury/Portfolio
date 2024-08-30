@@ -2,14 +2,16 @@ import { memo, useEffect, useRef, useState } from "react";
 import "../style/menubar.css"
 import { SkillsContainer } from "./Skills";
 import { skillsData } from "../data/skills";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
 
-export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef, activeIndex = 0 }) {
+export default function Menubar({ onThemeChange = () => { }, links, skillsContainerRef }) {
     const [onDarkMode, setOnDarkMode] = useState(false)
+
     const menubar = useRef();
+
     useEffect(() => {
         function activeMenubarOnScroll() {
             window.onscroll = () => {
@@ -22,27 +24,12 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
         }
         activeMenubarOnScroll()
     }, [])
+
     function changeTheme() {
-        if (hasElement(bodyRef.current.classList, "light") >= 0) {
-            bodyRef.current.classList.remove("light");
-            bodyRef.current.classList.add("dark");
-            setOnDarkMode(true)
-        } else {
-            bodyRef.current.classList.remove("dark");
-            bodyRef.current.classList.add("light");
-            setOnDarkMode(false)
-        }
+        setOnDarkMode(val => !val)
+        onThemeChange(onDarkMode ? "light" : "dark")
     }
-    useEffect(() => {
-        function checkIfInDarkMode() {
-            if (hasElement(bodyRef.current.classList, "light") >= 0) {
-                setOnDarkMode(false)
-            } else {
-                setOnDarkMode(true)
-            }
-        }
-        checkIfInDarkMode()
-    }, [])
+
     function toggleMenubar() {
         if (hasElement(menubar.current.classList, "active") !== -1) {
             menubar.current.classList.remove("active");
@@ -50,6 +37,7 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
             menubar.current.classList.add("active");
         }
     }
+
     return (
         <>
             <img src="./icons/menubar.png" className="menubar-toggle-icon" onClick={toggleMenubar} />
@@ -60,7 +48,7 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
                     </div>
                 </div>
                 <SearchContainer skillsContainerRef={skillsContainerRef} />
-                <Menus activeIndex={activeIndex} links={links} />
+                <Menus links={links} />
             </div>
         </>
     )
@@ -68,7 +56,11 @@ export default function Menubar({ bodyRef = useRef(), links, skillsContainerRef,
 
 const SearchContainer = memo(({ skillsContainerRef }) => {
     const searchInputBox = useRef();
+
     const [filteredSkillData, setFilterSkillsData] = useState('')
+    const location = useLocation();
+    const navigator = useNavigate();
+
     function inputBoxInputHandler(searchData) {
         if (searchData !== "") {
             let newSkillsData = skillsData;
@@ -78,6 +70,7 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
             setFilterSkillsData([])
         }
     }
+
     return (
         <>
             <div className="search-container">
@@ -95,7 +88,9 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
                     <SearchIcon />
                 </div>
                 {filteredSkillData.length > 0 && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
-                    skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
+                    if (location.pathname === "/")
+                        skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
+                    else navigator("/#" + e.currentTarget.dataset.id)
                 }} />}
             </div>
         </>
@@ -116,34 +111,28 @@ export const Menus = memo(({ links = [{
 }, {
     name: "Education",
     link: "#education",
-    createHref: true
 }, {
     name: "Projects",
-    link: "#project",
-    createHref: true
+    link: "/Projects",
 }, {
     name: "Internships",
     link: "/Internships"
 }, {
     name: "Contact Me",
     link: "#contact",
-    createHref: true
-}], activeIndex = 0 }) => {
-    let linkElement = [];
-    for (let index = 0; index < links.length; index++) {
-        if (links[index].createHref === true || links[index].link.indexOf("#") === 0)
-            linkElement.push(
-                <a key={index} className={"menu" + (activeIndex === index ? " active" : "")} href={links[index].link}>{links[index].name}</a>
-            )
-        else linkElement.push(
-            <Link to={links[index].link} key={index}>
-                <div className={"menu" + (activeIndex === index ? " active" : "")}>{links[index].name}</div>
-            </Link>
-        )
-    }
+}] }) => {
+    const route = useLocation();
+
     return (
         <div className="menus-container">
-            {linkElement}
+            {links.map((link) => {
+                return (
+                    link.createHref === true || link.link.indexOf("#") === 0 ?
+                        <a key={link.link} className={"menu" + (link.link === route.pathname ? " active" : "")} href={link.link}>{link.name}</a> :
+                        <Link to={link.link} key={link.link}>
+                            <div className={"menu" + (link.link === route.pathname ? " active" : "")}>{link.name}</div>
+                        </Link>)
+            })}
         </div>
     )
 })

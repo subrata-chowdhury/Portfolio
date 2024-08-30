@@ -1,15 +1,15 @@
 import "../style/contact.css"
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { db } from "../script/firebaseInitilizer";
 import { collection, addDoc } from "firebase/firestore";
 import Marker from "../Icons/marker";
 import MobileNotch from "../Icons/mobile-notch";
 import EnvelopeIcon from "../Icons/envelope";
 
-export default function Contact() {
+export default function Contact({ forwardRef = useRef() }) {
     return (
         <form className="screen-container">
-            <div className="heading" id="contact">Contact Me</div>
+            <div className="heading" id="contact" ref={forwardRef}>Contact Me</div>
             <div className="contact-container">
                 <LeftSide />
                 <RightSide />

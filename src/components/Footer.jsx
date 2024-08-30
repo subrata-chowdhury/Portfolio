@@ -10,7 +10,7 @@ export default function Footer({ activeMenuIndex }) {
         <div className="footer">
             <div className="top-part">
                 <div className="logo"></div>
-                <Menus activeIndex={activeMenuIndex} />
+                <Menus />
                 <OtherPlatforms />
             </div>
             <div className="line"></div>

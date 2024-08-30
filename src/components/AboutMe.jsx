@@ -2,7 +2,7 @@ import React from 'react';
 import '../style/AboutMe.css';
 import SimpleArrow from '../Icons/SimpleArrow';
 import { projectCount } from '../data/projects';
-import { certificationCount } from './Certifications';
+import { certificateCount } from '../data/certificates';
 import { skillCount } from '../data/skills';
 import ProjectIcon from '../Icons/ProjectIcon';
 import CertificationIcon from '../Icons/CertificationIcon';
@@ -51,7 +51,7 @@ function Counts() {
             </a>
             <a className="count" href='#certifications'>
                 <div className="count-icon"><CertificationIcon /></div>
-                <div className="count-number">{certificationCount}</div>
+                <div className="count-number">{certificateCount}</div>
                 <div className="count-label">Certifications</div>
             </a>
             <a className="count" href='#skills'>

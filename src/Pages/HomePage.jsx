@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Menubar from '../components/Menubar'
@@ -8,45 +8,58 @@ import Contact from '../components/Contact'
 import Education from '../components/Education'
 import Certifications from '../components/Certifications'
 import AboutMe from '../components/AboutMe'
+import { useLocation } from 'react-router-dom'
 
 export default function HomePage() {
-    const body = useRef();
+    const [mode, setMode] = useState('light')
     const skillsContainer = useRef()
+    const contactUs = useRef()
+    const projects = useRef()
+
+    const location = useLocation()
+
     useEffect(() => {
         try {
-            const paramString = window.location.href.split('?')[1];
-            const queryString = new URLSearchParams(paramString);
-            const scrollIntoViewOpts = { behavior: 'smooth', block: 'center' }
-            let urlData;
-            for (let pair of queryString.entries()) {
-                urlData = pair;
-                break;
-            }
-            if (urlData[0] === 'autoScroll') {
-                let element;
-                if (urlData[1] === 'contact')
-                    element = document.querySelector(".contact-container")
-                if (urlData[1] === 'education')
-                    element = document.querySelector(".heading#education")
-                if (urlData[1] === 'project')
-                    element = document.querySelector(".heading#project")
-                if (element)
-                    element.scrollIntoView(scrollIntoViewOpts)
+            if (location.hash === '#contact') {
+                contactUs.current?.scrollIntoView({ behavior: "smooth" })
+            } else if (location.hash === '#projects') {
+                projects.current?.scrollIntoView({ behavior: "smooth" })
+            } else {
+                document.querySelector(location.hash)?.scrollIntoView({ behavior: "smooth" })
             }
         } catch (error) {
 
         }
-    }, [])
+    }, [location])
+
     return (
-        <div className='mode light app' ref={body}>
-            <Menubar bodyRef={body} skillsContainerRef={skillsContainer} />
+        <div className={'mode app ' + mode}>
+            <Menubar
+                onThemeChange={setMode}
+                skillsContainerRef={skillsContainer}
+                links={[{
+                    name: "Home",
+                    link: "/"
+                }, {
+                    name: "Education",
+                    link: "#education",
+                }, {
+                    name: "Projects",
+                    link: "#projects",
+                }, {
+                    name: "Internships",
+                    link: "/Internships"
+                }, {
+                    name: "Contact Me",
+                    link: "#contact",
+                }]} />
             <Header />
             <AboutMe />
             <Skills forwardSkillContainerRef={skillsContainer} />
             <Education />
-            <Projects />
+            <Projects forwardRef={projects} />
             <Certifications />
-            <Contact />
+            <Contact forwardRef={contactUs} />
             <Footer />
         </div>
     )

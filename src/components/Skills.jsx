@@ -49,27 +49,27 @@ export const SkillsContainer = memo(({
     showOnlyTopSkills = false,
     hideLevel = false,
 }) => {
-    let skills = [];
     if (showOnlyTopSkills)
         skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
 
-    for (let index = 0; index < skillsData.length; index++) {
-        skills.push(<Skill
-            name={skillsData[index]["name"]}
-            icon={skillsData[index]["iconSrc"]}
-            id={excludeIds ? "" : skillsData[index]["id"]}
-            data={excludeIds ? skillsData[index]["id"].toLowerCase() : ""}
-            key={skillsData[index]["id"]}
-            onClickHandler={skillClickHandler}
-            lvl={skillsData[index].lvl}
-            hideLevel={hideLevel}
-            animationDelay={index}
-        />)
-    }
-
     return (
         <div className="skills-container" ref={forwardSkillContainerRef} style={hideLevel ? { display: "inline-block" } : {}}>
-            {skills}
+            {
+                skillsData.length > 0 ? skillsData.map((skill, index) => {
+                    return <Skill
+                        name={skill["name"]}
+                        icon={skill["iconSrc"]}
+                        id={excludeIds ? "" : skill["id"]}
+                        data={excludeIds ? skill["id"].toLowerCase() : ""}
+                        key={skill["id"]}
+                        onClickHandler={skillClickHandler}
+                        lvl={skill.lvl}
+                        hideLevel={hideLevel}
+                        animationDelay={index}
+                    />
+                }) :
+                    <div className="no-skill">No Skill Found</div>
+            }
         </div>
     )
 })
