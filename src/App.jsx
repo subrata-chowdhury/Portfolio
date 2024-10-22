@@ -21,7 +21,7 @@ function App() {
     }, [])
 
     return (
-        <BrowserRouter basename='/Portfolio/dist/'>
+        <BrowserRouter>
             <Routes>
                 <Route path='/' exact element={<HomePage />}></Route>
                 <Route path='/Projects' exact element={<ProjectsPage />}></Route>
