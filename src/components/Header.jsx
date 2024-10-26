@@ -9,10 +9,10 @@ export default function Header() {
     return (
         <>
             <div className="bg" style={{ backgroundImage: 'url(./wave.svg)' }}></div>
-            <div className="header">
+            <header className="header">
                 <Intro />
                 {/* <Photo /> */}
-            </div>
+            </header>
         </>
     )
 }

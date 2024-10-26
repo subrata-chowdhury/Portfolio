@@ -7,7 +7,7 @@ import { Menus } from "./Menubar"
 
 export default function Footer({ activeMenuIndex }) {
     return (
-        <div className="footer">
+        <footer className="footer">
             <div className="top-part">
                 <div className="logo"></div>
                 <Menus />
@@ -22,7 +22,7 @@ export default function Footer({ activeMenuIndex }) {
                     <a className="item" href="">Cookies Settings</a>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

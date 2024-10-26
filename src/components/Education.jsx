@@ -3,7 +3,7 @@ import "../style/Education.css"
 
 export default function Education() {
     return (
-        <div className="screen-container">
+        <section className="screen-container">
             <div className="heading" id="education">
                 <div>My Education</div>
             </div>
@@ -33,7 +33,7 @@ export default function Education() {
                     animationDelay={0.4}
                     certificateLink="https://drive.google.com/drive/folders/1yQp9B98id7vU6IQkjEYx2sKHg7GE_nIa?usp=drive_linkv" />
             </div>
-        </div>
+        </section>
     )
 }
 

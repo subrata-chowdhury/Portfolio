@@ -8,13 +8,13 @@ import EnvelopeIcon from "../Icons/envelope";
 
 export default function Contact({ forwardRef = useRef() }) {
     return (
-        <form className="screen-container">
+        <section className="screen-container">
             <div className="heading" id="contact" ref={forwardRef}>Contact Me</div>
             <div className="contact-container">
                 <LeftSide />
                 <RightSide />
             </div>
-        </form>
+        </section>
     )
 }
 
@@ -101,7 +101,7 @@ const RightSide = () => {
         }
     }
     return (
-        <div className="right-side">
+        <form className="right-side">
             <div className="name-inputs-container input-container">
                 <div className="sub-container">
                     <div className="input-title">First Name</div>
@@ -127,6 +127,6 @@ const RightSide = () => {
             <div className="send-btn-container">
                 <button className="send-btn" onClick={addContactDetails}>Send Messege</button>
             </div>
-        </div>
+        </form>
     )
 }

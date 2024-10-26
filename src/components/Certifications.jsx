@@ -5,12 +5,12 @@ import { certificates } from '../data/certificates'
 
 export default function Certifications() {
     return (
-        <div className="screen-container">
+        <section className="screen-container">
             <div className="heading" id="certifications">
                 <div>Certifications</div>
             </div>
             <CertificationContainer certifications={certificates} />
-        </div>
+        </section>
     )
 }
 

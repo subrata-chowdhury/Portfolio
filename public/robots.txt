@@ -1,0 +1,6 @@
+# Allow all search engines to index everything
+User-agent: *
+Disallow:
+
+# Reference to your sitemap (replace URL)
+Sitemap: https://subratachowdhuryportfolio.vercel.app/sitemap.xml

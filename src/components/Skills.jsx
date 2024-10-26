@@ -11,7 +11,7 @@ export default function Skills({ forwardSkillContainerRef }) {
     const [sortBy, setSortBy] = useState('name');
 
     return (
-        <div className="screen-container">
+        <section className="screen-container">
             <div className="heading" id="skills">
                 <div>My Skills</div>
                 <div className="btn-container">
@@ -37,7 +37,7 @@ export default function Skills({ forwardSkillContainerRef }) {
                 </div>
             </div>
             <SkillsContainer skillsData={skillsData} forwardSkillContainerRef={forwardSkillContainerRef} showOnlyTopSkills={showOnlyTopSkills} />
-        </div>
+        </section>
     )
 }
 
@@ -110,19 +110,19 @@ function Skill({ name = "Skill", icon, id = "", data = "", onClickHandler = () =
 
 function SortButton({ onClickHandler = () => { }, active = false }) {
     return (
-        <div className="sort btn" onClick={onClickHandler}>
+        <button className="sort btn" onClick={onClickHandler}>
             <div>{active ? 'Sort By Name' : 'Sort By Level'}</div>
-            <img src="./icons/sort.png"></img>
-        </div>
+            <img src="./icons/sort.png" alt=""></img>
+        </button>
     )
 }
 
 function FilterButton({ onClickHandler = () => { }, active = false }) {
     return (
-        <div className="sort filter btn" onClick={onClickHandler}>
+        <button className="sort filter btn" onClick={onClickHandler}>
             <div>{active ? 'Show All Skills' : 'Show Top Skills'}</div>
-            <img src="./icons/sort.png"></img>
-        </div>
+            <img src="./icons/sort.png" alt=""></img>
+        </button>
     )
 }
 

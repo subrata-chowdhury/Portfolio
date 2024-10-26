@@ -22,7 +22,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true, fo
 
                 {showSeeMoreBtn &&
                     <div className="see-more-btn-container">
-                        <Link to={"/Projects"} className="btn">See More</Link>
+                        <Link to={"/Projects"} className="btn">View All Projects</Link>
                     </div>}
             </div>
         </>

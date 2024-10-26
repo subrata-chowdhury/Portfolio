@@ -67,6 +67,7 @@
 .sort.btn {
     background: rgba(170, 212, 255, 0.518);
     color: var(--text-color);
+    border: none;
 }
 
 .skill-details-container {

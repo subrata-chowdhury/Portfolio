@@ -41,7 +41,7 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
     return (
         <>
             <img src="./icons/menubar.png" className="menubar-toggle-icon" onClick={toggleMenubar} />
-            <div className="menubar" ref={menubar}>
+            <nav className="menubar" ref={menubar}>
                 <div className="theme-container">
                     <div className="logo light-mode" onClick={changeTheme}>
                         {onDarkMode ? <MoonAndStars /> : <Brightness />}
@@ -49,7 +49,7 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
                 </div>
                 <SearchContainer skillsContainerRef={skillsContainerRef} />
                 <Menus links={links} />
-            </div>
+            </nav>
         </>
     )
 }

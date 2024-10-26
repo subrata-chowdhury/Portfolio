@@ -43,7 +43,7 @@ function AboutMe() {
 
 function Counts() {
     return (
-        <div className="counts-container">
+        <section className="counts-container">
             <a className="count" href='#project'>
                 <div className="count-icon"><ProjectIcon /></div>
                 <div className="count-number">{projectCount}</div>
@@ -59,7 +59,7 @@ function Counts() {
                 <div className="count-number">{skillCount}</div>
                 <div className="count-label">Skills</div>
             </a>
-        </div>
+        </section>
     );
 }
 
