@@ -27,7 +27,7 @@ function Intro() {
                 </div>
             </div>
             <OtherPlatforms className="header-icons" />
-            <a className="download-btn" href="https://drive.google.com/file/d/1-B_fypUj2LCkPogQxK6sjYUJFUAhsIjO/view?usp=drive_link" target="_blank">Download CV</a>
+            <a className="download-btn" href="https://drive.google.com/file/d/1M_EVD5823IJA94uwKdd9Tafyb8IRO5iJ/view?usp=sharing" target="_blank">Download CV</a>
         </div>
     )
 }

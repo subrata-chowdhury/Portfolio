@@ -29,17 +29,17 @@ export default function Footer({ activeMenuIndex }) {
 export function OtherPlatforms({ className = "" }) {
     return (
         <div className={"icon-container" + (className ? (" " + className) : "")}>
-            <LinkedIcon Icon={Facebook} />
-            <LinkedIcon Icon={Instagram} />
-            <LinkedIcon Icon={GitHub} linkUrl="https://github.com/Super7000" />
-            <LinkedIcon Icon={LinkedIn} linkUrl="https://www.linkedin.com/in/subrata7000/" />
+            <LinkedIcon Icon={Facebook} alt={"Facebook Page"} />
+            <LinkedIcon Icon={Instagram} alt={"Instagram Page"} />
+            <LinkedIcon Icon={GitHub} linkUrl="https://github.com/Super7000" alt={"GitHub Page"} />
+            <LinkedIcon Icon={LinkedIn} linkUrl="https://www.linkedin.com/in/subrata7000/" alt={"LinkedIn Page"} />
         </div>
     )
 }
 
-function LinkedIcon({ linkUrl = "#", Icon }) {
+function LinkedIcon({ linkUrl = "#", Icon, alt }) {
     return (
-        <a href={linkUrl} target="_blank" >
+        <a href={linkUrl} target="_blank" aria-label={alt} >
             <Icon />
         </a>
     )
