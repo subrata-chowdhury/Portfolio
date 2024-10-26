@@ -7,7 +7,6 @@ import { skillsData } from "@/app/data/skills";
 import Loader from "@/app/loading";
 import { projectsData as projectData } from "@/app/data/projects";
 import Model from "@/app/components/Model";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }) {
