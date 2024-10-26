@@ -8,7 +8,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
     otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "ExpressJS", "JSON Web Token (JWT)", "REST API"],
-    previewImageSrc: "assets/To Dos.png"
+    previewImageSrc: "assets/To Dos.webp"
 }, {
     name: "Bike Rental System",
     repoName: "Bike-Rental-System",
@@ -18,7 +18,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
     otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
-    previewImageSrc: "assets/Bike Rental System.png"
+    previewImageSrc: "assets/Bike Rental System.webp"
 }, {
     name: "ATG World",
     repoName: "ATG_World",
@@ -28,7 +28,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
-    previewImageSrc: "assets/ATG World Croped.png"
+    previewImageSrc: "assets/ATG World Croped.webp"
 }, {
     name: "Time Table Scheduler",
     repoName: "Time-Table-Scheduler-ReactJS",
@@ -38,7 +38,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
     otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development"],
-    previewImageSrc: "assets/Time_Table_Scheduler.png"
+    previewImageSrc: "assets/Time_Table_Scheduler.webp"
 }, {
     name: "Scroll Effect",
     repoName: "Scroll_Effect",
@@ -48,7 +48,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
-    previewImageSrc: "assets/Scroll Effect.png"
+    previewImageSrc: "assets/Scroll Effect.webp"
 }, {
     name: "Google Search Page",
     repoName: "Google_Themed_Landing_Page",
@@ -58,7 +58,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
-    previewImageSrc: "assets/Google Search Page.png"
+    previewImageSrc: "assets/Google Landing Page.webp"
 }, {
     name: "Focus",
     repoName: "Focus",
@@ -68,7 +68,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
-    previewImageSrc: "assets/Focus.png"
+    previewImageSrc: "assets/Focus.webp"
 }, {
     name: "A Music Player",
     repoName: "A-Music-Player",
@@ -78,7 +78,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["React", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
-    previewImageSrc: "assets/A Music Player.png"
+    previewImageSrc: "assets/A Music Player.webp"
 }, {
     name: "Menubar Style",
     repoName: "Menubar-Style",
@@ -88,7 +88,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
-    previewImageSrc: "assets/Menubar_Style.png"
+    previewImageSrc: "assets/Menubar_Style.webp"
 }, {
     name: "List of All Doraemon Movies",
     repoName: "All_Doraemon_Movies-v3.5",
@@ -98,7 +98,7 @@ const projectsData = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
-    previewImageSrc: "assets/All Doraemon Movies.png"
+    previewImageSrc: "assets/All Doraemon Movies.webp"
 }]
 
 export { projectsData }

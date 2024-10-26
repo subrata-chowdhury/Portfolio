@@ -72,12 +72,12 @@ const skillsData = [{
     lvl: 2
 }, {
     name: "OOPs",
-    iconSrc: "./icons/oop.png",
+    iconSrc: "./icons/oop.webp",
     id: "oops",
     lvl: 2
 }, {
     name: "DSA",
-    iconSrc: "./icons/dsa.png",
+    iconSrc: "./icons/dsa.webp",
     id: "dsa",
     lvl: 2
 }, {
@@ -99,7 +99,7 @@ const skillsData = [{
     topSkill: true
 }, {
     name: "Express.js",
-    iconSrc: "./icons/express.png",
+    iconSrc: "./icons/express.webp",
     id: "expressjs",
     lvl: 2,
     topSkill: true
@@ -113,7 +113,7 @@ const skillsData = [{
     name: "React Native",
     iconSrc: "./icons/React.svg",
     id: "react-native",
-    lvl: 3,
+    lvl: 2,
     topSkill: true
 }, {
     name: "Redux",
@@ -127,70 +127,70 @@ const skillsData = [{
     lvl: 2
 }, {
     name: "Web Design",
-    iconSrc: "./icons/web-design.png",
+    iconSrc: "./icons/web-design.webp",
     id: "webDesign",
     lvl: 3,
     topSkill: true
 }, {
     name: "Graphic Design",
-    iconSrc: "./icons/graphic-design.png",
+    iconSrc: "./icons/graphic-design.webp",
     id: "graphicDesign",
     lvl: 3
 }, {
     name: "AI Tools",
-    iconSrc: "./icons/ai.png",
+    iconSrc: "./icons/ai.webp",
     id: "ai",
     lvl: 2
 }, {
     name: "DBMS",
-    iconSrc: "./icons/database.png",
+    iconSrc: "./icons/database.webp",
     id: "dbms",
     lvl: 2
 }, {
     name: "Operating System",
-    iconSrc: "./icons/os.png",
+    iconSrc: "./icons/os.webp",
     id: "os",
     lvl: 2
 }, {
     name: "Responsive Web Design",
-    iconSrc: "./icons/ui-design.png",
+    iconSrc: "./icons/ui-design.webp",
     id: "responsiveWebDesign",
     lvl: 3,
     topSkill: true
 }, {
     name: "Quick Learner",
-    iconSrc: "./icons/laptop.png",
+    iconSrc: "./icons/laptop.webp",
     id: "quickLearner",
     lvl: 2
 }, {
     name: "Problem Solving",
-    iconSrc: "./icons/problem-solving.png",
+    iconSrc: "./icons/problem-solving.webp",
     id: "problemSolving",
     lvl: 2
 }, {
     name: "REST API",
-    iconSrc: "./icons/api.png",
+    iconSrc: "./icons/api.webp",
     id: "restApi",
     lvl: 2,
     topSkill: true
 }, {
     name: "Visual Basic",
-    iconSrc: "./icons/vb-file.png",
+    iconSrc: "./icons/vb-file.webp",
     id: "visualBasic",
     lvl: 1
 }, {
     name: "Word",
-    iconSrc: "./icons/word.png",
+    iconSrc: "./icons/word.webp",
     id: "word",
     lvl: 2
 }, {
     name: "Excel",
-    iconSrc: "./icons/excel.png",
+    iconSrc: "./icons/excel.webp",
     id: "excel",
     lvl: 2
 }, {
     name: "PowerPoint",
-    iconSrc: "./icons/powerpoint.png",
+    iconSrc: "./icons/powerpoint.webp",
     id: "powerpoint",
     lvl: 1
 }, {
@@ -200,7 +200,7 @@ const skillsData = [{
     lvl: 1
 }, {
     name: "Figma",
-    iconSrc: "./icons/figma.png",
+    iconSrc: "./icons/figma.webp",
     id: "figma",
     lvl: 1
 }, {
@@ -210,7 +210,7 @@ const skillsData = [{
     lvl: 1
 }, {
     name: "Android Studio",
-    iconSrc: "./icons/android-studio.png",
+    iconSrc: "./icons/android-studio.webp",
     id: "android-studio",
     lvl: 1
 }, {
@@ -218,6 +218,18 @@ const skillsData = [{
     iconSrc: "./icons/Logomark_Full Color.svg",
     id: "firebase",
     lvl: 1
+}, {
+    name: "Next.js",
+    iconSrc: "./icons/nextjs.svg",
+    id: "nextjs",
+    lvl: 2,
+    topSkill: true
+}, {
+    name: "Tailwind CSS",
+    iconSrc: "./icons/tailwind.svg",
+    id: "tailwindcss",
+    lvl: 2,
+    topSkill: true
 }]
 
 skillsData.sort((a, b) => {
