@@ -1,8 +1,8 @@
 import { memo, useRef, useState } from "react";
-import "../style/skills.css"
+import "@/app/styles/skills.css"
 import { skillsData as defaultValue } from "../data/skills";
 import Model from "./Model";
-import { ProjectsContainer } from "./Projects";
+import { ProjectsContainer } from "@/app/Projects/components/Projects";
 import { projectsData } from "../data/projects";
 
 export default function Skills({ forwardSkillContainerRef }) {
@@ -41,9 +41,9 @@ export default function Skills({ forwardSkillContainerRef }) {
     )
 }
 
-export const SkillsContainer = memo(({
+export const SkillsContainer = ({
     skillsData = defaultValue,
-    forwardSkillContainerRef = useRef(),
+    forwardSkillContainerRef = null,
     excludeIds = false,
     skillClickHandler = () => { },
     showOnlyTopSkills = false,
@@ -72,7 +72,7 @@ export const SkillsContainer = memo(({
             }
         </div>
     )
-})
+}
 
 function Skill({ name = "Skill", icon, id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false, animationDelay = 0 }) {
     const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';

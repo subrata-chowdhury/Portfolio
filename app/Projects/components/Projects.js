@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
-import "../style/projects.css"
+import "../style.css"
 import { useRef, useState } from "react";
-import GitHub from "../Icons/Social Media/GitHub";
-import Arrow from "../Icons/Arrow";
-import { SkillsContainer } from "./Skills";
-import { skillsData } from "../data/skills";
-import Loader from "./Loader";
-import { projectsData as projectData } from "../data/projects";
-import Model from "./Model";
+import GitHub from "@/app/Icons/Social Media/GitHub";
+import Arrow from "@/app/Icons/Arrow";
+import { SkillsContainer } from "@/app/components/Skills";
+import { skillsData } from "@/app/data/skills";
+import Loader from "@/app/loading";
+import { projectsData as projectData } from "@/app/data/projects";
+import Model from "@/app/components/Model";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = useRef() }) {
+export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }) {
     return (
         <>
             <div className="screen-container">
@@ -22,7 +23,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true, fo
 
                 {showSeeMoreBtn &&
                     <div className="see-more-btn-container">
-                        <Link to={"/Projects"} className="btn">View All Projects</Link>
+                        <Link href={"/Projects"} className="btn">View All Projects</Link>
                     </div>}
             </div>
         </>

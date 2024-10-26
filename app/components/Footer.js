@@ -2,10 +2,10 @@ import Facebook from "../Icons/Social Media/Facebook"
 import GitHub from "../Icons/Social Media/GitHub"
 import Instagram from "../Icons/Social Media/Instagram"
 import LinkedIn from "../Icons/Social Media/LinkedIn"
-import "../style/footer.css"
+import "@/app/styles/footer.css"
 import { Menus } from "./Menubar"
 
-export default function Footer({ activeMenuIndex }) {
+export default function Footer() {
     return (
         <footer className="footer">
             <div className="top-part">

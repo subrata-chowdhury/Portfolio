@@ -1,11 +1,12 @@
+'use client'
 import { memo, useEffect, useRef, useState } from "react";
-import "../style/menubar.css"
+import "@/app/styles/menubar.css"
 import { SkillsContainer } from "./Skills";
 import { skillsData } from "../data/skills";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
+import Link from "next/link";
 
 export default function Menubar({ onThemeChange = () => { }, links, skillsContainerRef }) {
     const [onDarkMode, setOnDarkMode] = useState(false)
@@ -32,15 +33,15 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
 
     function toggleMenubar() {
         if (hasElement(menubar.current.classList, "active") !== -1) {
-            menubar.current.classList.remove("active");
+            menubar.current?.classList.remove("active");
         } else {
-            menubar.current.classList.add("active");
+            menubar.current?.classList.add("active");
         }
     }
 
     return (
         <>
-            <img src="./icons/menubar.png" className="menubar-toggle-icon" onClick={toggleMenubar} />
+            <img src="./icons/menubar.webp" className="menubar-toggle-icon" role="presentation" alt="" onClick={toggleMenubar} />
             <nav className="menubar" ref={menubar}>
                 <div className="theme-container">
                     <div className="logo light-mode" onClick={changeTheme}>
@@ -54,12 +55,12 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
     )
 }
 
-const SearchContainer = memo(({ skillsContainerRef }) => {
+const SearchContainer = ({ skillsContainerRef }) => {
     const searchInputBox = useRef();
 
     const [filteredSkillData, setFilterSkillsData] = useState('')
-    const location = useLocation();
-    const navigator = useNavigate();
+    // const location = useRouter();
+    // const navigator = useNavigate();
 
     function inputBoxInputHandler(searchData) {
         if (searchData !== "") {
@@ -95,7 +96,7 @@ const SearchContainer = memo(({ skillsContainerRef }) => {
             </div>
         </>
     )
-})
+}
 
 export function SearchResultContainer({ skillsData, skillClickHandler = () => { } }) {
     return (
@@ -105,12 +106,12 @@ export function SearchResultContainer({ skillsData, skillClickHandler = () => { 
     )
 }
 
-export const Menus = memo(({ links = [{
+export const Menus = ({ links = [{
     name: "Home",
     link: "/"
 }, {
     name: "Education",
-    link: "#education",
+    link: "/#education",
 }, {
     name: "Projects",
     link: "/Projects",
@@ -119,9 +120,10 @@ export const Menus = memo(({ links = [{
     link: "/Internships"
 }, {
     name: "Contact Me",
-    link: "#contact",
+    link: "/#contact",
 }] }) => {
-    const route = useLocation();
+    // const route = useLocation();
+    let route = { pathname: "/" }
 
     return (
         <div className="menus-container">
@@ -129,13 +131,13 @@ export const Menus = memo(({ links = [{
                 return (
                     link.createHref === true || link.link.indexOf("#") === 0 ?
                         <a key={link.link} className={"menu" + (link.link === route.pathname ? " active" : "")} href={link.link}>{link.name}</a> :
-                        <Link to={link.link} key={link.link}>
+                        <Link href={link.link} key={link.link}>
                             <div className={"menu" + (link.link === route.pathname ? " active" : "")}>{link.name}</div>
                         </Link>)
             })}
         </div>
     )
-})
+}
 
 function hasElement(array, key) {
     for (let index = 0; index < array.length; index++) {

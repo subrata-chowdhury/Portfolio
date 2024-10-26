@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+'use client'
+import { useState } from "react";
 import Menubar from "../components/Menubar";
-import Projects from "../components/Projects";
-import "../style/Pages/ProjectsPage.css"
+import Projects from "./components/Projects";
+import "@/app/styles/Pages/ProjectsPage.css"
 import Footer from "../components/Footer";
 
 export default function ProjectsPage() {
     const [mode, setMode] = useState('light')
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     return (
         <div className={'projects-page mode app ' + mode}>

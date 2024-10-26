@@ -1,6 +1,6 @@
 import React from 'react'
 import Cross from "../Icons/cross";
-import "../style/model.css"
+import "@/app/styles/model.css"
 
 function Model({ onClose, style, className, children }) {
     return (

@@ -1,8 +1,9 @@
+'use client'
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Menubar from "../components/Menubar";
-import "../style/Pages/InternshipsPage.css"
-import { Link } from "react-router-dom";
+import "@/app/styles/Pages/InternshipsPage.css"
+import Link from "next/link";
 
 export default function InternshipsPage() {
     const [mode, setMode] = useState('light')
@@ -14,7 +15,7 @@ export default function InternshipsPage() {
                 <div className="heading">
                     🥲Have not get any internship yet.<br></br>
                     If anyone want to offer an internship.<br></br>
-                    You can <Link to={"/#contact"}>contact me</Link>.
+                    You can <Link href={"/#contact"}>contact me</Link>.
                 </div>
             </div>
             <Footer />

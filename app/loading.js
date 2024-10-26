@@ -1,6 +1,6 @@
-import "../style/Loader.css"
+import "./styles/Loader.css"
 
-export default function Loader() {
+export default function Loading() {
     return (
         <div className="loader-container">
             <div className="outer-loader"></div>

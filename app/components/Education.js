@@ -1,5 +1,5 @@
 import Arrow from "../Icons/Arrow"
-import "../style/Education.css"
+import "@/app/styles/Education.css"
 
 export default function Education() {
     return (

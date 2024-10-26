@@ -1,5 +1,5 @@
-import "../style/header.css"
-import profilePicture from "../assets/profile-pic.png"
+import "@/app/styles/header.css"
+// import profilePicture from "../assets/profile-pic.png"
 import { useEffect, useState } from "react";
 import { OtherPlatforms } from "./Footer";
 // import Wave from "../assets/wave"

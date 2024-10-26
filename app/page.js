@@ -1,36 +1,40 @@
+'use client'
 import { useEffect, useRef, useState } from 'react'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import Menubar from '../components/Menubar'
-import Projects from '../components/Projects'
-import Skills from '../components/Skills'
-import Contact from '../components/Contact'
-import Education from '../components/Education'
-import Certifications from '../components/Certifications'
-import AboutMe from '../components/AboutMe'
-import { useLocation } from 'react-router-dom'
+import Menubar from './components/Menubar'
+import Header from './components/Header'
+import AboutMe from './components/AboutMe'
+import Skills from './components/Skills'
+import Education from './components/Education'
+import Projects from './Projects/components/Projects'
+import Certifications from './components/Certifications'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+// import { useRouter } from 'next/router'
 
-export default function HomePage() {
+export default function Home() {
     const [mode, setMode] = useState('light')
     const skillsContainer = useRef()
     const contactUs = useRef()
     const projects = useRef()
 
-    const location = useLocation()
+    // const location = useRouter()
 
-    useEffect(() => {
-        try {
-            if (location.hash === '#contact') {
-                contactUs.current?.scrollIntoView({ behavior: "smooth" })
-            } else if (location.hash === '#projects') {
-                projects.current?.scrollIntoView({ behavior: "smooth" })
-            } else {
-                document.querySelector(location.hash)?.scrollIntoView({ behavior: "smooth" })
-            }
-        } catch (error) {
+    // useEffect(() => {
+    //     if (typeof window === 'undefined') return;
+    //     let hash = location.asPath.split('#')[1];
+    //     try {
+    //         if (window)
+    //             if (hash === '#contact') {
+    //                 contactUs.current?.scrollIntoView({ behavior: "smooth" })
+    //             } else if (hash === '#projects') {
+    //                 projects.current?.scrollIntoView({ behavior: "smooth" })
+    //             } else {
+    //                 document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" })
+    //             }
+    //     } catch (error) {
 
-        }
-    }, [location])
+    //     }
+    // }, [location])
 
     return (
         <div className={'mode app ' + mode}>

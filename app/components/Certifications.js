@@ -1,6 +1,6 @@
 import React from 'react'
 import Arrow from '../Icons/Arrow'
-import "../style/Certification.css"
+import "@/app/styles/Certification.css"
 import { certificates } from '../data/certificates'
 
 export default function Certifications() {
