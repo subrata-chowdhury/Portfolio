@@ -7,7 +7,7 @@ const projectsData = [{
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
-    otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "ExpressJS", "JSON Web Token (JWT)", "REST API"],
+    otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "Express.js", "JSON Web Token (JWT)", "REST API"],
     previewImageSrc: "assets/To Dos.webp"
 }, {
     name: "Bike Rental System",

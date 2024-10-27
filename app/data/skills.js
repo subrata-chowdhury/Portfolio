@@ -128,13 +128,13 @@ const skillsData = [{
 }, {
     name: "Web Design",
     iconSrc: "./icons/web-design.webp",
-    id: "webDesign",
+    id: "web-design",
     lvl: 3,
     topSkill: true
 }, {
     name: "Graphic Design",
     iconSrc: "./icons/graphic-design.webp",
-    id: "graphicDesign",
+    id: "graphic-design",
     lvl: 3
 }, {
     name: "AI Tools",
@@ -154,29 +154,29 @@ const skillsData = [{
 }, {
     name: "Responsive Web Design",
     iconSrc: "./icons/ui-design.webp",
-    id: "responsiveWebDesign",
+    id: "responsive-web-design",
     lvl: 3,
     topSkill: true
 }, {
     name: "Quick Learner",
     iconSrc: "./icons/laptop.webp",
-    id: "quickLearner",
+    id: "quick-learner",
     lvl: 2
 }, {
     name: "Problem Solving",
     iconSrc: "./icons/problem-solving.webp",
-    id: "problemSolving",
+    id: "problem-solving",
     lvl: 2
 }, {
     name: "REST API",
     iconSrc: "./icons/api.webp",
-    id: "restApi",
+    id: "rest-api",
     lvl: 2,
     topSkill: true
 }, {
     name: "Visual Basic",
     iconSrc: "./icons/vb-file.webp",
-    id: "visualBasic",
+    id: "visual-basic",
     lvl: 1
 }, {
     name: "Word",
@@ -196,7 +196,7 @@ const skillsData = [{
 }, {
     name: "Power Bi",
     iconSrc: "./icons/power-bi-2021.svg",
-    id: "powerBi",
+    id: "power-bi",
     lvl: 1
 }, {
     name: "Figma",

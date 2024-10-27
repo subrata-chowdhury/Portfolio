@@ -158,7 +158,7 @@ function DetailedProjectView({
             projectSkills.push(filterData)
         else projectSkills.push({
             name: otherSkills[index],
-            iconSrc: "./icons/skill.png",
+            iconSrc: "./icons/skill.webp",
             id: otherSkills[index].toLowerCase().split(' ').join('-'),
             lvl: 1
         })

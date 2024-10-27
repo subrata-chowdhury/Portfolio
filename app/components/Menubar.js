@@ -7,6 +7,7 @@ import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Menubar({ onThemeChange = () => { }, links, skillsContainerRef }) {
     const [onDarkMode, setOnDarkMode] = useState(false)
@@ -17,9 +18,9 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
         function activeMenubarOnScroll() {
             window.onscroll = () => {
                 if (document.documentElement.scrollTop > 50 && window.innerWidth > 650) {
-                    menubar.current.classList.add("active");
+                    menubar.current?.classList.add("active");
                 } else {
-                    menubar.current.classList.remove("active");
+                    menubar.current?.classList.remove("active");
                 }
             }
         }
@@ -59,8 +60,8 @@ const SearchContainer = ({ skillsContainerRef }) => {
     const searchInputBox = useRef();
 
     const [filteredSkillData, setFilterSkillsData] = useState('')
-    // const location = useRouter();
-    // const navigator = useNavigate();
+    const pathname = usePathname();
+    const router = useRouter();
 
     function inputBoxInputHandler(searchData) {
         if (searchData !== "") {
@@ -89,9 +90,9 @@ const SearchContainer = ({ skillsContainerRef }) => {
                     <SearchIcon />
                 </div>
                 {filteredSkillData.length > 0 && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
-                    if (location.pathname === "/")
+                    if (pathname === "/")
                         skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
-                    else navigator("/#" + e.currentTarget.dataset.id)
+                    else router.push("/#" + e.currentTarget.dataset.id)
                 }} />}
             </div>
         </>
@@ -122,17 +123,16 @@ export const Menus = ({ links = [{
     name: "Contact Me",
     link: "/#contact",
 }] }) => {
-    // const route = useLocation();
-    let route = { pathname: "/" }
+    const pathname = usePathname();
 
     return (
         <div className="menus-container">
             {links.map((link) => {
                 return (
                     link.createHref === true || link.link.indexOf("#") === 0 ?
-                        <a key={link.link} className={"menu" + (link.link === route.pathname ? " active" : "")} href={link.link}>{link.name}</a> :
+                        <a key={link.link} className={"menu" + (link.link === pathname ? " active" : "")} href={link.link}>{link.name}</a> :
                         <Link href={link.link} key={link.link}>
-                            <div className={"menu" + (link.link === route.pathname ? " active" : "")}>{link.name}</div>
+                            <div className={"menu" + (link.link === pathname ? " active" : "")}>{link.name}</div>
                         </Link>)
             })}
         </div>

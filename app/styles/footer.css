@@ -69,6 +69,19 @@
     }
 }
 
+@media (max-width: 520px) {
+    .footer .menus-container {
+        grid-auto-flow: row;
+        gap: 0.5rem;
+        text-align: left;
+    }
+
+    .footer .menus-container .menu {
+        padding: 0;
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 475px) {
     .privacy-policy-container {
         grid-auto-flow: row;

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/logo.png" />
+        {/* <link rel="icon" type="image/png" href="/logo.png" /> */}
         {/* <link href='https://fonts.googleapis.com/css?family=IBM Plex Sans' rel='stylesheet' />
 	<link rel="preload"
 		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"

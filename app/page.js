@@ -9,7 +9,6 @@ import Projects from './Projects/components/Projects'
 import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-// import { useRouter } from 'next/router'
 
 export default function Home() {
     const [mode, setMode] = useState('light')
@@ -17,24 +16,26 @@ export default function Home() {
     const contactUs = useRef()
     const projects = useRef()
 
-    // const location = useRouter()
+    useEffect(() => {
+        autoScrollFromHash();
+        window.addEventListener("hashchange", autoScrollFromHash)
+        return () => window.removeEventListener("hashchange", autoScrollFromHash)
+    }, [])
 
-    // useEffect(() => {
-    //     if (typeof window === 'undefined') return;
-    //     let hash = location.asPath.split('#')[1];
-    //     try {
-    //         if (window)
-    //             if (hash === '#contact') {
-    //                 contactUs.current?.scrollIntoView({ behavior: "smooth" })
-    //             } else if (hash === '#projects') {
-    //                 projects.current?.scrollIntoView({ behavior: "smooth" })
-    //             } else {
-    //                 document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" })
-    //             }
-    //     } catch (error) {
+    function autoScrollFromHash() {
+        let hash = window.location.hash;
+        try {
+            if (hash === '#contact') {
+                contactUs.current?.scrollIntoView({ behavior: "smooth" })
+            } else if (hash === '#projects') {
+                projects.current?.scrollIntoView({ behavior: "smooth" })
+            } else {
+                document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" })
+            }
+        } catch (error) {
 
-    //     }
-    // }, [location])
+        }
+    }
 
     return (
         <div className={'mode app ' + mode}>

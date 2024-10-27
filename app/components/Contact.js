@@ -1,6 +1,6 @@
 'use client'
 import "@/app/styles/contact.css"
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { db } from "@/app/lib/firebaseInitilizer";
 import { collection, addDoc } from "firebase/firestore";
 import Marker from "../Icons/marker";
