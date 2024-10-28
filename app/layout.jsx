@@ -17,12 +17,12 @@ export default function RootLayout({ children }) {
                     content="Welcome to the professional portfolio of Subrata Chowdhury, showcasing expertise in full-stack web development, React.js, Next.js, and AWS. Explore innovative projects and technical skills." />
 
                 <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:image" content="https://example.com/assets/images/twitter-portfolio.jpg" />
+                <meta property="twitter:image" content="https://subratachowdhuryportfolio.vercel.app/logo.png" />
                 <meta property="twitter:title" content="Subrata Chowdhury | Full-Stack Web Developer Portfolio" />
                 <meta property="twitter:description"
                     content="Explore the professional portfolio of Subrata Chowdhury, featuring projects and skills in full-stack development, React.js, and AWS." />
 
-                <meta property="og:image" content="https://example.com/assets/images/og-portfolio.jpg" />
+                <meta property="og:image" content="https://subratachowdhuryportfolio.vercel.app/logo.png" />
                 <meta property="og:site_name" content="Subrata Chowdhury Portfolio" />
                 <meta property="og:title" content="Subrata Chowdhury | Full-Stack Web Developer Portfolio" />
                 <meta property="og:description"
