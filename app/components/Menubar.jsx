@@ -8,6 +8,7 @@ import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Menubar({ onThemeChange = () => { }, links, skillsContainerRef }) {
     const [onDarkMode, setOnDarkMode] = useState(false)
@@ -42,7 +43,7 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
 
     return (
         <>
-            <img src="./icons/menubar.webp" className="menubar-toggle-icon" role="presentation" alt="" onClick={toggleMenubar} />
+            <Image width={30} height={30} src="/icons/menubar.webp" className="menubar-toggle-icon" role="presentation" alt="" onClick={toggleMenubar} />
             <nav className="menubar" ref={menubar}>
                 <div className="theme-container">
                     <div className="logo light-mode" onClick={changeTheme}>
@@ -117,8 +118,8 @@ export const Menus = ({ links = [{
     name: "Projects",
     link: "/Projects",
 }, {
-    name: "Internships",
-    link: "/Internships"
+    name: "Experience",
+    link: "/Experience"
 }, {
     name: "Contact Me",
     link: "/#contact",

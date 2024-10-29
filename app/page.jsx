@@ -52,8 +52,8 @@ export default function Home() {
                     name: "Projects",
                     link: "#projects",
                 }, {
-                    name: "Internships",
-                    link: "/Internships"
+                    name: "Experience",
+                    link: "/Experience"
                 }, {
                     name: "Contact Me",
                     link: "#contact",

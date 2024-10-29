@@ -4,6 +4,7 @@ import { skillsData as defaultValue } from "../data/skills";
 import Model from "./Model";
 import { ProjectsContainer } from "@/app/Projects/components/Projects";
 import { projectsData } from "../data/projects";
+import Image from "next/image";
 
 export default function Skills({ forwardSkillContainerRef }) {
     const [skillsData, setSkillData] = useState(defaultValue);
@@ -96,9 +97,9 @@ function Skill({ name = "Skill", icon, id = "", data = "", onClickHandler = () =
                         <div className="skill-name">{name}</div>
                     </div>
                     {lvl && !hideLevel && <div className="skill-details">
-                        <img src={`./icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
-                        <img src={`./icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
-                        <img src={`./icons/star${(lvl === 3) ? '-fill' : ''}.svg`} alt="icon" />
+                        <Image src={`/icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
+                        <Image src={`/icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
+                        <Image src={`/icons/star${(lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
                     </div>}
                 </div>
             </div>
@@ -112,7 +113,7 @@ function SortButton({ onClickHandler = () => { }, active = false }) {
     return (
         <button className="sort btn" onClick={onClickHandler}>
             <div>{active ? 'Sort By Name' : 'Sort By Level'}</div>
-            <img src="./icons/sort.png" alt=""></img>
+            <Image src="/icons/sort.png" alt="sort-icon" width={20} height={20} style={{ height: 'auto' }} />
         </button>
     )
 }
@@ -121,7 +122,7 @@ function FilterButton({ onClickHandler = () => { }, active = false }) {
     return (
         <button className="sort filter btn" onClick={onClickHandler}>
             <div>{active ? 'Show All Skills' : 'Show Top Skills'}</div>
-            <img src="./icons/sort.png" alt=""></img>
+            <Image src="/icons/sort.png" alt="sort-icon" width={20} height={20} style={{ height: 'auto' }} />
         </button>
     )
 }

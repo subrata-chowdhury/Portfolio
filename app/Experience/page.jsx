@@ -13,8 +13,8 @@ export default function InternshipsPage() {
             <Menubar onThemeChange={setMode} />
             <div className="empty-heading">
                 <div className="heading">
-                    🥲Have not get any internship yet.<br></br>
-                    If anyone want to offer an internship.<br></br>
+                    🥲Have not get any experience yet.<br></br>
+                    If anyone want to offer an internship or job.<br></br>
                     You can <Link href={"/#contact"}>contact me</Link>.
                 </div>
             </div>

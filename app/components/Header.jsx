@@ -43,24 +43,24 @@ function Photo() {
     // }, [])
     return (
         <div className="photo">
-            {/* <Wave /> */}
-            <img src={profilePicture} alt="profile picture" />
+            {/* <Wave />
+            <img src={profilePicture} alt="profile picture" /> */}
         </div>
     )
 }
 
 function TypeingAnimation() {
-    const words = ["Web Developer", "Programmer", "Designer", "Freelancer", "Engineer"];
-    const typingSpeed = 150; // Speed of typing each letter in milliseconds
-    const erasingSpeed = 100; // Speed of erasing each letter in milliseconds
-    const delayBetweenWords = 1000; // Delay between typing each word in milliseconds
-
     const [text, setText] = useState("");
     const [isErasing, setIsErasing] = useState(false);
     const [wordIndex, setWordIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
 
     useEffect(() => {
+        const words = ["Web Developer", "Programmer", "Designer", "Freelancer", "Engineer"];
+        const typingSpeed = 150; // Speed of typing each letter in milliseconds
+        const erasingSpeed = 100; // Speed of erasing each letter in milliseconds
+        const delayBetweenWords = 1000; // Delay between typing each word in milliseconds
+
         const handleTyping = () => {
             if (!isErasing) {
                 // Typing animation logic
@@ -88,7 +88,7 @@ function TypeingAnimation() {
         const timer = charIndex >= words[wordIndex].length ? setTimeout(handleTyping, delayBetweenWords) : setTimeout(handleTyping, typingDelay);
 
         return () => clearTimeout(timer);
-    }, [charIndex, isErasing, wordIndex, words]);
+    }, [charIndex, isErasing, wordIndex]);
 
 
     return (

@@ -7,7 +7,7 @@
     padding: 3rem;
     box-sizing: border-box;
     background: var(--background-color);
-    z-index: 10;
+    z-index: 30;
     overflow-y: auto;
 }
 
@@ -21,7 +21,7 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    z-index: 11;
+    z-index: 31;
     background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }

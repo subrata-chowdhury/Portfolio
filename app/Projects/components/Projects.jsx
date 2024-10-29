@@ -1,5 +1,5 @@
 import "../style.css"
-import { useRef, useState } from "react";
+import { useState } from "react";
 import GitHub from "@/app/Icons/Social Media/GitHub";
 import Arrow from "@/app/Icons/Arrow";
 import { SkillsContainer } from "@/app/components/Skills";
@@ -8,6 +8,7 @@ import Loader from "@/app/loading";
 import { projectsData as projectData } from "@/app/data/projects";
 import Model from "@/app/components/Model";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }) {
     return (
@@ -80,7 +81,7 @@ export function Project({
         otherSkills,
         previewImageSrc
     })
-    const [showImgOnly, setShowImgOnly] = useState(false)
+    const [showImg, setShowImg] = useState(false)
 
     return (
         <>
@@ -88,10 +89,9 @@ export function Project({
 
             <div className="project-container" style={{ animationDelay: animationDelay + 's' }}>
                 <div className="project-image" onClick={() => {
-                    setShowImgOnly(true)
-                    setShowDetailsPopUp(true)
+                    setShowImg(true)
                 }}>
-                    <img src={previewImageSrc} alt="project image" />
+                    <Image src={"/" + previewImageSrc} alt="project image" width={600} height={600} />
                 </div>
                 <div className="details">
                     <div className="project-name">{name}</div>
@@ -107,7 +107,6 @@ export function Project({
                         <div className="more-details btn" onClick={async () => {
                             try {
                                 setShowLoader(true)
-                                setShowImgOnly(false)
                                 if (projectDetails.createdAt === null || projectDetails.createdAt === '') {
                                     let { noOfCommits, updatedAt, createdAt } = await fetchLatestData(repoName)
                                     setProjectDetails(val => { return { ...val, noOfCommits, updatedAt, createdAt } })
@@ -123,8 +122,13 @@ export function Project({
                 </div>
             </div>
 
+            {showImg && <Model onClose={() => setShowImg(false)}>
+                <div style={{ width: '100%', height: '100%', alignSelf: 'center', overflowY: 'auto', borderRadius: '1rem' }}>
+                    <img src={previewImageSrc} style={{ width: "100%", borderRadius: '1rem' }} alt="project image" />
+                </div>
+            </Model>}
+
             {showDetailsPopUp && <DetailedProjectView
-                showImgOnly={showImgOnly}
                 {...projectDetails}
                 onClose={() => setShowDetailsPopUp(false)} />}
         </>
@@ -133,7 +137,7 @@ export function Project({
 
 function DetailedProjectView({
     name = "Name",
-    repoName = "Repo-Name",
+    repoName,
     description = "It's a Project",
     noOfCommits,
     createdAt,
@@ -142,7 +146,6 @@ function DetailedProjectView({
     otherSkills = [],
     previewImageSrc = '',
 
-    showImgOnly = true,
     onClose = () => { }
 }) {
     let newSkillsData = [];
@@ -158,7 +161,7 @@ function DetailedProjectView({
             projectSkills.push(filterData)
         else projectSkills.push({
             name: otherSkills[index],
-            iconSrc: "./icons/skill.webp",
+            iconSrc: "/icons/skill.webp",
             id: otherSkills[index].toLowerCase().split(' ').join('-'),
             lvl: 1
         })
@@ -166,8 +169,7 @@ function DetailedProjectView({
 
     return (
         <>
-            <Model onClose={onClose} className="detailed-project-view-container" style={{ gridTemplateColumns: showImgOnly ? "auto" : "70% auto" }}>
-                {!showImgOnly &&
+            <Model onClose={onClose} className="detailed-project-view-container">
                     <>
                         <div className="left-side">
                             <div className="heading">{name}</div>
@@ -182,12 +184,7 @@ function DetailedProjectView({
                             {updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{updatedAt}</div>}
                             {noOfCommits && (noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{noOfCommits}</div>}
                         </div>
-                    </>}
-
-                {showImgOnly &&
-                    <div style={{ width: '100%', height: '100%', alignSelf: 'center', overflowY: 'auto' }}>
-                        <img src={previewImageSrc} style={{ width: "100%" }} alt="project image" />
-                    </div>}
+                    </>
             </Model>
         </>
     )
