@@ -135,6 +135,7 @@
 }
 
 .detailed-project-view-container .right-side {
+    display: grid;
     grid-auto-flow: row;
     align-items: start;
     align-content: start;

@@ -170,21 +170,19 @@ function DetailedProjectView({
     return (
         <>
             <Model onClose={onClose} className="detailed-project-view-container">
-                    <>
-                        <div className="left-side">
-                            <div className="heading">{name}</div>
-                            <div className="project-description">{description}</div>
-                            <div className="heading">Main Skills</div>
-                            <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
-                            <div className="heading">Other Skills</div>
-                            <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
-                        </div>
-                        <div className="right-side">
-                            {createdAt && <div className="project-commit-details-container"><b>Created At: </b>{createdAt}</div>}
-                            {updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{updatedAt}</div>}
-                            {noOfCommits && (noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{noOfCommits}</div>}
-                        </div>
-                    </>
+                <div className="left-side">
+                    <div className="heading">{name}</div>
+                    <div className="project-description">{description}</div>
+                    <div className="heading">Main Skills</div>
+                    <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
+                    <div className="heading">Other Skills</div>
+                    <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
+                </div>
+                <div className="right-side">
+                    {createdAt && <div className="project-commit-details-container"><b>Created At: </b>{createdAt}</div>}
+                    {updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{updatedAt}</div>}
+                    {noOfCommits && (noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{noOfCommits}</div>}
+                </div>
             </Model>
         </>
     )
@@ -211,5 +209,5 @@ async function fetchLatestData(repoName) {
         }
         pageCount++
     }
-    return { totalNoOfCommits, updatedAt, createdAt }
+    return { noOfCommits: totalNoOfCommits, updatedAt, createdAt }
 }

@@ -99,6 +99,16 @@ const projectsData = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
     previewImageSrc: "assets/All Doraemon Movies.webp"
+}, {
+    name: "Hobby Cue",
+    repoName: "Hobby-Cue",
+    description: "This repository contains a fully responsive webpage created using HTML, CSS, ReactJS and Bootstrap 5.",
+    noOfCommits: null,
+    createdAt: null,
+    updatedAt: null,
+    mainSkills: ["HTML", "CSS", "JavaScript", "React", "Bootstrap 5"],
+    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development"],
+    previewImageSrc: "assets/Hobby Cue.webp"
 }]
 
 export { projectsData }

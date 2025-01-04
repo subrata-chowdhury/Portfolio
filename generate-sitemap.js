@@ -11,7 +11,7 @@ async function generateSitemap() {
   sitemap.write({ url: '/', changefreq: 'weekly', priority: 1.0 });        // Home page
 //   sitemap.write({ url: '/about', changefreq: 'monthly', priority: 0.8 });   // About page
   sitemap.write({ url: '/Projects', changefreq: 'weekly', priority: 0.9 }); // Projects page
-  sitemap.write({ url: '/Internships', changefreq: 'monthly', priority: 0.7 }); // Contact page
+  sitemap.write({ url: '/Experience', changefreq: 'monthly', priority: 0.7 }); // Contact page
 
   // End sitemap generation
   sitemap.end();
