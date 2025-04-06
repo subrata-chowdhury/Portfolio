@@ -1,12 +1,12 @@
-import { memo, useRef, useState } from "react";
+import { useState } from "react";
 import "@/app/styles/skills.css"
-import { skillsData as defaultValue } from "../data/skills";
+import { skillsData as defaultValue, Skill } from "../data/skills";
 import Model from "./Model";
 import { ProjectsContainer } from "@/app/Projects/components/Projects";
 import { projectsData } from "../data/projects";
 import Image from "next/image";
 
-export default function Skills({ forwardSkillContainerRef }) {
+export default function Skills({ forwardSkillContainerRef }: { forwardSkillContainerRef: React.RefObject<HTMLDivElement | null> }) {
     const [skillsData, setSkillData] = useState(defaultValue);
     const [showOnlyTopSkills, setShowOnlyTopSkills] = useState(false);
     const [sortBy, setSortBy] = useState('name');
@@ -49,6 +49,13 @@ export const SkillsContainer = ({
     skillClickHandler = () => { },
     showOnlyTopSkills = false,
     hideLevel = false,
+}: {
+    skillsData?: Skill[],
+    forwardSkillContainerRef?: React.RefObject<HTMLDivElement | null> | null,
+    excludeIds?: boolean,
+    skillClickHandler?: (e: React.MouseEvent<HTMLDivElement>) => void,
+    showOnlyTopSkills?: boolean,
+    hideLevel?: boolean
 }) => {
     if (showOnlyTopSkills)
         skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
@@ -57,7 +64,7 @@ export const SkillsContainer = ({
         <div className="skills-container" ref={forwardSkillContainerRef} style={hideLevel ? { display: "inline-block" } : {}}>
             {
                 skillsData.length > 0 ? skillsData.map((skill, index) => {
-                    return <Skill
+                    return <SkillCard
                         name={skill["name"]}
                         icon={skill["iconSrc"]}
                         id={excludeIds ? "" : skill["id"]}
@@ -75,7 +82,25 @@ export const SkillsContainer = ({
     )
 }
 
-function Skill({ name = "Skill", icon, id = "", data = "", onClickHandler = () => { }, lvl = 0, hideLevel = false, animationDelay = 0 }) {
+function SkillCard({
+    name = "Skill",
+    icon,
+    id = "",
+    data = "",
+    onClickHandler = () => { },
+    lvl = 0,
+    hideLevel = false,
+    animationDelay = 0
+}: {
+    name: string,
+    icon?: string,
+    id: string,
+    data: string,
+    onClickHandler: (e: React.MouseEvent<HTMLDivElement>) => void,
+    lvl: number,
+    hideLevel: boolean,
+    animationDelay: number
+}) {
     const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';
     const [showRelatedProjects, setShowRelatedProjects] = useState(false)
 
@@ -87,13 +112,13 @@ function Skill({ name = "Skill", icon, id = "", data = "", onClickHandler = () =
                 title={name + " (" + level + ")"}
                 data-id={data}
                 onClick={e => {
-                    id !== "" ? setShowRelatedProjects(true) : ""
+                    if (id !== "") setShowRelatedProjects(true)
                     onClickHandler(e)
                 }}
                 style={hideLevel ? { display: "inline-flex", margin: "0.3rem", animationDuration: animationDelay / 10 + 's' } : { animationDuration: animationDelay / 10 + 's' }}>
                 <div className="sub-skill-container">
                     <div className="skill-name-container">
-                        {icon && <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />}
+                        {icon && <Image src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />}
                         <div className="skill-name">{name}</div>
                     </div>
                     {lvl && !hideLevel && <div className="skill-details">
@@ -127,7 +152,7 @@ function FilterButton({ onClickHandler = () => { }, active = false }) {
     )
 }
 
-function SkillDetailsPopUp({ skill, onClose = () => { } }) {
+function SkillDetailsPopUp({ skill, onClose = () => { } }: { skill: string, onClose: () => void }) {
     return (
         <Model onClose={onClose}>
             <div className="skill-details-container">

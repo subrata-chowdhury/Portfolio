@@ -1,8 +1,8 @@
 'use client'
-import { memo, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "@/app/styles/menubar.css"
 import { SkillsContainer } from "./Skills";
-import { skillsData } from "../data/skills";
+import { Skill, skillsData } from "../data/skills";
 import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
@@ -10,18 +10,29 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
-export default function Menubar({ onThemeChange = () => { }, links, skillsContainerRef }) {
-    const [onDarkMode, setOnDarkMode] = useState(false)
-
-    const menubar = useRef();
+export default function Menubar({
+    onThemeChange = () => { },
+    links,
+    skillsContainerRef
+}: {
+    onThemeChange: (theme: string) => void,
+    links?: {
+        name: string,
+        link: string,
+        createHref?: boolean
+    }[],
+    skillsContainerRef?: React.RefObject<HTMLDivElement | null>
+}) {
+    const [onDarkMode, setOnDarkMode] = useState(false);
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         function activeMenubarOnScroll() {
             window.onscroll = () => {
                 if (document.documentElement.scrollTop > 50 && window.innerWidth > 650) {
-                    menubar.current?.classList.add("active");
+                    setIsActive(true);
                 } else {
-                    menubar.current?.classList.remove("active");
+                    setIsActive(false);
                 }
             }
         }
@@ -33,18 +44,10 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
         onThemeChange(onDarkMode ? "light" : "dark")
     }
 
-    function toggleMenubar() {
-        if (hasElement(menubar.current.classList, "active") !== -1) {
-            menubar.current?.classList.remove("active");
-        } else {
-            menubar.current?.classList.add("active");
-        }
-    }
-
     return (
         <>
-            <Image width={30} height={30} src="/icons/menubar.webp" className="menubar-toggle-icon" role="presentation" alt="" onClick={toggleMenubar} />
-            <nav className="menubar" ref={menubar}>
+            <Image width={30} height={30} src="/icons/menubar.webp" className="menubar-toggle-icon" role="presentation" alt="" onClick={() => setIsActive(prevVal => !prevVal)} />
+            <nav className={"menubar " + (isActive ? 'active' : '')}>
                 <div className="theme-container">
                     <div className="logo light-mode" onClick={changeTheme}>
                         {onDarkMode ? <MoonAndStars /> : <Brightness />}
@@ -57,16 +60,16 @@ export default function Menubar({ onThemeChange = () => { }, links, skillsContai
     )
 }
 
-const SearchContainer = ({ skillsContainerRef }) => {
-    const searchInputBox = useRef();
+const SearchContainer = ({ skillsContainerRef }: { skillsContainerRef?: React.RefObject<HTMLDivElement | null> }) => {
+    const searchInputBox = useRef<HTMLInputElement>(null);
 
-    const [filteredSkillData, setFilterSkillsData] = useState('')
+    const [filteredSkillData, setFilterSkillsData] = useState<Skill[]>([])
     const pathname = usePathname();
     const router = useRouter();
 
-    function inputBoxInputHandler(searchData) {
+    function inputBoxInputHandler(searchData: string) {
         if (searchData !== "") {
-            let newSkillsData = skillsData;
+            let newSkillsData: Skill[] = skillsData;
             newSkillsData = newSkillsData.filter(skill => skill.name.toLowerCase().includes(searchData.toLowerCase()))
             setFilterSkillsData(newSkillsData)
         } else {
@@ -86,21 +89,24 @@ const SearchContainer = ({ skillsContainerRef }) => {
                         inputBoxInputHandler(e.target.value.trim())
                     }} />
                 <div className="search-icon" onClick={() => {
-                    searchInputBox.current.focus();
+                    searchInputBox.current?.focus();
                 }}>
                     <SearchIcon />
                 </div>
                 {filteredSkillData.length > 0 && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
-                    if (pathname === "/")
-                        skillsContainerRef.current.querySelector(".skill-container#" + e.currentTarget.dataset.id).scrollIntoView()
-                    else router.push("/#" + e.currentTarget.dataset.id)
+                    if (pathname === "/") {
+                        const skillElement = skillsContainerRef?.current?.querySelector(".skill-container#" + e.currentTarget.dataset.id);
+                        if (skillElement) {
+                            skillElement.scrollIntoView();
+                        }
+                    } else router.push("/#" + e.currentTarget.dataset.id);
                 }} />}
             </div>
         </>
     )
 }
 
-export function SearchResultContainer({ skillsData, skillClickHandler = () => { } }) {
+export function SearchResultContainer({ skillsData, skillClickHandler = () => { } }: { skillsData: Skill[], skillClickHandler: (e: React.MouseEvent<HTMLDivElement>) => void }) {
     return (
         <div className="search-result-container active">
             <SkillsContainer skillsData={skillsData} excludeIds={true} skillClickHandler={skillClickHandler} />
@@ -130,7 +136,8 @@ export const Menus = ({ links = [{
         <div className="menus-container">
             {links.map((link) => {
                 return (
-                    link.createHref === true || link.link.indexOf("#") === 0 ?
+                    // link?.createHref === true || 
+                    link.link.indexOf("#") === 0 ?
                         <a key={link.link} className={"menu" + (link.link === pathname ? " active" : "")} href={link.link}>{link.name}</a> :
                         <Link href={link.link} key={link.link}>
                             <div className={"menu" + (link.link === pathname ? " active" : "")}>{link.name}</div>
@@ -140,9 +147,9 @@ export const Menus = ({ links = [{
     )
 }
 
-function hasElement(array, key) {
-    for (let index = 0; index < array.length; index++) {
-        if (array[index] === key) return index;
-    }
-    return -1
-}
+// function hasElement(array: string[], key: string) {
+//     for (let index = 0; index < array.length; index++) {
+//         if (array[index] === key) return index;
+//     }
+//     return -1
+// }

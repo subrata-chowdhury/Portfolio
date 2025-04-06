@@ -7,7 +7,7 @@ import Marker from "../Icons/marker";
 import MobileNotch from "../Icons/mobile-notch";
 import EnvelopeIcon from "../Icons/envelope";
 
-export default function Contact({ forwardRef = null }) {
+export default function Contact({ forwardRef = null }: { forwardRef: React.RefObject<HTMLDivElement | null> | null }) {
     return (
         <section className="screen-container">
             <div className="heading" id="contact" ref={forwardRef}>Contact Me</div>
@@ -59,7 +59,7 @@ const RightSide = () => {
     const [email, setEmail] = useState("");
     const [messege, setMessege] = useState("");
 
-    async function addContactDetails(event) {
+    async function addContactDetails(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
 
         // validation
@@ -122,7 +122,7 @@ const RightSide = () => {
             <div className="msg-container input-container">
                 <div className="sub-container">
                     <div className="input-title">Messege</div>
-                    <textarea type="text" value={messege} onChange={e => setMessege(e.currentTarget.value)} name="" id="" className="msg" placeholder="Messege" rows={5}></textarea>
+                    <textarea value={messege} onChange={e => setMessege(e.currentTarget.value)} name="" id="" className="msg" placeholder="Messege" rows={5}></textarea>
                 </div>
             </div>
             <div className="send-btn-container">

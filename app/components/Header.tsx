@@ -32,7 +32,7 @@ function Intro() {
     )
 }
 
-function Photo() {
+// function Photo() {
     // useEffect(() => {
     //     KUTE.fromTo(
     //         '#blob1',
@@ -41,13 +41,13 @@ function Photo() {
     //         { repeat: 999, duration: 5000, yoyo: true }
     //     ).start();
     // }, [])
-    return (
-        <div className="photo">
+    // return (
+        // <div className="photo">
             {/* <Wave />
             <img src={profilePicture} alt="profile picture" /> */}
-        </div>
-    )
-}
+        // </div>
+    // )
+// }
 
 function TypeingAnimation() {
     const [text, setText] = useState("");

@@ -12,9 +12,9 @@ import Footer from './components/Footer'
 
 export default function Home() {
     const [mode, setMode] = useState('light')
-    const skillsContainer = useRef()
-    const contactUs = useRef()
-    const projects = useRef()
+    const skillsContainer = useRef<HTMLDivElement | null>(null)
+    const contactUs = useRef<HTMLDivElement | null>(null)
+    const projects = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         autoScrollFromHash();
@@ -23,7 +23,7 @@ export default function Home() {
     }, [])
 
     function autoScrollFromHash() {
-        let hash = window.location.hash;
+        const hash = window.location.hash;
         try {
             if (hash === '#contact') {
                 contactUs.current?.scrollIntoView({ behavior: "smooth" })
@@ -32,9 +32,7 @@ export default function Home() {
             } else {
                 document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" })
             }
-        } catch (error) {
-
-        }
+        } catch { }
     }
 
     return (

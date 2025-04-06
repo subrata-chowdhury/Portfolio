@@ -1,5 +1,16 @@
 
-const projectsData = [{
+const projectsData: ProjectType[] = [{
+    name: "LabTesto",
+    repoName: "LabTesto",
+    description: "It is a full stack web app where user can book any medical test from any lab. It also comes with a powerful admin panel.",
+    noOfCommits: null,
+    createdAt: null,
+    updatedAt: null,
+    mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
+    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "JSON Web Token (JWT)", "Problem Solving"],
+    previewImageSrc: "assets/LabTesto.webp",
+    liveUrl: "https://vercel.labtesto.app/"
+}, {
     name: "To Dos",
     repoName: "To-Do-List",
     description: "It's a Full Stack To Do List Web Application created using React, Bootstrap 5, CSS, HTML in Frontend and Node.js with Express library as Backend and MySQL as Database.",
@@ -113,3 +124,16 @@ const projectsData = [{
 
 export { projectsData }
 export const projectCount = projectsData.length;
+
+export type ProjectType = {
+    name: string,
+    repoName: string,
+    description: string,
+    noOfCommits: number | null,
+    createdAt: string | null,
+    updatedAt: string | null,
+    mainSkills: string[],
+    otherSkills: string[],
+    previewImageSrc: string,
+    liveUrl?: string
+}

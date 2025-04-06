@@ -14,7 +14,7 @@ export default function Certifications() {
     )
 }
 
-function CertificationContainer({ certifications }) {
+function CertificationContainer({ certifications }: { certifications: { title: string, link: string }[] }) {
     return (
         <div className="certification-container">
             {certifications.map(certification => <Certification {...certification} key={certification.title} />)}
@@ -22,7 +22,7 @@ function CertificationContainer({ certifications }) {
     )
 }
 
-function Certification({ title, link }) {
+function Certification({ title, link }: { title: string, link: string }) {
     return (
         <div className="certification education-card">
             <div>{title}</div>

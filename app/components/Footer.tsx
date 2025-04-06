@@ -37,7 +37,7 @@ export function OtherPlatforms({ className = "" }) {
     )
 }
 
-function LinkedIcon({ linkUrl = "#", Icon, alt }) {
+function LinkedIcon({ linkUrl = "#", Icon, alt }: { linkUrl?: string; Icon: React.ComponentType; alt: string }) {
     return (
         <a href={linkUrl} target="_blank" aria-label={alt} >
             <Icon />

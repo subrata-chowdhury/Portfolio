@@ -5,12 +5,18 @@ import Arrow from "@/app/Icons/Arrow";
 import { SkillsContainer } from "@/app/components/Skills";
 import { skillsData } from "@/app/data/skills";
 import Loader from "@/app/loading";
-import { projectsData as projectData } from "@/app/data/projects";
+import { projectsData as projectData, ProjectType } from "@/app/data/projects";
 import Model from "@/app/components/Model";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }) {
+interface ProjectsProps {
+    showLimited?: boolean;
+    showSeeMoreBtn?: boolean;
+    forwardRef?: React.RefObject<HTMLDivElement | null> | null;
+}
+
+export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }: ProjectsProps) {
     return (
         <>
             <div className="screen-container">
@@ -30,7 +36,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true, fo
     )
 }
 
-export function ProjectsContainer({ projectData = [] }) {
+export function ProjectsContainer({ projectData = [] }: { projectData: ProjectType[] }) {
     return (
         <div className="projects-container">
             {projectData.length > 0 ?
@@ -66,11 +72,33 @@ export function Project({
     previewImageSrc = "",
 
     animationDelay = 0
+}: {
+    name: string;
+    repoName: string;
+    description: string;
+    noOfCommits: number | null;
+    createdAt: string | null;
+    updatedAt: string | null;
+    mainSkills: string[];
+    otherSkills: string[];
+    previewImageSrc: string;
+    liveUrl?: string;
+    animationDelay: number;
 }) {
     const [showLoader, setShowLoader] = useState(false)
     const [showAbout, setShowAbout] = useState(false)
     const [showDetailsPopUp, setShowDetailsPopUp] = useState(false)
-    const [projectDetails, setProjectDetails] = useState({
+    const [projectDetails, setProjectDetails] = useState<{
+        name: string;
+        repoName: string;
+        description: string;
+        noOfCommits: number | null;
+        createdAt: string | null;
+        updatedAt: string | null;
+        mainSkills: string[];
+        otherSkills: string[];
+        previewImageSrc: string;
+    }>({
         name,
         repoName,
         description,
@@ -108,8 +136,23 @@ export function Project({
                             try {
                                 setShowLoader(true)
                                 if (projectDetails.createdAt === null || projectDetails.createdAt === '') {
-                                    let { noOfCommits, updatedAt, createdAt } = await fetchLatestData(repoName)
-                                    setProjectDetails(val => { return { ...val, noOfCommits, updatedAt, createdAt } })
+                                    let { noOfCommits, updatedAt, createdAt }: { noOfCommits: number | null, updatedAt?: string, createdAt?: string } = { noOfCommits: null }
+                                    try {
+                                        const data = await fetchLatestData(repoName)
+                                        noOfCommits = data.noOfCommits
+                                        updatedAt = data.updatedAt
+                                        createdAt = data.createdAt
+                                    } catch (error) {
+                                        console.log("can't fetch project commit details", error)
+                                    }
+                                    setProjectDetails(val => {
+                                        return {
+                                            ...val,
+                                            noOfCommits,
+                                            updatedAt: updatedAt ?? null,
+                                            createdAt: createdAt ?? null
+                                        }
+                                    })
                                 }
                                 setShowDetailsPopUp(true)
                             } catch (error) {
@@ -124,7 +167,7 @@ export function Project({
 
             {showImg && <Model onClose={() => setShowImg(false)}>
                 <div style={{ width: '100%', height: '100%', alignSelf: 'center', overflowY: 'auto', borderRadius: '1rem' }}>
-                    <img src={previewImageSrc} style={{ width: "100%", borderRadius: '1rem' }} alt="project image" />
+                    <Image src={previewImageSrc} style={{ width: "100%", borderRadius: '1rem' }} alt="project image" />
                 </div>
             </Model>}
 
@@ -137,26 +180,40 @@ export function Project({
 
 function DetailedProjectView({
     name = "Name",
-    repoName,
+    // repoName,
     description = "It's a Project",
     noOfCommits,
     createdAt,
     updatedAt,
     mainSkills = [],
     otherSkills = [],
-    previewImageSrc = '',
+    // previewImageSrc = '',
+    liveUrl = null,
 
     onClose = () => { }
+}: {
+    name: string,
+    repoName?: string | null,
+    description?: string,
+    noOfCommits?: number | null,
+    createdAt?: string | null,
+    updatedAt?: string | null,
+    mainSkills?: string[],
+    otherSkills?: string[],
+    previewImageSrc?: string,
+    liveUrl?: string | null,
+
+    onClose?: () => void
 }) {
-    let newSkillsData = [];
+    const newSkillsData = [];
     for (let index = 0; index < mainSkills.length; index++) {
-        let filterData = skillsData.filter(e => e.name === mainSkills[index])[0]
-        filterData ? newSkillsData.push(filterData) : ""
+        const filterData = skillsData.filter(e => e.name === mainSkills[index])[0]
+        if (filterData) newSkillsData.push(filterData)
     }
 
-    let projectSkills = [];
+    const projectSkills = [];
     for (let index = 0; index < otherSkills.length; index++) {
-        let filterData = skillsData.filter(e => e.name === otherSkills[index])[0]
+        const filterData = skillsData.filter(e => e.name === otherSkills[index])[0]
         if (filterData)
             projectSkills.push(filterData)
         else projectSkills.push({
@@ -177,6 +234,12 @@ function DetailedProjectView({
                     <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
                     <div className="heading">Other Skills</div>
                     <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
+                    {liveUrl && <div className="project-link-container">
+                        <a className="link-container" target="_blank" href={liveUrl}>
+                            <div className="project-link">Live Demo</div>
+                            <Arrow />
+                        </a>
+                    </div>}
                 </div>
                 <div className="right-side">
                     {createdAt && <div className="project-commit-details-container"><b>Created At: </b>{createdAt}</div>}
@@ -188,14 +251,14 @@ function DetailedProjectView({
     )
 }
 
-async function fetchLatestData(repoName) {
+async function fetchLatestData(repoName: string) {
     let totalNoOfCommits = 0
     let updatedAt, createdAt;
 
     let pageCount = 1
     let noOfCommits = null;
     while (noOfCommits === null || noOfCommits === 100) {
-        let response = await fetch(`https://api.github.com/repos/Super7000/${repoName}/commits?per_page=100&page=${pageCount}`)
+        const response = await fetch(`https://api.github.com/repos/Super7000/${repoName}/commits?per_page=100&page=${pageCount}`)
         if (response.status === 200) {
             const commitDetails = await response.json();
             noOfCommits = await commitDetails.length

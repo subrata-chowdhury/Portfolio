@@ -1,4 +1,4 @@
-const skillsData = [{
+const skillsData: Skill[] = [{
     name: "Frontend Development",
     iconSrc: "/icons/Frontend2.svg",
     id: "frontend-development",
@@ -240,3 +240,11 @@ skillsData.sort((a, b) => {
 
 export { skillsData }
 export const skillCount = skillsData.length
+
+export type Skill = {
+    name: string;
+    iconSrc: string;
+    id: string;
+    lvl: number;
+    topSkill?: boolean;
+}
