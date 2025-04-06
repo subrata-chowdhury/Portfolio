@@ -9,7 +9,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
     otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "JSON Web Token (JWT)", "Problem Solving"],
     previewImageSrc: "assets/LabTesto.webp",
-    liveUrl: "https://vercel.labtesto.app/"
+    liveUrl: "https://labtesto.vercel.app/"
 }, {
     name: "To Dos",
     repoName: "To-Do-List",

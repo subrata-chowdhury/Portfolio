@@ -70,6 +70,7 @@ export function Project({
     mainSkills = [],
     otherSkills = [],
     previewImageSrc = "",
+    liveUrl,
 
     animationDelay = 0
 }: {
@@ -98,6 +99,7 @@ export function Project({
         mainSkills: string[];
         otherSkills: string[];
         previewImageSrc: string;
+        liveUrl?: string;
     }>({
         name,
         repoName,
@@ -107,7 +109,8 @@ export function Project({
         updatedAt,
         mainSkills,
         otherSkills,
-        previewImageSrc
+        previewImageSrc,
+        liveUrl
     })
     const [showImg, setShowImg] = useState(false)
 
@@ -235,7 +238,7 @@ function DetailedProjectView({
                     <div className="heading">Other Skills</div>
                     <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
                     {liveUrl && <div className="project-link-container">
-                        <a className="link-container" target="_blank" href={liveUrl}>
+                        <a className="link-container" style={{ marginTop: '2rem' }} target="_blank" href={liveUrl}>
                             <div className="project-link">Live Demo</div>
                             <Arrow />
                         </a>

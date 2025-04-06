@@ -118,7 +118,7 @@ function SkillCard({
                 style={hideLevel ? { display: "inline-flex", margin: "0.3rem", animationDuration: animationDelay / 10 + 's' } : { animationDuration: animationDelay / 10 + 's' }}>
                 <div className="sub-skill-container">
                     <div className="skill-name-container">
-                        {icon && <Image src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />}
+                        {icon && <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />}
                         <div className="skill-name">{name}</div>
                     </div>
                     {lvl && !hideLevel && <div className="skill-details">
