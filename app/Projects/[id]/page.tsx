@@ -2,7 +2,7 @@ import { projectsData } from '@/app/data/projects';
 import React from 'react'
 import DetailedProjectView from './components/MainProjectView';
 
-const page = async (props: { params: { id: string } }) => {
+const page = async (props: { params: Promise<{ id: string }> }) => {
     const { id } = await props.params;
     const projectDetails = projectsData.filter(e => e.repoName === id)[0]
     if (!projectDetails) {

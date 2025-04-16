@@ -16,7 +16,7 @@ export default function DetailedProjectView({
     // previewImageSrc = '',
     liveUrl = null,
 
-    onClose = () => { }
+    // onClose = () => { }
 }: {
     name: string,
     repoName?: string | null,

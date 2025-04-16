@@ -1,6 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
-import Menubar from './components/Menubar'
+import { useEffect, useRef } from 'react'
 import Header from './components/Header'
 import AboutMe from './components/AboutMe'
 import Skills from './components/Skills'
