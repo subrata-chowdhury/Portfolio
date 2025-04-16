@@ -7,6 +7,7 @@ import { skillCount } from '../data/skills';
 import ProjectIcon from '../Icons/ProjectIcon';
 import CertificationIcon from '../Icons/CertificationIcon';
 import SkillsIcon from '../Icons/SkillsIcon';
+import Link from 'next/link';
 
 function AboutMe() {
     return (
@@ -33,9 +34,7 @@ function AboutMe() {
                         - Able to Work well in teams as well as Individually<br />
                     </div>
                 </div>
-                <div>
-                    <Counts />
-                </div>
+                <Counts />
             </div>
         </div>
     );
@@ -44,21 +43,21 @@ function AboutMe() {
 function Counts() {
     return (
         <section className="counts-container">
-            <a className="count" href='#project'>
+            <Link className="count" href='#projects'>
                 <div className="count-icon"><ProjectIcon /></div>
                 <div className="count-number">{projectCount}</div>
                 <div className="count-label">Projects</div>
-            </a>
-            <a className="count" href='#certifications'>
+            </Link>
+            <Link className="count" href='#certifications'>
                 <div className="count-icon"><CertificationIcon /></div>
                 <div className="count-number">{certificateCount}</div>
                 <div className="count-label">Certifications</div>
-            </a>
-            <a className="count" href='#skills'>
+            </Link>
+            <Link className="count" href='#skills'>
                 <div className="count-icon"><SkillsIcon /></div>
                 <div className="count-number">{skillCount}</div>
                 <div className="count-label">Skills</div>
-            </a>
+            </Link>
         </section>
     );
 }

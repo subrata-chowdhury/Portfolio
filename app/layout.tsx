@@ -1,3 +1,6 @@
+import Footer from "./components/Footer";
+import Menubar from "./components/Menubar";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import "./globals.css";
 import { ReactNode } from "react";
 
@@ -35,7 +38,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta property="og:type" content="website" />
             </head>
             <body>
-                {children}
+                <ThemeProvider>
+                    <Menubar />
+                    {children}
+                    <Footer />
+                </ThemeProvider>
             </body>
         </html>
     );

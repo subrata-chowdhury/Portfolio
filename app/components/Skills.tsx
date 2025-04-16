@@ -6,7 +6,7 @@ import { ProjectsContainer } from "@/app/Projects/components/Projects";
 import { projectsData } from "../data/projects";
 import Image from "next/image";
 
-export default function Skills({ forwardSkillContainerRef }: { forwardSkillContainerRef: React.RefObject<HTMLDivElement | null> }) {
+export default function Skills() {
     const [skillsData, setSkillData] = useState(defaultValue);
     const [showOnlyTopSkills, setShowOnlyTopSkills] = useState(false);
     const [sortBy, setSortBy] = useState('name');
@@ -37,21 +37,19 @@ export default function Skills({ forwardSkillContainerRef }: { forwardSkillConta
                     }} active={sortBy === 'name' ? false : true} />
                 </div>
             </div>
-            <SkillsContainer skillsData={skillsData} forwardSkillContainerRef={forwardSkillContainerRef} showOnlyTopSkills={showOnlyTopSkills} />
+            <SkillsContainer skillsData={skillsData} showOnlyTopSkills={showOnlyTopSkills} />
         </section>
     )
 }
 
 export const SkillsContainer = ({
     skillsData = defaultValue,
-    forwardSkillContainerRef = null,
     excludeIds = false,
     skillClickHandler = () => { },
     showOnlyTopSkills = false,
     hideLevel = false,
 }: {
     skillsData?: Skill[],
-    forwardSkillContainerRef?: React.RefObject<HTMLDivElement | null> | null,
     excludeIds?: boolean,
     skillClickHandler?: (e: React.MouseEvent<HTMLDivElement>) => void,
     showOnlyTopSkills?: boolean,
@@ -61,7 +59,7 @@ export const SkillsContainer = ({
         skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
 
     return (
-        <div className="skills-container" ref={forwardSkillContainerRef} style={hideLevel ? { display: "inline-block" } : {}}>
+        <div className="skills-container" style={hideLevel ? { display: "inline-block" } : {}}>
             {
                 skillsData.length > 0 ? skillsData.map((skill, index) => {
                     return <SkillCard

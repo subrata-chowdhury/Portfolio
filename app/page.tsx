@@ -8,11 +8,8 @@ import Education from './components/Education'
 import Projects from './Projects/components/Projects'
 import Certifications from './components/Certifications'
 import Contact from './components/Contact'
-import Footer from './components/Footer'
 
 export default function Home() {
-    const [mode, setMode] = useState('light')
-    const skillsContainer = useRef<HTMLDivElement | null>(null)
     const contactUs = useRef<HTMLDivElement | null>(null)
     const projects = useRef<HTMLDivElement | null>(null)
 
@@ -36,34 +33,14 @@ export default function Home() {
     }
 
     return (
-        <div className={'mode app ' + mode}>
-            <Menubar
-                onThemeChange={setMode}
-                skillsContainerRef={skillsContainer}
-                links={[{
-                    name: "Home",
-                    link: "/"
-                }, {
-                    name: "Education",
-                    link: "#education",
-                }, {
-                    name: "Projects",
-                    link: "#projects",
-                }, {
-                    name: "Experience",
-                    link: "/Experience"
-                }, {
-                    name: "Contact Me",
-                    link: "#contact",
-                }]} />
+        <>
             <Header />
             <AboutMe />
-            <Skills forwardSkillContainerRef={skillsContainer} />
+            <Skills />
             <Education />
             <Projects forwardRef={projects} />
             <Certifications />
             <Contact forwardRef={contactUs} />
-            <Footer />
-        </div>
+        </>
     )
 }

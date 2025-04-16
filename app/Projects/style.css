@@ -124,6 +124,9 @@
     display: grid;
     grid-template-columns: 70% auto;
     gap: 1rem;
+    padding: 4rem;
+    padding-top: 1rem;
+    box-sizing: border-box;
 }
 
 .detailed-project-view-container .left-side .heading {

@@ -5,7 +5,6 @@ export default function Loading() {
         <div className="loader-container">
             <div className="outer-loader"></div>
             <div className="inner-loader"></div>
-            <p>Fetching Latest Details From GitHub</p>
         </div>
     )
 }

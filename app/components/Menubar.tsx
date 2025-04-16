@@ -9,22 +9,19 @@ import MoonAndStars from "../Icons/MoonAndStars";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function Menubar({
-    onThemeChange = () => { },
     links,
-    skillsContainerRef
 }: {
-    onThemeChange: (theme: string) => void,
     links?: {
         name: string,
         link: string,
         createHref?: boolean
     }[],
-    skillsContainerRef?: React.RefObject<HTMLDivElement | null>
 }) {
-    const [onDarkMode, setOnDarkMode] = useState(false);
     const [isActive, setIsActive] = useState(false);
+    const { theme, toggleTheme } = useTheme();
 
     useEffect(() => {
         function activeMenubarOnScroll() {
@@ -39,28 +36,24 @@ export default function Menubar({
         activeMenubarOnScroll()
     }, [])
 
-    function changeTheme() {
-        setOnDarkMode(val => !val)
-        onThemeChange(onDarkMode ? "light" : "dark")
-    }
-
     return (
         <>
             <Image width={30} height={30} src="/icons/menubar.webp" className="menubar-toggle-icon" role="presentation" alt="" onClick={() => setIsActive(prevVal => !prevVal)} />
             <nav className={"menubar " + (isActive ? 'active' : '')}>
                 <div className="theme-container">
-                    <div className="logo light-mode" onClick={changeTheme}>
-                        {onDarkMode ? <MoonAndStars /> : <Brightness />}
+                    <div className="logo light-mode" onClick={toggleTheme}>
+                        {theme === 'dark' ? <MoonAndStars /> : <Brightness />}
                     </div>
                 </div>
-                <SearchContainer skillsContainerRef={skillsContainerRef} />
+                <SearchContainer />
                 <Menus links={links} />
             </nav>
+            <div style={isActive ? { height: '5rem' } : { height: '4rem' }}></div>
         </>
     )
 }
 
-const SearchContainer = ({ skillsContainerRef }: { skillsContainerRef?: React.RefObject<HTMLDivElement | null> }) => {
+const SearchContainer = () => {
     const searchInputBox = useRef<HTMLInputElement>(null);
 
     const [filteredSkillData, setFilterSkillsData] = useState<Skill[]>([])
@@ -95,7 +88,7 @@ const SearchContainer = ({ skillsContainerRef }: { skillsContainerRef?: React.Re
                 </div>
                 {filteredSkillData.length > 0 && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
                     if (pathname === "/") {
-                        const skillElement = skillsContainerRef?.current?.querySelector(".skill-container#" + e.currentTarget.dataset.id);
+                        const skillElement = document.querySelector(".skill-container#" + e.currentTarget.dataset.id);
                         if (skillElement) {
                             skillElement.scrollIntoView();
                         }
