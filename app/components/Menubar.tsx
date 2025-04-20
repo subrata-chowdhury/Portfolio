@@ -48,7 +48,6 @@ export default function Menubar({
                 <SearchContainer />
                 <Menus links={links} />
             </nav>
-            <div style={isActive ? { height: '5rem' } : { height: '4rem' }}></div>
         </>
     )
 }

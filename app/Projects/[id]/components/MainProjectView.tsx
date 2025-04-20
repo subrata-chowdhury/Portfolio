@@ -3,10 +3,12 @@
 import { SkillsContainer } from "@/app/components/Skills";
 import { skillsData } from "@/app/data/skills";
 import Arrow from "@/app/Icons/Arrow";
+import InternetIcon from "@/app/Icons/Internet";
+import Link from "next/link";
 
 export default function DetailedProjectView({
     name = "Name",
-    // repoName,
+    repoName,
     description = "It's a Project",
     noOfCommits,
     createdAt,
@@ -54,18 +56,22 @@ export default function DetailedProjectView({
         <>
             <div className="detailed-project-view-container">
                 <div className="left-side">
-                    <div className="heading">{name}</div>
+                    <div className="heading" style={{ paddingBottom: '0.8rem' }}>{name}</div>
                     <div className="project-description">{description}</div>
-                    <div className="heading">Main Skills</div>
-                    <SkillsContainer hideLevel={true} skillsData={newSkillsData} excludeIds={true} />
-                    <div className="heading">Other Skills</div>
-                    <SkillsContainer hideLevel={true} skillsData={projectSkills} excludeIds={true} />
-                    {liveUrl && <div className="project-link-container">
-                        <a className="link-container" style={{ marginTop: '2rem' }} target="_blank" href={liveUrl}>
-                            <div className="project-link">Live Demo</div>
+                    <div className="heading" style={{ paddingBottom: '0.8rem' }}>Main Skills</div>
+                    <SkillsContainer skillsData={newSkillsData} excludeIds={true} />
+                    <div className="heading" style={{ paddingBottom: '0.8rem' }}>Other Skills</div>
+                    <SkillsContainer skillsData={projectSkills} excludeIds={true} />
+                    <div className="project-link-container" style={{ marginTop: "2rem", justifyContent: 'start', gap: '3rem' }}>
+                        {liveUrl && <Link href={liveUrl} className="link-container liveurl-container" style={{ padding: '0.7rem  1rem' }} target="_blank">
+                            <div className="project-link" style={{ fontSize: '1rem' }}>Live Demo</div>
+                            <InternetIcon size={18} />
+                        </Link>}
+                        <Link className="link-container" target="_blank" href={(repoName ? `https://github.com/Super7000/${repoName}` : "")}>
+                            <div className="project-link">{repoName ? "View in Github" : "View Here"}</div>
                             <Arrow />
-                        </a>
-                    </div>}
+                        </Link>
+                    </div>
                 </div>
                 <div className="right-side">
                     {createdAt && <div className="project-commit-details-container"><b>Created At: </b>{createdAt}</div>}

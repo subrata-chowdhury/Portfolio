@@ -5,6 +5,7 @@ import Model from "./Model";
 import { ProjectsContainer } from "@/app/Projects/components/Projects";
 import { projectsData } from "../data/projects";
 import Image from "next/image";
+import Title from "@/components/Title";
 
 export default function Skills() {
     const [skillsData, setSkillData] = useState(defaultValue);
@@ -47,19 +48,17 @@ export const SkillsContainer = ({
     excludeIds = false,
     skillClickHandler = () => { },
     showOnlyTopSkills = false,
-    hideLevel = false,
 }: {
     skillsData?: Skill[],
     excludeIds?: boolean,
     skillClickHandler?: (e: React.MouseEvent<HTMLDivElement>) => void,
     showOnlyTopSkills?: boolean,
-    hideLevel?: boolean
 }) => {
     if (showOnlyTopSkills)
         skillsData = skillsData.filter(skill => skill["topSkill"] ? true : false)
 
     return (
-        <div className="skills-container" style={hideLevel ? { display: "inline-block" } : {}}>
+        <div className="skills-container">
             {
                 skillsData.length > 0 ? skillsData.map((skill, index) => {
                     return <SkillCard
@@ -70,7 +69,6 @@ export const SkillsContainer = ({
                         key={skill["id"]}
                         onClickHandler={skillClickHandler}
                         lvl={skill.lvl}
-                        hideLevel={hideLevel}
                         animationDelay={index}
                     />
                 }) :
@@ -87,7 +85,6 @@ function SkillCard({
     data = "",
     onClickHandler = () => { },
     lvl = 0,
-    hideLevel = false,
     animationDelay = 0
 }: {
     name: string,
@@ -96,37 +93,43 @@ function SkillCard({
     data: string,
     onClickHandler: (e: React.MouseEvent<HTMLDivElement>) => void,
     lvl: number,
-    hideLevel: boolean,
     animationDelay: number
 }) {
-    const level = lvl === 1 ? 'Basic' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Advance' : 'No Experience';
+    const level = lvl === 1 ? 'Beginner' : lvl === 2 ? 'Intermediate' : lvl === 3 ? 'Expert' : 'No Experience';
     const [showRelatedProjects, setShowRelatedProjects] = useState(false)
 
     return (
         <>
-            <div
-                className="skill-container"
-                id={id}
-                title={name + " (" + level + ")"}
-                data-id={data}
-                onClick={e => {
-                    if (id !== "") setShowRelatedProjects(true)
-                    onClickHandler(e)
-                }}
-                style={hideLevel ? { display: "inline-flex", margin: "0.3rem", animationDuration: animationDelay / 10 + 's' } : { animationDuration: animationDelay / 10 + 's' }}>
-                <div className="sub-skill-container">
-                    <div className="skill-name-container">
-                        {icon && <img src={icon} alt="icon" style={hideLevel ? { width: '30px' } : {}} />}
-                        <div className="skill-name">{name}</div>
-                    </div>
-                    {lvl && !hideLevel && <div className="skill-details">
+            <Title title={
+                lvl && <div className="skill-details">
+                    <Image src={`/icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
+                    <Image src={`/icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
+                    <Image src={`/icons/star${(lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
+                </div>
+            }>
+                <div
+                    className="skill-container"
+                    id={id}
+                    title={name + " (" + level + ")"}
+                    data-id={data}
+                    onClick={e => {
+                        if (id !== "") setShowRelatedProjects(true)
+                        onClickHandler(e)
+                    }}
+                    style={{ animationDuration: animationDelay / 10 + 's' }}>
+                    <div className="sub-skill-container">
+                        <div className="skill-name-container">
+                            {icon && <img src={icon} alt="icon" style={{ width: '2rem' }} />}
+                            <div className="skill-name">{name}</div>
+                        </div>
+                        {/* {lvl && !hideLevel && <div className="skill-details">
                         <Image src={`/icons/star${(lvl === 1 || lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
                         <Image src={`/icons/star${(lvl === 2 || lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
                         <Image src={`/icons/star${(lvl === 3) ? '-fill' : ''}.svg`} width={15} height={15} alt="star-icon" />
-                    </div>}
+                    </div>} */}
+                    </div>
                 </div>
-            </div>
-
+            </Title>
             {showRelatedProjects && <SkillDetailsPopUp skill={name} onClose={() => setShowRelatedProjects(false)} />}
         </>
     )
@@ -144,7 +147,7 @@ function SortButton({ onClickHandler = () => { }, active = false }) {
 function FilterButton({ onClickHandler = () => { }, active = false }) {
     return (
         <button className="sort filter btn" onClick={onClickHandler}>
-            <div>{active ? 'Show All Skills' : 'Show Top Skills'}</div>
+            <div>{active ? 'Show All Skills' : 'Show Core Skills'}</div>
             <Image src="/icons/sort.png" alt="sort-icon" width={20} height={20} style={{ height: 'auto' }} />
         </button>
     )
