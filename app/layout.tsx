@@ -8,13 +8,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
             <head>
-                {/* <meta charSet="UTF-8" />
+                <meta charSet="UTF-8" />
                 <link href='https://fonts.googleapis.com/css?family=IBM Plex Sans' rel='stylesheet' />
-                <link rel="preload"
-                href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-                rel="stylesheet" crossorigin=""/>
-                <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" /> */}
+                <link
+                    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+                    rel="stylesheet" crossOrigin="" />
+                {/* <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script> */}
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" type="image/png" href="/logo.png" />
                 <link rel="icon" type="image/webp" href="/logo.webp" />
                 <title>Subrata Chowdhury | Full-Stack Web Developer Portfolio</title>

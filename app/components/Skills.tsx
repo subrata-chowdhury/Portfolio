@@ -119,7 +119,7 @@ function SkillCard({
                     style={{ animationDuration: animationDelay / 10 + 's' }}>
                     <div className="sub-skill-container">
                         <div className="skill-name-container">
-                            {icon && <img src={icon} alt="icon" style={{ width: '2rem' }} />}
+                            {icon && <Image src={icon} alt="icon" width={30} height={30} style={{ objectFit: 'contain', objectPosition: 'center center' }} />}
                             <div className="skill-name">{name}</div>
                         </div>
                         {/* {lvl && !hideLevel && <div className="skill-details">
