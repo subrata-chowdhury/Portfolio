@@ -2,6 +2,7 @@ import "@/app/styles/header.css"
 // import profilePicture from "../assets/profile-pic.png"
 import { useEffect, useState } from "react";
 import { OtherPlatforms } from "./Footer";
+import Link from "next/link";
 // import Wave from "../assets/wave"
 // import { useEffect } from "react"
 
@@ -27,26 +28,26 @@ function Intro() {
                 </div>
             </div>
             <OtherPlatforms className="header-icons" />
-            <a className="download-btn" href="https://drive.google.com/file/d/1M_EVD5823IJA94uwKdd9Tafyb8IRO5iJ/view?usp=sharing" target="_blank">Download CV</a>
+            <Link className="download-btn" href="/files/CV.pdf" target="_blank">Download CV</Link>
         </div>
     )
 }
 
 // function Photo() {
-    // useEffect(() => {
-    //     KUTE.fromTo(
-    //         '#blob1',
-    //         { path: '#blob1' },
-    //         { path: '#blob2' },
-    //         { repeat: 999, duration: 5000, yoyo: true }
-    //     ).start();
-    // }, [])
-    // return (
-        // <div className="photo">
-            {/* <Wave />
+// useEffect(() => {
+//     KUTE.fromTo(
+//         '#blob1',
+//         { path: '#blob1' },
+//         { path: '#blob2' },
+//         { repeat: 999, duration: 5000, yoyo: true }
+//     ).start();
+// }, [])
+// return (
+// <div className="photo">
+{/* <Wave />
             <img src={profilePicture} alt="profile picture" /> */}
-        // </div>
-    // )
+// </div>
+// )
 // }
 
 function TypeingAnimation() {

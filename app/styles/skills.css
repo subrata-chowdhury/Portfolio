@@ -5,7 +5,7 @@
 }
 
 .skills-container .skill-container {
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     background: var(--container-color);
     transition: 0.5s;
     padding: 0.6rem;
@@ -51,16 +51,16 @@
     text-wrap: nowrap;
 }
 
-.skills-container .skill-container .skill-details {
+.skill-details {
     width: 100%;
     display: grid;
     grid-auto-flow: column;
     justify-content: end;
     align-items: center;
-    gap: 3px;
+    gap: 0.3rem;
 }
 
-.skills-container .skill-container .skill-details img {
+.skill-details img {
     width: 15px;
     height: 15px;
 }

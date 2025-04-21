@@ -6,13 +6,16 @@
 
 .education-card {
     width: 700px;
-    padding: 15px;
+    padding: 1rem 1.4rem;
     background: var(--card-container-color);
     border-radius: 10px;
     /* box-shadow: 0px 5.333px 16px 0px rgba(194, 229, 255, 0.132); */
     border: 2px solid rgba(0, 0, 0, 0.15);
     color: var(--text-color);
     animation: leftToRight 0.5s linear;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
 }
 
 .education-name {
@@ -21,7 +24,7 @@
 }
 
 .education-card .place {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.6);
 }

@@ -23,7 +23,7 @@
     top: 0px;
     transform: translateY(-100%);
     top: -6px;
-    background: rgb(203, 203, 203);
+    background: rgb(222, 222, 222);
 }
 
 .title-arrow {
@@ -36,5 +36,5 @@
     height: 8px;
     bottom: -5px;
     transform: rotate(45deg) translateX(-50%);
-    background: rgb(203, 203, 203);
+    background: rgb(222, 222, 222);
 }

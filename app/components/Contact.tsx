@@ -105,28 +105,63 @@ const RightSide = () => {
         <form className="right-side">
             <div className="name-inputs-container input-container">
                 <div className="sub-container">
-                    <div className="input-title">First Name</div>
-                    <input type="text" value={firstName} onChange={e => setFirstName(e.currentTarget.value)} name="" id="" placeholder="First Name" />
+                    <label htmlFor="first-name" className="input-title">First Name</label>
+                    <input
+                        type="text"
+                        id="first-name"
+                        value={firstName}
+                        onChange={e => setFirstName(e.currentTarget.value)}
+                        placeholder="First Name"
+                        aria-label="First Name"
+                    />
                 </div>
                 <div className="sub-container">
-                    <div className="input-title">Last Name</div>
-                    <input type="text" value={lastName} onChange={e => setLastName(e.currentTarget.value)} name="" id="" placeholder="Last Name" />
+                    <label htmlFor="last-name" className="input-title">Last Name</label>
+                    <input
+                        type="text"
+                        id="last-name"
+                        value={lastName}
+                        onChange={e => setLastName(e.currentTarget.value)}
+                        placeholder="Last Name"
+                        aria-label="Last Name"
+                    />
                 </div>
             </div>
             <div className="email-phone-container input-container">
                 <div className="sub-container">
-                    <div className="input-title">Email</div>
-                    <input type="email" value={email} onChange={e => setEmail(e.currentTarget.value)} name="" id="" placeholder="Enter Email to get Reply" />
+                    <label htmlFor="email" className="input-title">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={e => setEmail(e.currentTarget.value)}
+                        placeholder="Enter Email to get Reply"
+                        aria-label="Email Address"
+                    />
                 </div>
             </div>
             <div className="msg-container input-container">
                 <div className="sub-container">
-                    <div className="input-title">Messege</div>
-                    <textarea value={messege} onChange={e => setMessege(e.currentTarget.value)} name="" id="" className="msg" placeholder="Messege" rows={5}></textarea>
+                    <label htmlFor="message" className="input-title">Message</label>
+                    <textarea
+                        id="message"
+                        value={messege}
+                        onChange={e => setMessege(e.currentTarget.value)}
+                        className="msg"
+                        placeholder="Message"
+                        rows={5}
+                        aria-label="Message"
+                    ></textarea>
                 </div>
             </div>
             <div className="send-btn-container">
-                <button className="send-btn" onClick={addContactDetails}>Send Messege</button>
+                <button
+                    className="send-btn"
+                    onClick={addContactDetails}
+                    aria-label="Send Message"
+                >
+                    Send Message
+                </button>
             </div>
         </form>
     )
