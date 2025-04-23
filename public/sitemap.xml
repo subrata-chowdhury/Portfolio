@@ -176,4 +176,26 @@
 			0.7
 		</priority>
 	</url>
+	<url>
+		<loc>
+			https://subratachowdhuryportfolio.vercel.app/Experience/hirecream
+		</loc>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+	</url>
+	<url>
+		<loc>
+			https://subratachowdhuryportfolio.vercel.app/Experience/atg_world
+		</loc>
+		<changefreq>
+			monthly
+		</changefreq>
+		<priority>
+			0.7
+		</priority>
+	</url>
 </urlset>
