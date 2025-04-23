@@ -4,9 +4,9 @@ import "@/app/styles/Education.css"
 export default function Education() {
     return (
         <section className="screen-container">
-            <div className="heading" id="education">
-                <div>My Education</div>
-            </div>
+            <h1 className="heading" id="education">
+                My Education
+            </h1>
             <div className="education-container">
                 <EducationCard
                     name="X"

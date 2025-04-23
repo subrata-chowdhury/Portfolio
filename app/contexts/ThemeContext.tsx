@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -16,6 +16,18 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     const toggleTheme = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
+
+    useEffect(() => {
+        const changeTheme = (e: { matches: boolean }) => {
+            if (e.matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', changeTheme);
+        return () => window.matchMedia("(prefers-color-scheme: dark)").removeEventListener('change', changeTheme);
+    }, [])
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

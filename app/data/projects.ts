@@ -2,12 +2,12 @@
 const projectsData: ProjectType[] = [{
     name: "LabTesto",
     repoName: "LabTesto",
-    description: "It is a full stack web app where user can book any medical test from any lab. It also comes with a powerful admin panel.",
+    description: "It is a full stack web app where user can book any medical test from any lab. It also comes with a powerful admin panel and Collector admin / notification panel with notification receiving on telegram feature.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
-    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "JSON Web Token (JWT)", "Problem Solving"],
+    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "JSON Web Token (JWT)", "Problem Solving", "SEO"],
     previewImageSrc: "assets/LabTesto.webp",
     liveUrl: "https://labtesto.vercel.app/"
 }, {
@@ -51,7 +51,7 @@ const projectsData: ProjectType[] = [{
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
-    otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development"],
+    otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development", "SEO"],
     previewImageSrc: "assets/Time_Table_Scheduler.webp"
 }, {
     name: "To Dos",
@@ -61,7 +61,7 @@ const projectsData: ProjectType[] = [{
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
-    otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "Express.js", "JSON Web Token (JWT)", "REST API"],
+    otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "Express.js", "JSON Web Token (JWT)", "REST API"],
     previewImageSrc: "assets/To Dos.webp"
 }, {
     name: "Bike Rental System",
@@ -71,7 +71,7 @@ const projectsData: ProjectType[] = [{
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
-    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
+    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
     previewImageSrc: "assets/Bike Rental System.webp"
 }, {
     name: "Brandscreen",

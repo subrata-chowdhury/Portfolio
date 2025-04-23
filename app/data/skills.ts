@@ -230,6 +230,24 @@ const skillsData: Skill[] = [{
     id: "tailwindcss",
     lvl: 2,
     topSkill: true
+}, {
+    name: "Backend Development",
+    iconSrc: "/icons/backend-development.webp",
+    id: "backend-development",
+    lvl: 2,
+    topSkill: true
+}, {
+    name: "Full Stack Development",
+    iconSrc: "/icons/full-stack.webp",
+    id: "full-stack-development",
+    lvl: 2,
+    topSkill: true
+}, {
+    name: "SEO",
+    iconSrc: "/icons/seo.webp",
+    id: "seo",
+    lvl: 2,
+    topSkill: true
 }]
 
 skillsData.sort((a, b) => {

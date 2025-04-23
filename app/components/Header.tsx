@@ -20,7 +20,7 @@ export default function Header() {
 
 function Intro() {
     return (
-        <div className="intro">
+        <section className="intro">
             <div className="main-intro"><span className="name">Subrata Chowdhury</span></div>
             <div className="sub-intro-container">
                 <div className="sub-intro">I am a
@@ -29,7 +29,7 @@ function Intro() {
             </div>
             <OtherPlatforms className="header-icons" />
             <Link className="download-btn" href="/files/CV.pdf" target="_blank">Download CV</Link>
-        </div>
+        </section>
     )
 }
 

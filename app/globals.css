@@ -32,6 +32,10 @@ body {
     min-height: 100vh;
 }
 
+h1, h2 {
+    margin: 0;
+}
+
 /* 
 h1 {
   font-size: 3.2em;
@@ -118,7 +122,8 @@ a {
 }
 
 .app {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     background: var(--background-color);
     min-height: 100vh;
@@ -135,7 +140,7 @@ a {
     justify-content: space-between;
     align-items: center;
     color: var(--heading-color);
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .heading div:first-child {

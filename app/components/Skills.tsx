@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import "@/app/styles/skills.css"
 import { skillsData as defaultValue, Skill } from "../data/skills";
@@ -119,7 +120,7 @@ function SkillCard({
                     style={{ animationDuration: animationDelay / 10 + 's' }}>
                     <div className="sub-skill-container">
                         <div className="skill-name-container">
-                            {icon && <Image src={icon} alt="icon" width={30} height={30} style={{ objectFit: 'contain', objectPosition: 'center center' }} />}
+                            {icon && <Image src={icon} alt="icon" width={30} height={30} style={{ objectFit: 'contain', objectPosition: 'left center' }} />}
                             <div className="skill-name">{name}</div>
                         </div>
                         {/* {lvl && !hideLevel && <div className="skill-details">

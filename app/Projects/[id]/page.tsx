@@ -36,38 +36,42 @@ async function fetchLatestData(repoName: string): Promise<{
     createdAt?: string,
     description?: string
 }> {
-    // fetching the project details from github
-    let description = '';
-    const response = await fetch(`https://api.github.com/repos/subrata-chowdhury/${repoName}`, {
-        headers: { 'Authorization': 'Bearer ' + process.env.GITHUB_AUTH_TOKEN }
-    });
-    if (response.status === 200) {
-        const body = await response.json();
-        description = body.description;
-    }
-
-    // calculating the number of commits, createdAt and updatedAt
-    let totalNoOfCommits = 0
-    let updatedAt, createdAt;
-
-    let pageCount = 1
-    let noOfCommits = null;
-    while (noOfCommits === null || noOfCommits === 100) {
-        const response = await fetch(`https://api.github.com/repos/subrata-chowdhury/${repoName}/commits?per_page=100&page=${pageCount}`, {
+    try {
+        // fetching the project details from github
+        let description = '';
+        const response = await fetch(`https://api.github.com/repos/subrata-chowdhury/${repoName}`, {
             headers: { 'Authorization': 'Bearer ' + process.env.GITHUB_AUTH_TOKEN }
         });
         if (response.status === 200) {
-            const commitDetails = await response.json();
-            noOfCommits = await commitDetails.length
-            if (await noOfCommits === 0) break
-            totalNoOfCommits += await noOfCommits;
-            if (pageCount === 1)
-                updatedAt = new Date(commitDetails[0].commit.committer.date).toUTCString();
-            createdAt = new Date(commitDetails[(await noOfCommits - 1)].commit.committer.date).toUTCString();
-        } else {
-            throw response.body
+            const body = await response.json();
+            description = body.description;
         }
-        pageCount++
+
+        // calculating the number of commits, createdAt and updatedAt
+        let totalNoOfCommits = 0
+        let updatedAt, createdAt;
+
+        let pageCount = 1
+        let noOfCommits = null;
+        while (noOfCommits === null || noOfCommits === 100) {
+            const response = await fetch(`https://api.github.com/repos/subrata-chowdhury/${repoName}/commits?per_page=100&page=${pageCount}`, {
+                headers: { 'Authorization': 'Bearer ' + process.env.GITHUB_AUTH_TOKEN }
+            });
+            if (response.status === 200) {
+                const commitDetails = await response.json();
+                noOfCommits = await commitDetails.length
+                if (await noOfCommits === 0) break
+                totalNoOfCommits += await noOfCommits;
+                if (pageCount === 1)
+                    updatedAt = new Date(commitDetails[0].commit.committer.date).toUTCString();
+                createdAt = new Date(commitDetails[(await noOfCommits - 1)].commit.committer.date).toUTCString();
+            } else {
+                throw response.body
+            }
+            pageCount++
+        }
+        return { noOfCommits: totalNoOfCommits, updatedAt, createdAt, description };
+    } catch {
+        return { noOfCommits: null, updatedAt: '', createdAt: '', description: '' };
     }
-    return { noOfCommits: totalNoOfCommits, updatedAt, createdAt, description };
 }

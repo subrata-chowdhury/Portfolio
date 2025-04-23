@@ -11,12 +11,12 @@ import Link from 'next/link';
 
 function AboutMe() {
     return (
-        <div className="screen-container">
-            <div className="heading" id="education">
-                <div>About Me</div>
-            </div>
+        <section className="screen-container">
+            <h1 className="heading" id="education">
+                About Me
+            </h1>
             <div className='about-container'>
-                <div className='sub-about-container'>
+                <article className='sub-about-container'>
                     I am a final year Computer Science Engineering Student at Bengal College of Engineering and Technology.<br />
                     As a skilled web developer, I am proficient in HTML, CSS, JavaScript, and ReactJS.<br />
                     I&apos;ve completed various projects, from AI-driven timetable creators to responsive web apps.<br /><br />
@@ -33,10 +33,10 @@ function AboutMe() {
                         - Interested in learning the latest web technologies quickly.<br />
                         - Able to Work well in teams as well as Individually<br />
                     </div>
-                </div>
+                </article>
                 <Counts />
             </div>
-        </div>
+        </section>
     );
 }
 

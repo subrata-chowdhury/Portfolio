@@ -10,7 +10,7 @@ import EnvelopeIcon from "../Icons/envelope";
 export default function Contact({ forwardRef = null }: { forwardRef: React.RefObject<HTMLDivElement | null> | null }) {
     return (
         <section className="screen-container">
-            <div className="heading" id="contact" ref={forwardRef}>Contact Me</div>
+            <h1 className="heading" id="contact" ref={forwardRef}>Contact Me</h1>
             <div className="contact-container">
                 <LeftSide />
                 <RightSide />

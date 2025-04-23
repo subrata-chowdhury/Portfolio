@@ -18,11 +18,11 @@ interface ProjectsProps {
 export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }: ProjectsProps) {
     return (
         <>
-            <div className="screen-container" style={{ marginTop: '6rem' }}>
-                <div className="heading" id="projects" ref={forwardRef}>
-                    <div>My Projects</div>
+            <section className="screen-container" style={{ marginTop: '6rem' }}>
+                <h1 className="heading" id="projects" ref={forwardRef}>
+                    My Projects
                     <GitHubButton />
-                </div>
+                </h1>
 
                 <ProjectsContainer projectData={showLimited ? projectData.slice(0, 4) : projectData} />
 
@@ -30,7 +30,7 @@ export default function Projects({ showLimited = true, showSeeMoreBtn = true, fo
                     <div className="see-more-btn-container">
                         <Link href={"/Projects"} className="btn">View All Projects</Link>
                     </div>}
-            </div>
+            </section>
         </>
     )
 }

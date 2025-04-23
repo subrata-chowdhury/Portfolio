@@ -7,6 +7,7 @@
     width: 100%;
     color: var(--text-color);
     animation: bottomToTop 1s linear;
+    height: min-content;
 }
 
 .top-part,
