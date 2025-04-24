@@ -31,7 +31,7 @@ export function OtherPlatforms({ className = "" }) {
         <div className={"icon-container" + (className ? (" " + className) : "")}>
             <LinkedIcon Icon={Facebook} alt={"Facebook Page"} />
             <LinkedIcon Icon={Instagram} alt={"Instagram Page"} />
-            <LinkedIcon Icon={GitHub} linkUrl="https://github.com/Super7000" alt={"GitHub Page"} />
+            <LinkedIcon Icon={GitHub} linkUrl="https://github.com/subrata-chowdhury" alt={"GitHub Page"} />
             <LinkedIcon Icon={LinkedIn} linkUrl="https://www.linkedin.com/in/subrata7000/" alt={"LinkedIn Page"} />
         </div>
     )
