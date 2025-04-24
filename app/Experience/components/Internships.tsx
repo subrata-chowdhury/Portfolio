@@ -9,7 +9,7 @@ function Internships() {
     return (
         <div className='internships-page-container'>
             <h1 className='heading'>Internships</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {
                     internshipArray.map(internship =>
                         <InternshipCard key={internship.id} internship={internship} />
@@ -35,7 +35,7 @@ const InternshipCard = ({ internship }: { internship: InternshipType }) => {
             </Link>
             <div>{internship.location}</div>
             <div>{internship.duration}</div>
-            <div className='project-link-containe' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className='project-link-containe' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
                 <Link className="link-container" target="_blank" href={internship.certificateSrc}>
                     <div className="project-link">View Certificate</div>
                     <Arrow />

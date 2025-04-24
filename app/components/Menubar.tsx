@@ -46,7 +46,7 @@ export default function Menubar({
                     </div>
                 </div>
                 <SearchContainer />
-                <Menus links={links} />
+                <Menus links={links} onLinkClick={() => setIsActive(false)} />
             </nav>
         </>
     )
@@ -106,22 +106,25 @@ export function SearchResultContainer({ skillsData, skillClickHandler = () => { 
     )
 }
 
-export const Menus = ({ links = [{
-    name: "Home",
-    link: "/"
-}, {
-    name: "Education",
-    link: "/#education",
-}, {
-    name: "Projects",
-    link: "/Projects",
-}, {
-    name: "Experience",
-    link: "/Experience"
-}, {
-    name: "Contact Me",
-    link: "/#contact",
-}] }) => {
+export const Menus = ({
+    links = [{
+        name: "Home",
+        link: "/"
+    }, {
+        name: "Education",
+        link: "/#education",
+    }, {
+        name: "Projects",
+        link: "/Projects",
+    }, {
+        name: "Experience",
+        link: "/Experience"
+    }, {
+        name: "Contact Me",
+        link: "/#contact",
+    }],
+    onLinkClick = () => { }
+}) => {
     const pathname = usePathname();
 
     return (
@@ -130,9 +133,9 @@ export const Menus = ({ links = [{
                 return (
                     // link?.createHref === true || 
                     link.link.indexOf("#") === 0 ?
-                        <a key={link.link} className={"menu" + (link.link === pathname ? " active" : "")} href={link.link}>{link.name}</a> :
+                        <Link key={link.link} className={"menu" + (link.link === pathname ? " active" : "")} href={link.link} onClick={onLinkClick}>{link.name}</Link> :
                         <Link href={link.link} key={link.link}>
-                            <div className={"menu" + (link.link === pathname ? " active" : "")}>{link.name}</div>
+                            <div className={"menu" + (link.link === pathname ? " active" : "")} onClick={onLinkClick}>{link.name}</div>
                         </Link>)
             })}
         </div>

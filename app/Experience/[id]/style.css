@@ -21,3 +21,9 @@
 .internship-page-container .skills-container .skill-name-container {
     gap: 0.3rem;
 }
+
+@media (max-width: 800px) {
+    .internship-page-container {
+        padding: 2rem;
+    }
+}
