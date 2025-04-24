@@ -10,11 +10,7 @@ function Internships({ containerStyle = {} }: { containerStyle?: React.CSSProper
         <div className='internships-page-container' style={containerStyle}>
             <h1 className='heading'>Internships</h1>
             <div className='main-internship-container'>
-                {
-                    internshipArray.map(internship =>
-                        <InternshipCard key={internship.id} internship={internship} />
-                    )
-                }
+                {internshipArray.map(internship => <InternshipCard key={internship.id} internship={internship} />)}
             </div>
         </div>
     )

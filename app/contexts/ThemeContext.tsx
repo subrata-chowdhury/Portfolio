@@ -31,9 +31,9 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <div className={'app ' + theme}>
+            <body className={'app ' + theme}>
                 {children}
-            </div>
+            </body>
         </ThemeContext.Provider>
     );
 };

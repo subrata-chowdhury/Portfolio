@@ -50,13 +50,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta name="twitter:creator" content="@Subrata70000" />
                 <meta property="og:type" content="website" />
             </head>
-            <body>
-                <ThemeProvider>
-                    <Menubar />
-                    {children}
-                    <Footer />
-                </ThemeProvider>
-            </body>
+            <ThemeProvider>
+                <Menubar />
+                {children}
+                <Footer />
+            </ThemeProvider>
         </html>
     );
 }
