@@ -13,12 +13,13 @@ interface ProjectsProps {
     showLimited?: boolean;
     showSeeMoreBtn?: boolean;
     forwardRef?: React.RefObject<HTMLDivElement | null> | null;
+    containerStyle?: React.CSSProperties;
 }
 
-export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null }: ProjectsProps) {
+export default function Projects({ showLimited = true, showSeeMoreBtn = true, forwardRef = null, containerStyle = {} }: ProjectsProps) {
     return (
         <>
-            <section className="screen-container" style={{ marginTop: '6rem' }}>
+            <section className="screen-container" style={{ marginTop: '6rem', ...containerStyle }}>
                 <h1 className="heading" id="projects" ref={forwardRef}>
                     My Projects
                     <GitHubButton />

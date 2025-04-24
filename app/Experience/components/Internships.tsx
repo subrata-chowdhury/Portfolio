@@ -5,11 +5,11 @@ import Link from 'next/link';
 import Arrow from '@/app/Icons/Arrow';
 import Image from 'next/image';
 
-function Internships() {
+function Internships({ containerStyle = {} }: { containerStyle?: React.CSSProperties }) {
     return (
-        <div className='internships-page-container'>
+        <div className='internships-page-container' style={containerStyle}>
             <h1 className='heading'>Internships</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <div className='main-internship-container'>
                 {
                     internshipArray.map(internship =>
                         <InternshipCard key={internship.id} internship={internship} />

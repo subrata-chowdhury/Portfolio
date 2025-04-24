@@ -6,6 +6,18 @@
     box-sizing: border-box;
 }
 
+.main-internship-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+}
+
+@media (max-width: 660px) {
+    .main-internship-container {
+        grid-template-columns: auto;
+    }
+}
+
 @media (max-width: 800px) {
     .internships-page-container {
         padding: 2rem;

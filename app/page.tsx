@@ -7,6 +7,7 @@ import Education from './components/Education'
 import Projects from './Projects/components/Projects'
 import Certifications from './components/Certifications'
 import Contact from './components/Contact'
+import Internships from './Experience/components/Internships'
 
 export default function Home() {
     const contactUs = useRef<HTMLDivElement | null>(null)
@@ -37,8 +38,9 @@ export default function Home() {
             <AboutMe />
             <Skills />
             <Education />
-            <Projects forwardRef={projects} />
+            <Projects containerStyle={{ marginTop: '2rem' }} forwardRef={projects} />
             <Certifications />
+            <Internships containerStyle={{ marginTop: '2rem' }} />
             <Contact forwardRef={contactUs} />
         </>
     )
