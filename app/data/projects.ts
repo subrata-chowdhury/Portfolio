@@ -9,6 +9,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
     otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "JSON Web Token (JWT)", "Problem Solving", "SEO"],
     previewImageSrc: "assets/LabTesto.webp",
+    previewUiImages: ['/assets/LabTesto/1.webp', '/assets/LabTesto/2.webp', '/assets/LabTesto/3.webp', '/assets/LabTesto/4.webp', '/assets/LabTesto/5.webp', '/assets/LabTesto/6.webp', '/assets/LabTesto/7.webp', '/assets/LabTesto/8.webp', '/assets/LabTesto/9.webp', '/assets/LabTesto/10.webp', '/assets/LabTesto/11.webp', '/assets/LabTesto/12.webp', '/assets/LabTesto/13.webp'],
     liveUrl: "https://labtesto.vercel.app/"
 }, {
     name: "Audify",
@@ -20,6 +21,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["React", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
     previewImageSrc: "assets/Audify.webp",
+    previewUiImages: [],
     liveUrl: "https://audify-xi.vercel.app/"
 }, {
     name: "ATG World",
@@ -31,6 +33,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
     previewImageSrc: "assets/ATG World.webp",
+    previewUiImages: [],
     liveUrl: "https://atg-world-blog-demo.netlify.app/"
 }, {
     name: "Scroll Effect",
@@ -42,6 +45,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
     previewImageSrc: "assets/Scroll Effect.webp",
+    previewUiImages: [],
     liveUrl: "https://scroll-effect-7000.netlify.app/"
 }, {
     name: "Time Table Scheduler",
@@ -52,7 +56,8 @@ const projectsData: ProjectType[] = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
     otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development", "SEO"],
-    previewImageSrc: "assets/Time_Table_Scheduler.webp"
+    previewImageSrc: "assets/Time_Table_Scheduler.webp",
+    previewUiImages: ['/assets/Time_Table_Scheduler/1.webp', '/assets/Time_Table_Scheduler/2.webp', '/assets/Time_Table_Scheduler/3.webp', '/assets/Time_Table_Scheduler/4.webp', '/assets/Time_Table_Scheduler/5.webp', '/assets/Time_Table_Scheduler/6.webp', '/assets/Time_Table_Scheduler/7.webp', '/assets/Time_Table_Scheduler/8.webp', '/assets/Time_Table_Scheduler/9.webp', '/assets/Time_Table_Scheduler/10.webp', '/assets/Time_Table_Scheduler/11.webp'],
 }, {
     name: "To Dos",
     repoName: "To-Do-List",
@@ -62,7 +67,8 @@ const projectsData: ProjectType[] = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
     otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "Express.js", "JSON Web Token (JWT)", "REST API"],
-    previewImageSrc: "assets/To Dos.webp"
+    previewImageSrc: "assets/To Dos.webp",
+    previewUiImages: ['/assets/To-Do-List/1.webp', '/assets/To-Do-List/2.webp', '/assets/To-Do-List/3.webp', '/assets/To-Do-List/4.webp'],
 }, {
     name: "Bike Rental System",
     repoName: "Bike-Rental-System",
@@ -72,7 +78,8 @@ const projectsData: ProjectType[] = [{
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
     otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
-    previewImageSrc: "assets/Bike Rental System.webp"
+    previewImageSrc: "assets/Bike Rental System.webp",
+    previewUiImages: ['/assets/Bike-Rental-System/1.webp', '/assets/Bike-Rental-System/2.webp', '/assets/Bike-Rental-System/3.webp', '/assets/Bike-Rental-System/4.webp', '/assets/Bike-Rental-System/5.webp', '/assets/Bike-Rental-System/6.webp', '/assets/Bike-Rental-System/7.webp'],
 }, {
     name: "Brandscreen",
     repoName: "Brandscreen",
@@ -83,6 +90,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript", "NextJS", "Bootstrap 5"],
     otherSkills: ["Responsive Web Design", "Frontend Development"],
     previewImageSrc: "assets/Brandscreen.webp",
+    previewUiImages: ['/assets/Brandscreen/1.webp', '/assets/Brandscreen/2.webp', '/assets/Brandscreen/3.webp', '/assets/Brandscreen/4.webp', '/assets/Brandscreen/5.webp', '/assets/Brandscreen/6.webp', '/assets/Brandscreen/7.webp', '/assets/Brandscreen/8.webp'],
     liveUrl: "https://brandscreen.vercel.app/"
 }, {
     name: "Hobby Cue",
@@ -94,6 +102,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript", "React", "Bootstrap 5"],
     otherSkills: ["Figma", "Responsive Web Design", "Frontend Development"],
     previewImageSrc: "assets/Hobby Cue.webp",
+    previewUiImages: [],
     liveUrl: "https://hobby-cue-kappa.vercel.app/"
 }, {
     name: "StyleBar",
@@ -105,6 +114,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
     previewImageSrc: "assets/StyleBar.webp",
+    previewUiImages: [],
     liveUrl: "https://stylebar.netlify.app/"
 }, {
     name: "Focus",
@@ -116,6 +126,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
     previewImageSrc: "assets/Focus.webp",
+    previewUiImages: [],
     liveUrl: "https://focus-7000.netlify.app/"
 }, {
     name: "List of All Doraemon Movies",
@@ -127,6 +138,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
     previewImageSrc: "assets/All Doraemon Movies.webp",
+    previewUiImages: [],
     liveUrl: "https://subrata-chowdhury.github.io/All_Doraemon_Movies-v3.5/List Of All Doraemon Movies (Version 3.5).html"
 }, {
     name: "Google Search Page",
@@ -138,6 +150,7 @@ const projectsData: ProjectType[] = [{
     mainSkills: ["HTML", "CSS", "JavaScript"],
     otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
     previewImageSrc: "assets/Google Landing Page.webp",
+    previewUiImages: [],
     liveUrl: "https://google-themed-landing-page.netlify.app/"
 }]
 
@@ -154,5 +167,6 @@ export type ProjectType = {
     mainSkills: string[],
     otherSkills: string[],
     previewImageSrc: string,
+    previewUiImages?: string[],
     liveUrl?: string
 }

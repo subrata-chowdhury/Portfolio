@@ -24,8 +24,5 @@
     z-index: 31;
     background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
-}
-
-.model-close-btn path {
-    fill: var(--text-color);
+    color: var(--text-color);
 }

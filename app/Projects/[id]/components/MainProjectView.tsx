@@ -5,6 +5,7 @@ import { skillsData } from "@/app/data/skills";
 import Arrow from "@/app/Icons/Arrow";
 import InternetIcon from "@/app/Icons/Internet";
 import Link from "next/link";
+import Gallery from "./Gallery";
 
 export default function DetailedProjectView({
     name = "Name",
@@ -15,7 +16,7 @@ export default function DetailedProjectView({
     updatedAt,
     mainSkills = [],
     otherSkills = [],
-    // previewImageSrc = '',
+    previewUiImages = [],
     liveUrl = null,
 
     // onClose = () => { }
@@ -28,7 +29,7 @@ export default function DetailedProjectView({
     updatedAt?: string | null,
     mainSkills?: string[],
     otherSkills?: string[],
-    previewImageSrc?: string,
+    previewUiImages?: string[],
     liveUrl?: string | null,
 
     onClose?: () => void
@@ -80,6 +81,7 @@ export default function DetailedProjectView({
                     {/* {createdAt && <div className="project-commit-details-container"><b>Created At: </b>{createdAt}</div>}
                     {updatedAt && <div className="project-commit-details-container"><b>Updated At: </b>{updatedAt}</div>} */}
                     {noOfCommits && (noOfCommits > 0) && <div className="project-commit-details-container"><b>No of Commits: </b>{noOfCommits}</div>}
+                    {previewUiImages.length > 0 && <Gallery images={previewUiImages} />}
                 </div>
             </div>
         </>
