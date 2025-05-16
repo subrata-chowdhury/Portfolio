@@ -1,8 +1,6 @@
 'use client'
 import "@/app/styles/contact.css"
 import { useState } from "react";
-import { db } from "@/app/lib/firebaseInitilizer";
-import { collection, addDoc } from "firebase/firestore";
 import Marker from "../Icons/marker";
 import MobileNotch from "../Icons/mobile-notch";
 import EnvelopeIcon from "../Icons/envelope";
@@ -81,12 +79,21 @@ const RightSide = () => {
 
         // Add a new document with a generated id in firestore db
         try {
-            const docRef = await addDoc(collection(db, "contact-details"), {
-                name: firstName + " " + lastName,
-                email: email,
-                messege: messege
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: firstName + " " + lastName,
+                    email: email,
+                    messege: messege
+                })
             });
-            console.log("Document written with ID: ", docRef.id);
+            if (!res.ok) {
+                alert("Failed to send message");
+                throw new Error("Failed to send message");
+            }
             alert("Messege Send Successfully");
 
             // Clear the form
