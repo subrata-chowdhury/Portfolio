@@ -37,12 +37,12 @@ const internshipArray: InternshipType[] = [{
         "HTML",
         "Web Content Writing",
         "Web Development",
-        "Back-End Web Development",
+        "Backend Development",
         "MongoDB",
         "Node.js",
-        "Full-Stack Development",
+        "Full Stack Development",
         "Search Engine Optimization (SEO)",
-        "Front-End Development"
+        "Frontend Development"
     ],
     duration: "2 months (Sept 30, 2024 - Nov 30, 2024)",
     stipend: "5000₹/month",
@@ -82,15 +82,15 @@ const internshipArray: InternshipType[] = [{
         }
     ],
     skills: [
-        "React.js",
-        "Redux.js",
+        "React",
+        "Redux",
         "TypeScript",
         "Tailwind CSS",
         "HTML",
         "CSS",
         "JavaScript",
         "Web Development",
-        "Front-End Development",
+        "Frontend Development",
         "Teamwork",
         "Communication",
         "Slack"

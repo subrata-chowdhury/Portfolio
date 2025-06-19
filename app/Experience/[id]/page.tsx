@@ -12,6 +12,20 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const internship = internshipArray.filter(e => e.id === id)[0];
     if (!internship) return <div className='empty-heading'>Internship not found</div>
+
+    const projectSkills = [];
+    for (let index = 0; index < internship.skills.length; index++) {
+        const filterData = skillsData.filter(e => e.name === internship.skills[index])[0]
+        if (filterData)
+            projectSkills.push(filterData)
+        else projectSkills.push({
+            name: internship.skills[index],
+            iconSrc: "/icons/skill.webp",
+            id: internship.skills[index].toLowerCase().split(' ').join('-'),
+            lvl: 1
+        })
+    }
+
     return (
         <div className='internship-page-container'>
             <h1 className='heading' style={{ marginBottom: '0.2rem' }}>{internship.title}</h1>
@@ -40,7 +54,7 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
             <h2 className='heading'>Responsibilities & Contributions</h2>
             <div>{internship.description}</div>
             <h2 className='heading'>Skills</h2>
-            <SkillsContainer skillsData={skillsData.filter((skill) => internship.skills.includes(skill.name))} />
+            <SkillsContainer skillsData={projectSkills} />
             <h2 className='heading'>Project</h2>
             <div>
                 {
