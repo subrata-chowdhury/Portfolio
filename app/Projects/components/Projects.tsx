@@ -104,7 +104,7 @@ export function Project({
                                 <div className="project-link">Live Demo</div>
                                 <InternetIcon />
                             </Link> :
-                            <Link className="link-container" target="_blank" href={(repoName ? `https://github.com/Super7000/${repoName}` : "")}>
+                            <Link className="link-container" target="_blank" href={(repoName ? `https://github.com/subrata-chowdhury/${repoName}` : "")}>
                                 <div className="project-link">{repoName ? "View in Github" : "View Here"}</div>
                                 <Arrow />
                             </Link>}
