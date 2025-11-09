@@ -86,10 +86,14 @@ const SearchContainer = () => {
                     <SearchIcon />
                 </div>
                 {filteredSkillData.length > 0 && <SearchResultContainer skillsData={filteredSkillData} skillClickHandler={(e) => {
+                    setFilterSkillsData([]);
+                    if (searchInputBox.current)
+                        searchInputBox.current.value = "";
                     if (pathname === "/") {
                         const skillElement = document.querySelector(".skill-container#" + e.currentTarget.dataset.id);
                         if (skillElement) {
                             skillElement.scrollIntoView();
+                            window.location.hash = "#" + e.currentTarget.dataset.id;
                         }
                     } else router.push("/#" + e.currentTarget.dataset.id);
                 }} />}

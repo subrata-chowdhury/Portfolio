@@ -20,6 +20,38 @@
     /* font-size: 1rem; */
 }
 
+.skills-container .skill-container:target {
+    background: #bfe5ff;
+    animation: blink 0.3s linear;
+}
+
+.dark .skills-container .skill-container:target {
+    background: rgba(255, 255, 255, 0.4);
+    animation: blink 0.3s linear;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .skills-container .skill-container .sub-skill-container {
     display: flex;
     justify-content: space-between;

@@ -6,11 +6,23 @@ const projectsData: ProjectType[] = [{
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
+    mainSkills: ["HTML", "CSS", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
     otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "JSON Web Token (JWT)", "Problem Solving", "SEO"],
     previewImageSrc: "assets/LabTesto.webp",
     previewUiImages: ['/assets/LabTesto/1.webp', '/assets/LabTesto/2.webp', '/assets/LabTesto/3.webp', '/assets/LabTesto/4.webp', '/assets/LabTesto/5.webp', '/assets/LabTesto/6.webp', '/assets/LabTesto/7.webp', '/assets/LabTesto/8.webp', '/assets/LabTesto/9.webp', '/assets/LabTesto/10.webp', '/assets/LabTesto/11.webp', '/assets/LabTesto/12.webp', '/assets/LabTesto/13.webp'],
     liveUrl: "https://labtesto.vercel.app/"
+}, {
+    name: "ATG World",
+    repoName: "ATG-World-ReactJS-Functional",
+    description: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
+    noOfCommits: null,
+    createdAt: null,
+    updatedAt: null,
+    mainSkills: ["HTML", "CSS", "TypeScript", "React", "Tailwind CSS", "MongoDB"],
+    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
+    previewImageSrc: "assets/ATG World.webp",
+    previewUiImages: [],
+    liveUrl: "https://atg-world-react-js-functional.vercel.app/"
 }, {
     name: "Audify",
     repoName: "Audify",
@@ -18,23 +30,11 @@ const projectsData: ProjectType[] = [{
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["React", "Redux", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    mainSkills: ["HTML", "CSS", "JavaScript", "React", "Redux"],
+    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
     previewImageSrc: "assets/Audify.webp",
     previewUiImages: [],
     liveUrl: "https://audify-xi.vercel.app/"
-}, {
-    name: "ATG World",
-    repoName: "ATG_World",
-    description: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
-    noOfCommits: null,
-    createdAt: null,
-    updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
-    previewImageSrc: "assets/ATG World.webp",
-    previewUiImages: [],
-    liveUrl: "https://atg-world-blog-demo.netlify.app/"
 }, {
     name: "Scroll Effect",
     repoName: "Scroll_Effect",
