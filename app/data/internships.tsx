@@ -54,15 +54,15 @@ const internshipArray: InternshipType[] = [{
         title: 'Payslip for Dec 2024'
     }],
 }, {
-    id: 'atg_world',
-    title: "Web UI Developer & ReactJS Developer Intern ",
-    company: "ATG World",
+    id: 'banao_technologies',
+    title: "MERN Stack Developer Intern",
+    company: "Banao Technologies",
     location: "Remote",
-    iconSrc: '/internships/companys/atg.webp',
-    certificateSrc: '/internships/certificates/ATG World Internship Certificate.pdf',
+    iconSrc: '/internships/companys/banao.webp',
+    certificateSrc: '/internships/certificates/Banao Offer Letter.pdf',
     description: (<div>
         <ul>
-            <li>Resolved <b>6,615 UI bugs</b> and <b>132 functional</b> frontend bugs, contributing significantly to the platform’s performance and user experience.</li>
+            <li>Resolved UI and functionality frontend bugs, contributing significantly to the platform’s performance and user experience.</li>
             <li>Engaged in thorough bug analysis, reproduction, and resolution using React.js, Tailwind CSS, Redux Toolkit, CSS, and TypeScript.</li>
             <li>Gained in-depth understanding of the project workflow, including architectural diagrams like ER models, User Flow diagrams, and component hierarchies.</li>
             <li>Updated bug-tracking sheets daily to ensure task transparency and progress tracking.</li>
@@ -71,14 +71,14 @@ const internshipArray: InternshipType[] = [{
         </ul>
         🧩 This internship was a cornerstone in my growth as a frontend developer, giving me hands-on experience with real-world SaaS products and high-level team collaboration.<br />
     </div>),
-    companyWebsiteLink: 'https://www.atg.world/',
-    linkedInLink: 'https://www.linkedin.com/company/across-the-globe-atg-/',
+    companyWebsiteLink: 'https://banao.tech/',
+    linkedInLink: 'https://www.linkedin.com/company/banao-tech',
     workLinks: [
         {
-            title: "Procurpal Web App",
-            link: "https://procurpal.in/",
-            description: "ProcUrPal is an AI-powered procurement platform designed for enterprises and governments. It simplifies sourcing, enhances supplier collaboration, and ensures compliance with smart automation and analytics. Founded by industry veteran Vikas Chadda, ProcUrPal delivers modern solutions to complex procurement challenges.",
-            iconSrc: '/internships/products/procurpal.webp'
+            title: "Vikaas AI App",
+            link: "https://vikaas.ai/",
+            description: "AI-powered lead generation and outreach platform that automates prospecting, enriches lead data, identifies high-intent prospects, and delivers personalized messaging with real-time signals—helping teams engage faster, qualify better, and convert more revenue.",
+            iconSrc: '/internships/products/vikaas.webp'
         }
     ],
     skills: [
@@ -95,18 +95,19 @@ const internshipArray: InternshipType[] = [{
         "Communication",
         "Slack"
     ],
-    duration: "6 months (July 27, 2024 - Jan 21, 2025)",
-    stipend: "5000₹/month",
-    paySlips: [{
-        link: '/internships/payslips/atg-world/Payslip for Nov 2024.pdf',
-        title: 'Payslip for Nov 2024'
-    }, {
-        link: '/internships/payslips/atg-world/Payslip for Dec 2024.pdf',
-        title: 'Payslip for Dec 2024'
-    }, {
-        link: '/internships/payslips/atg-world/Payslip for Jan 2025.pdf',
-        title: 'Payslip for Jan 2025'
-    }],
+    duration: "6 months (Nov 4, 2024 - Ongoing)",
+    stipend: "10000₹/month",
+    paySlips: []
+    // paySlips: [{
+    //     link: '/internships/payslips/atg-world/Payslip for Nov 2024.pdf',
+    //     title: 'Payslip for Nov 2024'
+    // }, {
+    //     link: '/internships/payslips/atg-world/Payslip for Dec 2024.pdf',
+    //     title: 'Payslip for Dec 2024'
+    // }, {
+    //     link: '/internships/payslips/atg-world/Payslip for Jan 2025.pdf',
+    //     title: 'Payslip for Jan 2025'
+    // }],
 }]
 
 export default internshipArray;

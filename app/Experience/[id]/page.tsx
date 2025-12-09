@@ -75,19 +75,22 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
                     })
                 }
             </div>
-            <h2 className='heading'>Pay Slips</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '0.5rem' }}>
-                {
-                    internship.paySlips.map((link) => {
-                        return (
-                            <Link href={link.link} key={link.link} className="link-container liveurl-container" target="_blank">
-                                <div className="project-link" style={{ fontSize: '1rem' }}>{link.title}</div>
-                                <Arrow />
-                            </Link>
-                        )
-                    })
-                }
-            </div>
+            {internship.paySlips.length > 0 &&
+                <>
+                    <h2 className='heading'>Pay Slips</h2>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '0.5rem' }}>
+                        {
+                            internship.paySlips.map((link) => {
+                                return (
+                                    <Link href={link.link} key={link.link} className="link-container liveurl-container" target="_blank">
+                                        <div className="project-link" style={{ fontSize: '1rem' }}>{link.title}</div>
+                                        <Arrow />
+                                    </Link>
+                                )
+                            })
+                        }
+                    </div>
+                </>}
         </div>
     )
 }
