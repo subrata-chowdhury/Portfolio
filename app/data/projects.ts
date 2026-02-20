@@ -1,29 +1,82 @@
-
-const projectsData: ProjectType[] = [{
+const projectsData: ProjectType[] = [
+  {
     name: "LabTesto",
     repoName: "LabTesto",
-    description: "It is a full stack web app where user can book any medical test from any lab. It also comes with a powerful admin panel and Collector admin / notification panel with notification receiving on telegram feature.",
+    description:
+      "It is a full stack web app where user can book any medical test from any lab. It also comes with a powerful admin panel and Collector admin / notification panel with notification receiving on telegram feature.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
-    mainSkills: ["HTML", "CSS", "TypeScript", "Next.js", "React", "Tailwind CSS", "MongoDB", "DSA"],
-    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "JSON Web Token (JWT)", "Problem Solving", "SEO"],
+    mainSkills: [
+      "HTML",
+      "CSS",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "MongoDB",
+      "DSA",
+    ],
+    otherSkills: [
+      "Web Development",
+      "Graphic Design",
+      "Web Design",
+      "Web Applications",
+      "GitHub",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Backend Development",
+      "Full Stack Development",
+      "REST API",
+      "JSON Web Token (JWT)",
+      "Problem Solving",
+      "SEO",
+    ],
     previewImageSrc: "assets/LabTesto.webp",
-    previewUiImages: ['/assets/LabTesto/1.webp', '/assets/LabTesto/2.webp', '/assets/LabTesto/3.webp', '/assets/LabTesto/4.webp', '/assets/LabTesto/5.webp', '/assets/LabTesto/6.webp', '/assets/LabTesto/7.webp', '/assets/LabTesto/8.webp', '/assets/LabTesto/9.webp', '/assets/LabTesto/10.webp', '/assets/LabTesto/11.webp', '/assets/LabTesto/12.webp', '/assets/LabTesto/13.webp'],
-    liveUrl: "https://labtesto.vercel.app/"
-}, {
+    previewUiImages: [
+      "/assets/LabTesto/1.webp",
+      "/assets/LabTesto/2.webp",
+      "/assets/LabTesto/3.webp",
+      "/assets/LabTesto/4.webp",
+      "/assets/LabTesto/5.webp",
+      "/assets/LabTesto/6.webp",
+      "/assets/LabTesto/7.webp",
+      "/assets/LabTesto/8.webp",
+      "/assets/LabTesto/9.webp",
+      "/assets/LabTesto/10.webp",
+      "/assets/LabTesto/11.webp",
+      "/assets/LabTesto/12.webp",
+      "/assets/LabTesto/13.webp",
+    ],
+    liveUrl: "https://labtesto.vercel.app/",
+  },
+  {
     name: "ATG World",
     repoName: "ATG-World-ReactJS-Functional",
-    description: "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
+    description:
+      "It's a project contains a fully responsive webpage created using HTML, CSS and JavaScript.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
-    mainSkills: ["HTML", "CSS", "TypeScript", "React", "Tailwind CSS", "MongoDB"],
-    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Firebase"],
+    mainSkills: [
+      "HTML",
+      "CSS",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "MongoDB",
+    ],
+    otherSkills: [
+      "Figma",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Firebase",
+    ],
     previewImageSrc: "assets/ATG World.webp",
     previewUiImages: [],
-    liveUrl: "https://atg-world-react-js-functional.vercel.app/"
-}, {
+    liveUrl: "https://atg-world-react-js-functional.vercel.app/",
+  },
+  {
     name: "Audify",
     repoName: "Audify",
     description: "It's a simple music player UI created using React and redux.",
@@ -31,71 +84,175 @@ const projectsData: ProjectType[] = [{
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "React", "Redux"],
-    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    otherSkills: [
+      "Graphic Design",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+    ],
     previewImageSrc: "assets/Audify.webp",
     previewUiImages: [],
-    liveUrl: "https://audify-xi.vercel.app/"
-}, {
+    liveUrl: "https://audify-xi.vercel.app/",
+  },
+  {
     name: "Scroll Effect",
     repoName: "Scroll_Effect",
-    description: "This is a webpage which is focused on scrolling animation created using HTML, CSS and JS.",
+    description:
+      "This is a webpage which is focused on scrolling animation created using HTML, CSS and JS.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["Figma", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    otherSkills: [
+      "Figma",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+    ],
     previewImageSrc: "assets/Scroll Effect.webp",
     previewUiImages: [],
-    liveUrl: "https://scroll-effect-7000.netlify.app/"
-}, {
+    liveUrl: "https://scroll-effect-7000.netlify.app/",
+  },
+  {
     name: "Time Table Scheduler",
     repoName: "Time-Table-Scheduler-ReactJS",
-    description: "It's a web application UI created using React through which a Time Table can be created manually and also automatically using AI.",
+    description:
+      "It's a web application UI created using React through which a Time Table can be created manually and also automatically using AI.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
-    otherSkills: ["REST API", "Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork", "Web Development", "SEO"],
+    otherSkills: [
+      "REST API",
+      "Graphic Design",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+      "Teamwork",
+      "Web Development",
+      "SEO",
+    ],
     previewImageSrc: "assets/Time_Table_Scheduler.webp",
-    previewUiImages: ['/assets/Time_Table_Scheduler/1.webp', '/assets/Time_Table_Scheduler/2.webp', '/assets/Time_Table_Scheduler/3.webp', '/assets/Time_Table_Scheduler/4.webp', '/assets/Time_Table_Scheduler/5.webp', '/assets/Time_Table_Scheduler/6.webp', '/assets/Time_Table_Scheduler/7.webp', '/assets/Time_Table_Scheduler/8.webp', '/assets/Time_Table_Scheduler/9.webp', '/assets/Time_Table_Scheduler/10.webp', '/assets/Time_Table_Scheduler/11.webp'],
-}, {
+    previewUiImages: [
+      "/assets/Time_Table_Scheduler/1.webp",
+      "/assets/Time_Table_Scheduler/2.webp",
+      "/assets/Time_Table_Scheduler/3.webp",
+      "/assets/Time_Table_Scheduler/4.webp",
+      "/assets/Time_Table_Scheduler/5.webp",
+      "/assets/Time_Table_Scheduler/6.webp",
+      "/assets/Time_Table_Scheduler/7.webp",
+      "/assets/Time_Table_Scheduler/8.webp",
+      "/assets/Time_Table_Scheduler/9.webp",
+      "/assets/Time_Table_Scheduler/10.webp",
+      "/assets/Time_Table_Scheduler/11.webp",
+    ],
+  },
+  {
     name: "To Dos",
     repoName: "To-Do-List",
-    description: "It's a Full Stack To Do List Web Application created using React, Bootstrap 5, CSS, HTML in Frontend and Node.js with Express library as Backend and MySQL as Database.",
+    description:
+      "It's a Full Stack To Do List Web Application created using React, Bootstrap 5, CSS, HTML in Frontend and Node.js with Express library as Backend and MySQL as Database.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript", "Node.js", "React", "Bootstrap 5", "MySQL"],
-    otherSkills: ["Web Development", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "Express.js", "JSON Web Token (JWT)", "REST API"],
+    mainSkills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "React",
+      "Bootstrap 5",
+      "MySQL",
+    ],
+    otherSkills: [
+      "Web Development",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Backend Development",
+      "Full Stack Development",
+      "Express.js",
+      "JSON Web Token (JWT)",
+      "REST API",
+    ],
     previewImageSrc: "assets/To Dos.webp",
-    previewUiImages: ['/assets/To-Do-List/1.webp', '/assets/To-Do-List/2.webp', '/assets/To-Do-List/3.webp', '/assets/To-Do-List/4.webp'],
-}, {
+    previewUiImages: [
+      "/assets/To-Do-List/1.webp",
+      "/assets/To-Do-List/2.webp",
+      "/assets/To-Do-List/3.webp",
+      "/assets/To-Do-List/4.webp",
+    ],
+  },
+  {
     name: "Bike Rental System",
     repoName: "Bike-Rental-System",
-    description: "It is a Full Stack Bike Rental System Web Application created using ReactJS, Bootstrap 5, CSS, HTML as Frontend and Node.js with Express, Mongoose library as Backend and MongoDB as Database and TypeScript in both side.",
+    description:
+      "It is a Full Stack Bike Rental System Web Application created using ReactJS, Bootstrap 5, CSS, HTML as Frontend and Node.js with Express, Mongoose library as Backend and MongoDB as Database and TypeScript in both side.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "React", "Bootstrap 5", "MongoDB"],
-    otherSkills: ["Web Development", "Graphic Design", "Web Design", "Web Applications", "GitHub", "Responsive Web Design", "Frontend Development", "Backend Development", "Full Stack Development", "REST API", "Express.js", "JSON Web Token (JWT)"],
+    mainSkills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "React",
+      "Bootstrap 5",
+      "MongoDB",
+    ],
+    otherSkills: [
+      "Web Development",
+      "Graphic Design",
+      "Web Design",
+      "Web Applications",
+      "GitHub",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Backend Development",
+      "Full Stack Development",
+      "REST API",
+      "Express.js",
+      "JSON Web Token (JWT)",
+    ],
     previewImageSrc: "assets/Bike Rental System.webp",
-    previewUiImages: ['/assets/Bike-Rental-System/1.webp', '/assets/Bike-Rental-System/2.webp', '/assets/Bike-Rental-System/3.webp', '/assets/Bike-Rental-System/4.webp', '/assets/Bike-Rental-System/5.webp', '/assets/Bike-Rental-System/6.webp', '/assets/Bike-Rental-System/7.webp'],
-}, {
+    previewUiImages: [
+      "/assets/Bike-Rental-System/1.webp",
+      "/assets/Bike-Rental-System/2.webp",
+      "/assets/Bike-Rental-System/3.webp",
+      "/assets/Bike-Rental-System/4.webp",
+      "/assets/Bike-Rental-System/5.webp",
+      "/assets/Bike-Rental-System/6.webp",
+      "/assets/Bike-Rental-System/7.webp",
+    ],
+  },
+  {
     name: "Brandscreen",
     repoName: "Brandscreen",
-    description: "It's a fully responsive landing page design created using NextJS and bootstrap 5.",
+    description:
+      "It's a fully responsive landing page design created using NextJS and bootstrap 5.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript", "NextJS", "Bootstrap 5"],
     otherSkills: ["Responsive Web Design", "Frontend Development"],
     previewImageSrc: "assets/Brandscreen.webp",
-    previewUiImages: ['/assets/Brandscreen/1.webp', '/assets/Brandscreen/2.webp', '/assets/Brandscreen/3.webp', '/assets/Brandscreen/4.webp', '/assets/Brandscreen/5.webp', '/assets/Brandscreen/6.webp', '/assets/Brandscreen/7.webp', '/assets/Brandscreen/8.webp'],
-    liveUrl: "https://brandscreen.vercel.app/"
-}, {
+    previewUiImages: [
+      "/assets/Brandscreen/1.webp",
+      "/assets/Brandscreen/2.webp",
+      "/assets/Brandscreen/3.webp",
+      "/assets/Brandscreen/4.webp",
+      "/assets/Brandscreen/5.webp",
+      "/assets/Brandscreen/6.webp",
+      "/assets/Brandscreen/7.webp",
+      "/assets/Brandscreen/8.webp",
+    ],
+    liveUrl: "https://brandscreen.vercel.app/",
+  },
+  {
     name: "Hobby Cue",
     repoName: "Hobby-Cue",
-    description: "This repository contains a fully responsive webpage created using HTML, CSS, ReactJS and Bootstrap 5.",
+    description:
+      "This repository contains a fully responsive webpage created using HTML, CSS, ReactJS and Bootstrap 5.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
@@ -103,70 +260,99 @@ const projectsData: ProjectType[] = [{
     otherSkills: ["Figma", "Responsive Web Design", "Frontend Development"],
     previewImageSrc: "assets/Hobby Cue.webp",
     previewUiImages: [],
-    liveUrl: "https://hobby-cue-kappa.vercel.app/"
-}, {
+    liveUrl: "https://hobby-cue-kappa.vercel.app/",
+  },
+  {
     name: "StyleBar",
     repoName: "StyleBar",
-    description: "It is a website created using HTML, CSS and JavaScript which is mainly focused on menubar style.",
+    description:
+      "It is a website created using HTML, CSS and JavaScript which is mainly focused on menubar style.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["Responsive Web Design", "Frontend Development", "Problem Solving"],
+    otherSkills: [
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+    ],
     previewImageSrc: "assets/StyleBar.webp",
     previewUiImages: [],
-    liveUrl: "https://stylebar.netlify.app/"
-}, {
+    liveUrl: "https://stylebar.netlify.app/",
+  },
+  {
     name: "Focus",
     repoName: "Focus",
-    description: "This is a landing page created using HTML, CSS & JS. It's provide a feature like fully custom theme, bookmark, search bar (use Google search engine) and some simple apps like calculator, live weather broadcast etc.",
+    description:
+      "This is a landing page created using HTML, CSS & JS. It's provide a feature like fully custom theme, bookmark, search bar (use Google search engine) and some simple apps like calculator, live weather broadcast etc.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving", "Teamwork"],
+    otherSkills: [
+      "Graphic Design",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+      "Teamwork",
+    ],
     previewImageSrc: "assets/Focus.webp",
     previewUiImages: [],
-    liveUrl: "https://focus-7000.netlify.app/"
-}, {
+    liveUrl: "https://focus-7000.netlify.app/",
+  },
+  {
     name: "List of All Doraemon Movies",
     repoName: "All_Doraemon_Movies-v3.5",
-    description: "It a webpage that contains list of all doraemon movies created using HTML, CSS & a little bit JS. It was created by me in 11th when I started learning frontend development.",
+    description:
+      "It a webpage that contains list of all doraemon movies created using HTML, CSS & a little bit JS. It was created by me in 11th when I started learning frontend development.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development"],
+    otherSkills: [
+      "Graphic Design",
+      "Responsive Web Design",
+      "Frontend Development",
+    ],
     previewImageSrc: "assets/All Doraemon Movies.webp",
     previewUiImages: [],
-    liveUrl: "https://subrata-chowdhury.github.io/All_Doraemon_Movies-v3.5/List Of All Doraemon Movies (Version 3.5).html"
-}, {
+    liveUrl:
+      "https://subrata-chowdhury.github.io/All_Doraemon_Movies-v3.5/List Of All Doraemon Movies (Version 3.5).html",
+  },
+  {
     name: "Google Search Page",
     repoName: "Google_Themed_Landing_Page",
-    description: "It's a mimic of Google search engine webpage which allow more customize feature.",
+    description:
+      "It's a mimic of Google search engine webpage which allow more customize feature.",
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
     mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: ["Graphic Design", "Responsive Web Design", "Frontend Development", "Problem Solving"],
+    otherSkills: [
+      "Graphic Design",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+    ],
     previewImageSrc: "assets/Google Landing Page.webp",
     previewUiImages: [],
-    liveUrl: "https://google-themed-landing-page.netlify.app/"
-}]
+    liveUrl: "https://google-themed-landing-page.netlify.app/",
+  },
+];
 
-export { projectsData }
+export { projectsData };
 export const projectCount = projectsData.length;
 
 export type ProjectType = {
-    name: string,
-    repoName: string,
-    description: string,
-    noOfCommits: number | null,
-    createdAt: string | null,
-    updatedAt: string | null,
-    mainSkills: string[],
-    otherSkills: string[],
-    previewImageSrc: string,
-    previewUiImages?: string[],
-    liveUrl?: string
-}
+  name: string;
+  repoName: string;
+  description: string;
+  noOfCommits: number | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+  mainSkills: string[];
+  otherSkills: string[];
+  previewImageSrc: string;
+  previewUiImages?: string[];
+  liveUrl?: string;
+};

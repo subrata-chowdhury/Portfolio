@@ -1,9 +1,7 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react";
 
 function layout({ children }: { children: ReactNode }) {
-    return (
-        <>{children}</>
-    )
+  return <>{children}</>;
 }
 
-export default layout
+export default layout;

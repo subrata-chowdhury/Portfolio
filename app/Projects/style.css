@@ -1,273 +1,274 @@
 .btn {
-    display: grid;
-    grid-auto-flow: column;
-    font-size: 1rem;
-    gap: 0.6rem;
-    background: var(--blue-color);
-    padding: 0.8rem 1rem;
-    color: #fff;
-    border-radius: 0.3rem;
-    transition: 0.3s;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    white-space: nowrap;
+  display: grid;
+  grid-auto-flow: column;
+  font-size: 1rem;
+  gap: 0.6rem;
+  background: var(--blue-color);
+  padding: 0.8rem 1rem;
+  color: #fff;
+  border-radius: 0.3rem;
+  transition: 0.3s;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn:hover {
-    background: rgba(47, 108, 229, 0.9);
+  background: rgba(47, 108, 229, 0.9);
 }
 
 .btn:active,
 .btn:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .projects-container {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
-    padding-top: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  padding-top: 1rem;
 }
 
 .project-container {
-    border-radius: 0.4rem;
-    background: var(--card-container-color);
-    /* box-shadow: 0px 5.333px 16px 0px rgba(154, 208, 255, 0.15); */
-    display: grid;
-    grid-template-rows: auto auto;
-    gap: 0.8rem;
-    padding-bottom: 0.8rem;
-    border: 2px solid rgba(0, 0, 0, 0.15);
-    color: var(--text-color);
-    animation: bottomToTop 0.5s linear, invisibleToVisible 1s linear;
+  border-radius: 0.4rem;
+  background: var(--card-container-color);
+  /* box-shadow: 0px 5.333px 16px 0px rgba(154, 208, 255, 0.15); */
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0.8rem;
+  padding-bottom: 0.8rem;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
+  animation:
+    bottomToTop 0.5s linear,
+    invisibleToVisible 1s linear;
 }
 
 .github-page-btn svg {
-    fill: #fff;
-    width: 1.5rem;
+  fill: #fff;
+  width: 1.5rem;
 }
 
 .project-container .project-image img {
-    border-radius: 0.3rem;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
+  border-radius: 0.3rem;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
 }
 
 .project-container .project-image {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .project-container .project-name {
-    font-weight: bold;
-    font-size: 1.4rem;
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .project-container .details {
-    padding: 0 1.1rem;
-    display: grid;
-    grid-auto-flow: row;
-    gap: 0.7rem;
-    font-size: 1rem;
+  padding: 0 1.1rem;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0.7rem;
+  font-size: 1rem;
 }
 
 .project-link-container {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: space-between;
-    align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .link-container {
-    text-decoration: none;
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-content: start;
-    gap: 0.5rem;
-    color: var(--text-color);
-    font-weight: bold;
-    white-space: nowrap;
-    max-width: fit-content;
+  text-decoration: none;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+  color: var(--text-color);
+  font-weight: bold;
+  white-space: nowrap;
+  max-width: fit-content;
 }
 
 .link-container.liveurl-container {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 0.5rem;
-    gap: 0.4rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
 }
 
 .dark .link-container.liveurl-container {
-    background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .link-container svg {
-    width: 0.8rem;
+  width: 0.8rem;
 }
 
 .link-container svg path {
-    stroke: var(--text-color);
+  stroke: var(--text-color);
 }
 
 .link-container:active {
-    color: #000;
+  color: #000;
 }
 
 .project-container .more-details.btn {
-    padding: 0.6rem 0.8rem;
+  padding: 0.6rem 0.8rem;
 }
 
 .see-more-btn-container {
-    margin-top: 1rem;
-    display: grid;
-    justify-content: end;
+  margin-top: 1rem;
+  display: grid;
+  justify-content: end;
 }
 
 .project-container .about-project .read-more-btn {
-    color: var(--blue-color);
-    cursor: pointer;
+  color: var(--blue-color);
+  cursor: pointer;
 }
 
 .detailed-project-view-container {
-    display: grid;
-    grid-template-columns: 70% auto;
-    gap: 1rem;
-    padding: 4rem;
-    padding-top: 1rem;
-    margin-top: 4.5rem;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 70% auto;
+  gap: 1rem;
+  padding: 4rem;
+  padding-top: 1rem;
+  margin-top: 4.5rem;
+  box-sizing: border-box;
 }
 
 .detailed-project-view-container .left-side .heading {
-    padding-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.7rem;
+  padding-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.7rem;
 }
 
 .detailed-project-view-container .left-side .heading:first-child {
-    padding-top: 0;
-    font-size: 2rem;
+  padding-top: 0;
+  font-size: 2rem;
 }
 
 .detailed-project-view-container .left-side .skill-container {
-    font-size: 0.9rem;
-    padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.7rem;
 }
 
 .detailed-project-view-container .skills-container .skill-name-container {
-    gap: 0.3rem;
+  gap: 0.3rem;
 }
 
 .detailed-project-view-container .skills-container .skill-name-container img {
-    width: 1.5rem;
-    height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .detailed-project-view-container .right-side {
-    display: grid;
-    grid-auto-flow: row;
-    align-items: start;
-    align-content: start;
-    gap: 1rem;
+  display: grid;
+  grid-auto-flow: row;
+  align-items: start;
+  align-content: start;
+  gap: 1rem;
 }
 
 .project-commit-details-container {
-    background: var(--container-color);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 1.1rem;
-    color: var(--text-color);
+  background: var(--container-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
 }
 
 .project-commit-details-container:first-child {
-    margin-top: 3rem;
+  margin-top: 3rem;
 }
 
 .detailed-project-view-container .project-description {
-    color: var(--text-color);
-    font-weight: 600;
+  color: var(--text-color);
+  font-weight: 600;
 }
 
 .gallery-project-thumb {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 0.3rem;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
-    object-fit: cover;
-    object-position: center;
-    cursor: pointer;
-    transition: 0.3s;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .gallery-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 0rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0rem;
 }
 
 .gallery-project-thumb:hover {
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-model-arrow {
-    position: absolute;
-    top: 50%;
-    padding: 1rem;
-    cursor: pointer;
-    border-radius: 1000px;
-    background: var(--container-color);
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 50%;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 1000px;
+  background: var(--container-color);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1385px) {
-
-    .projects-container .project-link-container,
-    .projects-container .project-link-container .btn {
-        font-size: 0.8rem;
-    }
+  .projects-container .project-link-container,
+  .projects-container .project-link-container .btn {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 1070px) {
-    .projects-container {
-        grid-template-columns: 1fr 1fr;
-    }
+  .projects-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 800px) {
-    .detailed-project-view-container {
-        padding: 2rem;
-    }
+  .detailed-project-view-container {
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 720px) {
-    .gallery-model-arrow svg {
-        width: 1rem;
-        height: 1rem;
-    }
+  .gallery-model-arrow svg {
+    width: 1rem;
+    height: 1rem;
+  }
 
-    .gallery-model-arrow {
-        padding: 0.5rem;
-    }
+  .gallery-model-arrow {
+    padding: 0.5rem;
+  }
 }
 
 @media (max-width: 530px) {
-    .detailed-project-view-container {
-        grid-template-columns: none;
-        grid-template-rows: auto auto;
-    }
+  .detailed-project-view-container {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+  }
 }
 
 @media (max-width: 480px) {
-    .projects-container {
-        grid-template-columns: 1fr;
-    }
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
 }
