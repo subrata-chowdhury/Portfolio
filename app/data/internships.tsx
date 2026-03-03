@@ -81,35 +81,32 @@ const internshipArray: InternshipType[] = [
       <div>
         <ul>
           <li>
-            Resolved UI and functionality frontend bugs, contributing
-            significantly to the platform’s performance and user experience.
+            Resolved <strong>UI and functionality issues</strong> using{" "}
+            <strong>React</strong>, <strong>TypeScript</strong>, and{" "}
+            <strong>Redux Toolkit</strong> to optimize platform performance and
+            user experience.
           </li>
           <li>
-            Engaged in thorough bug analysis, reproduction, and resolution using
-            React.js, Tailwind CSS, Redux Toolkit, CSS, and TypeScript.
+            Contributed to <strong>CI/CD pipelines</strong>, conducted{" "}
+            <strong>pull request (PR) reviews</strong>, and managed{" "}
+            <strong>bug tracking</strong> within{" "}
+            <strong>Agile workflows</strong> to ensure stable code delivery.
           </li>
           <li>
-            Gained in-depth understanding of the project workflow, including
-            architectural diagrams like ER models, User Flow diagrams, and
-            component hierarchies.
+            Managed <strong>concurrent development tasks</strong> across{" "}
+            <strong>3 active projects</strong>, efficiently balancing priorities
+            to meet strict project milestones.
           </li>
           <li>
-            Updated bug-tracking sheets daily to ensure task transparency and
-            progress tracking.
-          </li>
-          <li>
-            Managed and maintained GitHub repositories, including pull request
-            creation, review, and merging, ensuring clean and stable code
-            delivery.
-          </li>
-          <li>
-            Participated in daily stand-up meetings, reporting completed tasks
-            and blockers to maintain team alignment.
+            <strong>Promoted to Frontend Lead</strong>, taking ownership and
+            successfully driving the <strong>technical delivery</strong> for{" "}
+            <strong>2 key projects</strong>.
           </li>
         </ul>
-        🧩 This internship was a cornerstone in my growth as a frontend
-        developer, giving me hands-on experience with real-world SaaS products
-        and high-level team collaboration.
+        🧩 This role was a cornerstone in my growth as a{" "}
+        <strong>frontend developer</strong>, giving me hands-on experience with{" "}
+        <strong>real-world SaaS products</strong>, cross-functional
+        collaboration, and <strong>technical leadership</strong>.
         <br />
       </div>
     ),
@@ -122,6 +119,20 @@ const internshipArray: InternshipType[] = [
         description:
           "AI-powered lead generation and outreach platform that automates prospecting, enriches lead data, identifies high-intent prospects, and delivers personalized messaging with real-time signals—helping teams engage faster, qualify better, and convert more revenue.",
         iconSrc: "/internships/products/vikaas.webp",
+      },
+      {
+        title: "ATG Meet Recorder",
+        link: "https://meet.atg.party",
+        description:
+          "ATG Meet Recorder is an AI-powered meeting assistant that records, transcribes, summarizes, and analyzes your meetings.",
+        iconSrc: "/internships/companys/atg.webp",
+      },
+      {
+        title: "Banao Technologies",
+        link: "https://banao.tech/",
+        description:
+          "Banao Technologies is a leading IT company specializing in web and mobile app development, UI/UX design, and digital marketing solutions.",
+        iconSrc: "/internships/companys/banao.webp",
       },
     ],
     skills: [

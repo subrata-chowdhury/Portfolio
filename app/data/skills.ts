@@ -271,7 +271,7 @@ const skillsData: Skill[] = [
     name: "Tailwind CSS",
     iconSrc: "/icons/tailwind.svg",
     id: "tailwindcss",
-    lvl: 2,
+    lvl: 3,
     topSkill: true,
   },
   {
