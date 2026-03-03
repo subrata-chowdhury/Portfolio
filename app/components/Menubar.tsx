@@ -155,11 +155,11 @@ export const Menus = ({
     },
     {
       name: "Projects",
-      link: "/Projects",
+      link: "/projects",
     },
     {
-      name: "Experience",
-      link: "/Experience",
+      name: "Experiences",
+      link: "/experiences",
     },
     {
       name: "Contact Me",

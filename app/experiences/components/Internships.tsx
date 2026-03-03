@@ -80,7 +80,7 @@ const InternshipCard = ({ internship }: { internship: InternshipType }) => {
           <Arrow />
         </Link>
         <Link
-          href={"/Experience/" + internship.id}
+          href={"/experiences/" + internship.id}
           style={{ padding: "0.5rem 0.85rem" }}
           className="more-details btn"
         >

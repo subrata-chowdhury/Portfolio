@@ -39,7 +39,7 @@ export default function Projects({
 
         {showSeeMoreBtn && (
           <div className="see-more-btn-container">
-            <Link href={"/Projects"} className="btn">
+            <Link href={"/projects"} className="btn">
               View All Projects
             </Link>
           </div>
@@ -163,7 +163,7 @@ export function Project({
                 <Arrow />
               </Link>
             )}
-            <Link href={"/Projects/" + repoName} className="more-details btn">
+            <Link href={"/projects/" + repoName} className="more-details btn">
               More Details
             </Link>
           </div>
