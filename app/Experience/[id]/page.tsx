@@ -8,26 +8,47 @@ import { skillsData } from "@/app/data/skills";
 import InternetIcon from "@/app/Icons/Internet";
 import Image from "next/image";
 
-async function page({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const internship = internshipArray.filter((e) => e.id === id)[0];
-  if (!internship)
-    return <div className="empty-heading">Internship not found</div>;
+// 1. Tell Next.js to revalidate this page in the background every 7 days
+export const revalidate = 604800;
 
-  const projectSkills = [];
-  for (let index = 0; index < internship.skills.length; index++) {
-    const filterData = skillsData.filter(
-      (e) => e.name === internship.skills[index],
-    )[0];
-    if (filterData) projectSkills.push(filterData);
-    else
-      projectSkills.push({
-        name: internship.skills[index],
-        iconSrc: "/icons/skill.webp",
-        id: internship.skills[index].toLowerCase().split(" ").join("-"),
-        lvl: 1,
-      });
+// 2. Generate static paths for all internships at build time
+export async function generateStaticParams() {
+  return internshipArray.map((internship) => ({
+    id: internship.id,
+  }));
+}
+
+// 3. Strict typing for the page props
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+const Page = async ({ params }: PageProps) => {
+  const { id } = await params;
+
+  // Use .find() instead of .filter()[0] for better performance and safety
+  const internship = internshipArray.find((e) => e.id === id);
+
+  if (!internship) {
+    return <div className="empty-heading">Internship not found</div>;
   }
+
+  // Refactored the 'for' loop into a modern, declarative '.map()' array method
+  const projectSkills = internship.skills.map((skillName) => {
+    const foundSkill = skillsData.find((e) => e.name === skillName);
+
+    if (foundSkill) {
+      return foundSkill;
+    }
+
+    // Fallback if the skill isn't found in skillsData
+    return {
+      name: skillName,
+      iconSrc: "/icons/skill.webp",
+      id: skillName.toLowerCase().split(" ").join("-"),
+      lvl: 1,
+    };
+  });
 
   return (
     <div className="internship-page-container">
@@ -49,17 +70,15 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
           src={internship.iconSrc}
           width={50}
           height={50}
-          alt=""
+          alt={`${internship.company} logo`} // Added meaningful alt text for accessibility
           style={{ borderRadius: "100%" }}
         />
-        <h2
-          className=""
-          style={{ fontSize: "1.2rem", marginTop: 0, marginBottom: 0 }}
-        >
+        <h2 style={{ fontSize: "1.2rem", marginTop: 0, marginBottom: 0 }}>
           {internship.company}
         </h2>
         <Arrow style={{ width: 15, height: 15, marginLeft: "0.2rem" }} />
       </Link>
+
       <div>
         <span style={{ fontWeight: 600 }}>Location:</span> {internship.location}
       </div>
@@ -67,8 +86,9 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
         <span style={{ fontWeight: 600 }}>Duration:</span> {internship.duration}
       </div>
       <div>
-        <span style={{ fontWeight: 600 }}>Stripend:</span> {internship.stipend}
+        <span style={{ fontWeight: 600 }}>Stipend:</span> {internship.stipend}
       </div>
+
       <div
         style={{
           display: "flex",
@@ -102,10 +122,13 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
           <Arrow />
         </Link>
       </div>
+
       <h2 className="heading">Responsibilities & Contributions</h2>
       <div>{internship.description}</div>
+
       <h2 className="heading">Skills</h2>
       <SkillsContainer skillsData={projectSkills} />
+
       <h2 className="heading">Project</h2>
       <div>
         {internship.workLinks.map((link, index) => {
@@ -132,7 +155,7 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
                   src={link.iconSrc}
                   width={40}
                   height={40}
-                  alt=""
+                  alt={`${link.title} icon`}
                   style={{ borderRadius: "100%" }}
                 />
                 <h2 style={{ fontSize: "1.2rem", marginTop: 0 }}>
@@ -154,6 +177,7 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
           );
         })}
       </div>
+
       {internship.paySlips.length > 0 && (
         <>
           <h2 className="heading">Pay Slips</h2>
@@ -185,6 +209,6 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
       )}
     </div>
   );
-}
+};
 
-export default page;
+export default Page;
