@@ -4,10 +4,10 @@ import Header from "./components/Header";
 import AboutMe from "./components/AboutMe";
 import Skills from "./components/Skills";
 import Education from "./components/Education";
-import Projects from "./Projects/components/Projects";
+import Projects from "./projects/components/Projects";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
-import Internships from "./Experience/components/Internships";
+import Internships from "./experiences/components/Internships";
 
 export default function Home() {
   const contactUs = useRef<HTMLDivElement | null>(null);

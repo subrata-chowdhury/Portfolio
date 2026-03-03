@@ -3,7 +3,7 @@ import { useState } from "react";
 import "@/app/styles/skills.css";
 import { skillsData as defaultValue, Skill } from "../data/skills";
 import Model from "./Model";
-import { ProjectsContainer } from "@/app/Projects/components/Projects";
+import { ProjectsContainer } from "@/app/projects/components/Projects";
 import { projectsData } from "../data/projects";
 import Image from "next/image";
 import Title from "@/components/Title";
