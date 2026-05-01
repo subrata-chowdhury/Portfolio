@@ -97,7 +97,7 @@ const Gallery = ({ images }: Props) => {
                     width: 10,
                     background:
                       images.indexOf(currentImg) === i
-                        ? "gray"
+                        ? "white"
                         : "var(--text-color)",
                     borderRadius: 10,
                   }}

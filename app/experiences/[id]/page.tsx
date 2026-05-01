@@ -129,7 +129,7 @@ const Page = async ({ params }: PageProps) => {
       <h2 className="heading">Skills</h2>
       <SkillsContainer skillsData={projectSkills} />
 
-      <h2 className="heading">Project</h2>
+      <h2 className="heading">Projects</h2>
       <div>
         {internship.workLinks.map((link, index) => {
           return (

@@ -19,7 +19,11 @@ const open_sans = Open_Sans({
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={open_sans.className + " " + raleway.className}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={open_sans.className + " " + raleway.className}
+    >
       <head>
         <meta charSet="UTF-8" />
         {/* <link href='https://fonts.googleapis.com/css?family=IBM Plex Sans' rel='stylesheet' />
