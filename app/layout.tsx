@@ -6,6 +6,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import "./globals.css";
 import { ReactNode } from "react";
 import { Open_Sans, Raleway } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -128,21 +129,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body suppressHydrationWarning>
         {/* 1. Google Analytics Injection */}
         {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-              `}
-            </Script>
-          </>
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
 
         {/* 2. JSON-LD Schema Injection */}
