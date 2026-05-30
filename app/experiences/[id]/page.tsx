@@ -7,6 +7,7 @@ import { SkillsContainer } from "@/app/components/Skills";
 import { skillsData } from "@/app/data/skills";
 import InternetIcon from "@/app/Icons/Internet";
 import Image from "next/image";
+import { Metadata } from "next";
 
 // 1. Tell Next.js to revalidate this page in the background every 7 days
 export const revalidate = 604800;
@@ -23,8 +24,54 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-const Page = async ({ params }: PageProps) => {
-  const { id } = await params;
+// 4. ADDED DYNAMIC METADATA GENERATION
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { id } = await props.params;
+  const internship = internshipArray.find((e) => e.id === id);
+
+  if (!internship) {
+    return {
+      title: "Experience Not Found",
+      description:
+        "The experience or internship you are looking for does not exist.",
+    };
+  }
+
+  // CRITICAL FIX: Since internship.description is a JSX.Element, it cannot be used for SEO tags.
+  // Constructing a plain text string representation instead.
+  const seoDescription = `${internship.title} at ${internship.company}. Duration: ${internship.duration}. Location: ${internship.location}.`;
+
+  const pageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/experiences/${id}`; // Update with your actual domain
+  const imageUrl = `/${internship.iconSrc}`;
+
+  return {
+    title: `${internship.title} at ${internship.company} | Experience`,
+    description: seoDescription,
+    openGraph: {
+      title: `${internship.title} at ${internship.company}`,
+      description: seoDescription,
+      url: pageUrl,
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          width: 400,
+          height: 400,
+          alt: `${internship.company} Logo`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary", // Using 'summary' instead of 'summary_large_image' since it's a square logo
+      title: `${internship.title} at ${internship.company}`,
+      description: seoDescription,
+      images: [imageUrl],
+    },
+  };
+}
+
+const Page = async (props: PageProps) => {
+  const { id } = await props.params;
 
   // Use .find() instead of .filter()[0] for better performance and safety
   const internship = internshipArray.find((e) => e.id === id);

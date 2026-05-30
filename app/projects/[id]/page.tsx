@@ -1,6 +1,7 @@
 import { projectsData } from "@/app/data/projects";
 import React from "react";
 import DetailedProjectView from "./components/MainProjectView";
+import { Metadata } from "next";
 
 // Strict types for the GitHub API responses
 interface GitHubRepoResponse {
@@ -31,6 +32,47 @@ export const revalidate = 604800; // e.g., revalidate once a week
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+// 2. ADDED DYNAMIC METADATA GENERATION
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const { id } = await props.params;
+  const projectDetails = projectsData.find((e) => e.repoName === id);
+
+  if (!projectDetails) {
+    return {
+      title: "Project Not Found",
+      description: "The project you are looking for does not exist.",
+    };
+  }
+
+  const projectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/projects/${id}`; // Update with your actual domain
+  const imageUrl = `/${projectDetails.previewImageSrc}`;
+
+  return {
+    title: `${projectDetails.name} | Projects`,
+    description: projectDetails.description,
+    openGraph: {
+      title: projectDetails.name,
+      description: projectDetails.description,
+      url: projectUrl,
+      type: "website",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${projectDetails.name} Preview Image`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: projectDetails.name,
+      description: projectDetails.description,
+      images: [imageUrl],
+    },
+  };
 }
 
 const Page = async (props: PageProps) => {

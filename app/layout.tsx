@@ -1,3 +1,5 @@
+import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import Footer from "./components/Footer";
 import Menubar from "./components/Menubar";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -17,69 +19,163 @@ const open_sans = Open_Sans({
   display: "swap",
 });
 
+// Explicitly define Viewport settings (Next.js 14+ standard)
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff", // Update this to match your actual brand/theme color
+};
+
+// Centralized, Next.js-native Metadata configuration
+export const metadata: Metadata = {
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL}`),
+  title: {
+    default: "Subrata Chowdhury | Full-Stack Web Developer",
+    template: "%s | Subrata Chowdhury",
+  },
+  description:
+    "Welcome to the professional portfolio of Subrata Chowdhury, a Full-Stack Web Developer based in West Bengal, India. Showcasing expertise in React.js, Next.js, Node.js, and modern web architectures.",
+  keywords: [
+    "Subrata Chowdhury",
+    "Full-Stack Developer",
+    "Web Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Frontend Engineer",
+    "Backend Engineer",
+    "West Bengal Web Developer",
+    "India",
+    "Portfolio",
+  ],
+  authors: [
+    {
+      name: "Subrata Chowdhury",
+      url: `${process.env.NEXT_PUBLIC_APP_URL}`,
+    },
+  ],
+  creator: "Subrata Chowdhury",
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+      { url: "/logo.webp", type: "image/webp" },
+    ],
+    apple: "/logo.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    title: "Subrata Chowdhury | Full-Stack Web Developer",
+    description:
+      "Discover the portfolio of Subrata Chowdhury. Showcasing professional projects, full-stack web development skills, and technical expertise.",
+    siteName: "Subrata Chowdhury Portfolio",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Subrata Chowdhury Portfolio Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Subrata Chowdhury | Full-Stack Web Developer",
+    description:
+      "Explore the professional portfolio of Subrata Chowdhury, featuring projects and skills in full-stack development, React.js, and modern tech stacks.",
+    images: ["/logo.png"],
+    creator: "@Subrata70000",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
+  // Define Structured Data (JSON-LD) for SEO Rich Snippets
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Subrata Chowdhury",
+    url: `${process.env.NEXT_PUBLIC_APP_URL}`,
+    image: `${process.env.NEXT_PUBLIC_APP_URL}/logo.png`,
+    jobTitle: "Full-Stack Web Developer",
+    // Make sure these match your actual active profiles
+    sameAs: [
+      "https://github.com/subrata-chowdhury",
+      "https://www.linkedin.com/in/your-linkedin-id", // Update this!
+      "https://twitter.com/Subrata70000",
+    ],
+  };
+
   return (
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={open_sans.className + " " + raleway.className}
+      className={`${open_sans.className} ${raleway.className}`}
     >
-      <head>
-        <meta charSet="UTF-8" />
-        {/* <link href='https://fonts.googleapis.com/css?family=IBM Plex Sans' rel='stylesheet' />
-                <link
-                    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-                    rel="stylesheet" crossOrigin="" /> */}
-        {/* <script src="https://cdn.jsdelivr.net/npm/kute.js@2.2.4/dist/kute.min.js"></script> */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="/logo.png" />
-        <link rel="icon" type="image/webp" href="/logo.webp" />
-        <title>Subrata Chowdhury | Full-Stack Web Developer Portfolio</title>
-        <meta
-          name="description"
-          content="Welcome to the professional portfolio of Subrata Chowdhury, showcasing expertise in full-stack web development, React.js, Next.js, and AWS. Explore innovative projects and technical skills."
+      <body suppressHydrationWarning>
+        {/* 1. Google Analytics Injection */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
+
+        {/* 2. JSON-LD Schema Injection */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:image"
-          content="https://subratachowdhuryportfolio.vercel.app/logo.png"
-        />
-        <meta
-          property="twitter:title"
-          content="Subrata Chowdhury | Full-Stack Web Developer Portfolio"
-        />
-        <meta
-          property="twitter:description"
-          content="Explore the professional portfolio of Subrata Chowdhury, featuring projects and skills in full-stack development, React.js, and AWS."
-        />
+        <ThemeProvider>
+          {/* 3. Accessibility: Skip to Content Button */}
+          <a
+            href="#main-content"
+            className="skip-to-content-btn"
+            style={{
+              position: "absolute",
+              left: "-9999px",
+              top: "auto",
+              width: "1px",
+              height: "1px",
+              overflow: "hidden",
+            }}
+          >
+            Skip to main content
+          </a>
 
-        <meta
-          property="og:image"
-          content="https://subratachowdhuryportfolio.vercel.app/logo.png"
-        />
-        <meta property="og:site_name" content="Subrata Chowdhury Portfolio" />
-        <meta
-          property="og:title"
-          content="Subrata Chowdhury | Full-Stack Web Developer Portfolio"
-        />
-        <meta
-          property="og:description"
-          content="Discover the portfolio of Subrata Chowdhury, a skilled web developer with expertise in React.js, Next.js, and AWS. Showcasing professional projects and development skills."
-        />
-        <meta
-          property="og:url"
-          content="https://subratachowdhuryportfolio.vercel.app/"
-        />
+          <Menubar />
 
-        <meta name="twitter:creator" content="@Subrata70000" />
-        <meta property="og:type" content="website" />
-      </head>
-      <ThemeProvider>
-        <Menubar />
-        {children}
-        <Footer />
-      </ThemeProvider>
+          {/* 4. Wrapped children in a <main> tag with an ID corresponding to the skip link */}
+          <main id="main-content">{children}</main>
+
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
