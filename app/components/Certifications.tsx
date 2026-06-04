@@ -52,7 +52,7 @@ function Certification({
       </div>
       <a className="link-container" target="_blank" href={link}>
         <div className="project-link">View Here</div>
-        <Arrow />
+        <Arrow size={12} />
       </a>
     </div>
   );

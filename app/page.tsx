@@ -8,11 +8,9 @@ import Projects from "./projects/components/Projects";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Internships from "./experiences/components/Internships";
+import Feedback from "./components/Feedback";
 
 export default function Home() {
-  const contactUs = useRef<HTMLDivElement | null>(null);
-  const projects = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     autoScrollFromHash();
     window.addEventListener("hashchange", autoScrollFromHash);
@@ -23,9 +21,13 @@ export default function Home() {
     const hash = window.location.hash;
     try {
       if (hash === "#contact") {
-        contactUs.current?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("contact")
+          ?.scrollIntoView({ behavior: "smooth" });
       } else if (hash === "#projects") {
-        projects.current?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("projects")
+          ?.scrollIntoView({ behavior: "smooth" });
       } else {
         document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
       }
@@ -38,10 +40,11 @@ export default function Home() {
       <AboutMe />
       <Skills />
       <Education />
-      <Projects containerStyle={{ marginTop: "2rem" }} forwardRef={projects} />
+      <Projects containerStyle={{ marginTop: "2rem" }} />
       <Certifications />
       <Internships containerStyle={{ marginTop: "2rem" }} />
-      <Contact forwardRef={contactUs} />
+      <Contact />
+      <Feedback />
     </>
   );
 }

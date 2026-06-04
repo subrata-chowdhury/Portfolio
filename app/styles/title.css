@@ -1,40 +1,77 @@
 .title-container {
-  display: flex;
+  display: inline-flex;
   position: relative;
   flex-direction: column;
   align-items: center;
-}
-
-.title-container:hover .main-title-node-container {
-  display: block;
+  justify-content: center;
 }
 
 .main-title-node-container {
-  display: none;
+  /* Animation states */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(6px); /* Start slightly lower for a slide-up effect */
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    visibility 0.2s;
+
+  /* Positioning */
   position: absolute;
-  z-index: 10;
-  padding: 0.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  border-radius: 0.5rem;
-  width: fit-content;
+  z-index: 50;
+  bottom: 100%; /* Push completely above the trigger */
+  margin-bottom: 10px; /* Space for the arrow */
+
+  /* Styling */
+  padding: 0.4rem 0.85rem;
+  border-radius: 0.4rem;
+  width: max-content;
+  max-width: 250px; /* Prevent it from stretching too wide on long text */
+  text-align: center;
   font-size: 0.75rem;
-  line-height: 1rem;
-  top: 0px;
-  transform: translateY(-100%);
-  top: -6px;
-  background: rgb(222, 222, 222);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: pre-wrap; /* Allow wrapping if max-width is hit */
+
+  /* High contrast colors - update these CSS vars based on your global theme */
+  background: var(--text-color, #1a1a1a);
+  color: var(--container-color, #ffffff);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none; /* Prevent the tooltip itself from flickering the hover state */
+}
+
+/* Show tooltip on hover OR when keyboard focuses the trigger */
+.title-container:hover .main-title-node-container,
+.title-container:focus-within .main-title-node-container {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .title-arrow {
   position: absolute;
   left: 50%;
-  border-top-width: 8px;
-  border-right-width: 8px;
-  border-left-width: 8px;
-  width: 8px;
-  height: 8px;
-  bottom: -5px;
-  transform: rotate(45deg) translateX(-50%);
-  background: rgb(222, 222, 222);
+  bottom: -4px; /* Half the height of the box to create the point */
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+
+  /* inherit background color dynamically from the parent tooltip */
+  background: inherit;
+
+  /* Ensure the shadow doesn't clip awkwardly into the tooltip body */
+  z-index: -1;
+  border-bottom-right-radius: 2px; /* Slight rounding on the arrow tip */
+}
+
+.title-trigger {
+  cursor: pointer;
+  display: inherit;
+  border-radius: inherit; /* Inherit border radius for focus outlines */
+}
+
+/* Accessibility focus ring */
+.title-trigger:focus-visible {
+  outline: 2px solid var(--blue-color, #007bff);
+  outline-offset: 2px;
 }

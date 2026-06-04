@@ -1,30 +1,59 @@
 .about-container {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-color);
 }
 
+.about-container .sub-about-container p {
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
 .about-container .sub-about-container .points {
-  line-height: 2;
+  line-height: 1.8;
+  margin-top: 1.5rem;
+  padding-left: 1.5rem; /* Proper indentation for bullet points */
+  list-style-type: disc;
+}
+
+.about-container .sub-about-container .points li {
+  margin-bottom: 0.5rem;
 }
 
 .about-container .sub-about-container .about-contact-details {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   align-items: center;
-  justify-content: flex-start;
   gap: 1.5rem;
+  margin: 2rem 0;
+  background: rgba(0, 0, 0, 0.03); /* Subtle card background */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .about-container .sub-about-container .about-contact-details div {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.about-container .sub-about-container .about-contact-details a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.about-container .sub-about-container .about-contact-details a:hover {
+  color: var(--blue-color);
+  text-decoration: underline;
 }
 
 .about-container .sub-about-container .about-contact-details div svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   fill: var(--blue-color);
+  flex-shrink: 0;
 }
 
 .about-contact-details .field {
@@ -45,6 +74,7 @@
   justify-content: center;
   padding: 1.5rem;
   color: var(--text-color);
+  text-decoration: none;
 }
 
 .about-container .counts-container .count .count-number {
@@ -82,15 +112,19 @@
   fill: #fff;
 }
 
+/* Responsive adjustments */
 @media (max-width: 630px) {
   .about-container .sub-about-container .about-contact-details {
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
   .about-container {
     padding: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
+  }
+  .about-container .counts-container {
+    gap: 1.5rem;
   }
 }

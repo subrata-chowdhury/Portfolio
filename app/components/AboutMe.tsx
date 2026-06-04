@@ -9,48 +9,82 @@ import CertificationIcon from "../Icons/CertificationIcon";
 import SkillsIcon from "../Icons/SkillsIcon";
 import Link from "next/link";
 
-function AboutMe() {
+export default function AboutMe() {
   return (
     <section className="screen-container">
-      <h1 className="heading" id="education">
-        About Me
-      </h1>
+      <h1 className="heading">About Me</h1>
       <div className="about-container">
-        <article className="sub-about-container">
-          I am a final year Computer Science Engineering Student at Bengal
-          College of Engineering and Technology.
-          <br />
-          As a skilled web developer, I am proficient in HTML, CSS, JavaScript,
-          and ReactJS.
-          <br />
-          I&apos;ve completed various projects, from AI-driven timetable
-          creators to responsive web apps.
-          <br />
-          <br />
-          <div className="about-contact-details">
-            <div>
-              <SimpleArrow />
-              <span className="field">Email:&nbsp;</span>
-              subratachowdhury7000@gmail.com
-            </div>
-            <div>
-              <SimpleArrow />
-              <span className="field">Location:&nbsp;</span>West Bengal, India
-            </div>
-          </div>
-          <br />
-          <div className="points">
-            - Adaptable quickly and organized well.
-            <br />
-            - Interested in learning the latest web technologies quickly.
-            <br />
-            - Able to Work well in teams as well as Individually
-            <br />
-          </div>
-        </article>
+        <BioSection />
         <Counts />
       </div>
     </section>
+  );
+}
+
+function BioSection() {
+  return (
+    <article className="sub-about-container">
+      <p>
+        I am a Computer Science Engineering graduate with a proven track record
+        of architecting scalable, production-ready applications.
+      </p>
+      <p>
+        As a results-driven Full-Stack Web Developer, I specialize in helping
+        businesses elevate their digital presence. By leveraging modern,
+        high-performance frameworks like React, Next.js, Node.js, and strict
+        TypeScript, I replace outdated systems with reliable, lightning-fast web
+        experiences.
+      </p>
+      <p>
+        With professional experience spanning dynamic startups to modern SaaS
+        platforms, I have successfully driven end-to-end technical delivery.
+        From optimizing SEO and backend integration to managing CI/CD pipelines
+        in Agile environments, I am dedicated to delivering robust UI solutions
+        that build trust and drive business growth.
+      </p>
+
+      <ContactDetails />
+
+      <ul className="points">
+        <li>
+          Proven experience delivering high-performance SaaS solutions and
+          modernizing business landing pages.
+        </li>
+        <li>
+          Strong expertise in responsive design, MERN stack architecture, and
+          comprehensive SEO optimization.
+        </li>
+        <li>
+          Highly organized and adaptable, excelling in both independent
+          freelance projects and collaborative Agile teams.
+        </li>
+        <li>Hobbies include Web Development, gaming, and music.</li>
+      </ul>
+    </article>
+  );
+}
+
+function ContactDetails() {
+  return (
+    <div className="about-contact-details">
+      <div>
+        <SimpleArrow />
+        <span className="field">Email:&nbsp;</span>
+        <a href="mailto:subratachowdhury7000@gmail.com">
+          subratachowdhury7000@gmail.com
+        </a>
+      </div>
+      <div>
+        <SimpleArrow />
+        <span className="field">Phone:&nbsp;</span>
+        <a href="tel:+919382640789">+91 9382640789</a>
+      </div>
+      <div>
+        <SimpleArrow />
+        <span className="field">Location:&nbsp;</span>
+        West Bengal, India
+      </div>
+    </div>
   );
 }
 
@@ -81,5 +115,3 @@ function Counts() {
     </section>
   );
 }
-
-export default AboutMe;

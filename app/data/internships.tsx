@@ -165,7 +165,11 @@ const internshipArray: InternshipType[] = [
   },
 ];
 
-export default internshipArray;
+export default internshipArray.sort((a, b) => {
+  const dateA = new Date(a.duration.split(" (")[1].split(" - ")[0]);
+  const dateB = new Date(b.duration.split(" (")[1].split(" - ")[0]);
+  return dateB.getTime() - dateA.getTime();
+});
 
 export type InternshipType = {
   id: string;

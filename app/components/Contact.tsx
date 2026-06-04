@@ -5,14 +5,10 @@ import Marker from "../Icons/marker";
 import MobileNotch from "../Icons/mobile-notch";
 import EnvelopeIcon from "../Icons/envelope";
 
-export default function Contact({
-  forwardRef = null,
-}: {
-  forwardRef: React.RefObject<HTMLDivElement | null> | null;
-}) {
+export default function Contact() {
   return (
     <section className="screen-container">
-      <h1 className="heading" id="contact" ref={forwardRef}>
+      <h1 className="heading" id="contact">
         Contact Me
       </h1>
       <div className="contact-container">

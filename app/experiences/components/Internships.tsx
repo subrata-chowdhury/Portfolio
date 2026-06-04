@@ -12,7 +12,7 @@ function Internships({
 }) {
   return (
     <div className="internships-page-container" style={containerStyle}>
-      <h1 className="heading">Internships</h1>
+      <h1 className="heading">Experiences</h1>
       <div className="main-internship-container">
         {internshipArray.map((internship) => (
           <InternshipCard key={internship.id} internship={internship} />
@@ -58,7 +58,7 @@ const InternshipCard = ({ internship }: { internship: InternshipType }) => {
         href={internship.linkedInLink}
       >
         <div className="project-link">{internship.company}</div>
-        <Arrow />
+        <Arrow size={10} />
       </Link>
       <div>{internship.location}</div>
       <div>{internship.duration}</div>
@@ -77,7 +77,7 @@ const InternshipCard = ({ internship }: { internship: InternshipType }) => {
           href={internship.certificateSrc}
         >
           <div className="project-link">View Certificate</div>
-          <Arrow />
+          <Arrow size={14} />
         </Link>
         <Link
           href={"/experiences/" + internship.id}

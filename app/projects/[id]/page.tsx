@@ -115,7 +115,7 @@ async function fetchLatestData(repoName: string): Promise<{
   description?: string;
 }> {
   try {
-    let description = "";
+    let description: string | undefined = undefined;
 
     const repoResponse = await fetch(
       `https://api.github.com/repos/subrata-chowdhury/${repoName}`,
@@ -126,7 +126,7 @@ async function fetchLatestData(repoName: string): Promise<{
 
     if (repoResponse.ok) {
       const body: GitHubRepoResponse = await repoResponse.json();
-      description = body.description ?? "";
+      description = body.description ?? undefined;
     }
 
     let totalNoOfCommits = 0;
@@ -144,10 +144,9 @@ async function fetchLatestData(repoName: string): Promise<{
         },
       );
 
+      // If commits fetch fails (e.g. private repo), throw to drop into the catch block
       if (!commitResponse.ok) {
-        throw new Error(
-          `GitHub API Error: ${commitResponse.status} ${commitResponse.statusText}`,
-        );
+        throw new Error(`GitHub API Error: ${commitResponse.status}`);
       }
 
       const commitDetails: GitHubCommit[] = await commitResponse.json();
@@ -172,8 +171,16 @@ async function fetchLatestData(repoName: string): Promise<{
 
     return { noOfCommits: totalNoOfCommits, updatedAt, createdAt, description };
   } catch (error) {
-    // Log the error so you can see failures in your build terminal rather than failing silently
-    console.error(`[Build Error] Failed to fetch data for ${repoName}:`, error);
-    return { noOfCommits: null, updatedAt: "", createdAt: "", description: "" };
+    // Return undefined for strings so the static data fallback (??) works perfectly
+    console.error(
+      `[Build/Fetch Error] Failed to fetch data for ${repoName}:`,
+      error,
+    );
+    return {
+      noOfCommits: null,
+      updatedAt: undefined,
+      createdAt: undefined,
+      description: undefined,
+    };
   }
 }

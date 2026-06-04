@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import "@/app/styles/menubar.css";
-import { SkillsContainer } from "./Skills";
-import { Skill, skillsData } from "../data/skills";
+import { skillsData } from "../data/skills";
+import { projectsData } from "../data/projects";
 import { SearchIcon } from "../Icons/SearchIcon";
 import Brightness from "../Icons/Brightness";
 import MoonAndStars from "../Icons/MoonAndStars";
@@ -11,15 +11,14 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTheme } from "../contexts/ThemeContext";
 
-export default function Menubar({
-  links,
-}: {
-  links?: {
-    name: string;
-    link: string;
-    createHref?: boolean;
-  }[];
-}) {
+export interface MenuLink {
+  name: string;
+  link: string;
+  createHref?: boolean;
+  isCta?: boolean;
+}
+
+export default function Menubar({ links }: { links?: MenuLink[] }) {
   const [isActive, setIsActive] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -64,84 +63,158 @@ export default function Menubar({
 }
 
 const SearchContainer = () => {
-  const searchInputBox = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [filteredSkillData, setFilterSkillsData] = useState<Skill[]>([]);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const pathname = usePathname();
   const router = useRouter();
 
-  function inputBoxInputHandler(searchData: string) {
-    if (searchData !== "") {
-      let newSkillsData: Skill[] = skillsData;
-      newSkillsData = newSkillsData.filter((skill) =>
-        skill.name.toLowerCase().includes(searchData.toLowerCase()),
-      );
-      setFilterSkillsData(newSkillsData);
+  // Handle clicking outside to close the dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchContainerRef.current &&
+        event.target instanceof Node &&
+        !searchContainerRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Filter logic for both domains
+  const filteredSkills = useMemo(() => {
+    if (!query.trim()) return [];
+    return skillsData.filter((skill) =>
+      skill.name.toLowerCase().includes(query.toLowerCase()),
+    );
+  }, [query]);
+
+  const filteredProjects = useMemo(() => {
+    if (!query.trim()) return [];
+    return projectsData.filter((project) =>
+      project.name.toLowerCase().includes(query.toLowerCase()),
+    );
+  }, [query]);
+
+  const hasResults = filteredSkills.length > 0 || filteredProjects.length > 0;
+
+  // Handlers for navigation
+  const navigateToSkill = (id: string) => {
+    setIsOpen(false);
+    setQuery("");
+    if (searchInputRef.current) searchInputRef.current.blur();
+
+    if (pathname === "/") {
+      const skillElement = document.querySelector(`.skill-container#${id}`);
+      if (skillElement) {
+        skillElement.scrollIntoView({ behavior: "smooth" });
+        window.location.hash = `#${id}`;
+      }
     } else {
-      setFilterSkillsData([]);
+      router.push(`/#${id}`);
     }
-  }
+  };
+
+  const navigateToProject = (repoName: string) => {
+    setIsOpen(false);
+    setQuery("");
+    if (searchInputRef.current) searchInputRef.current.blur();
+    router.push(`/projects/${repoName}`);
+  };
 
   return (
-    <>
-      <div className="search-container">
-        <input
-          className="search-box"
-          type="text"
-          placeholder="Search a Skill"
-          ref={searchInputBox}
-          onChange={(e) => {
-            inputBoxInputHandler(e.target.value.trim());
-          }}
-        />
-        <div
-          className="search-icon"
-          onClick={() => {
-            searchInputBox.current?.focus();
-          }}
-        >
-          <SearchIcon />
-        </div>
-        {filteredSkillData.length > 0 && (
-          <SearchResultContainer
-            skillsData={filteredSkillData}
-            skillClickHandler={(e) => {
-              setFilterSkillsData([]);
-              if (searchInputBox.current) searchInputBox.current.value = "";
-              if (pathname === "/") {
-                const skillElement = document.querySelector(
-                  ".skill-container#" + e.currentTarget.dataset.id,
-                );
-                if (skillElement) {
-                  skillElement.scrollIntoView();
-                  window.location.hash = "#" + e.currentTarget.dataset.id;
-                }
-              } else router.push("/#" + e.currentTarget.dataset.id);
-            }}
-          />
-        )}
-      </div>
-    </>
-  );
-};
-
-export function SearchResultContainer({
-  skillsData,
-  skillClickHandler = () => {},
-}: {
-  skillsData: Skill[];
-  skillClickHandler: (e: React.MouseEvent<HTMLDivElement>) => void;
-}) {
-  return (
-    <div className="search-result-container active">
-      <SkillsContainer
-        skillsData={skillsData}
-        excludeIds={true}
-        skillClickHandler={skillClickHandler}
+    <div className="search-container" ref={searchContainerRef}>
+      <input
+        className="search-box"
+        type="text"
+        placeholder="Search skills or projects..."
+        ref={searchInputRef}
+        value={query}
+        onFocus={() => setIsOpen(true)}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setIsOpen(true);
+        }}
       />
+      <div
+        className="search-icon"
+        onClick={() => searchInputRef.current?.focus()}
+      >
+        <SearchIcon />
+      </div>
+
+      {/* Custom Dropdown UI */}
+      {isOpen && query.trim() !== "" && (
+        <div className="custom-search-dropdown">
+          {!hasResults ? (
+            <div className="search-no-results">
+              No results found for &quot;{query}&quot;
+            </div>
+          ) : (
+            <div className="search-results-wrapper">
+              {/* Skills Section */}
+              {filteredSkills.length > 0 && (
+                <div className="search-group">
+                  <div className="search-group-title">Skills</div>
+                  {filteredSkills.map((skill) => (
+                    <div
+                      key={skill.id}
+                      className="search-item"
+                      onClick={() => navigateToSkill(skill.id)}
+                    >
+                      <Image
+                        src={skill.iconSrc}
+                        alt={skill.name}
+                        width={20}
+                        height={20}
+                        className="search-item-img"
+                      />
+                      <span className="search-item-text">{skill.name}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Projects Section */}
+              {filteredProjects.length > 0 && (
+                <div className="search-group">
+                  <div className="search-group-title">Projects</div>
+                  {filteredProjects.map((project) => (
+                    <div
+                      key={project.repoName}
+                      className="search-item"
+                      onClick={() => navigateToProject(project.repoName)}
+                    >
+                      <Image
+                        src={`/${project.previewImageSrc}`}
+                        alt={project.name}
+                        width={32}
+                        height={20}
+                        className="search-item-img project-img"
+                      />
+                      <div className="search-item-details">
+                        <span className="search-item-text">{project.name}</span>
+                        {project.clientProject && (
+                          <span className="search-item-badge">Client</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export const Menus = ({
   links = [
@@ -164,45 +237,40 @@ export const Menus = ({
     {
       name: "Contact Me",
       link: "/#contact",
+      isCta: true,
     },
   ],
   onLinkClick = () => {},
+}: {
+  links?: MenuLink[];
+  onLinkClick?: () => void;
 }) => {
   const pathname = usePathname();
 
   return (
     <div className="menus-container">
       {links.map((link) => {
-        return (
-          // link?.createHref === true ||
-          link.link.indexOf("#") === 0 ? (
-            <Link
-              key={link.link}
-              className={"menu" + (link.link === pathname ? " active" : "")}
-              href={link.link}
-              onClick={onLinkClick}
-            >
+        const isActive = link.link === pathname ? " active" : "";
+        const isCta = link.isCta ? " cta-button" : "";
+        const combinedClassName = `menu${isActive}${isCta}`;
+
+        return link.link.indexOf("#") === 0 ? (
+          <Link
+            key={link.link}
+            className={combinedClassName}
+            href={link.link}
+            onClick={onLinkClick}
+          >
+            {link.name}
+          </Link>
+        ) : (
+          <Link href={link.link} key={link.link}>
+            <div className={combinedClassName} onClick={onLinkClick}>
               {link.name}
-            </Link>
-          ) : (
-            <Link href={link.link} key={link.link}>
-              <div
-                className={"menu" + (link.link === pathname ? " active" : "")}
-                onClick={onLinkClick}
-              >
-                {link.name}
-              </div>
-            </Link>
-          )
+            </div>
+          </Link>
         );
       })}
     </div>
   );
 };
-
-// function hasElement(array: string[], key: string) {
-//     for (let index = 0; index < array.length; index++) {
-//         if (array[index] === key) return index;
-//     }
-//     return -1
-// }

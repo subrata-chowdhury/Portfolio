@@ -29,7 +29,7 @@ export default function Projects({
         style={{ marginTop: "6rem", ...containerStyle }}
       >
         <h1 className="heading" id="projects" ref={forwardRef}>
-          My Projects
+          Projects
           <GitHubButton />
         </h1>
 
@@ -83,25 +83,56 @@ export function Project({
   name = "Name",
   repoName = "Repo-Name",
   description = "It's a Project",
+  clientProject = false,
+  noOfCommits,
+  createdAt,
+  updatedAt,
+  mainSkills,
+  otherSkills,
   previewImageSrc = "",
+  previewUiImages = [],
   liveUrl,
-
   animationDelay = 0,
 }: {
   name: string;
   repoName: string;
   description: string;
-  noOfCommits: number | null;
-  createdAt: string | null;
-  updatedAt: string | null;
+  clientProject?: boolean;
+  noOfCommits?: number | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
   mainSkills: string[];
   otherSkills: string[];
   previewImageSrc: string;
+  previewUiImages?: string[];
   liveUrl?: string;
   animationDelay: number;
 }) {
   const [showAbout, setShowAbout] = useState(false);
   const [showImg, setShowImg] = useState(false);
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+  // Combine the main preview image with any additional UI images
+  const allImages = [previewImageSrc, ...(previewUiImages || [])].filter(
+    Boolean,
+  );
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImgIndex((prev) => (prev + 1) % allImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImgIndex(
+      (prev) => (prev - 1 + allImages.length) % allImages.length,
+    );
+  };
+
+  const closeModel = () => {
+    setShowImg(false);
+    setCurrentImgIndex(0); // Reset slider on close
+  };
 
   return (
     <>
@@ -117,13 +148,19 @@ export function Project({
         >
           <Image
             src={"/" + previewImageSrc}
-            alt="project image"
+            alt={`${name} project image`}
             width={600}
             height={600}
           />
         </div>
         <div className="details">
-          <div className="project-name">{name}</div>
+          <div className="project-name-wrapper">
+            <div className="project-name">{name}</div>
+            {/* Small Inline Badge for the Title Area */}
+            {clientProject && (
+              <span className="client-badge-inline">Client</span>
+            )}
+          </div>
           <div
             className="about-project"
             onClick={() => {
@@ -160,7 +197,7 @@ export function Project({
                 <div className="project-link">
                   {repoName ? "View in Github" : "View Here"}
                 </div>
-                <Arrow />
+                <Arrow size={12} />
               </Link>
             )}
             <Link href={"/projects/" + repoName} className="more-details btn">
@@ -171,21 +208,35 @@ export function Project({
       </div>
 
       {showImg && (
-        <Model onClose={() => setShowImg(false)}>
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              alignSelf: "center",
-              overflowY: "auto",
-              borderRadius: "1rem",
-            }}
-          >
+        <Model onClose={closeModel}>
+          <div className="slider-wrapper">
+            {allImages.length > 1 && (
+              <button className="slider-btn prev" onClick={prevImage}>
+                &#10094;
+              </button>
+            )}
+
             <img
-              src={"/" + previewImageSrc}
-              style={{ width: "100%", borderRadius: "1rem" }}
-              alt="project image"
+              src={
+                allImages[currentImgIndex].startsWith("/")
+                  ? allImages[currentImgIndex]
+                  : "/" + allImages[currentImgIndex]
+              }
+              className="slider-image"
+              alt={`${name} image ${currentImgIndex + 1}`}
             />
+
+            {allImages.length > 1 && (
+              <button className="slider-btn next" onClick={nextImage}>
+                &#10095;
+              </button>
+            )}
+
+            {allImages.length > 1 && (
+              <div className="slider-indicator">
+                {currentImgIndex + 1} / {allImages.length}
+              </div>
+            )}
           </div>
         </Model>
       )}

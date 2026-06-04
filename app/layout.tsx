@@ -16,7 +16,7 @@ const raleway = Raleway({
 
 const open_sans = Open_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 

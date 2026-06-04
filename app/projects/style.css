@@ -51,7 +51,7 @@
 }
 
 .project-container .project-image img {
-  border-radius: 0.3rem;
+  border-radius: 0.3rem 0.3rem 0 0; /* Ensures bottom corners match container if needed */
   width: 100%;
   height: 100%;
   object-position: center;
@@ -72,7 +72,7 @@
   display: grid;
   grid-auto-flow: row;
   gap: 0.7rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .project-link-container {
@@ -271,4 +271,256 @@
   .projects-container {
     grid-template-columns: 1fr;
   }
+}
+
+/* --- Slider UI inside Modal --- */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--container-color, #1a1a1a); /* fallback background */
+}
+
+.slider-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Prevents large screenshots from cropping */
+  border-radius: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slider-btn.prev {
+  left: 1rem;
+}
+
+.slider-btn.next {
+  right: 1rem;
+}
+
+.slider-indicator {
+  position: absolute;
+  bottom: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* --- Improved Mobile View --- */
+@media (max-width: 480px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* Increase gap slightly for breathing room */
+  }
+
+  .project-container {
+    border-width: 1px; /* Thinner borders on mobile to reduce bulkiness */
+    padding-bottom: 1.2rem;
+  }
+
+  .project-container .project-name {
+    font-size: 1.25rem; /* Slightly scale down heading */
+  }
+
+  .project-container .details {
+    padding: 0 1rem; /* Adjust inner padding */
+  }
+
+  .project-link-container .link-container {
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  /* Slider UI adjustments for mobile */
+  .slider-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .slider-btn.prev {
+    left: 0.5rem;
+  }
+
+  .slider-btn.next {
+    right: 0.5rem;
+  }
+}
+
+/* --- Detailed Project View Main Image --- */
+.detailed-main-image-container {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.dark .detailed-main-image-container {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailed-main-image {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .detailed-main-image-container {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ================================
+   Client Project Badges 
+   ================================ */
+
+/* 2. Title Wrapper and Inline Badge */
+.project-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap; /* Allows wrap on very small screens */
+}
+
+.project-container .project-name {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.client-badge-inline {
+  background: rgba(47, 108, 229, 0.1); /* Transparent tint of your blue color */
+  color: var(--blue-color, #007bff);
+  border: 1px solid rgba(47, 108, 229, 0.2);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+}
+
+.dark .client-badge-inline {
+  background: rgba(143, 190, 255, 0.15);
+  color: #8fbeff;
+  border-color: rgba(143, 190, 255, 0.3);
+}
+
+/* =========================================
+   Project Owner Feedback Card (Client Testimonial)
+   ========================================= */
+
+.project-owner-feedback-card {
+  padding: 1.5rem;
+  background: var(--card-container-color);
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0; /* Space it out from the description and tech stack */
+  margin-top: 3rem; /* Extra space above for separation */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.dark .project-owner-feedback-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-owner-feedback-card .feedback-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-owner-feedback-card .feedback-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--blue-color); /* Defaults to your brand blue */
+  flex-shrink: 0;
+}
+
+.project-owner-feedback-card .feedback-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-owner-feedback-card .feedback-client-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.project-owner-feedback-card .feedback-company {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.project-owner-feedback-card .feedback-company.client-url {
+  color: var(--blue-color);
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.project-owner-feedback-card .feedback-stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.project-owner-feedback-card .feedback-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-style: italic;
+  opacity: 0.9;
+  margin: 0;
+  padding-left: 0.8rem;
+  border-left: 3px solid var(--blue-color);
 }

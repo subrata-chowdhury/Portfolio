@@ -8,7 +8,7 @@ export default function Education() {
         My Education
       </h1>
       <div className="education-container">
-        <EducationCard
+        {/* <EducationCard
           name="X"
           duration="2018-2019"
           place="Barjora High School"
@@ -16,7 +16,7 @@ export default function Education() {
           marks="69.45%"
           animationDelay={0}
           certificateLink="https://drive.google.com/file/d/16p1AJ5RHY8ACH7nFcQnelHk6nDr4vmTN/view?usp=drive_link"
-        />
+        /> */}
         <EducationCard
           name="XII"
           duration="2020-2021"
@@ -24,7 +24,7 @@ export default function Education() {
           location="Barjora, Bankura"
           marks="83.2%"
           animationDelay={0.2}
-          certificateLink="https://drive.google.com/file/d/1gfUDUisqqbctTwH2EptCGoo35OPahHVh/view?usp=drive_link"
+          certificateLink="/files/HS Marksheet.pdf"
         />
         <EducationCard
           name="B.Tech in CSE"
@@ -33,7 +33,7 @@ export default function Education() {
           location="Bidhannagar, Durgapure"
           marks="82%"
           animationDelay={0.4}
-          certificateLink="https://drive.google.com/drive/folders/1yQp9B98id7vU6IQkjEYx2sKHg7GE_nIa?usp=drive_linkv"
+          certificateLink="/files/Provisional Certificate.pdf"
         />
       </div>
     </section>

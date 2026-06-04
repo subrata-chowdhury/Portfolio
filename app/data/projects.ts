@@ -14,9 +14,9 @@ const projectsData: ProjectType[] = [
       "Tailwind CSS",
       "MongoDB",
       "Node.js",
-      "DSA",
     ],
     otherSkills: [
+      "DSA",
       "SaaS",
       "Full Stack Development",
       "Frontend Development",
@@ -58,6 +58,7 @@ const projectsData: ProjectType[] = [
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
+    clientProject: true,
     mainSkills: [
       "HTML",
       "CSS",
@@ -100,6 +101,13 @@ const projectsData: ProjectType[] = [
       "/assets/LabTesto/13.webp",
     ],
     liveUrl: "https://labtesto.vercel.app/",
+    ownerDetails: {
+      name: "Sayan Das",
+      role: "Local Lab Collector",
+      url: null,
+      feedback: "Subrata's full-stack expertise and design skills brought LabTesto to life. He communicated proactively, delivered ahead of schedule, and exceeded all our expectations.",
+      stars: 5,
+    }
   },
   {
     name: "ATG World",
@@ -172,6 +180,7 @@ const projectsData: ProjectType[] = [
     noOfCommits: null,
     createdAt: null,
     updatedAt: null,
+    clientProject: true,
     mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
     otherSkills: [
       "REST API",
@@ -197,6 +206,13 @@ const projectsData: ProjectType[] = [
       "/assets/Time_Table_Scheduler/10.webp",
       "/assets/Time_Table_Scheduler/11.webp",
     ],
+    ownerDetails: {
+      name: "A. C. Ganguly",
+      role: "Director of BCET",
+      url: null,
+      feedback: "Subrata delivered an exceptional, user-friendly interface using React and TypeScript. His problem-solving skills, creativity, and strict dedication to deadlines made the collaboration seamless.",
+      stars: 4,
+    }
   },
   {
     name: "To Dos",
@@ -313,24 +329,24 @@ const projectsData: ProjectType[] = [
     previewUiImages: [],
     liveUrl: "https://hobby-cue-kappa.vercel.app/",
   },
-  {
-    name: "StyleBar",
-    repoName: "StyleBar",
-    description:
-      "It is a website created using HTML, CSS and JavaScript which is mainly focused on menubar style.",
-    noOfCommits: null,
-    createdAt: null,
-    updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: [
-      "Responsive Web Design",
-      "Frontend Development",
-      "Problem Solving",
-    ],
-    previewImageSrc: "assets/StyleBar.webp",
-    previewUiImages: [],
-    liveUrl: "https://stylebar.netlify.app/",
-  },
+  // {
+  //   name: "StyleBar",
+  //   repoName: "StyleBar",
+  //   description:
+  //     "It is a website created using HTML, CSS and JavaScript which is mainly focused on menubar style.",
+  //   noOfCommits: null,
+  //   createdAt: null,
+  //   updatedAt: null,
+  //   mainSkills: ["HTML", "CSS", "JavaScript"],
+  //   otherSkills: [
+  //     "Responsive Web Design",
+  //     "Frontend Development",
+  //     "Problem Solving",
+  //   ],
+  //   previewImageSrc: "assets/StyleBar.webp",
+  //   previewUiImages: [],
+  //   liveUrl: "https://stylebar.netlify.app/",
+  // },
   {
     name: "Focus",
     repoName: "Focus",
@@ -351,44 +367,44 @@ const projectsData: ProjectType[] = [
     previewUiImages: [],
     liveUrl: "https://focus-7000.netlify.app/",
   },
-  {
-    name: "List of All Doraemon Movies",
-    repoName: "All_Doraemon_Movies-v3.5",
-    description:
-      "It a webpage that contains list of all doraemon movies created using HTML, CSS & a little bit JS. It was created by me in 11th when I started learning frontend development.",
-    noOfCommits: null,
-    createdAt: null,
-    updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: [
-      "Graphic Design",
-      "Responsive Web Design",
-      "Frontend Development",
-    ],
-    previewImageSrc: "assets/All Doraemon Movies.webp",
-    previewUiImages: [],
-    liveUrl:
-      "https://subrata-chowdhury.github.io/All_Doraemon_Movies-v3.5/List Of All Doraemon Movies (Version 3.5).html",
-  },
-  {
-    name: "Google Search Page",
-    repoName: "Google_Themed_Landing_Page",
-    description:
-      "It's a mimic of Google search engine webpage which allow more customize feature.",
-    noOfCommits: null,
-    createdAt: null,
-    updatedAt: null,
-    mainSkills: ["HTML", "CSS", "JavaScript"],
-    otherSkills: [
-      "Graphic Design",
-      "Responsive Web Design",
-      "Frontend Development",
-      "Problem Solving",
-    ],
-    previewImageSrc: "assets/Google Landing Page.webp",
-    previewUiImages: [],
-    liveUrl: "https://google-themed-landing-page.netlify.app/",
-  },
+  // {
+  //   name: "List of All Doraemon Movies",
+  //   repoName: "All_Doraemon_Movies-v3.5",
+  //   description:
+  //     "It a webpage that contains list of all doraemon movies created using HTML, CSS & a little bit JS. It was created by me in 11th when I started learning frontend development.",
+  //   noOfCommits: null,
+  //   createdAt: null,
+  //   updatedAt: null,
+  //   mainSkills: ["HTML", "CSS", "JavaScript"],
+  //   otherSkills: [
+  //     "Graphic Design",
+  //     "Responsive Web Design",
+  //     "Frontend Development",
+  //   ],
+  //   previewImageSrc: "assets/All Doraemon Movies.webp",
+  //   previewUiImages: [],
+  //   liveUrl:
+  //     "https://subrata-chowdhury.github.io/All_Doraemon_Movies-v3.5/List Of All Doraemon Movies (Version 3.5).html",
+  // },
+  // {
+  //   name: "Google Search Page",
+  //   repoName: "Google_Themed_Landing_Page",
+  //   description:
+  //     "It's a mimic of Google search engine webpage which allow more customize feature.",
+  //   noOfCommits: null,
+  //   createdAt: null,
+  //   updatedAt: null,
+  //   mainSkills: ["HTML", "CSS", "JavaScript"],
+  //   otherSkills: [
+  //     "Graphic Design",
+  //     "Responsive Web Design",
+  //     "Frontend Development",
+  //     "Problem Solving",
+  //   ],
+  //   previewImageSrc: "assets/Google Landing Page.webp",
+  //   previewUiImages: [],
+  //   liveUrl: "https://google-themed-landing-page.netlify.app/",
+  // },
 ];
 
 export { projectsData };
@@ -401,9 +417,17 @@ export type ProjectType = {
   noOfCommits: number | null;
   createdAt: string | null;
   updatedAt: string | null;
+  clientProject?: boolean;
   mainSkills: string[];
   otherSkills: string[];
   previewImageSrc: string;
   previewUiImages?: string[];
   liveUrl?: string;
+  ownerDetails?: {
+    name: string;
+    role: string;
+    url: string | null;
+    feedback: string;
+    stars?: number; // Optional property for star rating
+  };
 };

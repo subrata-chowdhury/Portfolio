@@ -1,10 +1,12 @@
 .header {
-  height: 100vh;
-  display: grid;
+  min-height: 100vh;
+  display: flex; /* Changed from grid to flex */
+  flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between; /* Pushes text left and image right */
   padding: 0 10%;
   z-index: 2;
+  gap: 2rem;
 }
 
 .bg {
@@ -23,14 +25,14 @@
 .intro,
 .photo,
 .intro .main-intro {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 
 .intro {
   color: var(--text-color);
+  flex: 1; /* Allows intro to take up available space */
 }
 
 .intro .main-intro {
@@ -38,6 +40,7 @@
   font-size: 2rem;
   font-family: "Raleway", sans-serif;
   line-height: 1.1;
+  align-items: flex-start;
 }
 
 .intro .main-intro .name {
@@ -66,7 +69,7 @@
 }
 
 .header-icons {
-  justify-self: start;
+  align-self: flex-start;
   margin-top: 2rem;
 }
 
@@ -78,82 +81,28 @@
 .intro .download-btn {
   background: var(--blue-color);
   padding: 0.6rem 0.7rem;
-  width: 22%;
-  display: grid;
+  width: 160px; /* Fixed width for button */
+  display: flex;
   justify-content: center;
   color: #fff;
   font-size: 1rem;
   border-radius: 5rem;
   margin-top: 1rem;
+  text-decoration: none;
 }
 
 .photo {
-  justify-items: center;
+  align-items: center;
+  flex-shrink: 0; /* Prevents the image container from shrinking */
 }
 
-.photo img {
-  border-radius: 20px;
+/* Image styles - Fixed width and height, keeping it small */
+.profile-pic {
+  border-radius: 2rem; /* Circle shape (optional, remove for square) */
+  object-fit: cover;
   z-index: 2;
-  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Adds a subtle depth */
   animation: invisibleToVisible 1s linear;
-}
-
-/* 
-.photo .wave {
-    position: absolute;
-}
-
-.photo .wave g path {
-    fill: dodgerblue;
-    opacity: 0.5;
-} */
-
-@media (max-width: 1285px) {
-  .photo img {
-    width: 80%;
-  }
-}
-
-@media (max-width: 865px) {
-  .intro .download-btn {
-    width: 40%;
-    margin: auto;
-    margin-top: 1rem;
-  }
-
-  .intro .sub-intro {
-    justify-content: center;
-  }
-
-  .intro .header-icons {
-    justify-self: center;
-  }
-
-  .header {
-    padding-top: 2rem;
-    grid-template-columns: none;
-    grid-template-areas:
-      "img"
-      "text";
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .photo img {
-    grid-area: img;
-    width: 60%;
-  }
-
-  .intro {
-    left: 0;
-    align-self: self-start;
-    grid-area: text;
-  }
-
-  .intro .main-intro .name {
-    font-size: 2.5rem;
-  }
 }
 
 #cursor {
@@ -166,12 +115,59 @@
   0% {
     opacity: 1;
   }
-
   50% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
+  }
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 1285px) {
+  .profile-pic {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 865px) {
+  .header {
+    padding-top: 5rem;
+    flex-direction: column-reverse; /* Flips DOM order: Photo on top, Intro on bottom */
+    justify-content: center;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .intro {
+    align-items: center;
+    flex: none; /* Prevents intro from stretching full width */
+  }
+
+  .intro .main-intro {
+    align-items: center;
+  }
+
+  .intro .main-intro .name {
+    font-size: 2.5rem;
+  }
+
+  .intro .sub-intro {
+    justify-content: center;
+  }
+
+  .header-icons {
+    align-self: center;
+  }
+
+  .intro .download-btn {
+    width: 200px;
+  }
+
+  .profile-pic {
+    width: 200px; /* Scales down image perfectly on mobile */
+    height: 200px;
   }
 }

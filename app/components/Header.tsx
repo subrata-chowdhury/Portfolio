@@ -1,18 +1,18 @@
+"use client";
+
 import "@/app/styles/header.css";
-// import profilePicture from "../assets/profile-pic.png"
 import { useEffect, useState } from "react";
 import { OtherPlatforms } from "./Footer";
 import Link from "next/link";
-// import Wave from "../assets/wave"
-// import { useEffect } from "react"
+import Image from "next/image";
 
 export default function Header() {
   return (
     <>
-      <div className="bg" style={{ backgroundImage: "url(./wave.svg)" }}></div>
+      <div className="bg" style={{ backgroundImage: "url(/wave.svg)" }}></div>
       <header className="header">
         <Intro />
-        {/* <Photo /> */}
+        <Photo />
       </header>
     </>
   );
@@ -22,7 +22,10 @@ function Intro() {
   return (
     <section className="intro">
       <div className="main-intro">
-        <span className="name">Subrata Chowdhury</span>
+        <span className="name">
+          Subrata
+          <br /> Chowdhury
+        </span>
       </div>
       <div className="sub-intro-container">
         <div className="sub-intro">
@@ -38,24 +41,23 @@ function Intro() {
   );
 }
 
-// function Photo() {
-// useEffect(() => {
-//     KUTE.fromTo(
-//         '#blob1',
-//         { path: '#blob1' },
-//         { path: '#blob2' },
-//         { repeat: 999, duration: 5000, yoyo: true }
-//     ).start();
-// }, [])
-// return (
-// <div className="photo">
-{
-  /* <Wave />
-            <img src={profilePicture} alt="profile picture" /> */
+function Photo() {
+  return (
+    <div className="photo">
+      {/* Ensure you place your image inside the 'public' folder at the root. 
+        Update the src="/profile-pic.png" to match your actual file name. 
+      */}
+      <Image
+        src="/profile-pic.webp"
+        alt="Subrata Chowdhury"
+        width={400}
+        height={400}
+        priority
+        className="profile-pic"
+      />
+    </div>
+  );
 }
-// </div>
-// )
-// }
 
 function TypeingAnimation() {
   const [text, setText] = useState("");
@@ -71,27 +73,23 @@ function TypeingAnimation() {
       "Freelancer",
       "Engineer",
     ];
-    const typingSpeed = 150; // Speed of typing each letter in milliseconds
-    const erasingSpeed = 100; // Speed of erasing each letter in milliseconds
-    const delayBetweenWords = 1000; // Delay between typing each word in milliseconds
+    const typingSpeed = 150;
+    const erasingSpeed = 100;
+    const delayBetweenWords = 1000;
 
     const handleTyping = () => {
       if (!isErasing) {
-        // Typing animation logic
         if (charIndex < words[wordIndex].length) {
           setText((prevText) => prevText + words[wordIndex][charIndex]);
           setCharIndex((prevCharIndex) => prevCharIndex + 1);
         } else {
-          // Start erasing after typing is complete
           setIsErasing(true);
         }
       } else {
-        // Erasing animation logic
         if (charIndex > 0) {
           setText((prevText) => prevText.slice(0, -1));
           setCharIndex((prevCharIndex) => prevCharIndex - 1);
         } else {
-          // Move to the next word after erasing is complete
           setIsErasing(false);
           setWordIndex((prevWordIndex) => (prevWordIndex + 1) % words.length);
         }

@@ -65,6 +65,7 @@
   padding: 0 0.5rem;
   padding-bottom: 0.2rem;
   border-bottom: 1px solid var(--text-color);
+  position: relative; /* Vital for absolute positioning of dropdown */
 }
 
 .search-container .search-box {
@@ -72,6 +73,7 @@
   border: none;
   background: transparent;
   color: var(--text-color);
+  width: 100%;
 }
 
 .search-container .search-icon {
@@ -83,87 +85,157 @@
   fill: var(--text-color);
 }
 
-.search-result-container.active {
-  display: block;
-}
-
-.search-result-container {
+/* =========================================
+   Custom Search Dropdown Styles
+   ========================================= */
+.custom-search-dropdown {
   position: absolute;
-  top: 5rem;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-  display: none;
-  width: 300px;
-  max-height: 70vh;
-  overflow-y: scroll;
-  /* existing styles */
-  overflow-y: scroll;
-  scrollbar-width: none;
-  /* For Firefox */
-}
-
-.search-result-container::-webkit-scrollbar {
-  display: none;
-  /* For Chrome, Safari, and Opera */
-}
-
-.menubar.active .search-result-container {
-  top: 4rem;
-}
-
-.search-result-container .skills-container {
+  top: calc(100% + 10px);
   left: 0;
-  width: 300px;
-  overflow-y: scroll;
-  grid-template-columns: none;
-  border-radius: 10px;
-  gap: 0;
-}
-
-.search-result-container .skills-container::-webkit-scrollbar {
-  display: none;
-}
-
-.search-result-container .skills-container .skill-container {
-  display: block;
-  border-radius: 0;
-  padding: 0.7rem 1rem;
-  margin: 0;
-  width: 300px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  width: 340px;
   background: var(--container-color);
-  max-width: 100%;
-  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  animation: fadeSlideDown 0.2s ease-out;
 }
 
-.search-result-container .skills-container .skill-container:hover {
-  background: #eaeaea;
+.dark .custom-search-dropdown {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-.search-result-container
-  .skills-container
-  .skill-container
-  .skill-name-container {
-  justify-content: start;
+.search-results-wrapper {
+  max-height: 60vh;
+  overflow-y: auto;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
-.search-result-container
-  .skills-container
-  .skill-container
-  .skill-name-container
-  img {
-  width: 20px;
+.search-results-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.search-results-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.dark .search-results-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
+.search-no-results {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+
+.search-group {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.dark .search-group {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+.search-group:last-child {
+  border-bottom: none;
+}
+
+.search-group-title {
+  padding: 0.75rem 1rem 0.25rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: var(--text-color);
+}
+
+.search-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.dark .search-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.search-item-img {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.search-item-img.project-img {
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.dark .search-item-img.project-img {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.search-item-details {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.search-item-text {
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-item-badge {
+  font-size: 0.65rem;
+  background: rgba(47, 108, 229, 0.15);
+  color: var(--blue-color);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   Menu & Navigation Links
+   ========================================= */
 .menus-container {
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
 }
 
 .menus-container .menu {
   cursor: pointer;
-  /* font-weight: bold; */
   transition: 0.2s;
   text-decoration: none;
   color: var(--text-color);
@@ -178,11 +250,37 @@
   color: var(--blue-color);
 }
 
+.menus-container .menu.cta-button {
+  background-color: var(--blue-color);
+  color: #ffffff !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.menus-container .menu.cta-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 10px rgba(0, 118, 255, 0.23);
+  background-color: #0268ce;
+}
+
+.menus-container .menu.cta-button.active {
+  color: #ffffff !important;
+}
+
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
 @media (max-width: 960px) {
   .menus-container {
     gap: 1.2rem;
   }
-
   .menubar {
     grid-template-columns: 5% auto auto;
   }
@@ -207,10 +305,15 @@
   }
 
   .search-container {
-    width: 40%;
+    width: 60%;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
+  }
+
+  .custom-search-dropdown {
+    width: 100%;
+    left: 0;
   }
 
   .search-container .search-box {
@@ -227,9 +330,10 @@
     font-size: 1.5rem;
   }
 
-  .search-result-container {
-    left: 50%;
-    transform: translate(-50%, 0);
+  .menus-container .menu.cta-button {
+    width: fit-content;
+    margin: 1.5rem auto 0 auto;
+    padding: 0.8rem 2rem;
   }
 
   .footer .menus-container .menu {

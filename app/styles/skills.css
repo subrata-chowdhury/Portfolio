@@ -1,96 +1,72 @@
+/* app/styles/skills.css */
+
 .skills-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .skills-container .skill-container {
-  border-radius: 0.5rem;
-  background: var(--container-color);
-  transition: 0.5s;
-  padding: 0.6rem;
+  border-radius: 0.75rem; /* Softer, modern corners */
+  background: var(--container-color, #ffffff);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.75rem 1.25rem;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: var(--text-color);
-  animation: bottomToTop linear;
+  animation: bottomToTop 0.5s ease-out forwards;
   max-width: max-content;
-  /* margin-bottom: 0.8rem;
-    margin-left: 0.8rem; */
-  border: 1.5px solid rgba(0, 0, 0, 0.15);
-  /* font-size: 1rem; */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Subtle depth */
 }
 
-.skills-container .skill-container:target {
-  background: #bfe5ff;
-  animation: blink 0.3s linear;
-}
-
-.dark .skills-container .skill-container:target {
-  background: rgba(255, 255, 255, 0.4);
-  animation: blink 0.3s linear;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-
-  25% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  75% {
-    opacity: 0.5;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.skills-container .skill-container .sub-skill-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-}
-
+/* Premium Hover Effect */
 .skills-container .skill-container:hover {
-  background: #bfe5ff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 112, 243, 0.1); /* Vercel/Next.js blue tint */
+  border-color: rgba(0, 112, 243, 0.3);
+}
+
+.app.dark .skills-container .skill-container {
+  background: var(--container-color, #1a1a1a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .app.dark .skills-container .skill-container:hover {
-  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.skills-container .sub-skill-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .skills-container .skill-name-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .skills-container .skill-name-container .skill-name {
   font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
   justify-self: start;
   text-wrap: nowrap;
 }
 
 .skill-details {
-  width: 100%;
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: end;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 0.3rem;
-}
-
-.skill-details img {
-  width: 15px;
-  height: 15px;
+  gap: 0.25rem;
 }
 
 .heading#skills .btn-container {
@@ -98,10 +74,24 @@
   gap: 1rem;
 }
 
+/* Refined Button Styling */
 .sort.btn {
-  background: rgba(170, 212, 255, 0.518);
+  background: rgba(0, 112, 243, 0.1);
   color: var(--text-color);
-  border: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.sort.btn:hover {
+  background: rgba(0, 112, 243, 0.15);
+  border-color: rgba(0, 112, 243, 0.2);
+}
+
+.app.dark .sort.btn {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .skill-details-container {
@@ -112,7 +102,9 @@
 }
 
 .skill-details-container .heading {
-  padding-bottom: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 }
 
 .skill-details-container .projects-container {
@@ -121,43 +113,18 @@
   padding: 0.5rem;
 }
 
-@media (max-width: 1000px) {
-  .skills-container .skill-name-container img {
-    width: 2rem;
-  }
-
-  .skills-container .skill-container .skill-details img {
-    width: 10px;
-    height: 10px;
-  }
-}
-
+/* Responsive Adjustments */
 @media (max-width: 870px) {
-  .screen-container .skills-container .skill-container .skill-details {
-    display: none;
-  }
-
   .skills-container .skill-container {
-    gap: 0.5rem;
+    padding: 0.6rem 1rem;
   }
 }
 
 @media (max-width: 420px) {
   .sort.btn {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
-
   .heading#skills .btn-container {
     gap: 0.5rem;
-  }
-
-  .heading#skills:first-child {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .heading#skills .btn-container {
-    flex-direction: column;
   }
 }
