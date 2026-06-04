@@ -26,6 +26,7 @@ const projectsData: ProjectType[] = [
       "Responsive Web Design",
       "Web Applications",
       "Problem Solving",
+      "Gemini"
     ],
     previewImageSrc: "assets/Aether Docs.webp",
     previewUiImages: [
@@ -83,6 +84,7 @@ const projectsData: ProjectType[] = [
       "JSON Web Token (JWT)",
       "Problem Solving",
       "SEO",
+      "Gemini"
     ],
     previewImageSrc: "assets/LabTesto.webp",
     previewUiImages: [
@@ -130,6 +132,7 @@ const projectsData: ProjectType[] = [
       "Responsive Web Design",
       "Frontend Development",
       "Firebase",
+      "ChatGPT",
     ],
     previewImageSrc: "assets/ATG World.webp",
     previewUiImages: [],

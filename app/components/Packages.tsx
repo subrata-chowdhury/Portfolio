@@ -106,7 +106,10 @@ function PricingCard({
   addons,
 }: PackageTier) {
   return (
-    <div className={`package-card ${isPopular ? "popular" : ""}`}>
+    <Link
+      href={"/#contact"}
+      className={`package-card ${isPopular ? "popular" : ""}`}
+    >
       {isPopular && <div className="popular-badge">MOST POPULAR</div>}
 
       <div className="package-header">
@@ -154,7 +157,7 @@ function PricingCard({
           </div>
         </>
       )}
-    </div>
+    </Link>
   );
 }
 
