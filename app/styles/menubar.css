@@ -8,29 +8,25 @@
   justify-content: space-around;
   align-items: center;
   transition: 0.3s;
-  z-index: 5;
+  z-index: 50; /* Ensure it stays above everything */
   animation: topToBottom 1s linear;
 }
 
-.menubar.active {
+.menubar.scrolled {
   box-shadow: 0px 5px 80px 0px rgba(0, 0, 0, 0.1);
   background: var(--container-color);
   height: 4rem;
 }
 
+.menubar-content {
+  display: contents; /* MAGIC TRICK: This allows SearchContainer and Menus to participate in the .menubar grid directly on Desktop! */
+}
+
+/* Hide mobile-specific elements on Desktop */
+.mobile-nav-actions,
+.mobile-contact-fab,
 .menubar-toggle-icon {
   display: none;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0.5rem;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  cursor: pointer;
-  z-index: 6;
 }
 
 .theme-container {
@@ -65,7 +61,7 @@
   padding: 0 0.5rem;
   padding-bottom: 0.2rem;
   border-bottom: 1px solid var(--text-color);
-  position: relative; /* Vital for absolute positioning of dropdown */
+  position: relative;
 }
 
 .search-container .search-box {
@@ -85,9 +81,7 @@
   fill: var(--text-color);
 }
 
-/* =========================================
-   Custom Search Dropdown Styles
-   ========================================= */
+/* Custom Search Dropdown Styles (Desktop + Mobile) */
 .custom-search-dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -112,7 +106,7 @@
 .search-results-wrapper {
   max-height: 60vh;
   overflow-y: auto;
-  scrollbar-width: thin; /* Firefox */
+  scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
@@ -270,12 +264,8 @@
   background-color: #0268ce;
 }
 
-.menus-container .menu.cta-button.active {
-  color: #ffffff !important;
-}
-
 /* =========================================
-   Responsive Adjustments
+   Responsive Adjustments (Mobile Focus)
    ========================================= */
 @media (max-width: 960px) {
   .menus-container {
@@ -287,28 +277,51 @@
 }
 
 @media (max-width: 650px) {
-  .menubar-toggle-icon {
-    display: block;
-  }
-
+  /* Restructure Header for Mobile */
   .menubar {
-    display: none;
-    grid-template-columns: none;
-    grid-template-rows: 10% 10% auto;
-    justify-content: stretch;
-    animation: topToBottom 0.3s linear;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    height: 4.5rem !important; /* Fixed height on mobile always */
+    background: var(--container-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   }
 
-  .menubar.active {
-    display: grid;
-    height: 100vh;
+  .dark .menubar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Dropdown Wrapper replaces desktop contents */
+  .menubar-content {
+    display: flex;
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 4.5rem);
+    background: var(--container-color);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem 1.5rem;
+    gap: 2.5rem;
+    /* Smooth transition */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Show when active */
+  .menubar.mobile-open .menubar-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .search-container {
-    width: 60%;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
+    width: 100%;
+    margin: 0;
   }
 
   .custom-search-dropdown {
@@ -317,26 +330,88 @@
   }
 
   .search-container .search-box {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .menus-container {
     grid-auto-flow: row;
-    text-align: center;
+    text-align: left; /* Better readability on mobile */
+    gap: 1.5rem;
   }
 
   .menus-container .menu {
-    padding: 1rem 0;
     font-size: 1.5rem;
+    padding: 0;
   }
 
   .menus-container .menu.cta-button {
-    width: fit-content;
-    margin: 1.5rem auto 0 auto;
-    padding: 0.8rem 2rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.25rem;
   }
 
-  .footer .menus-container .menu {
-    font-size: 1rem;
+  /* Hamburger Toggle */
+  .mobile-nav-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 100;
+    padding: 0.5rem;
+    margin-right: -0.5rem; /* Optical alignment */
+  }
+
+  .hamburger span {
+    width: 24px;
+    height: 3px;
+    background: var(--text-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* ==============================================
+     The Persistent Floating Contact Button (FAB)
+     ============================================== */
+  .mobile-contact-fab {
+    display: flex;
+    position: fixed;
+    bottom: 2rem;
+    right: 1.5rem;
+    background: var(--blue-color, #007bff);
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 3px 8px rgba(0, 118, 255, 0.4);
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 40; /* Below dropdown, above content */
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .mobile-contact-fab:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 118, 255, 0.4);
   }
 }

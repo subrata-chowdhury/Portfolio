@@ -5,10 +5,10 @@ import AboutMe from "./components/AboutMe";
 import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Projects from "./projects/components/Projects";
-import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Internships from "./experiences/components/Internships";
 import Feedback from "./components/Feedback";
+import Packages from "./components/Packages";
 
 export default function Home() {
   useEffect(() => {
@@ -41,9 +41,9 @@ export default function Home() {
       <Skills />
       <Education />
       <Projects containerStyle={{ marginTop: "2rem" }} />
-      <Certifications />
       <Internships containerStyle={{ marginTop: "2rem" }} />
       <Contact />
+      <Packages />
       <Feedback />
     </>
   );

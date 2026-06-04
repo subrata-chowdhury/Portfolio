@@ -1,6 +1,7 @@
 .feedback-section {
   margin-top: 6rem;
   overflow: hidden; /* Prevent horizontal scrollbars on the page */
+  width: 100%;
 }
 
 /* Marquee Container & Animation */
@@ -11,7 +12,6 @@
   margin-top: 2rem;
   padding: 1rem 0;
   position: relative;
-  /* Optional: Add gradient masks to fade the edges smoothly */
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -32,10 +32,7 @@
   display: flex;
   gap: 1.5rem; /* 24px */
   width: max-content;
-  /* 
-    Calculate exact 50% translation minus half the gap 
-    so the duplicated content lines up flawlessly 
-  */
+  align-items: stretch; /* CRITICAL: Forces all cards in the flex row to match the height of the tallest card */
   animation: marquee-scroll 40s linear infinite;
 }
 
@@ -56,8 +53,10 @@
 
 /* Card Styles */
 .feedback-card {
-  width: 380px; /* Fixed width prevents shrinking in flex track */
-  flex-shrink: 0;
+  width: 380px !important; /* Force strict width */
+  max-width: 85vw; /* Ensure it fits on tiny mobile screens */
+  flex-shrink: 0 !important;
+  height: auto;
   padding: 1.5rem;
   background: var(--card-container-color);
   border-radius: 12px;
@@ -70,7 +69,8 @@
     transform 0.3s ease,
     background-color 0.3s ease,
     box-shadow 0.3s ease;
-  white-space: normal; /* Ensure text wraps correctly inside the fixed width */
+  white-space: normal;
+  box-sizing: border-box !important; /* Protect from outer CSS changes */
 }
 
 .feedback-card:hover {
@@ -98,10 +98,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
   flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .feedback-info {
@@ -111,13 +112,13 @@
 }
 
 .feedback-client-name {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .feedback-company {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -132,24 +133,18 @@
 }
 
 .feedback-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   font-style: italic;
   opacity: 0.9;
   margin: 0;
+  flex-grow: 1; /* Pushes text to naturally fill empty space if the card stretches vertically */
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .feedback-card {
-    width: 320px;
-  }
-}
-
 @media (max-width: 480px) {
   .feedback-card {
-    width: 280px;
-    padding: 1.2rem;
+    padding: 1.25rem;
   }
   .feedback-avatar {
     width: 40px;

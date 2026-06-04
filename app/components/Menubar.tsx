@@ -19,50 +19,75 @@ export interface MenuLink {
 }
 
 export default function Menubar({ links }: { links?: MenuLink[] }) {
-  const [isActive, setIsActive] = useState(false);
+  // Separated scroll state from mobile menu open state for better stability
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    function activeMenubarOnScroll() {
-      window.onscroll = () => {
-        if (
-          document.documentElement.scrollTop > 50 &&
-          window.innerWidth > 650
-        ) {
-          setIsActive(true);
-        } else {
-          setIsActive(false);
-        }
-      };
-    }
-    activeMenubarOnScroll();
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMobileMenuOpen]);
 
   return (
     <>
-      <Image
-        width={30}
-        height={30}
-        src="/icons/menubar.webp"
-        className="menubar-toggle-icon"
-        role="presentation"
-        alt=""
-        onClick={() => setIsActive((prevVal) => !prevVal)}
-      />
-      <nav className={"menubar " + (isActive ? "active" : "")}>
+      <nav
+        className={`menubar ${isScrolled ? "scrolled" : ""} ${
+          isMobileMenuOpen ? "mobile-open" : ""
+        }`}
+      >
         <div className="theme-container">
           <div className="logo light-mode" onClick={toggleTheme}>
             {theme === "dark" ? <MoonAndStars /> : <Brightness />}
           </div>
         </div>
-        <SearchContainer />
-        <Menus links={links} onLinkClick={() => setIsActive(false)} />
+
+        {/* Wrapper to handle Desktop Grid vs Mobile Dropdown seamlessly */}
+        <div className="menubar-content">
+          <SearchContainer closeMenu={() => setIsMobileMenuOpen(false)} />
+          <Menus links={links} onLinkClick={() => setIsMobileMenuOpen(false)} />
+        </div>
+
+        {/* Mobile-Only Header Actions */}
+        <div className="mobile-nav-actions">
+          <div
+            className={`hamburger ${isMobileMenuOpen ? "active" : ""}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </nav>
+
+      {/* Mobile-Only Persistent Floating Contact Button */}
+      <Link href="/#contact" className="mobile-contact-fab">
+        <MailIcon />
+        <span>Contact</span>
+      </Link>
     </>
   );
 }
 
-const SearchContainer = () => {
+const SearchContainer = ({ closeMenu }: { closeMenu: () => void }) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -72,7 +97,6 @@ const SearchContainer = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Handle clicking outside to close the dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -87,7 +111,6 @@ const SearchContainer = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Filter logic for both domains
   const filteredSkills = useMemo(() => {
     if (!query.trim()) return [];
     return skillsData.filter((skill) =>
@@ -104,10 +127,10 @@ const SearchContainer = () => {
 
   const hasResults = filteredSkills.length > 0 || filteredProjects.length > 0;
 
-  // Handlers for navigation
   const navigateToSkill = (id: string) => {
     setIsOpen(false);
     setQuery("");
+    closeMenu();
     if (searchInputRef.current) searchInputRef.current.blur();
 
     if (pathname === "/") {
@@ -124,6 +147,7 @@ const SearchContainer = () => {
   const navigateToProject = (repoName: string) => {
     setIsOpen(false);
     setQuery("");
+    closeMenu();
     if (searchInputRef.current) searchInputRef.current.blur();
     router.push(`/projects/${repoName}`);
   };
@@ -149,7 +173,6 @@ const SearchContainer = () => {
         <SearchIcon />
       </div>
 
-      {/* Custom Dropdown UI */}
       {isOpen && query.trim() !== "" && (
         <div className="custom-search-dropdown">
           {!hasResults ? (
@@ -158,7 +181,6 @@ const SearchContainer = () => {
             </div>
           ) : (
             <div className="search-results-wrapper">
-              {/* Skills Section */}
               {filteredSkills.length > 0 && (
                 <div className="search-group">
                   <div className="search-group-title">Skills</div>
@@ -181,7 +203,6 @@ const SearchContainer = () => {
                 </div>
               )}
 
-              {/* Projects Section */}
               {filteredProjects.length > 0 && (
                 <div className="search-group">
                   <div className="search-group-title">Projects</div>
@@ -218,27 +239,11 @@ const SearchContainer = () => {
 
 export const Menus = ({
   links = [
-    {
-      name: "Home",
-      link: "/",
-    },
-    {
-      name: "Education",
-      link: "/#education",
-    },
-    {
-      name: "Projects",
-      link: "/projects",
-    },
-    {
-      name: "Experiences",
-      link: "/experiences",
-    },
-    {
-      name: "Contact Me",
-      link: "/#contact",
-      isCta: true,
-    },
+    { name: "Home", link: "/" },
+    { name: "Education", link: "/#education" },
+    { name: "Projects", link: "/projects" },
+    { name: "Experiences", link: "/experiences" },
+    { name: "Contact Me", link: "/#contact", isCta: true },
   ],
   onLinkClick = () => {},
 }: {
@@ -274,3 +279,23 @@ export const Menus = ({
     </div>
   );
 };
+
+// Simple embedded icon for the mobile Floating Action Button
+function MailIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}

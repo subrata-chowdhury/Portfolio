@@ -3,6 +3,24 @@ import "@/app/styles/Feedback.css";
 import Star from "../Icons/Star";
 import { projectsData } from "../data/projects";
 
+// Deterministic color generator based on the name (Fixes Next.js Hydration Errors)
+function getColorForName(name: string): string {
+  // A professional palette aligned with the site's blue/dark theme
+  const colors = [
+    "#2f6ce5", // Primary Brand Blue
+    "#1e4bb5", // Darker Brand Blue
+    "#4f87f6", // Lighter Brand Blue
+    "#374151", // Slate Gray (Dark)
+    "#4b5563", // Slate Gray (Medium)
+    "#272829", // Primary Text Color (Almost Black)
+  ];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+}
+
 // Expanded mock data with avatar background colors
 const feedbackData = [
   {
@@ -12,7 +30,7 @@ const feedbackData = [
     feedback:
       "Subrata completely transformed our outdated website. The new Next.js site is lightning fast, and we saw an immediate drop in bounce rates. The free mockup upfront showed me exactly what to expect.",
     rating: 5,
-    avatarColor: "#3b82f6", // Blue
+    avatarColor: "#2f6ce5", // Primary Blue
   },
   {
     id: 2,
@@ -21,7 +39,7 @@ const feedbackData = [
     feedback:
       "Professional, responsive, and easy to work with. He understood our needs perfectly, delivered a beautiful redesign, and the 30/70 payment structure made the process completely stress-free.",
     rating: 4,
-    avatarColor: "#10b981", // Green
+    avatarColor: "#374151", // Slate Gray
   },
   {
     id: 3,
@@ -30,7 +48,7 @@ const feedbackData = [
     feedback:
       "Our old site was practically broken on mobile. Subrata delivered a modern, responsive design that actually keeps visitors on the page. His communication was clear and asynchronous.",
     rating: 5,
-    avatarColor: "#f59e0b", // Amber
+    avatarColor: "#1e4bb5", // Darker Blue
   },
   {
     id: 4,
@@ -39,7 +57,7 @@ const feedbackData = [
     feedback:
       "Great experience upgrading our storefront. The UI is incredibly clean. I'm taking off one star just because our own internal delays slowed down the launch, but his development speed was top-notch.",
     rating: 4,
-    avatarColor: "#8b5cf6", // Purple
+    avatarColor: "#4b5563", // Medium Slate
   },
   {
     id: 5,
@@ -48,31 +66,23 @@ const feedbackData = [
     feedback:
       "High-performance results. The new landing page is converting leads much faster than our old setup. Very impressed with his TypeScript and React skills.",
     rating: 5,
-    avatarColor: "#ef4444", // Red
+    avatarColor: "#272829", // Primary Text Color
   },
+  // Map dynamic feedback from your projectsData
   ...projectsData
     .filter((project) => project.ownerDetails && project.ownerDetails.feedback)
-    .map((project) => ({
-      id: project.repoName,
-      clientName: project.ownerDetails?.name || "Client",
-      company: project.ownerDetails?.role || "Company",
-      feedback: project.ownerDetails?.feedback || "No feedback provided.",
-      rating: project.ownerDetails?.stars || 5, // Default to 5 stars if not provided
-      avatarColor: getRandomColor(), // Random color for project feedback
-    })),
+    .map((project) => {
+      const name = project.ownerDetails?.name || "Client";
+      return {
+        id: project.repoName,
+        clientName: name,
+        company: project.ownerDetails?.role || "Company",
+        feedback: project.ownerDetails?.feedback || "No feedback provided.",
+        rating: project.ownerDetails?.stars || 5,
+        avatarColor: getColorForName(name), // Fixed hydration mismatch here
+      };
+    }),
 ];
-
-function getRandomColor(): string {
-  const colors = [
-    "#6b7280", // Gray
-    "#3b82f6", // Blue
-    "#10b981", // Green
-    "#f59e0b", // Amber
-    "#8b5cf6", // Purple
-    "#ef4444", // Red
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
 
 export default function Feedback() {
   return (

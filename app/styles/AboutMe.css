@@ -11,7 +11,7 @@
 .about-container .sub-about-container .points {
   line-height: 1.8;
   margin-top: 1.5rem;
-  padding-left: 1.5rem; /* Proper indentation for bullet points */
+  padding-left: 1.5rem;
   list-style-type: disc;
 }
 
@@ -25,7 +25,7 @@
   align-items: center;
   gap: 1.5rem;
   margin: 2rem 0;
-  background: rgba(0, 0, 0, 0.03); /* Subtle card background */
+  background: rgba(0, 0, 0, 0.03);
   padding: 1.5rem;
   border-radius: 0.75rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -60,9 +60,11 @@
   font-weight: 600;
 }
 
+/* --- Fixed Counts Container Layout --- */
 .about-container .counts-container {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap; /* Critical: Allows stacking if screen is too thin */
+  gap: 1.5rem;
   margin-top: 2rem;
   justify-content: space-evenly;
 }
@@ -72,7 +74,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1rem; /* Reduced to prevent squeezing */
   color: var(--text-color);
   text-decoration: none;
 }
@@ -80,7 +82,7 @@
 .about-container .counts-container .count .count-number {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   line-height: 1;
 }
 
@@ -89,22 +91,24 @@
   align-items: center;
   justify-content: center;
   background-color: var(--container-color);
-  padding: 1.5rem;
+  width: 4.5rem; /* Explicitly size the container */
+  height: 4.5rem; /* Explicitly size the container */
   border-radius: 0.5rem;
+  box-shadow: inset 0 0 120px rgba(143, 190, 255, 0.277);
+  transition: 0.3s;
+}
+
+/* Explicitly target the SVG to ensure it scales correctly inside the fixed container */
+.about-container .counts-container .count svg,
+.about-container .counts-container .count img {
   width: 2rem;
   height: 2rem;
-  box-shadow: inset 0 0 120px rgba(143, 190, 255, 0.277);
+  fill: var(--text-color);
   transition: 0.3s;
 }
 
 .about-container .counts-container .count:hover .count-icon {
   background-color: var(--blue-color);
-}
-
-.about-container .counts-container .count svg,
-.about-container .counts-container .count img {
-  fill: var(--text-color);
-  transition: 0.3s;
 }
 
 .about-container .counts-container .count:hover svg,
@@ -124,7 +128,29 @@
     padding: 0;
     font-size: 0.9rem;
   }
+
   .about-container .counts-container {
-    gap: 1.5rem;
+    gap: 0.5rem; /* Tighter gap on extreme mobile */
+  }
+
+  .about-container .counts-container .count {
+    padding: 0.5rem;
+    flex: 1 1 30%; /* Allows elements to grow equally */
+  }
+
+  /* Shrink the icons proportionally for mobile */
+  .about-container .counts-container .count-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .about-container .counts-container .count svg,
+  .about-container .counts-container .count img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .about-container .counts-container .count .count-number {
+    font-size: 2rem;
   }
 }

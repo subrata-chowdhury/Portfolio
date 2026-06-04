@@ -222,7 +222,7 @@ const skillsData: Skill[] = [
 
   {
     name: "Claude",
-    iconSrc: "/icons/ai.webp", // Replace with an actual Claude icon if you have one
+    iconSrc: "/icons/claude.webp", // Replace with an actual Claude icon if you have one
     id: "claude-ai",
     lvl: 3,
     topSkill: true,
@@ -230,7 +230,7 @@ const skillsData: Skill[] = [
   },
   {
     name: "ChatGPT",
-    iconSrc: "/icons/ai.webp", // Replace with an OpenAI icon
+    iconSrc: "/icons/chatgpt.webp", // Replace with an OpenAI icon
     id: "chatgpt",
     lvl: 3,
     topSkill: true,
@@ -238,7 +238,7 @@ const skillsData: Skill[] = [
   },
   {
     name: "Gemini",
-    iconSrc: "/icons/ai.webp", // Replace with a Google Gemini icon if you have one
+    iconSrc: "/icons/gemini.webp", // Replace with a Google Gemini icon if you have one
     id: "google-gemini",
     lvl: 3,
     isFreelanceRelevant: true,

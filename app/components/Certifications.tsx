@@ -5,55 +5,43 @@ import { certificates } from "../data/certificates";
 import Image from "next/image";
 
 export default function Certifications() {
-  return (
-    <section className="screen-container">
-      <div className="heading" id="certifications">
-        <div>Certifications</div>
-      </div>
-      <CertificationContainer certifications={certificates} />
-    </section>
-  );
-}
+  // Filter dynamically during render to only show high-trust certificates
+  const clientCerts = certificates.filter((cert) => cert.isClientFacing);
 
-function CertificationContainer({
-  certifications,
-}: {
-  certifications: { title: string; link: string; imgSrc: string }[];
-}) {
   return (
-    <div className="certification-container">
-      {certifications.map((certification) => (
-        <Certification {...certification} key={certification.title} />
-      ))}
-    </div>
-  );
-}
+    <div className="certifications-wrapper">
+      <h1 className="heading" id="certifications">
+        Certifications
+      </h1>
 
-function Certification({
-  title,
-  link,
-  imgSrc,
-}: {
-  title: string;
-  link: string;
-  imgSrc: string;
-}) {
-  return (
-    <div className="certification education-card">
-      <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-        <Image
-          src={imgSrc}
-          width={40}
-          height={40}
-          alt={title}
-          style={{ objectFit: "contain", objectPosition: "center center" }}
-        />
-        <div> {title}</div>
+      {/* Single compact card replacing the individual bulky cards */}
+      <div className="certifications-compact-card">
+        <ul className="certifications-list">
+          {clientCerts.map((cert) => (
+            <li key={cert.title} className="cert-list-item">
+              <div className="cert-info">
+                <Image
+                  src={cert.imgSrc}
+                  width={20}
+                  height={20}
+                  alt=""
+                  className="cert-mini-icon"
+                />
+                <span className="cert-title">{cert.title}</span>
+              </div>
+              <a
+                className="cert-link"
+                target="_blank"
+                rel="noreferrer"
+                href={cert.link}
+                aria-label={`View ${cert.title}`}
+              >
+                View <Arrow size={8} />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-      <a className="link-container" target="_blank" href={link}>
-        <div className="project-link">View Here</div>
-        <Arrow size={12} />
-      </a>
     </div>
   );
 }
