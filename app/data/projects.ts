@@ -67,9 +67,9 @@ const projectsData: ProjectType[] = [
       "React",
       "Tailwind CSS",
       "MongoDB",
-      "DSA",
     ],
     otherSkills: [
+      "DSA",
       "Web Development",
       "Graphic Design",
       "Web Design",

@@ -8,7 +8,7 @@
   justify-content: space-around;
   align-items: center;
   transition: 0.3s;
-  z-index: 50; /* Ensure it stays above everything */
+  z-index: 15; /* Ensure it stays above everything */
   animation: topToBottom 1s linear;
 }
 
@@ -403,7 +403,7 @@
     box-shadow: 0 3px 8px rgba(0, 118, 255, 0.4);
     align-items: center;
     gap: 0.6rem;
-    z-index: 40; /* Below dropdown, above content */
+    z-index: 30; /* Below dropdown, above content */
     text-decoration: none;
     transition:
       transform 0.2s ease,
