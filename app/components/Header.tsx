@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <>
       {/* Background Wave */}
-      <div className="absolute inset-0 w-full min-h-screen opacity-60 bg-no-repeat bg-cover bg-center -z-10 bg-[url('/wave.svg')] dark:opacity-20" />
+      <div className="absolute inset-0 w-full min-h-screen opacity-60 bg-no-repeat bg-cover bg-center -z-10 bg-[url('/wave.svg')] dark:opacity-60" />
 
       <header className="min-h-screen max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center md:justify-between px-[5%] pt-20 md:pt-0 gap-10 md:gap-8 z-[2]">
         <Intro />
