@@ -79,6 +79,7 @@ export default function Feedback() {
   const firstSetRef = useRef<HTMLDivElement>(null);
   const isInteractingRef = useRef<boolean>(false);
   const animationFrameRef = useRef<number>(0);
+  const exactScrollPosRef = useRef<number>(0);
 
   // Safely pause and resume based strictly on user inputs, not JS scroll events
   const pauseAutoScroll = useCallback(() => {
@@ -101,6 +102,7 @@ export default function Feedback() {
   }, []);
 
   // Hybrid Scroll Logic: Syncs manual Native Scrolling bounds for the infinite loop
+  // 2. Update handleScroll to keep the precise tracker synced with manual scrolling
   const handleScroll = useCallback(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -114,21 +116,32 @@ export default function Feedback() {
     } else if (container.scrollLeft <= 0) {
       container.scrollLeft += jumpPoint;
     }
+
+    // NEW: Sync the precise tracker with the current scroll position
+    exactScrollPosRef.current = container.scrollLeft;
   }, [getJumpPoint]);
 
-  // Main Auto-scroll Animation Loop
+  // 3. Update the useEffect loop to use the exact fractional tracker
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    // Initialize the exact scroll tracker
+    exactScrollPosRef.current = container.scrollLeft;
+
     const play = () => {
-      // Advance scrollLeft ONLY if the user is not actively interacting
+      // Advance scroll ONLY if the user is not actively interacting
       if (!isInteractingRef.current) {
-        container.scrollLeft += 1; // Smooth, integer-safe progression
+        // NEW: Adjust this value to control duration.
+        // 0.5 is half speed. Lower values (like 0.25) increase the duration further.
+        exactScrollPosRef.current += 0.2;
+
+        container.scrollLeft = exactScrollPosRef.current;
 
         const jumpPoint = getJumpPoint();
         if (jumpPoint > 0 && container.scrollLeft >= jumpPoint) {
-          container.scrollLeft -= jumpPoint;
+          exactScrollPosRef.current -= jumpPoint;
+          container.scrollLeft = exactScrollPosRef.current;
         }
       }
       animationFrameRef.current = requestAnimationFrame(play);

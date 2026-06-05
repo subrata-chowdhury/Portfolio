@@ -10,8 +10,8 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
           {/* Logo Placeholder (Hidden on mobile as per original CSS) */}
           <div className="hidden lg:flex w-1/4 justify-start">
-            <div className="text-2xl font-bold font-['Raleway'] tracking-widest text-gray-900 dark:text-gray-100">
-              SC.
+            <div className="text-lg font-bold font-['Raleway'] tracking-widest text-gray-900 dark:text-gray-100">
+              Subrata Chowdhury
             </div>
           </div>
 
