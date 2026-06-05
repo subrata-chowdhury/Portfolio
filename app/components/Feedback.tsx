@@ -1,6 +1,6 @@
-import React from "react";
-import "@/app/styles/Feedback.css";
-import Star from "../Icons/Star";
+"use client";
+import React, { useRef, useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
 import { projectsData } from "../data/projects";
 
 // Deterministic color generator based on the name (Fixes Next.js Hydration Errors)
@@ -85,14 +85,65 @@ const feedbackData = [
 ];
 
 export default function Feedback() {
-  return (
-    <section className="screen-container feedback-section">
-      <h1 className="heading" id="feedback">
-        Client Feedback
-      </h1>
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-      <div className="marquee-wrapper">
-        <div className="marquee-track">
+  // Auto-scrolling Logic
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let animationFrameId: number;
+
+    const play = () => {
+      // Only auto-scroll if the user isn't hovering, touching, or manually scrolling
+      if (!isInteracting) {
+        el.scrollLeft += 1; // Speed of the auto-scroll
+
+        // Reset scroll position seamlessly when reaching the end of the first duplicated set
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      animationFrameId = requestAnimationFrame(play);
+    };
+
+    animationFrameId = requestAnimationFrame(play);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isInteracting]);
+
+  // Pause scrolling explicitly when the user swipes or uses mouse-wheel
+  const handleScroll = () => {
+    if (!isInteracting) setIsInteracting(true);
+
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+
+    // Resume auto-scroll 500ms after the user stops scrolling
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 500);
+  };
+
+  return (
+    <section
+      className="px-[5%] mt-24 max-w-8xl mx-auto w-full overflow-hidden"
+      id="feedback"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100 mb-8 text-center md:text-left">
+        Client Feedback
+      </h2>
+
+      <div className="relative w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] -webkit-[mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+        <div
+          ref={scrollRef}
+          onMouseEnter={() => setIsInteracting(true)}
+          onMouseLeave={() => setIsInteracting(false)}
+          onTouchStart={() => setIsInteracting(true)}
+          onTouchEnd={() => setIsInteracting(false)}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto w-full items-stretch pb-4 cursor-grab active:cursor-grabbing"
+        >
           {/* Duplicate the array to create a seamless infinite scroll loop */}
           {[...feedbackData, ...feedbackData].map((item, index) => (
             <FeedbackCard key={`${item.id}-${index}`} {...item} />
@@ -117,28 +168,35 @@ function FeedbackCard({
   avatarColor: string;
 }) {
   return (
-    <div className="feedback-card">
-      <div className="feedback-header">
+    <div className="flex flex-col gap-4 w-[320px] sm:w-[380px] shrink-0 h-auto p-6 bg-white dark:bg-[#1a1a1a] rounded-xl border-2 border-black/15 dark:border-white/10 text-gray-900 dark:text-gray-100 transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 dark:hover:bg-white/5 hover:shadow-lg whitespace-normal box-border">
+      <div className="flex items-center gap-4">
         <div
-          className="feedback-avatar"
+          className="w-12 h-12 rounded-full flex items-center justify-center text-base font-bold text-white shrink-0 opacity-90 shadow-sm"
           style={{ backgroundColor: avatarColor }}
           aria-hidden="true"
         >
-          {clientName.charAt(0)}
+          {clientName.charAt(0).toUpperCase()}
         </div>
-        <div className="feedback-info">
-          <div className="feedback-client-name">{clientName}</div>
-          <div className="feedback-company">{company}</div>
+        <div className="flex flex-col gap-0.5">
+          <div className="text-base font-bold leading-tight">{clientName}</div>
+          <div className="text-[0.8rem] font-medium text-gray-600 dark:text-gray-400">
+            {company}
+          </div>
         </div>
       </div>
 
-      <div className="feedback-stars" aria-label={`Rating: ${rating} out of 5`}>
+      <div className="flex gap-1" aria-label={`Rating: ${rating} out of 5`}>
         {[...Array(5)].map((_, index) => (
-          <Star key={index} filled={index < rating} />
+          <FaStar
+            key={index}
+            className={`text-lg ${index < rating ? "text-amber-500" : "text-gray-300 dark:text-gray-700"}`}
+          />
         ))}
       </div>
 
-      <p className="feedback-text">&quot;{feedback}&quot;</p>
+      <p className="text-[0.9rem] leading-relaxed italic opacity-90 m-0 grow">
+        &quot;{feedback}&quot;
+      </p>
     </div>
   );
 }

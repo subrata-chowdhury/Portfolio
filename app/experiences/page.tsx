@@ -1,4 +1,3 @@
-import "@/app/styles/Pages/InternshipsPage.css";
 import Internships from "./components/Internships";
 
 export default function InternshipsPage() {

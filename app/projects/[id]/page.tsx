@@ -3,7 +3,6 @@ import React from "react";
 import DetailedProjectView from "./components/MainProjectView";
 import { Metadata } from "next";
 
-// Strict types for the GitHub API responses
 interface GitHubRepoResponse {
   description: string | null;
 }
@@ -16,25 +15,18 @@ interface GitHubCommit {
   };
 }
 
-// 1. THIS IS THE REQUIRED ADDITION FOR BUILD-TIME STATIC RENDERING
 export async function generateStaticParams() {
-  // Returns an array of objects containing the 'id' params for every project
-  // Next.js will use this to generate a static HTML page for each project at build time.
   return projectsData.map((project) => ({
     id: project.repoName,
   }));
 }
 
-// Optional Production Suggestion: Incremental Static Regeneration (ISR)
-// Uncomment the line below if you want your static pages to re-fetch GitHub data
-// and update in the background every X seconds without needing a full rebuild.
-export const revalidate = 604800; // e.g., revalidate once a week
+export const revalidate = 604800;
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-// 2. ADDED DYNAMIC METADATA GENERATION
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const { id } = await props.params;
   const projectDetails = projectsData.find((e) => e.repoName === id);
@@ -46,7 +38,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     };
   }
 
-  const projectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/projects/${id}`; // Update with your actual domain
+  const projectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/projects/${id}`;
   const imageUrl = `/${projectDetails.previewImageSrc}`;
 
   return {
@@ -78,16 +70,17 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 const Page = async (props: PageProps) => {
   const { id } = await props.params;
 
-  // Using .find() instead of .filter()[0] is slightly more performant and idiomatic
   const projectDetails = projectsData.find((e) => e.repoName === id);
 
   if (!projectDetails) {
     return (
-      <div className="error-page">
-        <div className="heading">Project Not Found</div>
-        <div className="description">
-          The project you are looking for does not exist.
-        </div>
+      <div className="min-h-[60vh] flex flex-col items-center justify-center text-center mt-20 px-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          Project Not Found
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          The project you are looking for does not exist or has been removed.
+        </p>
       </div>
     );
   }
@@ -144,7 +137,6 @@ async function fetchLatestData(repoName: string): Promise<{
         },
       );
 
-      // If commits fetch fails (e.g. private repo), throw to drop into the catch block
       if (!commitResponse.ok) {
         throw new Error(`GitHub API Error: ${commitResponse.status}`);
       }
@@ -171,7 +163,6 @@ async function fetchLatestData(repoName: string): Promise<{
 
     return { noOfCommits: totalNoOfCommits, updatedAt, createdAt, description };
   } catch (error) {
-    // Return undefined for strings so the static data fallback (??) works perfectly
     console.error(
       `[Build/Fetch Error] Failed to fetch data for ${repoName}:`,
       error,

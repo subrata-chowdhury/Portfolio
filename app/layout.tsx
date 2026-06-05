@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import Footer from "./components/Footer";
 import Menubar from "./components/Menubar";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import "./globals.css";
 import { ReactNode } from "react";
 import { Open_Sans, Raleway } from "next/font/google";
@@ -124,9 +123,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${open_sans.className} ${raleway.className}`}
+      className={`scroll-smooth ${open_sans.className} ${raleway.className}`}
     >
-      <body suppressHydrationWarning>
+      <body>
         {/* 1. Google Analytics Injection */}
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
@@ -138,30 +137,28 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
 
-        <ThemeProvider>
-          {/* 3. Accessibility: Skip to Content Button */}
-          <a
-            href="#main-content"
-            className="skip-to-content-btn"
-            style={{
-              position: "absolute",
-              left: "-9999px",
-              top: "auto",
-              width: "1px",
-              height: "1px",
-              overflow: "hidden",
-            }}
-          >
-            Skip to main content
-          </a>
+        {/* 3. Accessibility: Skip to Content Button */}
+        <a
+          href="#main-content"
+          className="skip-to-content-btn"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            top: "auto",
+            width: "1px",
+            height: "1px",
+            overflow: "hidden",
+          }}
+        >
+          Skip to main content
+        </a>
 
-          <Menubar />
+        <Menubar />
 
-          {/* 4. Wrapped children in a <main> tag with an ID corresponding to the skip link */}
-          <main id="main-content">{children}</main>
+        {/* 4. Wrapped children in a <main> tag with an ID corresponding to the skip link */}
+        <main id="main-content">{children}</main>
 
-          <Footer />
-        </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

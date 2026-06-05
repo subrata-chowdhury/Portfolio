@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import Model from "@/app/components/Model";
-import "@/app/styles/gallery-unique.css"; // Importing unique styles
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 type Props = {
   images: string[];
@@ -32,31 +32,24 @@ const Gallery = ({ images }: Props) => {
   }, [images]);
 
   return (
-    <div className="gallery-unique-root">
-      <h2
-        style={{
-          marginBottom: 0,
-          marginTop: "1.5rem",
-          fontFamily: "Raleway, sans-serif",
-          color: "var(--text-color)",
-        }}
-      >
+    <div className="flex flex-col gap-4 mt-2">
+      <h2 className="font-['Raleway'] text-xl font-bold text-gray-900 dark:text-gray-100">
         Preview Images
       </h2>
 
-      <div className="gallery-unique-thumbnails">
+      <div className="flex flex-wrap gap-3">
         {images.map((src, i) => (
           <Image
-            width={60}
-            height={60}
-            src={src}
+            width={64}
+            height={64}
+            src={src.startsWith("/") ? src : `/${src}`}
             key={src}
             onClick={() => {
               setCurrentImg(images[i]);
               toggleModel();
             }}
             alt={`Project Preview ${i + 1}`}
-            className="gallery-unique-thumb"
+            className="w-16 h-16 rounded-md object-cover cursor-pointer border border-black/10 dark:border-white/10 hover:ring-2 hover:ring-blue-500 hover:scale-105 transition-all shadow-sm"
           />
         ))}
       </div>
@@ -64,54 +57,42 @@ const Gallery = ({ images }: Props) => {
       {showModel && (
         <Model
           onClose={toggleModel}
-          style={{
-            backgroundColor: "rgba(0,0,0,0.5)",
-            backdropFilter: "blur(4px)",
-            padding: "2rem",
-            position: "fixed",
-          }}
+          className="bg-black/80 dark:bg-black/90 backdrop-blur-md"
         >
-          <div className="gallery-unique-modal-content">
+          <div className="relative w-full h-[70vh] md:h-[85vh] flex flex-col justify-center items-center">
             {/* Previous Arrow */}
             <button
               aria-label="Previous Image"
               onClick={handlePrev}
-              className="gallery-unique-nav-btn gallery-unique-nav-prev"
+              className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/90 text-white p-3 rounded-full z-10 transition-all hover:scale-110 focus:outline-none"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
+              <FiChevronLeft className="text-3xl" />
             </button>
 
             {/* Main Image View */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
-              <img
-                src={currentImg}
-                alt="Project Preview"
-                className="gallery-unique-main-image"
-              />
+            <div className="flex flex-col items-center justify-center w-full h-full px-12 md:px-24">
+              <div className="relative w-full h-full max-h-full">
+                <Image
+                  src={
+                    currentImg.startsWith("/") ? currentImg : `/${currentImg}`
+                  }
+                  alt="Project Preview Full"
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                />
+              </div>
 
-              <div className="gallery-unique-dots-container">
+              {/* Dots Indicator */}
+              <div className="flex gap-2 mt-6">
                 {images.map((_, i) => (
                   <div
                     key={i}
-                    className={`gallery-unique-dot ${images.indexOf(currentImg) === i ? "gallery-unique-dot-active" : ""}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      images.indexOf(currentImg) === i
+                        ? "w-8 bg-blue-500"
+                        : "w-2.5 bg-gray-400 dark:bg-gray-600"
+                    }`}
                   />
                 ))}
               </div>
@@ -121,20 +102,9 @@ const Gallery = ({ images }: Props) => {
             <button
               aria-label="Next Image"
               onClick={handleNext}
-              className="gallery-unique-nav-btn gallery-unique-nav-next"
+              className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/90 text-white p-3 rounded-full z-10 transition-all hover:scale-110 focus:outline-none"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+              <FiChevronRight className="text-3xl" />
             </button>
           </div>
         </Model>

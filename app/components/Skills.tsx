@@ -1,54 +1,48 @@
-// app/components/Skills.tsx
 "use client";
+
 import { useState, useMemo } from "react";
-import "@/app/styles/skills.css";
-import { skillsData, Skill } from "../data/skills";
-import Model from "./Model";
-import { ProjectsContainer } from "@/app/projects/components/Projects";
-import { projectsData } from "../data/projects";
 import Image from "next/image";
+import { FaStar } from "react-icons/fa";
+import { FiFilter, FiList } from "react-icons/fi";
+import { skillsData, Skill } from "../data/skills";
+import { projectsData } from "../data/projects";
+import { ProjectsContainer } from "@/app/projects/components/Projects";
 import Title from "@/components/Title";
-import Star from "../Icons/Star";
+import Model from "./Model";
 
 export default function Skills() {
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [sortBy, setSortBy] = useState<"default" | "level">("default");
 
-  // Derive the displayed skills cleanly based on current filter and sort states
   const displayedSkills = useMemo(() => {
     let filtered = [...skillsData];
-
     if (!showAllSkills) {
       filtered = filtered.filter((skill) => skill.isFreelanceRelevant);
     }
-
     if (sortBy === "level") {
-      // Sort strictly by level, otherwise preserve the curated array order
       filtered.sort((a, b) => b.lvl - a.lvl);
     }
-
     return filtered;
   }, [showAllSkills, sortBy]);
 
-  const handleSortToggle = () => {
-    setSortBy((prev) => (prev === "default" ? "level" : "default"));
-  };
-
-  const handleFilterToggle = () => {
-    setShowAllSkills((prev) => !prev);
-  };
-
   return (
-    <section className="screen-container">
-      <div className="heading" id="skills">
-        <div>My Expertise</div>
-        <div className="btn-container">
+    <section className="px-[5%] mt-12 lg:mt-16 max-w-8xl mx-auto w-full">
+      <div
+        className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
+        id="skills"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100">
+          My Expertise
+        </h2>
+        <div className="flex flex-wrap gap-3">
           <FilterButton
-            onClickHandler={handleFilterToggle}
+            onClickHandler={() => setShowAllSkills(!showAllSkills)}
             active={showAllSkills}
           />
           <SortButton
-            onClickHandler={handleSortToggle}
+            onClickHandler={() =>
+              setSortBy((prev) => (prev === "default" ? "level" : "default"))
+            }
             active={sortBy === "level"}
           />
         </div>
@@ -60,13 +54,11 @@ export default function Skills() {
 
 export const SkillsContainer = ({
   skillsData = [],
-  skillClickHandler = () => {},
 }: {
   skillsData?: Skill[];
-  skillClickHandler?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }) => {
   return (
-    <div className="skills-container">
+    <div className="flex flex-wrap gap-4 py-4">
       {skillsData.length > 0 ? (
         skillsData.map((skill, index) => (
           <SkillCard
@@ -74,13 +66,14 @@ export const SkillsContainer = ({
             icon={skill.iconSrc}
             id={skill.id}
             key={skill.id}
-            onClickHandler={skillClickHandler}
             lvl={skill.lvl}
             animationDelay={index}
           />
         ))
       ) : (
-        <div className="no-skill">No Skills Found</div>
+        <div className="text-gray-500 dark:text-gray-400 italic">
+          No Skills Found
+        </div>
       )}
     </div>
   );
@@ -90,14 +83,12 @@ function SkillCard({
   name,
   icon,
   id,
-  onClickHandler,
   lvl,
   animationDelay,
 }: {
   name: string;
   icon?: string;
   id: string;
-  onClickHandler: (e: React.MouseEvent<HTMLDivElement>) => void;
   lvl: number;
   animationDelay: number;
 }) {
@@ -107,42 +98,40 @@ function SkillCard({
     <>
       <Title
         title={
-          <div className="skill-details">
+          <div className="flex items-center gap-1">
             {[...Array(3)].map((_, i) => (
-              <Star key={i} filled={i < lvl} />
+              <FaStar
+                key={i}
+                className={`text-sm ${i < lvl ? "text-amber-500" : "text-gray-400 dark:text-gray-600"}`}
+              />
             ))}
           </div>
         }
       >
         <div
-          className="skill-container"
           id={id}
-          title={`${name}`}
-          onClick={(e) => {
-            if (id) setShowRelatedProjects(true);
-            onClickHandler(e);
-          }}
-          style={{ animationDuration: `${animationDelay / 10}s` }}
+          title={name}
+          onClick={() => setShowRelatedProjects(true)}
+          className="inline-flex items-center bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-xl px-5 py-3 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/10 dark:hover:shadow-blue-400/10 hover:border-blue-400/50 animate-[slide-up_0.5s_ease-out_forwards]"
+          style={{ animationDuration: `${animationDelay / 10 + 0.3}s` }}
         >
-          <div className="sub-skill-container">
-            <div className="skill-name-container">
-              {icon && (
-                <Image
-                  src={icon}
-                  alt={`${name} icon`}
-                  width={24}
-                  height={24}
-                  style={{
-                    objectFit: "contain",
-                    objectPosition: "left center",
-                  }}
-                />
-              )}
-              <div className="skill-name">{name}</div>
+          <div className="flex items-center gap-3 w-full">
+            {icon && (
+              <Image
+                src={icon}
+                alt={`${name} icon`}
+                width={24}
+                height={24}
+                className="object-contain"
+              />
+            )}
+            <div className="font-semibold text-[0.95rem] text-gray-800 dark:text-gray-200 whitespace-nowrap">
+              {name}
             </div>
           </div>
         </div>
       </Title>
+
       {showRelatedProjects && (
         <SkillDetailsPopUp
           skill={name}
@@ -161,15 +150,12 @@ function SortButton({
   active: boolean;
 }) {
   return (
-    <button className="sort btn" onClick={onClickHandler}>
-      <div>{active ? "Default Order" : "Sort By Level"}</div>
-      <Image
-        src="/icons/sort.png"
-        alt="sort icon"
-        width={18}
-        height={18}
-        style={{ height: "auto" }}
-      />
+    <button
+      className="flex items-center gap-2 bg-blue-50/80 dark:bg-white/10 hover:bg-blue-100 dark:hover:bg-white/20 text-gray-800 dark:text-gray-200 border border-transparent transition-all px-4 py-2 rounded-lg font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      onClick={onClickHandler}
+    >
+      <span>{active ? "Default Order" : "Sort By Level"}</span>
+      <FiList className="text-lg" />
     </button>
   );
 }
@@ -182,15 +168,12 @@ function FilterButton({
   active: boolean;
 }) {
   return (
-    <button className="sort filter btn" onClick={onClickHandler}>
-      <div>{active ? "Show Core Skills" : "Show All Skills"}</div>
-      <Image
-        src="/icons/sort.png"
-        alt="filter icon"
-        width={18}
-        height={18}
-        style={{ height: "auto" }}
-      />
+    <button
+      className="flex items-center gap-2 bg-blue-50/80 dark:bg-white/10 hover:bg-blue-100 dark:hover:bg-white/20 text-gray-800 dark:text-gray-200 border border-transparent transition-all px-4 py-2 rounded-lg font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      onClick={onClickHandler}
+    >
+      <span>{active ? "Core Freelance Stack" : "Show All Skills"}</span>
+      <FiFilter className="text-lg" />
     </button>
   );
 }
@@ -214,12 +197,14 @@ function SkillDetailsPopUp({
 
   return (
     <Model onClose={onClose}>
-      <div className="skill-details-container">
-        <div className="heading">Projects using {skill}</div>
+      <div className="flex flex-col w-full h-full">
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 pb-4 mb-4 border-b border-gray-200 dark:border-gray-800">
+          Projects using {skill}
+        </h3>
         {relatedProjects.length > 0 ? (
           <ProjectsContainer projectData={relatedProjects} />
         ) : (
-          <p style={{ padding: "1rem", color: "var(--text-color)" }}>
+          <p className="text-gray-600 dark:text-gray-400 p-4 bg-gray-50 dark:bg-neutral-800/50 rounded-lg">
             No projects available for this skill yet.
           </p>
         )}

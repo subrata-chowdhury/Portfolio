@@ -1,19 +1,19 @@
 import React from "react";
-import "@/app/styles/AboutMe.css";
-import SimpleArrow from "../Icons/SimpleArrow";
+import Link from "next/link";
 import { projectCount } from "../data/projects";
 import { certificateCount } from "../data/certificates";
 import { skillCount } from "../data/skills";
-import ProjectIcon from "../Icons/ProjectIcon";
-import CertificationIcon from "../Icons/CertificationIcon";
-import SkillsIcon from "../Icons/SkillsIcon";
-import Link from "next/link";
+// Using icons that closely match your original custom SVGs
+import { FiFolder, FiAward } from "react-icons/fi";
+import { BiCodeAlt } from "react-icons/bi";
 
 export default function AboutMe() {
   return (
-    <section className="screen-container">
-      <h1 className="heading">About Me</h1>
-      <div className="about-container">
+    <section className="px-[5%] mt-8 max-w-8xl mx-auto w-full" id="about">
+      <h1 className="font-['Raleway'] w-full text-[2rem] font-bold grid grid-flow-col justify-between items-center text-gray-900 dark:text-gray-100 mb-8">
+        <div className="animate-[slide-right_1s_ease-out]">About Me</div>
+      </h1>
+      <div className="text-base text-gray-800 dark:text-gray-200">
         <BioSection />
         <Counts />
       </div>
@@ -23,94 +23,88 @@ export default function AboutMe() {
 
 function BioSection() {
   return (
-    <article className="sub-about-container">
-      <p>
-        I am a Computer Science Engineering graduate with a proven track record
-        of architecting scalable, production-ready applications.
+    <article>
+      <p className="mb-[1.2rem] leading-[1.6]">
+        I am a Full-Stack Web Developer specializing in helping small businesses
+        and e-commerce stores elevate their digital presence.
       </p>
-      <p>
-        As a results-driven Full-Stack Web Developer, I specialize in helping
-        businesses elevate their digital presence. By leveraging modern,
-        high-performance frameworks like React, Next.js, Node.js, and strict
-        TypeScript, I replace outdated systems with reliable, lightning-fast web
-        experiences.
+      <p className="mb-[1.2rem] leading-[1.6]">
+        A slow, outdated, or broken website costs you customers. I replace these
+        with lightning-fast, modern, and highly responsive web experiences. By
+        handling the technical heavy lifting, I ensure your site keeps visitors
+        engaged, looks professional on every device, and ultimately drives
+        sales.
       </p>
-      <p>
-        With professional experience spanning dynamic startups to modern SaaS
-        platforms, I have successfully driven end-to-end technical delivery.
-        From optimizing SEO and backend integration to managing CI/CD pipelines
-        in Agile environments, I am dedicated to delivering robust UI solutions
-        that build trust and drive business growth.
+      <p className="mb-[1.2rem] leading-[1.6]">
+        To ensure we are a perfect fit with zero risk to you, I operate on a{" "}
+        <strong>"Free-to-Fee"</strong> model. You will receive a custom,
+        high-quality design mockup of your new homepage completely free of
+        charge before any payment or commitment is requested.
       </p>
 
-      <ContactDetails />
+      {/* Contact details removed as requested */}
 
-      <ul className="points">
-        <li>
-          Proven experience delivering high-performance SaaS solutions and
-          modernizing business landing pages.
+      <ul className="leading-[1.8] mt-[1.5rem] pl-[1.5rem] list-disc">
+        <li className="mb-[0.5rem]">
+          Delivering modern, fast-loading websites optimized to turn visitors
+          into local customers.
         </li>
-        <li>
-          Strong expertise in responsive design, MERN stack architecture, and
-          comprehensive SEO optimization.
+        <li className="mb-[0.5rem]">
+          Guaranteed seamless performance across all mobile, tablet, and desktop
+          devices.
         </li>
-        <li>
-          Highly organized and adaptable, excelling in both independent
-          freelance projects and collaborative Agile teams.
+        <li className="mb-[0.5rem]">
+          Transparent, asynchronous communication process to save you time—no
+          unnecessary meetings required.
         </li>
-        <li>Hobbies include Web Development, gaming, and music.</li>
+        <li className="mb-[0.5rem]">
+          Hobbies include Web Development, gaming, and music.
+        </li>
       </ul>
     </article>
   );
 }
 
-function ContactDetails() {
-  return (
-    <div className="about-contact-details">
-      <div>
-        <SimpleArrow />
-        <span className="field">Email:&nbsp;</span>
-        <a href="mailto:subratachowdhury7000@gmail.com">
-          subratachowdhury7000@gmail.com
-        </a>
-      </div>
-      <div>
-        <SimpleArrow />
-        <span className="field">Phone:&nbsp;</span>
-        <a href="tel:+919382640789">+91 9382640789</a>
-      </div>
-      <div>
-        <SimpleArrow />
-        <span className="field">Location:&nbsp;</span>
-        West Bengal, India
-      </div>
-    </div>
-  );
-}
-
 function Counts() {
   return (
-    <section className="counts-container">
-      <Link className="count" href="#projects">
-        <div className="count-icon">
-          <ProjectIcon />
+    <section className="flex flex-wrap gap-6 mt-8 justify-evenly max-sm:gap-2">
+      <Link
+        className="flex flex-col items-center justify-center p-4 max-sm:p-2 max-sm:flex-[1_1_30%] text-gray-800 dark:text-gray-200 no-underline group"
+        href="#projects"
+      >
+        <div className="flex items-center justify-center bg-blue-50/50 dark:bg-[#3d3d3d] w-[4.5rem] h-[4.5rem] max-sm:w-[3.5rem] max-sm:h-[3.5rem] rounded-lg shadow-[inset_0_0_120px_rgba(143,190,255,0.277)] transition-all duration-300 group-hover:bg-blue-600">
+          <FiFolder className="w-8 h-8 max-sm:w-6 max-sm:h-6 text-gray-800 dark:text-gray-200 transition-colors duration-300 group-hover:text-white" />
         </div>
-        <div className="count-number">{projectCount}</div>
-        <div className="count-label">Projects</div>
+        <div className="text-[2.5rem] max-sm:text-[2rem] font-bold mt-3 leading-none">
+          {projectCount}
+        </div>
+        <div className="mt-1">Projects</div>
       </Link>
-      <Link className="count" href="#certifications">
-        <div className="count-icon">
-          <CertificationIcon />
+
+      <Link
+        className="flex flex-col items-center justify-center p-4 max-sm:p-2 max-sm:flex-[1_1_30%] text-gray-800 dark:text-gray-200 no-underline group"
+        href="#certifications"
+      >
+        <div className="flex items-center justify-center bg-blue-50/50 dark:bg-[#3d3d3d] w-[4.5rem] h-[4.5rem] max-sm:w-[3.5rem] max-sm:h-[3.5rem] rounded-lg shadow-[inset_0_0_120px_rgba(143,190,255,0.277)] transition-all duration-300 group-hover:bg-blue-600">
+          <FiAward className="w-8 h-8 max-sm:w-6 max-sm:h-6 text-gray-800 dark:text-gray-200 transition-colors duration-300 group-hover:text-white" />
         </div>
-        <div className="count-number">{certificateCount}</div>
-        <div className="count-label">Certifications</div>
+        <div className="text-[2.5rem] max-sm:text-[2rem] font-bold mt-3 leading-none">
+          {certificateCount}
+        </div>
+        <div className="mt-1 text-center">Certifications</div>
       </Link>
-      <Link className="count" href="#skills">
-        <div className="count-icon">
-          <SkillsIcon />
+
+      <Link
+        className="flex flex-col items-center justify-center p-4 max-sm:p-2 max-sm:flex-[1_1_30%] text-gray-800 dark:text-gray-200 no-underline group"
+        href="#skills"
+      >
+        <div className="flex items-center justify-center bg-blue-50/50 dark:bg-[#3d3d3d] w-[4.5rem] h-[4.5rem] max-sm:w-[3.5rem] max-sm:h-[3.5rem] rounded-lg shadow-[inset_0_0_120px_rgba(143,190,255,0.277)] transition-all duration-300 group-hover:bg-blue-600">
+          <BiCodeAlt className="w-8 h-8 max-sm:w-6 max-sm:h-6 text-gray-800 dark:text-gray-200 transition-colors duration-300 group-hover:text-white" />
         </div>
-        <div className="count-number">{skillCount}</div>
-        <div className="count-label">Skills</div>
+        <div className="text-[2.5rem] max-sm:text-[2rem] font-bold mt-3 leading-none">
+          {skillCount}
+        </div>
+        <div className="mt-1">Skills</div>
       </Link>
     </section>
   );
