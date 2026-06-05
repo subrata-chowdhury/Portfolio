@@ -78,7 +78,7 @@ function EducationCard({
         </div>
         <a
           href={certificateLink}
-          className="flex items-center gap-2 text-gray-900 dark:text-gray-100 font-bold w-max hover:text-blue-600 dark:hover:text-blue-400 transition-colors mt-2"
+          className="flex items-center gap-2 text-gray-900 dark:text-gray-100 font-bold w-max hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           target="_blank"
           rel="noreferrer"
         >

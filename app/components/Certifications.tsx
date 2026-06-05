@@ -27,8 +27,8 @@ export default function Certifications() {
               <div className="flex items-center gap-3.5 flex-1">
                 <Image
                   src={cert.imgSrc}
-                  width={20}
-                  height={20}
+                  width={30}
+                  height={30}
                   alt=""
                   className="object-contain opacity-90 shrink-0"
                 />

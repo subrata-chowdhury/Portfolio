@@ -21,7 +21,7 @@ export default function Header() {
 
 function Intro() {
   return (
-    <section className="flex flex-col justify-center items-center md:items-start text-gray-900 dark:text-gray-100 flex-1 text-center md:text-left">
+    <section className="flex flex-col justify-center items-center md:items-start text-gray-900 dark:text-gray-100 sm:flex-1 text-center md:text-left">
       <div className="text-[2.5rem] md:text-[4.5rem] font-bold font-['Raleway'] leading-[1.1] animate-[fade-in_0.8s_ease-out]">
         <span className="text-blue-600 dark:text-blue-500">
           Subrata

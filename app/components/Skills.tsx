@@ -28,7 +28,7 @@ export default function Skills() {
   return (
     <section className="px-[5%] mt-12 lg:mt-16 max-w-8xl mx-auto w-full">
       <div
-        className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
+        className="flex md:items-center justify-between gap-4 mb-8"
         id="skills"
       >
         <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100">
@@ -151,7 +151,7 @@ function SortButton({
 }) {
   return (
     <button
-      className="flex items-center gap-2 bg-blue-50/80 dark:bg-white/10 hover:bg-blue-100 dark:hover:bg-white/20 text-gray-800 dark:text-gray-200 border border-transparent transition-all px-4 py-2 rounded-lg font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      className="sm:flex items-center hidden gap-2 bg-blue-50/80 dark:bg-white/10 hover:bg-blue-100 dark:hover:bg-white/20 text-gray-800 dark:text-gray-200 border border-transparent transition-all px-4 py-2 rounded-lg font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
       onClick={onClickHandler}
     >
       <span>{active ? "Default Order" : "Sort By Level"}</span>

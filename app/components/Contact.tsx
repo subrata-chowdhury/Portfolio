@@ -187,7 +187,6 @@ const RightSide = () => {
             placeholder="Doe"
             aria-label="Last Name"
             className="w-full bg-gray-50 dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 text-gray-900 dark:text-gray-100 rounded-lg px-4 py-3.5 outline-none transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-            required
           />
         </div>
       </div>
@@ -204,9 +203,10 @@ const RightSide = () => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="john@example.com (Optional)"
+          placeholder="john@example.com"
           aria-label="Email Address"
           className="w-full bg-gray-50 dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 text-gray-900 dark:text-gray-100 rounded-lg px-4 py-3.5 outline-none transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          required
         />
       </div>
 
