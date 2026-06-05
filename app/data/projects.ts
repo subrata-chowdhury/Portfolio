@@ -26,7 +26,7 @@ const projectsData: ProjectType[] = [
       "Responsive Web Design",
       "Web Applications",
       "Problem Solving",
-      "Gemini"
+      "Gemini",
     ],
     previewImageSrc: "assets/Aether Docs.webp",
     previewUiImages: [
@@ -84,7 +84,7 @@ const projectsData: ProjectType[] = [
       "JSON Web Token (JWT)",
       "Problem Solving",
       "SEO",
-      "Gemini"
+      "Gemini",
     ],
     previewImageSrc: "assets/LabTesto.webp",
     previewUiImages: [
@@ -107,9 +107,10 @@ const projectsData: ProjectType[] = [
       name: "Sayan Das",
       role: "Local Lab Collector",
       url: null,
-      feedback: "Subrata's full-stack expertise and design skills brought LabTesto to life. He communicated proactively, delivered ahead of schedule, and exceeded all our expectations.",
+      feedback:
+        "Subrata's full-stack expertise and design skills brought LabTesto to life. He communicated proactively, delivered ahead of schedule, and exceeded all our expectations.",
       stars: 5,
-    }
+    },
   },
   {
     name: "ATG World",
@@ -213,9 +214,10 @@ const projectsData: ProjectType[] = [
       name: "A. C. Ganguly",
       role: "Director of BCET",
       url: null,
-      feedback: "Subrata delivered an exceptional, user-friendly interface using React and TypeScript. His problem-solving skills, creativity, and strict dedication to deadlines made the collaboration seamless.",
+      feedback:
+        "Subrata delivered an exceptional, user-friendly interface using React and TypeScript. His problem-solving skills, creativity, and strict dedication to deadlines made the collaboration seamless.",
       stars: 4,
-    }
+    },
   },
   {
     name: "To Dos",
