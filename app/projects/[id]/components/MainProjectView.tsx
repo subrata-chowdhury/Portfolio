@@ -5,10 +5,12 @@ import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import Gallery from "./Gallery";
+import { LuLock } from "react-icons/lu";
 
 export default function DetailedProjectView({
   name = "Name",
   repoName,
+  privateRepo = false,
   description = "It's a Project",
   noOfCommits,
   createdAt,
@@ -22,6 +24,7 @@ export default function DetailedProjectView({
 }: {
   name: string;
   repoName?: string | null;
+  privateRepo?: boolean;
   description?: string;
   noOfCommits?: number | null;
   createdAt?: string | null;
@@ -107,16 +110,25 @@ export default function DetailedProjectView({
               <FiExternalLink aria-hidden="true" />
             </Link>
           )}
-          {noOfCommits !== null && (noOfCommits || 0) > 0 && repoName && (
-            <Link
-              href={`https://github.com/subrata-chowdhury/${repoName}`}
-              className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 dark:focus:ring-offset-[#121212]"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Source code</span>
-              <FiGithub aria-hidden="true" />
-            </Link>
+          {privateRepo ? (
+            <span className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">
+              <span>Private Repository</span>
+              <LuLock className="text-gray-400" aria-hidden="true" />
+            </span>
+          ) : (
+            noOfCommits !== null &&
+            (noOfCommits || 0) > 0 &&
+            repoName && (
+              <Link
+                href={`https://github.com/subrata-chowdhury/${repoName}`}
+                className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 dark:focus:ring-offset-[#121212]"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Source code</span>
+                <FiGithub aria-hidden="true" />
+              </Link>
+            )
           )}
         </div>
 

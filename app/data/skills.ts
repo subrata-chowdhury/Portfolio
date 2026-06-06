@@ -24,7 +24,7 @@ const skillsData: Skill[] = [
     name: "Next.js",
     iconSrc: "/icons/nextjs.svg",
     id: "nextjs",
-    lvl: 2,
+    lvl: 3,
     topSkill: true,
     isFreelanceRelevant: true,
   },
@@ -64,7 +64,7 @@ const skillsData: Skill[] = [
     name: "SEO",
     iconSrc: "/icons/seo.webp",
     id: "seo",
-    lvl: 2,
+    lvl: 3,
     topSkill: true,
     isFreelanceRelevant: true,
   },
@@ -96,7 +96,7 @@ const skillsData: Skill[] = [
     name: "Node.js",
     iconSrc: "/icons/NodeJS.svg",
     id: "nodejs",
-    lvl: 2,
+    lvl: 3,
     topSkill: true,
     isFreelanceRelevant: true,
   },
@@ -120,7 +120,7 @@ const skillsData: Skill[] = [
     name: "Figma",
     iconSrc: "/icons/figma.webp",
     id: "figma",
-    lvl: 1,
+    lvl: 2,
     isFreelanceRelevant: true,
   },
 
@@ -161,7 +161,7 @@ const skillsData: Skill[] = [
     name: "Web Development",
     iconSrc: "/icons/Web Development.svg",
     id: "web-development",
-    lvl: 2,
+    lvl: 3,
     isFreelanceRelevant: true,
   },
   {
@@ -191,7 +191,7 @@ const skillsData: Skill[] = [
     name: "Firebase",
     iconSrc: "/icons/Logomark_Full Color.svg",
     id: "firebase",
-    lvl: 1,
+    lvl: 2,
   },
 
   // --- TIER 3: Soft Skills & Tools ---
@@ -249,7 +249,7 @@ const skillsData: Skill[] = [
     name: "React Native",
     iconSrc: "/icons/React.svg",
     id: "react-native",
-    lvl: 1,
+    lvl: 2,
     topSkill: true,
   },
   {
@@ -268,7 +268,7 @@ const skillsData: Skill[] = [
     name: "PHP",
     iconSrc: "/icons/php.svg",
     id: "php",
-    lvl: 1,
+    lvl: 2,
   },
   {
     name: "C",
@@ -304,7 +304,7 @@ const skillsData: Skill[] = [
     name: "Python",
     iconSrc: "/icons/python.svg",
     id: "python",
-    lvl: 1,
+    lvl: 2,
   },
   {
     name: "DBMS",
@@ -328,7 +328,7 @@ const skillsData: Skill[] = [
     name: "Word",
     iconSrc: "/icons/word.webp",
     id: "word",
-    lvl: 2,
+    lvl: 3,
   },
   {
     name: "Excel",
@@ -340,7 +340,7 @@ const skillsData: Skill[] = [
     name: "PowerPoint",
     iconSrc: "/icons/powerpoint.webp",
     id: "powerpoint",
-    lvl: 1,
+    lvl: 2,
   },
   {
     name: "Power Bi",

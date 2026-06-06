@@ -211,9 +211,9 @@ const Page = async (props: PageProps) => {
               {internship.workLinks.map((link, index) => (
                 <div
                   key={index}
-                  className="p-5 md:p-6 bg-white dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 rounded-2xl shadow-sm transition-shadow hover:shadow-md"
+                  className="p-5 md:p-6 md:py-4 bg-white dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 rounded-2xl shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4 mb-3">
                     <div className="w-12 h-12 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg border border-gray-100 dark:border-white/5 flex items-center justify-center shrink-0 p-1">
                       <Image
                         src={link.iconSrc}
@@ -228,7 +228,7 @@ const Page = async (props: PageProps) => {
                     </h3>
                   </div>
 
-                  <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
+                  <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                     {link.description}
                   </div>
 

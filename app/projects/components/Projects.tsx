@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import { projectsData as projectData, ProjectType } from "@/app/data/projects";
 import Model from "@/app/components/Model";
+import { LuLock } from "react-icons/lu";
 
 interface ProjectsProps {
   showLimited?: boolean;
@@ -40,7 +41,7 @@ export default function Projects({
           <h2 className="text-2xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100 whitespace-nowrap">
             Projects
           </h2>
-          <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-800 hidden sm:block" />
+          <div className="h-px flex-1 bg-gray-200 dark:bg-gray-800 hidden sm:block" />
         </div>
         <GitHubButton />
       </div>
@@ -101,6 +102,7 @@ export function GitHubButton() {
 export function Project({
   name = "Name",
   repoName = "Repo-Name",
+  privateRepo = false,
   description = "It's a Project",
   clientProject = false,
   previewImageSrc = "",
@@ -139,7 +141,7 @@ export function Project({
         style={{ transitionDelay: `${animationDelay}s` }}
       >
         <div
-          className="relative w-full aspect-[16/10] cursor-pointer overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-white/5"
+          className="relative w-full aspect-16/10 cursor-pointer overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-white/5"
           onClick={() => setShowImg(true)}
         >
           <Image
@@ -179,15 +181,21 @@ export function Project({
                   <FiExternalLink className="text-sm" />
                 </Link>
               )}
-              {repoName && (
-                <Link
-                  href={`https://github.com/subrata-chowdhury/${repoName}`}
-                  target="_blank"
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors"
-                  aria-label="View Source Code"
-                >
-                  <FaGithub className="text-sm" />
-                </Link>
+              {privateRepo ? (
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-400 dark:text-gray-500">
+                  <LuLock className="text-sm" />
+                </span>
+              ) : (
+                repoName && (
+                  <Link
+                    href={`https://github.com/subrata-chowdhury/${repoName}`}
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    aria-label="View Source Code"
+                  >
+                    <FaGithub className="text-sm" />
+                  </Link>
+                )
               )}
             </div>
 

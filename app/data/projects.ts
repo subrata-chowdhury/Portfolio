@@ -2,6 +2,7 @@ const projectsData: ProjectType[] = [
   {
     name: "AetherDocs",
     repoName: "aether-docs",
+    privateRepo: true,
     description:
       "A full-stack collaborative world-building and dynamic timeline graphing SaaS. Features include real-time collaboration, algorithmic content recommendations, tier-based monetization, and a secure Super Admin dashboard.",
     noOfCommits: null,
@@ -418,6 +419,7 @@ export const projectCount = projectsData.length;
 export type ProjectType = {
   name: string;
   repoName: string;
+  privateRepo?: boolean;
   description: string;
   noOfCommits: number | null;
   createdAt: string | null;
