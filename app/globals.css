@@ -1,21 +1,21 @@
 /* app/globals.css */
 @import "tailwindcss";
 
+/* Define your custom theme variables here */
 @theme {
-  --color-primary: #2563eb;
+  --color-primary: #2563eb; /* Replace with your actual brand color */
+  /* You can easily map custom fonts and spacing here as well */
 }
 
 :root {
-  /* Soft off-white (gray-50) so pure white cards pop naturally */
-  --background: #f9fafb;
-  --foreground: #111827;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Deep rich dark background to contrast with the #121212 dark mode cards */
-    --background: #050505;
-    --foreground: #f3f4f6;
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
