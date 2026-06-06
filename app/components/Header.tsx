@@ -8,10 +8,10 @@ import { FaFacebook, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 export default function Header() {
   return (
     <>
-      {/* Background Wave */}
-      <div className="absolute inset-0 w-full min-h-screen opacity-60 bg-no-repeat bg-cover bg-center -z-10 bg-[url('/wave.svg')] dark:opacity-60" />
+      {/* Ultra-subtle background wave to maintain brand texture without clutter */}
+      <div className="absolute inset-0 w-full min-h-screen opacity-40 bg-no-repeat bg-cover bg-center -z-10 bg-[url('/wave.svg')] dark:opacity-50 pointer-events-none" />
 
-      <header className="min-h-screen max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center md:justify-between px-[5%] pt-20 md:pt-0 gap-10 md:gap-8 z-[2]">
+      <header className="relative min-h-screen max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center md:justify-between px-6 py-20 gap-10 md:gap-8 z-[2]">
         <Intro />
         <Photo />
       </header>
@@ -21,89 +21,90 @@ export default function Header() {
 
 function Intro() {
   return (
-    <section className="flex flex-col justify-center items-center md:items-start text-gray-900 dark:text-gray-100 sm:flex-1 text-center md:text-left">
-      <div className="text-[2.5rem] md:text-[4.5rem] font-bold font-['Raleway'] leading-[1.1] animate-[fade-in_0.8s_ease-out]">
-        <span className="text-blue-600 dark:text-blue-500">
-          Subrata
-          <br /> Chowdhury
-        </span>
+    <section className="flex flex-col items-center md:items-start text-center md:text-left sm:flex-1 w-full max-w-2xl">
+      <div className="space-y-3 animate-[fade-in_0.8s_ease-out]">
+        <h2 className="text-sm md:text-base font-semibold tracking-widest text-blue-600 dark:text-blue-500">
+          Freelance Web Developer
+        </h2>
+        <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold tracking-tight text-gray-900 dark:text-gray-50 leading-[1.1]">
+          Subrata <br className="hidden md:block" />
+          Chowdhury
+        </h1>
       </div>
 
-      <div className="text-[1.5rem] mt-2 animate-[slide-up_1s_ease-out]">
-        <div className="flex flex-col md:flex-row font-['Open_Sans'] items-center md:items-end text-[1.5rem] md:text-[1.7rem]">
-          <span className="mr-2">I am a</span>
-          <TypeingAnimation />
-        </div>
+      <div className="mt-4 md:mt-6 h-[2rem] md:h-[2.5rem] flex items-center justify-center md:justify-start text-lg md:text-2xl text-gray-600 dark:text-gray-300 font-medium animate-[slide-up_1s_ease-out]">
+        <span className="mr-2">I build</span>
+        <TypingAnimation />
       </div>
 
-      <SocialLinks />
+      <div className="mt-8 flex flex-col items-center md:items-start gap-8 w-full">
+        <SocialLinks />
 
-      <Link
-        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 w-[200px] md:w-[160px] flex justify-center text-base rounded-full mt-6 transition-transform hover:-translate-y-1 hover:shadow-lg dark:shadow-blue-900/20"
-        href="/files/CV.pdf"
-        target="_blank"
-      >
-        Download CV
-      </Link>
+        <Link
+          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3.5 w-full md:w-[200px] flex justify-center items-center text-base font-medium rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-blue-600/25 dark:shadow-blue-900/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 dark:focus:ring-offset-gray-900"
+          href="/files/CV.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download CV
+        </Link>
+      </div>
     </section>
   );
 }
 
 function Photo() {
   return (
-    <div className="flex-shrink-0 flex items-center justify-center animate-[fade-in_1s_ease-out]">
-      <Image
-        src="/profile-pic.webp"
-        alt="Subrata Chowdhury"
-        width={400}
-        height={400}
-        priority
-        className="w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] xl:w-[400px] xl:h-[400px] rounded-2xl object-cover z-[2] shadow-xl dark:shadow-black/50"
-      />
+    <div className="relative flex-shrink-0 flex items-center justify-center animate-[fade-in_1s_ease-out] mb-4 md:mb-0">
+      <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem]">
+        <Image
+          src="/profile-pic.webp"
+          alt="Subrata Chowdhury"
+          fill
+          sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 352px"
+          priority
+          className="rounded-full object-cover z-10 shadow-xl dark:shadow-black/60 border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900"
+        />
+      </div>
     </div>
   );
 }
 
 function SocialLinks() {
+  const links = [
+    {
+      icon: FaGithub,
+      href: "https://github.com/subrata-chowdhury",
+      label: "GitHub",
+    },
+    {
+      icon: FaLinkedin,
+      href: "https://www.linkedin.com/in/subrata7000/",
+      label: "LinkedIn",
+    },
+    { icon: FaInstagram, href: "#", label: "Instagram" },
+    { icon: FaFacebook, href: "#", label: "Facebook" },
+  ];
+
   return (
-    <div className="flex items-center gap-6 mt-8 self-center md:self-start">
-      <a
-        href="#"
-        target="_blank"
-        aria-label="Facebook Page"
-        className="text-2xl text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
-      >
-        <FaFacebook />
-      </a>
-      <a
-        href="#"
-        target="_blank"
-        aria-label="Instagram Page"
-        className="text-2xl text-gray-700 hover:text-pink-600 dark:text-gray-300 dark:hover:text-pink-400 transition-colors"
-      >
-        <FaInstagram />
-      </a>
-      <a
-        href="https://github.com/subrata-chowdhury"
-        target="_blank"
-        aria-label="GitHub Page"
-        className="text-2xl text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors"
-      >
-        <FaGithub />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/subrata7000/"
-        target="_blank"
-        aria-label="LinkedIn Page"
-        className="text-2xl text-gray-700 hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-500 transition-colors"
-      >
-        <FaLinkedin />
-      </a>
+    <div className="flex items-center gap-6">
+      {links.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit my ${link.label} profile`}
+          className="text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500 transition-colors duration-200"
+        >
+          <link.icon className="w-5 h-5 md:w-6 md:h-6" />
+        </a>
+      ))}
     </div>
   );
 }
 
-function TypeingAnimation() {
+function TypingAnimation() {
   const [text, setText] = useState("");
   const [isErasing, setIsErasing] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
@@ -111,15 +112,15 @@ function TypeingAnimation() {
 
   useEffect(() => {
     const words = [
-      "Web Developer",
-      "Programmer",
-      "Designer",
-      "Freelancer",
-      "Engineer",
+      "Modern Websites.",
+      "Fast Landing Pages.",
+      "Scalable Web Apps.",
+      "Custom Solutions.",
     ];
-    const typingSpeed = 150;
-    const erasingSpeed = 100;
-    const delayBetweenWords = 1000;
+
+    const typingSpeed = 100;
+    const erasingSpeed = 60;
+    const delayBetweenWords = 1500;
 
     const handleTyping = () => {
       if (!isErasing) {
@@ -148,15 +149,14 @@ function TypeingAnimation() {
           ? delayBetweenWords
           : typingSpeed,
     );
+
     return () => clearTimeout(timer);
   }, [charIndex, isErasing, wordIndex]);
 
   return (
-    <div className="text-[1.8rem] font-['Open_Sans'] md:text-[2rem] text-blue-600 dark:text-blue-500 font-semibold inline-block">
-      <span>&nbsp;{text}</span>
-      <span className="inline-block ml-[2px] animate-pulse text-gray-900 dark:text-gray-100">
-        |
-      </span>
+    <div className="font-semibold text-blue-600 dark:text-blue-500 inline-flex items-center min-w-[200px]">
+      <span>{text}</span>
+      <span className="inline-block w-[2px] h-[1em] ml-1 bg-blue-600 dark:bg-blue-500 animate-pulse" />
     </div>
   );
 }

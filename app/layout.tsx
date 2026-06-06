@@ -23,7 +23,10 @@ const open_sans = Open_Sans({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff", // Update this to match your actual brand/theme color
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f9fafb" },
+    { media: "(prefers-color-scheme: dark)", color: "#050505" },
+  ],
 };
 
 // Centralized, Next.js-native Metadata configuration

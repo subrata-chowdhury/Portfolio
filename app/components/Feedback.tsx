@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useRef, useEffect, useCallback, memo } from "react";
-import { FaStar, FaQuoteRight } from "react-icons/fa";
+import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import { projectsData } from "../data/projects";
 
-// Deterministic color generator based on the name (Fixes Next.js Hydration Errors)
+// Deterministic color generator based on the name
 function getColorForName(name: string): string {
   const colors = [
-    "#2f6ce5", // Primary Brand Blue
-    "#1e4bb5", // Darker Brand Blue
-    "#4f87f6", // Lighter Brand Blue
-    "#374151", // Slate Gray (Dark)
-    "#4b5563", // Slate Gray (Medium)
-    "#272829", // Primary Text Color (Almost Black)
+    "#2563eb", // Blue 600
+    "#4f46e5", // Indigo 600
+    "#0d9488", // Teal 600
+    "#059669", // Emerald 600
+    "#ea580c", // Orange 600
+    "#d97706", // Amber 600
   ];
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
@@ -30,16 +30,16 @@ const feedbackData = [
     feedback:
       "Subrata completely transformed our outdated website. The new Next.js site is lightning fast, and we saw an immediate drop in bounce rates.",
     rating: 5,
-    avatarColor: "#2f6ce5",
+    avatarColor: getColorForName("Michael R."),
   },
   {
     id: "m-2",
     clientName: "Sarah J.",
     company: "Downtown Dental Clinic",
     feedback:
-      "Professional, responsive, and easy to work with. He understood our needs perfectly, delivered a beautiful redesign.",
-    rating: 4,
-    avatarColor: "#374151",
+      "Professional, responsive, and easy to work with. He understood our needs perfectly, and delivered a beautiful redesign.",
+    rating: 5,
+    avatarColor: getColorForName("Sarah J."),
   },
   {
     id: "m-3",
@@ -48,16 +48,16 @@ const feedbackData = [
     feedback:
       "Our old site was practically broken on mobile. Subrata delivered a modern, responsive design that actually keeps visitors on the page.",
     rating: 5,
-    avatarColor: "#1e4bb5",
+    avatarColor: getColorForName("David W."),
   },
   {
     id: "m-4",
     clientName: "Emma L.",
     company: "Boutique E-commerce",
     feedback:
-      "Great experience upgrading our storefront. The UI is incredibly clean. His development speed was top-notch.",
+      "Great experience upgrading our storefront. The UI is incredibly clean. His development speed and communication were top-notch.",
     rating: 4,
-    avatarColor: "#4b5563",
+    avatarColor: getColorForName("Emma L."),
   },
   ...projectsData
     .filter((project) => project.ownerDetails && project.ownerDetails.feedback)
@@ -81,7 +81,6 @@ export default function Feedback() {
   const animationFrameRef = useRef<number>(0);
   const exactScrollPosRef = useRef<number>(0);
 
-  // Safely pause and resume based strictly on user inputs, not JS scroll events
   const pauseAutoScroll = useCallback(() => {
     isInteractingRef.current = true;
   }, []);
@@ -90,19 +89,14 @@ export default function Feedback() {
     isInteractingRef.current = false;
   }, []);
 
-  // Dynamically calculate the exact pixel width required to loop seamlessly
   const getJumpPoint = useCallback(() => {
     const container = scrollContainerRef.current;
     const firstSet = firstSetRef.current;
     if (!container || !firstSet) return 0;
-
-    // Safely parse the flex gap dynamically instead of hardcoding 24px
     const gap = parseFloat(window.getComputedStyle(container).columnGap) || 24;
     return firstSet.offsetWidth + gap;
   }, []);
 
-  // Hybrid Scroll Logic: Syncs manual Native Scrolling bounds for the infinite loop
-  // 2. Update handleScroll to keep the precise tracker synced with manual scrolling
   const handleScroll = useCallback(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -110,32 +104,23 @@ export default function Feedback() {
     const jumpPoint = getJumpPoint();
     if (jumpPoint === 0) return;
 
-    // Native infinite scroll threshold checks
     if (container.scrollLeft >= jumpPoint) {
       container.scrollLeft -= jumpPoint;
     } else if (container.scrollLeft <= 0) {
       container.scrollLeft += jumpPoint;
     }
-
-    // NEW: Sync the precise tracker with the current scroll position
     exactScrollPosRef.current = container.scrollLeft;
   }, [getJumpPoint]);
 
-  // 3. Update the useEffect loop to use the exact fractional tracker
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    // Initialize the exact scroll tracker
     exactScrollPosRef.current = container.scrollLeft;
 
     const play = () => {
-      // Advance scroll ONLY if the user is not actively interacting
       if (!isInteractingRef.current) {
-        // NEW: Adjust this value to control duration.
-        // 0.5 is half speed. Lower values (like 0.25) increase the duration further.
-        exactScrollPosRef.current += 0.2;
-
+        exactScrollPosRef.current += 0.3; // Speed of auto-scroll
         container.scrollLeft = exactScrollPosRef.current;
 
         const jumpPoint = getJumpPoint();
@@ -147,7 +132,6 @@ export default function Feedback() {
       animationFrameRef.current = requestAnimationFrame(play);
     };
 
-    // Start loop
     animationFrameRef.current = requestAnimationFrame(play);
 
     return () => {
@@ -159,37 +143,37 @@ export default function Feedback() {
 
   return (
     <section
-      className="w-full max-w-[1440px] mx-auto px-[5%] mt-24 overflow-hidden"
+      className="w-full max-w-7xl mx-auto px-6 mt-20 mb-24 overflow-hidden"
       id="feedback"
     >
-      <div className="flex flex-col items-center md:items-start mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100">
+      <div className="flex flex-col items-center md:items-start mb-10 lg:mb-14 max-w-2xl mx-auto md:mx-0">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 mb-3 animate-[slide-right_1s_ease-out]">
           Client Feedback
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm md:text-base max-w-2xl text-center md:text-left">
+        <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base leading-relaxed text-center md:text-left animate-[slide-right_1s_ease-out_0.2s]">
           Don&apos;t just take my word for it. Here is what my clients and
           collaborators have to say about the results I deliver.
         </p>
       </div>
 
-      <div className="relative w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      <div className="relative w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] md:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div
           ref={scrollContainerRef}
           onMouseEnter={pauseAutoScroll}
           onMouseLeave={resumeAutoScroll}
           onTouchStart={pauseAutoScroll}
           onTouchEnd={resumeAutoScroll}
-          onScroll={handleScroll} // onScroll now only handles loop math, never pauses
-          className="flex gap-6 overflow-x-auto w-full items-stretch pb-6 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] will-change-scroll"
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto w-full items-stretch pb-8 pt-2 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] will-change-scroll"
         >
-          {/* First Data Set - Wrapped to measure dynamic width */}
+          {/* First Data Set */}
           <div ref={firstSetRef} className="flex gap-6 shrink-0">
             {feedbackData.map((item) => (
               <FeedbackCard key={`first-${item.id}`} {...item} />
             ))}
           </div>
 
-          {/* Second Data Set - Required for visual continuity */}
+          {/* Second Data Set (For seamless infinite loop) */}
           <div className="flex gap-6 shrink-0">
             {feedbackData.map((item) => (
               <FeedbackCard key={`second-${item.id}`} {...item} />
@@ -221,51 +205,52 @@ const FeedbackCard = memo(function FeedbackCard({
   avatarColor,
 }: FeedbackCardProps) {
   return (
-    <article className="group relative flex flex-col justify-between w-[300px] sm:w-[360px] shrink-0 h-auto p-7 bg-white dark:bg-neutral-900 rounded-2xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-black/40 overflow-hidden box-border">
-      {/* Decorative Background Quote Icon */}
-      <FaQuoteRight className="absolute top-6 right-6 text-6xl text-gray-100 dark:text-white/5 opacity-50 pointer-events-none group-hover:scale-110 transition-transform duration-500" />
-
-      <div className="relative z-10 flex flex-col h-full gap-5">
-        {/* Header */}
-        <div className="flex items-center gap-4">
+    <article className="group relative flex flex-col h-full w-[85vw] sm:w-[340px] md:w-[380px] shrink-0 bg-white dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 rounded-[1.25rem] p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] dark:hover:shadow-none dark:hover:border-white/10">
+      {/* Header: Avatar, Info & Quote Icon */}
+      <div className="flex justify-between items-start mb-5">
+        <div className="flex items-center gap-3.5">
           <div
-            className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white shrink-0 shadow-inner"
+            className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0 shadow-sm"
             style={{ backgroundColor: avatarColor }}
             aria-hidden="true"
           >
             {clientName.charAt(0).toUpperCase()}
           </div>
           <div className="flex flex-col">
-            <h3 className="text-base font-bold tracking-tight m-0">
+            <h3 className="text-sm md:text-base font-bold text-gray-900 dark:text-gray-100 leading-tight">
               {clientName}
             </h3>
-            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 m-0">
+            <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-0.5">
               {company}
             </p>
           </div>
         </div>
+        <FaQuoteLeft
+          className="text-gray-200 dark:text-gray-800 text-xl md:text-2xl shrink-0"
+          aria-hidden="true"
+        />
+      </div>
 
-        {/* Feedback Text */}
-        <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 opacity-95 m-0 grow">
-          &quot;{feedback}&quot;
-        </p>
+      {/* Feedback Body */}
+      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed grow mb-6">
+        &quot;{feedback}&quot;
+      </p>
 
-        {/* Rating */}
-        <div
-          className="flex gap-1 mt-auto pt-2"
-          aria-label={`Rating: ${rating} out of 5`}
-        >
-          {[...Array(5)].map((_, index) => (
-            <FaStar
-              key={index}
-              className={`text-base ${
-                index < rating
-                  ? "text-amber-500"
-                  : "text-gray-200 dark:text-gray-700"
-              }`}
-            />
-          ))}
-        </div>
+      {/* Footer: Rating */}
+      <div
+        className="flex items-center gap-1 mt-auto"
+        aria-label={`Rating: ${rating} out of 5`}
+      >
+        {[...Array(5)].map((_, index) => (
+          <FaStar
+            key={index}
+            className={`text-sm md:text-base ${
+              index < rating
+                ? "text-amber-400"
+                : "text-gray-200 dark:text-gray-800"
+            }`}
+          />
+        ))}
       </div>
     </article>
   );

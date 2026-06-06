@@ -1,9 +1,15 @@
 import React from "react";
 import internshipArray from "@/app/data/internships";
 import Link from "next/link";
-import { SkillsContainer } from "@/app/components/Skills";
-import { skillsData } from "@/app/data/skills";
-import { FiArrowRight, FiExternalLink } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiExternalLink,
+  FiMapPin,
+  FiCalendar,
+  FiDollarSign,
+  FiAward,
+  FiFileText,
+} from "react-icons/fi";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -32,7 +38,6 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   }
 
   const seoDescription = `${internship.title} at ${internship.company}. Duration: ${internship.duration}. Location: ${internship.location}.`;
-
   const pageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/experiences/${id}`;
   const imageUrl = `/${internship.iconSrc}`;
 
@@ -64,200 +69,211 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
 const Page = async (props: PageProps) => {
   const { id } = await props.params;
-
   const internship = internshipArray.find((e) => e.id === id);
 
   if (!internship) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-center mt-20 px-6">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          Internship Not Found
+          Experience Not Found
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
-          The experience you are looking for does not exist or has been removed.
+          The role you are looking for does not exist or has been removed.
         </p>
       </div>
     );
   }
 
-  const projectSkills = internship.skills.map((skillName) => {
-    const foundSkill = skillsData.find((e) => e.name === skillName);
-
-    if (foundSkill) {
-      return foundSkill;
-    }
-
-    return {
-      name: skillName,
-      iconSrc: "/icons/skill.webp",
-      id: skillName.toLowerCase().split(" ").join("-"),
-      lvl: 1,
-    };
-  });
-
   return (
-    <div className="px-[5%] max-w-5xl mx-auto mt-24 mb-20 flex-grow text-gray-900 dark:text-gray-100">
-      {/* Header Section */}
-      <div className="flex flex-col items-start border-b border-gray-200 dark:border-white/10 pb-6 mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold font-['Raleway'] m-0 mb-3">
-          {internship.title}
-        </h1>
-        <Link
-          href={internship.companyWebsiteLink}
-          target="_blank"
-          className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors w-max"
-        >
-          <div className="bg-white rounded-full p-1 border border-black/10 shadow-sm shrink-0">
-            <Image
-              src={internship.iconSrc}
-              width={40}
-              height={40}
-              alt={`${internship.company} logo`}
-              className="rounded-full object-contain"
-            />
-          </div>
-          <h2 className="text-xl font-bold m-0">{internship.company}</h2>
-          <FiExternalLink className="text-lg opacity-70" />
-        </Link>
-      </div>
-
-      {/* Meta Information */}
-      <div className="flex flex-col gap-2 mb-8 text-[1.05rem]">
-        <div>
-          <span className="font-bold text-gray-800 dark:text-gray-200 mr-2">
-            Location:
-          </span>
-          <span className="text-gray-600 dark:text-gray-400">
-            {internship.location}
-          </span>
-        </div>
-        <div>
-          <span className="font-bold text-gray-800 dark:text-gray-200 mr-2">
-            Duration:
-          </span>
-          <span className="text-gray-600 dark:text-gray-400">
-            {internship.duration}
-          </span>
-        </div>
-        <div>
-          <span className="font-bold text-gray-800 dark:text-gray-200 mr-2">
-            Stipend:
-          </span>
-          <span className="text-gray-600 dark:text-gray-400">
-            {internship.stipend}
-          </span>
-        </div>
-      </div>
-
-      {/* Primary Action Links */}
-      <div className="flex flex-wrap gap-4 mb-12">
-        {internship.certificateSrc && (
-          <Link
-            href={internship.certificateSrc}
-            target="_blank"
-            className="inline-flex items-center gap-2 bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800/50 transition-colors px-5 py-2.5 rounded-lg font-bold"
-          >
-            <span>View Certificate</span>
-            <FiArrowRight className="text-lg" />
-          </Link>
-        )}
-        <Link
-          href={internship.companyWebsiteLink}
-          target="_blank"
-          className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors px-5 py-2.5 rounded-lg font-bold"
-        >
-          <span>Company Website</span>
-          <FiExternalLink className="text-lg" />
-        </Link>
-        <Link
-          href={internship.linkedInLink}
-          target="_blank"
-          className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors px-5 py-2.5 rounded-lg font-bold"
-        >
-          <span>LinkedIn</span>
-          <FiExternalLink className="text-lg" />
-        </Link>
-      </div>
-
-      {/* Main Content Areas */}
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b-2 border-blue-500 w-max pb-1">
-        Responsibilities & Contributions
-      </h2>
-      <div className="text-[1.05rem] leading-relaxed text-gray-700 dark:text-gray-300 mb-12">
-        {internship.description}
-      </div>
-
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b-2 border-blue-500 w-max pb-1">
-        Skills
-      </h2>
-      <div className="mb-12">
-        <SkillsContainer skillsData={projectSkills} />
-      </div>
-
-      {/* Projects Undertaken */}
-      {internship.workLinks.length > 0 && (
-        <>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 border-b-2 border-blue-500 w-max pb-1">
-            Projects
-          </h2>
-          <div className="flex flex-col gap-6 mb-12">
-            {internship.workLinks.map((link, index) => (
-              <div
-                key={index}
-                className="p-6 border-2 border-black/10 dark:border-white/10 rounded-xl bg-white dark:bg-[#1a1a1a] shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md duration-300"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-white rounded-full p-1 border border-black/5 shadow-sm shrink-0">
-                    <Image
-                      src={link.iconSrc}
-                      width={48}
-                      height={48}
-                      alt={`${link.title} icon`}
-                      className="rounded-full object-contain"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold m-0">{link.title}</h3>
-                </div>
-
-                <div className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                  {link.description}
-                </div>
-
-                <Link
-                  href={link.link}
-                  target="_blank"
-                  className="inline-flex items-center gap-2 bg-blue-50 dark:bg-white/5 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-white/10 hover:bg-blue-100 dark:hover:bg-white/10 transition-colors px-4 py-2 rounded-lg font-bold text-sm w-max"
-                >
-                  <span>Product Link</span>
-                  <FiExternalLink className="text-base" />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-
-      {/* Pay Slips */}
-      {internship.paySlips.length > 0 && (
-        <>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b-2 border-blue-500 w-max pb-1">
-            Pay Slips
-          </h2>
-          <div className="flex flex-wrap gap-4 mt-2">
-            {internship.paySlips.map((link) => (
+    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 px-6 max-w-7xl mx-auto mt-20 md:mt-30 mb-24">
+      {/* RIGHT COLUMN (Desktop) / TOP (Mobile) - Meta & Actions */}
+      <div className="lg:col-span-4 order-1 lg:order-2 flex flex-col gap-6">
+        {/* Company Card */}
+        <div className="flex flex-col bg-gray-50 dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 p-6 rounded-[1.25rem] shadow-sm">
+          <div className="flex items-center gap-4 border-b border-gray-200/75 dark:border-white/5 pb-5 mb-5">
+            <div className="w-14 h-14 bg-white dark:bg-[#1a1a1a] rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center justify-center shrink-0">
+              <Image
+                src={internship.iconSrc}
+                width={36}
+                height={36}
+                alt={`${internship.company} logo`}
+                className="object-contain w-9 h-9"
+              />
+            </div>
+            <div className="flex flex-col">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 leading-tight">
+                {internship.company}
+              </h2>
               <Link
-                href={link.link}
-                key={link.link}
+                href={internship.companyWebsiteLink}
                 target="_blank"
-                className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors px-5 py-2.5 rounded-lg font-bold"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline mt-0.5"
               >
-                <span>{link.title}</span>
-                <FiArrowRight className="text-lg" />
+                <span>Visit Website</span>
+                <FiExternalLink aria-hidden="true" />
               </Link>
-            ))}
+            </div>
           </div>
-        </>
-      )}
+
+          <div className="flex flex-col gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-3">
+              <FiCalendar
+                className="text-gray-400 dark:text-gray-500 text-base shrink-0"
+                aria-hidden="true"
+              />
+              <span>{internship.duration}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <FiMapPin
+                className="text-gray-400 dark:text-gray-500 text-base shrink-0"
+                aria-hidden="true"
+              />
+              <span>{internship.location}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <FiDollarSign
+                className="text-gray-400 dark:text-gray-500 text-base shrink-0"
+                aria-hidden="true"
+              />
+              <span>{internship.stipend}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col gap-3">
+          {internship.certificateSrc && (
+            <Link
+              href={internship.certificateSrc}
+              target="_blank"
+              className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-colors shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 dark:focus:ring-offset-[#121212]"
+            >
+              <FiAward className="text-lg" aria-hidden="true" />
+              <span>View Certificate</span>
+            </Link>
+          )}
+          <Link
+            href={internship.linkedInLink}
+            target="_blank"
+            className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-[#1a1a1a] hover:bg-gray-50 dark:hover:bg-neutral-800 text-gray-900 dark:text-white border border-gray-200/75 dark:border-white/5 px-6 py-3 rounded-xl font-medium transition-colors shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 dark:focus:ring-offset-[#121212]"
+          >
+            <span>Company LinkedIn</span>
+            <FiExternalLink aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
+
+      {/* LEFT COLUMN (Desktop) / BOTTOM (Mobile) - Main Content */}
+      <div className="lg:col-span-8 order-2 lg:order-1 flex flex-col">
+        {/* Header */}
+        <div className="pb-3 border-b border-gray-200/75 dark:border-white/5 mb-4">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-2">
+            {internship.title}
+          </h1>
+          <p className="text-base text-gray-500 dark:text-gray-400">
+            Professional Experience & Contributions
+          </p>
+        </div>
+
+        {/* Responsibilities */}
+        <div className="mb-12">
+          <div className="text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-300 [&>div>ul]:list-disc [&>div>ul]:pl-5 [&>div>ul>li]:mb-2 [&>div>b]:text-gray-900 dark:[&>div>b]:text-white [&>div>strong]:text-gray-900 dark:[&>div>strong]:text-white">
+            {internship.description}
+          </div>
+        </div>
+
+        {/* Minimalist Skills Chips */}
+        {internship.skills && internship.skills.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
+              Technologies & Skills Used
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {internship.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 bg-gray-100 dark:bg-[#1a1a1a] text-gray-700 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200/50 dark:border-white/5"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Projects Undertaken (Sleeker UI) */}
+        {internship.workLinks && internship.workLinks.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
+              Key Projects Delivered
+            </h2>
+            <div className="flex flex-col gap-4">
+              {internship.workLinks.map((link, index) => (
+                <div
+                  key={index}
+                  className="p-5 md:p-6 bg-white dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 rounded-2xl shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg border border-gray-100 dark:border-white/5 flex items-center justify-center shrink-0 p-1">
+                      <Image
+                        src={link.iconSrc}
+                        width={32}
+                        height={32}
+                        alt={`${link.title} icon`}
+                        className="object-contain rounded-md"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 leading-tight">
+                      {link.title}
+                    </h3>
+                  </div>
+
+                  <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
+                    {link.description}
+                  </div>
+
+                  <Link
+                    href={link.link}
+                    target="_blank"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors w-max group"
+                  >
+                    <span>View Product</span>
+                    <FiArrowRight
+                      className="transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Documents / Pay Slips */}
+        {internship.paySlips && internship.paySlips.length > 0 && (
+          <div>
+            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
+              Official Documents
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              {internship.paySlips.map((doc) => (
+                <Link
+                  href={doc.link}
+                  key={doc.link}
+                  target="_blank"
+                  className="inline-flex items-center gap-2.5 bg-gray-50 dark:bg-[#1a1a1a] hover:bg-gray-100 dark:hover:bg-[#252525] border border-gray-200/75 dark:border-white/5 text-gray-700 dark:text-gray-300 transition-colors px-4 py-2.5 rounded-lg text-sm font-medium"
+                >
+                  <FiFileText
+                    className="text-gray-400 dark:text-gray-500 text-lg shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span>{doc.title}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

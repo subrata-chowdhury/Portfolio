@@ -28,7 +28,7 @@ export default function Projects({
 }: ProjectsProps) {
   return (
     <section
-      className="px-[5%] mt-24 max-w-8xl mx-auto w-full"
+      className="px-6 py-12 md:py-20 max-w-7xl mx-auto w-full"
       style={containerStyle}
     >
       <div
@@ -36,9 +36,12 @@ export default function Projects({
         id="projects"
         ref={forwardRef}
       >
-        <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100">
-          Projects
-        </h2>
+        <div className="flex items-center gap-4 flex-1">
+          <h2 className="text-2xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100 whitespace-nowrap">
+            Projects
+          </h2>
+          <div className="h-[1px] flex-1 bg-gray-200 dark:bg-gray-800 hidden sm:block" />
+        </div>
         <GitHubButton />
       </div>
 
@@ -47,12 +50,13 @@ export default function Projects({
       />
 
       {showSeeMoreBtn && (
-        <div className="flex justify-end mt-8">
+        <div className="flex justify-center mt-10">
           <Link
             href="/projects"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-md font-medium transition-colors hover:bg-blue-700 active:bg-blue-800"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-transform hover:-translate-y-0.5 shadow-md hover:shadow-blue-600/20"
           >
-            View All Projects
+            <span>View All Projects</span>
+            <FiArrowRight className="text-sm" />
           </Link>
         </div>
       )}
@@ -66,7 +70,7 @@ export function ProjectsContainer({
   projectData: ProjectType[];
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pt-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pt-2">
       {projectData.length > 0 ? (
         projectData.map((project, index) => (
           <Project key={index} {...project} animationDelay={index / 10} />
@@ -83,13 +87,13 @@ export function ProjectsContainer({
 export function GitHubButton() {
   return (
     <a
-      className="inline-flex items-center justify-center gap-2.5 bg-blue-600 text-white px-4 py-2 rounded-md text-sm md:text-base font-medium transition-colors hover:bg-blue-700 active:bg-blue-800"
+      className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg text-sm font-semibold transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
       href="https://github.com/subrata-chowdhury"
       target="_blank"
       rel="noreferrer"
     >
-      <FaGithub className="text-lg" />
-      <span>View My Github Page</span>
+      <FaGithub className="text-base" />
+      <span>GitHub Profile</span>
     </a>
   );
 }
@@ -103,26 +107,10 @@ export function Project({
   previewUiImages = [],
   liveUrl,
   animationDelay = 0,
-}: {
-  name: string;
-  repoName: string;
-  description: string;
-  clientProject?: boolean;
-  noOfCommits?: number | null;
-  createdAt?: string | null;
-  updatedAt?: string | null;
-  mainSkills: string[];
-  otherSkills: string[];
-  previewImageSrc: string;
-  previewUiImages?: string[];
-  liveUrl?: string;
-  animationDelay: number;
-}) {
-  const [showAbout, setShowAbout] = useState(false);
+}: ProjectType & { animationDelay: number }) {
   const [showImg, setShowImg] = useState(false);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-  // Combine the main preview image with any additional UI images
   const allImages = [previewImageSrc, ...(previewUiImages || [])].filter(
     Boolean,
   );
@@ -141,88 +129,80 @@ export function Project({
 
   const closeModel = () => {
     setShowImg(false);
-    setCurrentImgIndex(0); // Reset slider on close
+    setCurrentImgIndex(0);
   };
 
   return (
     <>
       <div
-        className="flex flex-col bg-white dark:bg-[#1a1a1a] rounded-xl border-2 border-black/15 dark:border-white/10 text-gray-900 dark:text-gray-100 transition-transform hover:-translate-y-1 hover:shadow-md duration-300"
+        className="group flex flex-col bg-white dark:bg-[#1a1a1a] rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5"
         style={{ transitionDelay: `${animationDelay}s` }}
       >
         <div
-          className="cursor-pointer w-full aspect-[4/3] rounded-t-lg overflow-hidden border-b border-black/5 dark:border-white/5"
+          className="relative w-full aspect-[16/10] cursor-pointer overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-white/5"
           onClick={() => setShowImg(true)}
         >
           <Image
             src={"/" + previewImageSrc}
             alt={`${name} project preview`}
-            width={600}
-            height={450}
-            className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
-        <div className="flex flex-col gap-3 px-4 py-4 flex-1">
-          <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="font-bold text-[1.4rem] leading-tight">{name}</h3>
+        <div className="flex flex-col p-4 flex-1">
+          <div className="flex items-center gap-2 flex-wrap mb-1.5">
+            <h3 className="font-bold text-[1.15rem] text-gray-900 dark:text-gray-100 leading-tight truncate max-w-full">
+              {name}
+            </h3>
             {clientProject && (
-              <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50 text-[0.65rem] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide">
+              <span className="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50 text-[0.6rem] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide shrink-0">
                 Client
               </span>
             )}
           </div>
 
-          <div
-            className="text-[0.9rem] leading-relaxed text-gray-700 dark:text-gray-300 cursor-pointer flex-1"
-            onClick={() => setShowAbout((val) => !val)}
-          >
-            {description.length > 70 && !showAbout
-              ? `${description.slice(0, 65)}... `
-              : description}
-            {description.length > 70 && !showAbout && (
-              <span className="text-blue-600 dark:text-blue-400 font-medium hover:underline ml-1">
-                read more
-              </span>
-            )}
-          </div>
+          <p className="text-[0.85rem] leading-relaxed text-gray-600 dark:text-gray-400 line-clamp-2 mb-4 flex-1">
+            {description}
+          </p>
 
-          <div className="flex items-center justify-between gap-2 mt-1 justify-between">
-            {liveUrl ? (
-              <Link
-                href={liveUrl}
-                target="_blank"
-                className="inline-flex text-nowrap items-center gap-1.5 bg-black/5 dark:bg-white/10 px-3 py-1.5 rounded-lg text-[0.85rem] font-bold text-gray-900 dark:text-gray-100 hover:bg-black/10 dark:hover:bg-white/20 transition-colors"
-              >
-                <span>Live Demo</span>
-                <FiExternalLink className="text-sm" />
-              </Link>
-            ) : (
-              <Link
-                href={
-                  repoName
-                    ? `https://github.com/subrata-chowdhury/${repoName}`
-                    : "#"
-                }
-                target="_blank"
-                className="inline-flex text-nowrap items-center gap-1.5 px-2 py-1.5 text-[0.85rem] font-bold text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                <span>{repoName ? "View in Github" : "View Here"}</span>
-                <FiArrowRight className="text-sm" />
-              </Link>
-            )}
+          <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+            <div className="flex items-center gap-3">
+              {liveUrl && (
+                <Link
+                  href={liveUrl}
+                  target="_blank"
+                  className="flex items-center justify-center w-8 h-8 rounded-full dark:bg-gray-800 dark:text-gray-300 bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label="View Live Site"
+                >
+                  <FiExternalLink className="text-sm" />
+                </Link>
+              )}
+              {repoName && (
+                <Link
+                  href={`https://github.com/subrata-chowdhury/${repoName}`}
+                  target="_blank"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  aria-label="View Source Code"
+                >
+                  <FaGithub className="text-sm" />
+                </Link>
+              )}
+            </div>
 
             <Link
               href={"/projects/" + repoName}
-              className="inline-flex text-nowrap items-center justify-center bg-blue-600 text-white px-3 py-1.5 rounded-lg text-[0.85rem] font-medium transition-colors hover:bg-blue-700 text-center"
+              className="inline-flex items-center gap-1.5 text-[0.8rem] font-bold text-gray-900 dark:text-white group/btn transition-colors hover:text-blue-600 dark:hover:text-blue-400"
             >
-              More Details
+              <span>Details</span>
+              <FiArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Image Slider Modal */}
+      {/* Image Slider Modal (Remains Unchanged) */}
       {showImg && (
         <Model onClose={closeModel}>
           <div className="relative w-full h-[60vh] md:h-[80vh] flex justify-center items-center rounded-xl overflow-hidden bg-black/5 dark:bg-white/5">

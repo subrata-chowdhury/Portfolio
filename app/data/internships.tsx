@@ -71,7 +71,7 @@ const internshipArray: InternshipType[] = [
     ],
   },
   {
-    id: "banao_technologies",
+    id: "banao-technologies",
     title: "MERN Stack Developer Intern",
     company: "Banao Technologies",
     location: "Remote",

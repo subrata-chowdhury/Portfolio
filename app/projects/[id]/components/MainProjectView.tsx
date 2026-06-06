@@ -1,9 +1,7 @@
 "use client";
 
-import { SkillsContainer } from "@/app/components/Skills";
-import { skillsData } from "@/app/data/skills";
-import { FiExternalLink, FiArrowRight } from "react-icons/fi";
-import { FaStar } from "react-icons/fa";
+import { FiExternalLink, FiGithub, FiCalendar } from "react-icons/fi";
+import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import Gallery from "./Gallery";
@@ -41,126 +39,12 @@ export default function DetailedProjectView({
     stars?: number;
   };
 }) {
-  const newSkillsData = mainSkills
-    .map((skill) => skillsData.find((e) => e.name === skill))
-    .filter(Boolean) as typeof skillsData;
-
-  const projectSkills = otherSkills.map((skill) => {
-    const foundSkill = skillsData.find((e) => e.name === skill);
-    return (
-      foundSkill || {
-        name: skill,
-        iconSrc: "/icons/skill.webp",
-        id: skill.toLowerCase().split(" ").join("-"),
-        lvl: 1,
-      }
-    );
-  });
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12 px-[5%] max-w-8xl mx-auto mt-24 mb-20">
-      {/* Left Column - Details */}
-      <div className="lg:col-span-2 flex flex-col">
-        <div className="flex flex-col items-start pb-6 border-b border-gray-200 dark:border-white/10 mb-6">
-          <h1 className="text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100 m-0">
-            {name}
-          </h1>
-          <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">
-            {createdAt && updatedAt
-              ? `${new Date(createdAt).toDateString()} - ${new Date(updatedAt).toDateString()}`
-              : "Timeline: N/A (Private Repository)"}
-          </div>
-        </div>
-
-        <p className="text-base text-gray-700 dark:text-gray-300 font-medium leading-relaxed mb-10">
-          {description}
-        </p>
-
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2 border-b-2 border-blue-500 w-max pb-1">
-          Tech Stack
-        </h2>
-        <SkillsContainer skillsData={newSkillsData} />
-
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2 mt-8 border-b-2 border-blue-500 w-max pb-1">
-          Skills
-        </h2>
-        <SkillsContainer skillsData={projectSkills} />
-
-        <div className="flex flex-wrap items-center gap-4 mt-10">
-          {liveUrl && (
-            <Link
-              href={liveUrl}
-              className="inline-flex items-center gap-2 bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800/50 transition-colors px-6 py-3 rounded-lg font-bold"
-              target="_blank"
-            >
-              <span>Live Demo</span>
-              <FiExternalLink className="text-lg" />
-            </Link>
-          )}
-          {noOfCommits !== null && (noOfCommits || 0) > 0 && repoName && (
-            <Link
-              href={`https://github.com/subrata-chowdhury/${repoName}`}
-              className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors px-6 py-3 rounded-lg font-bold"
-              target="_blank"
-            >
-              <span>View in Github</span>
-              <FiArrowRight className="text-lg" />
-            </Link>
-          )}
-        </div>
-
-        {/* Render Owner Feedback if it exists */}
-        {ownerDetails && (
-          <div className="mt-14 p-6 bg-white dark:bg-[#1a1a1a] rounded-xl border border-gray-200 dark:border-white/10 shadow-sm flex flex-col gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg text-white bg-blue-600 shrink-0">
-                {ownerDetails.name.charAt(0)}
-              </div>
-              <div className="flex flex-col">
-                <div className="font-bold text-gray-900 dark:text-gray-100">
-                  {ownerDetails.name}
-                </div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  {ownerDetails.role}
-                </div>
-              </div>
-            </div>
-
-            {ownerDetails.stars !== undefined && (
-              <div
-                className="flex gap-1"
-                aria-label={`Rating: ${ownerDetails.stars} out of 5`}
-              >
-                {[...Array(5)].map((_, index) => (
-                  <FaStar
-                    key={index}
-                    className={`text-lg ${index < (ownerDetails?.stars || 5) ? "text-amber-500" : "text-gray-300 dark:text-gray-700"}`}
-                  />
-                ))}
-              </div>
-            )}
-            <p className="italic text-gray-700 dark:text-gray-300 m-0 border-l-4 border-blue-500 pl-4 py-1">
-              &quot;{ownerDetails.feedback}&quot;
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Right Column - Media & Commits */}
-      <div className="flex flex-col gap-8 items-start">
-        <div className="w-full bg-blue-50 dark:bg-neutral-800 border border-blue-100 dark:border-neutral-700 p-5 rounded-xl text-lg text-gray-800 dark:text-gray-200 shadow-sm">
-          <span className="font-bold">Total Commits: </span>
-          {noOfCommits !== null && (noOfCommits || 0) > 0 ? (
-            <span className="text-blue-600 dark:text-blue-400 font-black">
-              {noOfCommits}
-            </span>
-          ) : (
-            "N/A (Private)"
-          )}
-        </div>
-
+    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 px-6 max-w-7xl mx-auto mt-22 md:mt-25 mb-20">
+      {/* RIGHT COLUMN (Desktop) / TOP (Mobile) */}
+      <div className="lg:col-span-5 order-2 flex flex-col gap-6">
         {previewImageSrc && (
-          <div className="w-full rounded-xl overflow-hidden border border-black/10 dark:border-white/10 shadow-md">
+          <div className="w-full rounded-2xl overflow-hidden border border-gray-200/75 dark:border-white/5 shadow-sm bg-gray-50 dark:bg-[#121212]">
             <Image
               src={"/" + previewImageSrc}
               alt={`${name} Main Preview`}
@@ -172,7 +56,151 @@ export default function DetailedProjectView({
           </div>
         )}
 
+        {/* Minimalist Commit Stat */}
+        <div className="flex items-center justify-between w-full bg-white dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 px-5 py-4 rounded-xl shadow-sm">
+          <span className="text-sm font-medium text-gray-500">
+            Total commits
+          </span>
+          <span className="text-lg font-bold text-gray-900 dark:text-white">
+            {noOfCommits !== null && (noOfCommits || 0) > 0 ? (
+              noOfCommits
+            ) : (
+              <span className="text-sm font-medium text-gray-400">Private</span>
+            )}
+          </span>
+        </div>
+
+        {/* Immediately Visible Grid Gallery */}
         {previewUiImages.length > 0 && <Gallery images={previewUiImages} />}
+      </div>
+
+      {/* LEFT COLUMN (Desktop) / BOTTOM (Mobile) */}
+      <div className="lg:col-span-7 order-1 flex flex-col">
+        {/* Header Section */}
+        <div className="flex flex-col items-start pb-3 border-b border-gray-200/75 dark:border-white/5 mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            {name}
+          </h1>
+          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <FiCalendar className="shrink-0" aria-hidden="true" />
+            {createdAt && updatedAt
+              ? `${new Date(createdAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })} — ${new Date(updatedAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })}`
+              : "Timeline: N/A"}
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+          {description}
+        </p>
+
+        {/* Scaled-down Call to Actions */}
+        <div className="flex flex-wrap items-center gap-3 mb-10">
+          {liveUrl && (
+            <Link
+              href={liveUrl}
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 dark:focus:ring-offset-[#121212]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Live project</span>
+              <FiExternalLink aria-hidden="true" />
+            </Link>
+          )}
+          {noOfCommits !== null && (noOfCommits || 0) > 0 && repoName && (
+            <Link
+              href={`https://github.com/subrata-chowdhury/${repoName}`}
+              className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 dark:focus:ring-offset-[#121212]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Source code</span>
+              <FiGithub aria-hidden="true" />
+            </Link>
+          )}
+        </div>
+
+        {/* Custom Minimalist Skill Chips */}
+        <div className="mb-8">
+          <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3">
+            Tech stack
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {mainSkills.map((skill) => (
+              <span
+                key={skill}
+                className="px-3 py-1.5 bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200/50 dark:border-white/5"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {otherSkills.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3">
+              Tools & methodologies
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {otherSkills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 bg-gray-50 dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-400 text-xs font-medium rounded-md border border-gray-200/50 dark:border-white/5"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Owner Feedback */}
+        {ownerDetails && (
+          <div className="mt-2 p-5 md:p-6 bg-white dark:bg-[#121212] rounded-2xl border border-gray-200/75 dark:border-white/5 shadow-sm flex flex-col gap-4">
+            <div className="flex justify-between items-start">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white bg-blue-600 shrink-0 shadow-sm">
+                  {ownerDetails.name.charAt(0)}
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-sm font-bold text-gray-900 dark:text-gray-100">
+                    {ownerDetails.name}
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    {ownerDetails.role}
+                  </div>
+                </div>
+              </div>
+              <FaQuoteLeft
+                className="text-gray-200 dark:text-gray-800 text-lg shrink-0"
+                aria-hidden="true"
+              />
+            </div>
+
+            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed m-0 italic">
+              &quot;{ownerDetails.feedback}&quot;
+            </p>
+
+            {ownerDetails.stars !== undefined && (
+              <div
+                className="flex gap-1"
+                aria-label={`Rating: ${ownerDetails.stars} out of 5`}
+              >
+                {[...Array(5)].map((_, index) => (
+                  <FaStar
+                    key={index}
+                    className={`text-xs ${
+                      index < (ownerDetails.stars || 5)
+                        ? "text-amber-400"
+                        : "text-gray-200 dark:text-gray-800"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

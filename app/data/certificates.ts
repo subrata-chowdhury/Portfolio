@@ -1,43 +1,50 @@
 export type Certificate = {
-  title: string;
+  name: string;
+  issuer: string;
   link: string;
   imgSrc: string;
-  isClientFacing?: boolean; // New property to filter for high-trust items
+  isClientFacing?: boolean;
 };
 
 export const certificates: Certificate[] = [
   {
-    title: "Java Full Stack Certification || Wipro TalentNext",
+    name: "Java Full Stack Certification",
+    issuer: "Wipro TalentNext",
     link: "https://cert.diceid.com/cid/7xPCZAPU5m?verify=true",
     imgSrc: "/certificates/companys/wipro.webp",
-    isClientFacing: true, // Enterprise brand trust
+    isClientFacing: true,
   },
   {
-    title: "Frontend Development (React) || HackerRank",
+    name: "Frontend Development (React)",
+    issuer: "HackerRank",
     link: "https://www.hackerrank.com/certificates/4a6f360b155e",
     imgSrc: "/certificates/companys/hacker-rank.webp",
-    isClientFacing: true, // Highly relevant to your primary service
+    isClientFacing: true,
   },
   {
-    title: "JavaScript (Intermediate) || HackerRank",
+    name: "Foundations: Data, Data, Everywhere",
+    issuer: "Coursera",
+    link: "https://coursera.org/verify/GDZHXWY2ETMV",
+    imgSrc: "/certificates/companys/coursera.webp",
+    isClientFacing: true,
+  },
+  {
+    name: "JavaScript (Intermediate)",
+    issuer: "HackerRank",
     link: "https://www.hackerrank.com/certificates/c58cd6bd1b6d",
     imgSrc: "/certificates/companys/hacker-rank.webp",
   },
   {
-    title: "SQL (Advanced) || HackerRank",
+    name: "SQL (Advanced)",
+    issuer: "HackerRank",
     link: "https://www.hackerrank.com/certificates/57a73cd708d5",
     imgSrc: "/certificates/companys/hacker-rank.webp",
   },
   {
-    title: "Java (Basic) || HackerRank",
+    name: "Java (Basic)",
+    issuer: "HackerRank",
     link: "https://www.hackerrank.com/certificates/1460fea5d18d",
     imgSrc: "/certificates/companys/hacker-rank.webp",
-  },
-  {
-    title: "Foundations: Data, Data, Everywhere || Coursera",
-    link: "https://coursera.org/verify/GDZHXWY2ETMV",
-    imgSrc: "/certificates/companys/coursera.webp",
-    isClientFacing: true, // Google brand recognition
   },
 ];
 

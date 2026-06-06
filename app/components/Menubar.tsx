@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { FiSearch, FiSun, FiMoon, FiMail } from "react-icons/fi";
+import { FiSearch, FiSun, FiMoon, FiMail, FiX, FiMenu } from "react-icons/fi";
 import { skillsData } from "../data/skills";
 import { projectsData } from "../data/projects";
 
@@ -15,22 +15,41 @@ export interface MenuLink {
   isCta?: boolean;
 }
 
-export default function Menubar({ links }: { links?: MenuLink[] }) {
+const DEFAULT_LINKS: MenuLink[] = [
+  { name: "Home", link: "/" },
+  { name: "Education", link: "/#education" },
+  { name: "Projects", link: "/projects" },
+  { name: "Experiences", link: "/experiences" },
+  { name: "Contact Me", link: "/#contact", isCta: true },
+];
+
+export default function Menubar({
+  links = DEFAULT_LINKS,
+}: {
+  links?: MenuLink[];
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Handle Scroll
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Prevent background scrolling on mobile menu open
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isMobileMenuOpen]);
 
   // Handle Native Tailwind Dark Mode Initialization
@@ -48,81 +67,199 @@ export default function Menubar({ links }: { links?: MenuLink[] }) {
     }
   }, []);
 
-  // Toggle Dark Mode natively
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setIsDarkMode((prev) => !prev);
     document.documentElement.classList.toggle("dark");
-  };
+  }, []);
+
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   return (
     <>
       <nav
         className={`fixed top-0 w-full flex items-center justify-between px-6 lg:px-12 transition-all duration-300 z-50 ${
-          isScrolled || isMobileMenuOpen
-            ? "h-16 lg:h-16 shadow-md bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm"
+          isScrolled
+            ? "h-16 shadow-sm bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-neutral-800/50"
             : "h-20 bg-transparent"
         }`}
       >
-        {/* Logo & Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors text-2xl text-gray-800 dark:text-gray-200 focus:outline-none"
-          aria-label="Toggle Theme"
-        >
-          {isDarkMode ? (
-            <FiSun className="text-yellow-400" />
-          ) : (
-            <FiMoon className="text-indigo-600" />
-          )}
-        </button>
+        {/* Left Side: Theme Toggle & Potential Logo */}
+        <div className="flex items-center gap-4 z-50">
+          <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        </div>
 
-        {/* Desktop & Mobile Menu Content */}
-        <div
-          className={`
-            absolute top-16 left-0 w-full h-[calc(100vh-4rem)] bg-slate-50 dark:bg-neutral-900 flex flex-col items-start px-6 pt-8 pb-10 gap-8 transition-all duration-300 overflow-y-auto
-            lg:static lg:w-auto lg:h-auto lg:bg-transparent lg:dark:bg-transparent lg:flex-row lg:items-center lg:px-0 lg:py-0 lg:gap-12 lg:overflow-visible
-            ${isMobileMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4 lg:opacity-100 lg:visible lg:translate-y-0"}
-          `}
-        >
-          <SearchContainer closeMenu={() => setIsMobileMenuOpen(false)} />
-          <Menus links={links} onLinkClick={() => setIsMobileMenuOpen(false)} />
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center gap-8">
+          <SearchContainer closeMenu={closeMobileMenu} />
+          <DesktopMenu links={links} />
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <button
-          className="lg:hidden flex flex-col gap-[5px] p-2 z-[100] focus:outline-none"
+          className="lg:hidden p-2 -mr-2 z-[60] text-gray-800 dark:text-gray-200 focus:outline-none"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
+          aria-expanded={isMobileMenuOpen}
         >
-          <span
-            className={`w-6 h-[3px] bg-gray-900 dark:bg-white rounded-full transition-all duration-300 ${isMobileMenuOpen ? "translate-y-[8px] rotate-45" : ""}`}
-          />
-          <span
-            className={`w-6 h-[3px] bg-gray-900 dark:bg-white rounded-full transition-all duration-300 ${isMobileMenuOpen ? "opacity-0 -translate-x-2" : ""}`}
-          />
-          <span
-            className={`w-6 h-[3px] bg-gray-900 dark:bg-white rounded-full transition-all duration-300 ${isMobileMenuOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
-          />
+          {isMobileMenuOpen ? (
+            <FiX className="text-2xl" />
+          ) : (
+            <FiMenu className="text-2xl" />
+          )}
         </button>
       </nav>
+
+      {/* Mobile Drawer Overlay */}
+      <div
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300 lg:hidden ${
+          isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={closeMobileMenu}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Drawer */}
+      <aside
+        className={`fixed top-0 right-0 w-[85%] max-w-[340px] h-screen bg-white dark:bg-neutral-900 shadow-2xl z-50 transform transition-transform duration-300 ease-out lg:hidden flex flex-col ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full overflow-y-auto px-6 py-20 gap-8">
+          <div className="w-full">
+            <SearchContainer closeMenu={closeMobileMenu} isMobile />
+          </div>
+          <MobileMenu links={links} onLinkClick={closeMobileMenu} />
+        </div>
+      </aside>
 
       {/* Mobile-Only Persistent Floating Contact Button */}
       <Link
         href="/#contact"
-        className="lg:hidden fixed bottom-8 right-6 bg-blue-600 text-white px-5 py-3 rounded-full font-bold shadow-lg shadow-blue-600/40 flex items-center gap-2 z-40 hover:scale-95 transition-transform"
+        className="lg:hidden fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-3 rounded-full font-semibold shadow-lg shadow-blue-600/30 flex items-center gap-2 z-30 active:scale-95 transition-transform"
       >
         <FiMail className="text-xl" />
-        <span>Contact</span>
+        <span className="text-sm">Contact</span>
       </Link>
     </>
   );
 }
 
-const SearchContainer = ({ closeMenu }: { closeMenu: () => void }) => {
+// --- SUB-COMPONENTS ---
+
+const ThemeToggle = ({
+  isDarkMode,
+  toggleTheme,
+}: {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+}) => (
+  <button
+    onClick={toggleTheme}
+    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors text-xl text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+    aria-label="Toggle Theme"
+  >
+    {isDarkMode ? (
+      <FiSun className="text-yellow-400" />
+    ) : (
+      <FiMoon className="text-indigo-600" />
+    )}
+  </button>
+);
+
+const DesktopMenu = ({ links }: { links: MenuLink[] }) => {
+  const pathname = usePathname();
+
+  return (
+    <div className="flex items-center gap-6">
+      {links.map((link) => {
+        const isActive = link.link === pathname;
+
+        if (link.isCta) {
+          return (
+            <Link
+              key={link.link}
+              href={link.link}
+              className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/30 hover:bg-blue-700 transition-all text-sm tracking-wide"
+            >
+              {link.name}
+            </Link>
+          );
+        }
+
+        return (
+          <Link
+            key={link.link}
+            href={link.link}
+            className={`text-sm font-medium px-3 transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+              isActive
+                ? "text-blue-600 dark:text-blue-500 font-semibold"
+                : "text-gray-600 dark:text-gray-300"
+            }`}
+          >
+            {link.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
+
+const MobileMenu = ({
+  links,
+  onLinkClick,
+}: {
+  links: MenuLink[];
+  onLinkClick: () => void;
+}) => {
+  const pathname = usePathname();
+
+  return (
+    <div className="flex flex-col w-full gap-2">
+      {links.map((link) => {
+        const isActive = link.link === pathname;
+
+        if (link.isCta) {
+          return (
+            <Link
+              key={link.link}
+              href={link.link}
+              onClick={onLinkClick}
+              className="mt-6 w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl font-semibold text-center active:scale-[0.98] transition-transform text-base shadow-md shadow-blue-600/20"
+            >
+              {link.name}
+            </Link>
+          );
+        }
+
+        return (
+          <Link
+            key={link.link}
+            href={link.link}
+            onClick={onLinkClick}
+            className={`text-lg px-5 py-3 rounded-xl transition-colors active:bg-gray-100 dark:active:bg-neutral-800 ${
+              isActive
+                ? "font-bold text-blue-600 dark:text-blue-500 bg-blue-50 dark:bg-blue-900/10"
+                : "text-gray-800 dark:text-gray-200 font-medium"
+            }`}
+          >
+            {link.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
+
+const SearchContainer = ({
+  closeMenu,
+  isMobile = false,
+}: {
+  closeMenu: () => void;
+  isMobile?: boolean;
+}) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -156,38 +293,39 @@ const SearchContainer = ({ closeMenu }: { closeMenu: () => void }) => {
 
   const hasResults = filteredSkills.length > 0 || filteredProjects.length > 0;
 
-  const navigateToSkill = (id: string) => {
-    setIsOpen(false);
-    setQuery("");
-    closeMenu();
-    searchInputRef.current?.blur();
+  const handleNavigation = useCallback(
+    (type: "skill" | "project", idOrRepo: string) => {
+      setIsOpen(false);
+      setQuery("");
+      closeMenu();
 
-    if (pathname === "/") {
-      document
-        .querySelector(`.skill-container#${id}`)
-        ?.scrollIntoView({ behavior: "smooth" });
-      window.location.hash = `#${id}`;
-    } else {
-      router.push(`/#${id}`);
-    }
-  };
-
-  const navigateToProject = (repoName: string) => {
-    setIsOpen(false);
-    setQuery("");
-    closeMenu();
-    searchInputRef.current?.blur();
-    router.push(`/projects/${repoName}`);
-  };
+      if (type === "skill") {
+        if (pathname === "/") {
+          document
+            .querySelector(`.skill-container#${idOrRepo}`)
+            ?.scrollIntoView({ behavior: "smooth" });
+          window.location.hash = `#${idOrRepo}`;
+        } else {
+          router.push(`/#${idOrRepo}`);
+        }
+      } else {
+        router.push(`/projects/${idOrRepo}`);
+      }
+    },
+    [pathname, router, closeMenu],
+  );
 
   return (
-    <div className="relative w-full lg:w-64 xl:w-80" ref={searchContainerRef}>
-      <div className="flex items-center border-b border-gray-400 dark:border-gray-600 pb-1 px-2">
+    <div
+      className={`relative w-full ${isMobile ? "" : "lg:w-64 xl:w-72"}`}
+      ref={searchContainerRef}
+    >
+      <div className="relative flex items-center w-full">
+        <FiSearch className="absolute left-3 text-gray-400 text-lg" />
         <input
-          className="bg-transparent border-none outline-none text-gray-900 dark:text-gray-100 w-full text-lg lg:text-base placeholder:text-gray-500 dark:placeholder:text-gray-400"
+          className="w-full bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-gray-100 rounded-full py-2.5 pl-10 pr-4 text-sm outline-none border border-transparent focus:border-blue-500/50 focus:bg-white dark:focus:bg-neutral-900 transition-all placeholder:text-gray-500"
           type="text"
           placeholder="Search skills or projects..."
-          ref={searchInputRef}
           value={query}
           onFocus={() => setIsOpen(true)}
           onChange={(e) => {
@@ -195,77 +333,89 @@ const SearchContainer = ({ closeMenu }: { closeMenu: () => void }) => {
             setIsOpen(true);
           }}
         />
-        <button
-          className="text-gray-600 dark:text-gray-400 p-1 cursor-pointer focus:outline-none hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          onClick={() => searchInputRef.current?.focus()}
-        >
-          <FiSearch className="text-xl lg:text-lg" />
-        </button>
+        {query && (
+          <button
+            onClick={() => setQuery("")}
+            className="absolute right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+          >
+            <FiX />
+          </button>
+        )}
       </div>
 
       {isOpen && query.trim() !== "" && (
-        <div className="absolute top-[calc(100%+10px)] left-0 w-full lg:w-[340px] bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-xl overflow-hidden z-[100] flex flex-col">
+        <div
+          className={`absolute ${
+            isMobile
+              ? "top-[calc(100%+8px)] w-full relative mt-2 shadow-none border-none bg-transparent"
+              : "top-[calc(100%+8px)] right-0 w-[320px] bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 shadow-xl"
+          } rounded-xl overflow-hidden z-[100] flex flex-col`}
+        >
           {!hasResults ? (
             <div className="p-6 text-center text-gray-500 dark:text-gray-400 text-sm">
               No results found for &quot;{query}&quot;
             </div>
           ) : (
-            <div className="max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-600">
+            <div className="max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-neutral-700">
               {filteredSkills.length > 0 && (
-                <div className="flex flex-col border-b border-gray-100 dark:border-neutral-700 pb-2">
-                  <div className="px-4 pt-3 pb-1 text-xs uppercase font-bold tracking-wider text-gray-400 dark:text-gray-500">
+                <div className="flex flex-col pb-2">
+                  <div className="px-4 pt-3 pb-2 text-[0.7rem] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500">
                     Skills
                   </div>
                   {filteredSkills.map((skill) => (
-                    <div
+                    <button
                       key={skill.id}
-                      className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors text-gray-800 dark:text-gray-200"
-                      onClick={() => navigateToSkill(skill.id)}
+                      className="flex items-center w-full text-left gap-3 px-4 py-2.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors"
+                      onClick={() => handleNavigation("skill", skill.id)}
                     >
-                      <Image
-                        src={skill.iconSrc}
-                        alt={skill.name}
-                        width={20}
-                        height={20}
-                        className="object-contain shrink-0"
-                      />
-                      <span className="font-medium text-sm truncate">
+                      <div className="p-1.5 bg-gray-100 dark:bg-neutral-800 rounded-md shrink-0">
+                        <Image
+                          src={skill.iconSrc}
+                          alt={skill.name}
+                          width={18}
+                          height={18}
+                          className="object-contain"
+                        />
+                      </div>
+                      <span className="font-medium text-sm text-gray-800 dark:text-gray-200 truncate">
                         {skill.name}
                       </span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}
 
               {filteredProjects.length > 0 && (
                 <div className="flex flex-col pb-2">
-                  <div className="px-4 pt-3 pb-1 text-xs uppercase font-bold tracking-wider text-gray-400 dark:text-gray-500">
+                  <div className="px-4 pt-3 pb-2 text-[0.7rem] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 border-t border-gray-100 dark:border-neutral-700">
                     Projects
                   </div>
                   {filteredProjects.map((project) => (
-                    <div
+                    <button
                       key={project.repoName}
-                      className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors text-gray-800 dark:text-gray-200"
-                      onClick={() => navigateToProject(project.repoName)}
+                      className="flex items-center w-full text-left gap-3 px-4 py-2.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors"
+                      onClick={() =>
+                        handleNavigation("project", project.repoName)
+                      }
                     >
                       <Image
                         src={`/${project.previewImageSrc}`}
                         alt={project.name}
-                        width={32}
-                        height={20}
+                        width={36}
+                        height={24}
                         className="object-cover rounded shadow-sm shrink-0"
                       />
-                      <div className="flex items-center gap-2 flex-1 overflow-hidden">
-                        <span className="font-medium text-sm truncate">
+                      <div className="flex flex-col flex-1 overflow-hidden">
+                        <span className="font-medium text-sm text-gray-800 dark:text-gray-200 truncate">
                           {project.name}
                         </span>
                         {project.clientProject && (
-                          <span className="text-[0.65rem] bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded font-bold uppercase shrink-0">
-                            Client
+                          <span className="text-[0.65rem] text-blue-600 dark:text-blue-400 font-medium">
+                            Client Project
                           </span>
                         )}
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}
@@ -273,60 +423,6 @@ const SearchContainer = ({ closeMenu }: { closeMenu: () => void }) => {
           )}
         </div>
       )}
-    </div>
-  );
-};
-
-export const Menus = ({
-  links = [
-    { name: "Home", link: "/" },
-    { name: "Education", link: "/#education" },
-    { name: "Projects", link: "/projects" },
-    { name: "Experiences", link: "/experiences" },
-    { name: "Contact Me", link: "/#contact", isCta: true },
-  ],
-  onLinkClick = () => {},
-}: {
-  links?: MenuLink[];
-  onLinkClick?: () => void;
-}) => {
-  const pathname = usePathname();
-
-  return (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto gap-6 lg:gap-8">
-      {links.map((link) => {
-        const isActive = link.link === pathname;
-
-        if (link.isCta) {
-          return (
-            <Link
-              key={link.link}
-              href={link.link}
-              onClick={onLinkClick}
-              // Changed text-xl to text-base for standardizing the button size on mobile
-              className="mt-4 lg:mt-0 w-full lg:w-auto bg-blue-600 text-white px-6 py-3 lg:py-2 rounded-full font-medium text-center hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/30 hover:bg-blue-700 transition-all text-base"
-            >
-              {link.name}
-            </Link>
-          );
-        }
-
-        return (
-          <Link
-            key={link.link}
-            href={link.link}
-            onClick={onLinkClick}
-            // Changed text-2xl to text-lg for mobile, keeping text-base for desktop (lg)
-            className={`text-lg mx-2 lg:text-base transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
-              isActive
-                ? "font-bold text-blue-600 dark:text-blue-500"
-                : "text-gray-800 dark:text-gray-300"
-            }`}
-          >
-            {link.name}
-          </Link>
-        );
-      })}
     </div>
   );
 };
