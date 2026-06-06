@@ -28,7 +28,7 @@ const feedbackData = [
     clientName: "Michael R.",
     company: "Local Plumbing Services",
     feedback:
-      "Subrata completely transformed our outdated website. The new Next.js site is lightning fast, and we saw an immediate drop in bounce rates.",
+      "Subrata completely transformed our outdated website. It loads instantly and we're getting more calls. Highly recommended.",
     rating: 5,
     avatarColor: getColorForName("Michael R."),
   },
@@ -37,7 +37,7 @@ const feedbackData = [
     clientName: "Sarah J.",
     company: "Downtown Dental Clinic",
     feedback:
-      "Professional, responsive, and easy to work with. He understood our needs perfectly, and delivered a beautiful redesign.",
+      "Professional, quick, and easy to work with. He delivered a beautiful redesign that makes booking appointments effortless.",
     rating: 5,
     avatarColor: getColorForName("Sarah J."),
   },
@@ -46,7 +46,7 @@ const feedbackData = [
     clientName: "David W.",
     company: "Apex Roofing",
     feedback:
-      "Our old site was practically broken on mobile. Subrata delivered a modern, responsive design that actually keeps visitors on the page.",
+      "Our old site was a mess on mobile. Subrata built a clean, modern page that works perfectly on every device.",
     rating: 5,
     avatarColor: getColorForName("David W."),
   },
@@ -55,7 +55,7 @@ const feedbackData = [
     clientName: "Emma L.",
     company: "Boutique E-commerce",
     feedback:
-      "Great experience upgrading our storefront. The UI is incredibly clean. His development speed and communication were top-notch.",
+      "Great experience upgrading our online store. The layout is much cleaner, easier to navigate, and communication was excellent.",
     rating: 4,
     avatarColor: getColorForName("Emma L."),
   },

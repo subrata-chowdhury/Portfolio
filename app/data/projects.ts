@@ -109,7 +109,7 @@ const projectsData: ProjectType[] = [
       role: "Local Lab Collector",
       url: null,
       feedback:
-        "Subrata's full-stack expertise and design skills brought LabTesto to life. He communicated proactively, delivered ahead of schedule, and exceeded all our expectations.",
+        "Subrata brought LabTesto to life perfectly. Proactive communication, delivered ahead of schedule, and the system is incredibly easy to use.",
       stars: 5,
     },
   },
@@ -216,7 +216,7 @@ const projectsData: ProjectType[] = [
       role: "Director of BCET",
       url: null,
       feedback:
-        "Subrata delivered an exceptional, user-friendly interface using React and TypeScript. His problem-solving skills, creativity, and strict dedication to deadlines made the collaboration seamless.",
+        "Subrata delivered an exceptional, easy-to-use scheduling system. His problem-solving skills and dedication to deadlines made everything seamless.",
       stars: 4,
     },
   },

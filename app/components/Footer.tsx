@@ -44,7 +44,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               Quick Links
             </h3>
-            <nav className="flex flex-col items-center md:items-start gap-3.5 text-base text-gray-600 dark:text-gray-400">
+            <nav className="flex flex-col items-center md:items-start gap-3.5 text-sm text-gray-600 dark:text-gray-400">
               <Link
                 href="/#education"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"

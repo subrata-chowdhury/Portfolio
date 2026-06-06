@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { FiSearch, FiSun, FiMoon, FiMail, FiX, FiMenu } from "react-icons/fi";
 import { skillsData } from "../data/skills";
 import { projectsData } from "../data/projects";
+import { useContactModal } from "@/app/contexts/ContactModel";
 
 export interface MenuLink {
   name: string;
@@ -30,8 +31,7 @@ export default function Menubar({
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const pathname = usePathname();
+  const { openContactModal } = useContactModal();
 
   // Handle Scroll
   useEffect(() => {
@@ -53,26 +53,6 @@ export default function Menubar({
     };
   }, [isMobileMenuOpen]);
 
-  // Handle Native Tailwind Dark Mode Initialization
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const isSystemDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      const hasDarkClass = document.documentElement.classList.contains("dark");
-      setIsDarkMode(hasDarkClass || isSystemDark);
-
-      if (hasDarkClass || isSystemDark) {
-        document.documentElement.classList.add("dark");
-      }
-    }
-  }, []);
-
-  const toggleTheme = useCallback(() => {
-    setIsDarkMode((prev) => !prev);
-    document.documentElement.classList.toggle("dark");
-  }, []);
-
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   return (
@@ -84,20 +64,15 @@ export default function Menubar({
             : "h-20 bg-transparent"
         }`}
       >
-        {/* Left Side: Theme Toggle & Potential Logo */}
-        <div className="flex items-center gap-4 z-50">
-          <ThemeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        </div>
-
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden ml-auto lg:flex items-center gap-8">
           <SearchContainer closeMenu={closeMobileMenu} />
           <DesktopMenu links={links} />
         </div>
 
         {/* Mobile Hamburger Toggle */}
         <button
-          className="lg:hidden p-2 -mr-2 z-[60] text-gray-800 dark:text-gray-200 focus:outline-none"
+          className="lg:hidden p-2 -mr-2 z-[60] text-gray-800 dark:text-gray-200 focus:outline-none ml-auto"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Menu"
           aria-expanded={isMobileMenuOpen}
@@ -134,50 +109,46 @@ export default function Menubar({
       </aside>
 
       {/* Mobile-Only Persistent Floating Contact Button */}
-      <Link
-        href="/#contact"
-        onClick={(e) => {
-          if (pathname === "/") {
-            e.preventDefault();
-            const contactSection = document.getElementById("contact");
-            if (contactSection) {
-              contactSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }
-        }}
-        className="lg:hidden fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-3 rounded-full font-semibold shadow-lg shadow-blue-600/30 flex items-center gap-2 z-30 active:scale-95 transition-transform"
+      <button
+        onClick={() =>
+          openContactModal(
+            "Hi Subrata, I'm interested in your services. I'd like to discuss how we can work together.",
+          )
+        }
+        className="lg:hidden fixed font-['Open_Sans'] bottom-6 right-6 bg-blue-600 text-white px-4 py-3 rounded-full font-semibold shadow-lg shadow-blue-600/30 flex items-center gap-2 z-30 active:scale-95 transition-transform"
       >
         <FiMail className="text-xl" />
-        <span className="text-sm">Contact</span>
-      </Link>
+        <span className="text-sm">Contact Me</span>
+      </button>
     </>
   );
 }
 
-// --- SUB-COMPONENTS ---
+// // --- SUB-COMPONENTS ---
 
-const ThemeToggle = ({
-  isDarkMode,
-  toggleTheme,
-}: {
-  isDarkMode: boolean;
-  toggleTheme: () => void;
-}) => (
-  <button
-    onClick={toggleTheme}
-    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors text-xl text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-    aria-label="Toggle Theme"
-  >
-    {isDarkMode ? (
-      <FiSun className="text-yellow-400" />
-    ) : (
-      <FiMoon className="text-indigo-600" />
-    )}
-  </button>
-);
+// const ThemeToggle = ({
+//   isDarkMode,
+//   toggleTheme,
+// }: {
+//   isDarkMode: boolean;
+//   toggleTheme: () => void;
+// }) => (
+//   <button
+//     onClick={toggleTheme}
+//     className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors text-xl text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+//     aria-label="Toggle Theme"
+//   >
+//     {isDarkMode ? (
+//       <FiSun className="text-yellow-400" />
+//     ) : (
+//       <FiMoon className="text-indigo-600" />
+//     )}
+//   </button>
+// );
 
 const DesktopMenu = ({ links }: { links: MenuLink[] }) => {
   const pathname = usePathname();
+  const { openContactModal } = useContactModal();
 
   return (
     <div className="flex items-center gap-6">
@@ -186,13 +157,17 @@ const DesktopMenu = ({ links }: { links: MenuLink[] }) => {
 
         if (link.isCta) {
           return (
-            <Link
+            <button
               key={link.link}
-              href={link.link}
+              onClick={() =>
+                openContactModal(
+                  "Hi Subrata, I'm interested in your services. I'd like to discuss how we can work together.",
+                )
+              }
               className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/30 hover:bg-blue-700 transition-all text-sm tracking-wide"
             >
               {link.name}
-            </Link>
+            </button>
           );
         }
 

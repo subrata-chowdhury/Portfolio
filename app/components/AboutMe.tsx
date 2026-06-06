@@ -66,7 +66,6 @@ function BioSection() {
           Transparent, asynchronous communication process to save you time—no
           unnecessary meetings required.
         </li>
-        <li>Hobbies include Web Development, gaming, and music.</li>
       </ul>
     </article>
   );

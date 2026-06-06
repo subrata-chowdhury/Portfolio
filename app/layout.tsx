@@ -6,6 +6,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import { Open_Sans, Raleway } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ContactModalProvider } from "./contexts/ContactModel";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -156,12 +157,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to main content
         </a>
 
-        <Menubar />
+        <ContactModalProvider>
+          <Menubar />
 
-        {/* 4. Wrapped children in a <main> tag with an ID corresponding to the skip link */}
-        <main id="main-content">{children}</main>
+          {/* 4. Wrapped children in a <main> tag with an ID corresponding to the skip link */}
+          <main id="main-content">{children}</main>
 
-        <Footer />
+          <Footer />
+        </ContactModalProvider>
       </body>
     </html>
   );

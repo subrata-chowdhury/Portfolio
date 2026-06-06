@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { FiCheck, FiX, FiPlus, FiStar } from "react-icons/fi";
+import { useContactModal } from "@/app/contexts/ContactModel";
 
 // Types for strict typing
 type Feature = {
@@ -92,7 +93,7 @@ export default function Packages() {
     >
       <div className="mb-10 lg:mb-14 max-w-2xl">
         <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100 mb-3 animate-[slide-right_1s_ease-out]">
-          Transparent Pricing
+          My Services
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed animate-[slide-right_1s_ease-out_0.2s]">
           Risk-free development. You receive a free custom Figma mockup before
@@ -116,6 +117,8 @@ function PricingCard({
   tier: PackageTier;
   animationDelay: number;
 }) {
+  const { openContactModal } = useContactModal();
+
   return (
     <article
       className={`relative flex flex-col h-full bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 transition-transform duration-300 animate-[slide-up_0.5s_ease-out_forwards]
@@ -126,6 +129,11 @@ function PricingCard({
         }
       `}
       style={{ animationDelay: `${animationDelay * 0.15 + 0.2}s` }}
+      onClick={(e) => {
+        openContactModal(
+          `Hi Subrata, I'm interested in the ${tier.title} package at $${tier.price}. I'd like to discuss the free Figma mockup.`,
+        );
+      }}
     >
       {tier.isPopular && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-[0.65rem] md:text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full z-10 flex items-center gap-1">
@@ -158,15 +166,12 @@ function PricingCard({
         </div>
       </div>
 
-      <Link
-        href="#contact"
-        onClick={(e) => {
-          e.preventDefault();
-          const contactSection = document.getElementById("contact");
-          if (contactSection) {
-            contactSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
+      <button
+        onClick={() =>
+          openContactModal(
+            `Hi Subrata, I'm interested in the ${tier.title} package at $${tier.price}. I'd like to discuss the free Figma mockup.`,
+          )
+        }
         className={`w-full text-center py-3 px-6 rounded-xl font-semibold transition-colors duration-200 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 dark:focus-visible:ring-offset-[#1a1a1a]
           ${
             tier.isPopular
@@ -176,7 +181,7 @@ function PricingCard({
         `}
       >
         Choose {tier.title}
-      </Link>
+      </button>
 
       {/* Features */}
       <div className="flex flex-col grow">
