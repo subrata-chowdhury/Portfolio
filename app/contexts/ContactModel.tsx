@@ -6,6 +6,7 @@ import React, {
   useState,
   ReactNode,
   useEffect,
+  useCallback,
 } from "react";
 import ContactForm from "@/app/components/ContactForm";
 import { FiX } from "react-icons/fi";
@@ -23,15 +24,15 @@ export function ContactModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [initialMessage, setInitialMessage] = useState("");
 
-  const openContactModal = (prefillMessage = "") => {
+  const openContactModal = useCallback((prefillMessage = "") => {
     setInitialMessage(prefillMessage);
     setIsOpen(true);
-  };
+  }, []);
 
-  const closeContactModal = () => {
+  const closeContactModal = useCallback(() => {
     setIsOpen(false);
     setTimeout(() => setInitialMessage(""), 300); // Clear after exit animation
-  };
+  }, []);
 
   // Prevent background scrolling when global modal is open
   useEffect(() => {
@@ -53,7 +54,7 @@ export function ContactModalProvider({ children }: { children: ReactNode }) {
 
       {/* Global Modal Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center p-0 sm:p-6">
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
             onClick={closeContactModal}
@@ -61,12 +62,12 @@ export function ContactModalProvider({ children }: { children: ReactNode }) {
           />
 
           <div
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#1a1a1a] rounded-[1.5rem] shadow-2xl animate-[slide-up_0.3s_ease-out_forwards] scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-neutral-800"
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#1a1a1a] rounded-t-2xl sm:rounded-[1.5rem] shadow-2xl animate-[slide-up_0.3s_ease-out_forwards] scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-neutral-800"
             role="dialog"
             aria-modal="true"
           >
             {/* Modal Header */}
-            <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-4 pb-2 pr-6 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-6 sm:px-8 py-4 pt-6 sm:pt-4 pb-2 pr-6 bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                 Get in Touch
               </h2>
