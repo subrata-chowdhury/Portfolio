@@ -110,9 +110,10 @@ function SkillCard({
   return (
     <>
       <button
+        id={skill.id}
         onClick={() => setShowRelatedProjects(true)}
         // Horizontal layout (flex-row instead of flex-col) to drastically save vertical space
-        className="group flex items-center p-2.5 md:p-4 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-100 dark:border-white/5 rounded-xl hover:bg-white dark:hover:bg-gray-800 hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm hover:shadow-blue-600/5 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 animate-[slide-up_0.5s_ease-out_forwards]"
+        className="group flex items-center cursor-pointer p-2.5 md:p-4 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-100 dark:border-white/5 rounded-xl hover:bg-white dark:hover:bg-gray-800 hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm hover:shadow-blue-600/5 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 animate-[slide-up_0.5s_ease-out_forwards]"
         style={{ animationDuration: `${animationDelay / 15 + 0.3}s` }}
         aria-label={`View projects using ${skill.name}`}
       >
@@ -184,7 +185,7 @@ function SkillDetailsPopUp({
   return (
     <Model onClose={onClose}>
       <div className="flex flex-col w-full h-full">
-        <div className="pb-4 mb-6 border-b border-gray-200 dark:border-gray-800">
+        <div className="pb-4 mb-3 border-b border-gray-200 dark:border-gray-800">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
             <span className="text-blue-600 dark:text-blue-400">{skill}</span>{" "}
             Projects

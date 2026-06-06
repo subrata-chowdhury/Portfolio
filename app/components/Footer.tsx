@@ -31,7 +31,7 @@ export default function Footer() {
 
             {/* Elevated Call-to-Action */}
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:subratachowdhury7000@gmail.com"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20 hover:-translate-y-0.5 transition-all duration-300"
             >
               <FaEnvelope className="text-lg" />

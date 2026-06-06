@@ -15,7 +15,7 @@ export default function Home() {
       <AboutMe />
       <Skills />
       <Education />
-      <Projects />
+      <Projects containerStyle={{ marginTop: "0rem" }} />
       <Internships />
       <Contact />
       <Packages />

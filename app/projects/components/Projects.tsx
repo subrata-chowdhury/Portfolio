@@ -28,11 +28,11 @@ export default function Projects({
 }: ProjectsProps) {
   return (
     <section
-      className="px-6 py-12 md:py-20 max-w-7xl mx-auto w-full"
+      className="px-6 py-12 md:py-20 max-w-7xl mx-auto w-full mt-10"
       style={containerStyle}
     >
       <div
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8"
+        className="flex sm:items-center justify-between gap-4 mb-8"
         id="projects"
         ref={forwardRef}
       >

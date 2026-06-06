@@ -26,3 +26,40 @@ body {
   scrollbar-color: var(--color-primary) transparent;
   scrollbar-gutter: stable;
 }
+
+/* =========================================
+   CUSTOM ANIMATION KEYFRAMES
+   Used globally via Tailwind arbitrary values 
+   (e.g., animate-[slide-up_0.5s_ease-out])
+========================================= */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

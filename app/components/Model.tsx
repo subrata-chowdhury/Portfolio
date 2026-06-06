@@ -31,7 +31,7 @@ function Model({
       </button>
 
       <div
-        className={`fixed inset-0 w-full h-full p-6 pt-20 md:p-12 md:pt-12 bg-white dark:bg-neutral-900 z-[60] overflow-y-auto ${className}`}
+        className={`fixed inset-0 w-full h-full max-h-screen p-6 pt-20 md:p-12 md:pt-12 bg-white dark:bg-neutral-900 z-[60] overflow-y-auto ${className}`}
         style={style}
       >
         <div className="max-w-7xl mx-auto h-full">{children}</div>

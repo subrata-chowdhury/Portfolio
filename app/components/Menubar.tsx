@@ -31,6 +31,7 @@ export default function Menubar({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const pathname = usePathname();
 
   // Handle Scroll
   useEffect(() => {
@@ -135,6 +136,15 @@ export default function Menubar({
       {/* Mobile-Only Persistent Floating Contact Button */}
       <Link
         href="/#contact"
+        onClick={(e) => {
+          if (pathname === "/") {
+            e.preventDefault();
+            const contactSection = document.getElementById("contact");
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }}
         className="lg:hidden fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-3 rounded-full font-semibold shadow-lg shadow-blue-600/30 flex items-center gap-2 z-30 active:scale-95 transition-transform"
       >
         <FiMail className="text-xl" />

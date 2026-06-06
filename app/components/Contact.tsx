@@ -6,7 +6,7 @@ import { FiMapPin, FiMail, FiLinkedin, FiSend } from "react-icons/fi";
 export default function Contact() {
   return (
     <section className="px-6 mt-20 mb-24 max-w-7xl mx-auto w-full" id="contact">
-      <div className="mb-10 lg:mb-12 text-center md:text-left max-w-2xl">
+      <div className="mb-10 lg:mb-12 max-w-2xl">
         <h2 className="text-3xl md:text-4xl font-bold font-['Raleway'] text-gray-900 dark:text-gray-100 mb-3 animate-[slide-right_1s_ease-out]">
           Contact Me
         </h2>

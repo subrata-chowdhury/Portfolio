@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { FiCheck, FiX, FiPlus, FiStar } from "react-icons/fi";
@@ -159,6 +160,13 @@ function PricingCard({
 
       <Link
         href="#contact"
+        onClick={(e) => {
+          e.preventDefault();
+          const contactSection = document.getElementById("contact");
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
         className={`w-full text-center py-3 px-6 rounded-xl font-semibold transition-colors duration-200 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 dark:focus-visible:ring-offset-[#1a1a1a]
           ${
             tier.isPopular
