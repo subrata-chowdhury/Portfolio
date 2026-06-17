@@ -60,7 +60,7 @@ export default function Menubar({
       <nav
         className={`fixed top-0 w-full flex items-center justify-between px-6 lg:px-12 transition-all duration-300 z-50 ${
           isScrolled
-            ? "h-16 shadow-sm bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-neutral-800/50"
+            ? "h-16 shadow-sm bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg"
             : "h-20 bg-transparent"
         }`}
       >
