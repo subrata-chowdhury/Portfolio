@@ -85,14 +85,14 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Subrata Chowdhury | Full-Stack Web Developer",
-    description:
-      "Explore the professional portfolio of Subrata Chowdhury, featuring projects and skills in full-stack development, React.js, and modern tech stacks.",
-    images: ["/logo.png"],
-    creator: "@Subrata70000",
-  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "Subrata Chowdhury | Full-Stack Web Developer",
+  //   description:
+  //     "Explore the professional portfolio of Subrata Chowdhury, featuring projects and skills in full-stack development, React.js, and modern tech stacks.",
+  //   images: ["/logo.png"],
+  //   creator: "@Subrata70000",
+  // },
   robots: {
     index: true,
     follow: true,

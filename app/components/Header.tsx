@@ -79,7 +79,7 @@ function SocialLinks() {
     },
     {
       icon: FaLinkedin,
-      href: "https://www.linkedin.com/in/subrata7000/",
+      href: "https://www.linkedin.com/in/subrata1001/",
       label: "LinkedIn",
     },
     { icon: FaInstagram, href: "#", label: "Instagram" },

@@ -30,14 +30,14 @@ function LeftSide() {
       <ContactCard
         icon={FiMail}
         title="Email"
-        details="subratachowdhury7000@gmail.com"
-        href="mailto:subratachowdhury7000@gmail.com"
+        details="subrata.chowdhury1001@gmail.com"
+        href="mailto:subrata.chowdhury1001@gmail.com"
       />
       <ContactCard
         icon={FiLinkedin}
         title="LinkedIn"
         details="Connect on LinkedIn"
-        href="https://www.linkedin.com/in/subrata7000/"
+        href="https://www.linkedin.com/in/subrata1001/"
       />
     </div>
   );
