@@ -131,7 +131,7 @@ const projectsData: ProjectType[] = [
       "I designed and developed a custom mobile-first web application from the ground up. It features an intuitive booking flow for patients and an automated Telegram API notification system that instantly alerts lab collectors of new appointments, entirely eliminating manual data entry.",
     outcomes: [
       { label: "Booking Speed", value: "3x Faster" },
-      { label: "Manual Work", value: "-80%" },
+      { label: "Manual Work", value: "- 80%" },
       { label: "Mobile Usability", value: "100%" },
     ],
   },
@@ -188,7 +188,7 @@ const projectsData: ProjectType[] = [
       "I built a full-stack, bespoke CRM featuring an AI-powered data scraper to automate lead generation. I integrated dynamic email templates and automated receipt generation, centralizing their entire transaction and project management into a single, secure dashboard.",
     outcomes: [
       { label: "Lead Gen Speed", value: "+200%" },
-      { label: "Admin Time", value: "-15 hrs/wk" },
+      { label: "Admin Time", value: "- 15 hrs/wk" },
       { label: "Workflow", value: "Automated" },
     ],
   },
@@ -241,7 +241,7 @@ const projectsData: ProjectType[] = [
     solution:
       "I developed a dynamic scheduling web application featuring both intuitive manual plotting capabilities and a robust AI-driven automated generator. The system instantly detects overlaps, optimizes room distribution, and significantly reduces human error.",
     outcomes: [
-      { label: "Scheduling Time", value: "-90%" },
+      { label: "Scheduling Time", value: "- 90%" },
       { label: "Overlaps", value: "0%" },
       { label: "Efficiency", value: "Maximized" },
     ],
