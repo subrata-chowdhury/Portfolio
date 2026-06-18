@@ -87,7 +87,14 @@ function EducationTimelineItem({
             {degree}
           </h3>
           <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 shrink-0">
-            {period}
+            <a
+              href={certificateLink}
+              className="hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 dark:focus:ring-offset-gray-900"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FiExternalLink size={16} className="text-xs" />
+            </a>
           </span>
         </div>
 
@@ -98,13 +105,13 @@ function EducationTimelineItem({
           </span>
         </div>
 
-        <div className="flex items-center flex-wrap gap-3 mt-2">
-          {/* Minimalist Grade Badge */}
-          <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-bold border border-blue-100 dark:border-blue-800/50">
+        {/* <div className="flex items-center flex-wrap gap-3 mt-2"> */}
+        {/* Minimalist Grade Badge */}
+        {/* <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-bold border border-blue-100 dark:border-blue-800/50">
             Score: {marks}
-          </div>
+          </div> */}
 
-          <a
+        {/* <a
             href={certificateLink}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group/link"
             target="_blank"
@@ -113,8 +120,8 @@ function EducationTimelineItem({
           >
             <span>View Document</span>
             <FiExternalLink className="text-xs" />
-          </a>
-        </div>
+          </a> */}
+        {/* </div> */}
       </div>
     </div>
   );

@@ -34,22 +34,18 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_APP_URL}`),
   title: {
-    default: "Subrata Chowdhury | Full-Stack Web Developer",
+    default: "Freelance Web Developer | Custom Websites & Redesigns",
     template: "%s | Subrata Chowdhury",
   },
   description:
-    "Welcome to the professional portfolio of Subrata Chowdhury, a Full-Stack Web Developer based in West Bengal, India. Showcasing expertise in React.js, Next.js, Node.js, and modern web architectures.",
+    "Replace your slow, outdated website with a fast, modern, and mobile-friendly design. I build high-performance web experiences for small businesses. Request a free custom mockup today.",
   keywords: [
-    "Subrata Chowdhury",
-    "Full-Stack Developer",
-    "Web Developer",
-    "React Developer",
+    "Freelance Web Developer",
+    "Small Business Website Redesign",
+    "Custom Landing Pages",
+    "Fast Website Development",
     "Next.js Developer",
-    "Frontend Engineer",
-    "Backend Engineer",
-    "West Bengal Web Developer",
-    "India",
-    "Portfolio",
+    "Subrata Chowdhury",
   ],
   authors: [
     {
@@ -108,18 +104,64 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   // Define Structured Data (JSON-LD) for SEO Rich Snippets
-  const personSchema = {
+  const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Subrata Chowdhury",
-    url: `${process.env.NEXT_PUBLIC_APP_URL}`,
-    image: `${process.env.NEXT_PUBLIC_APP_URL}/logo.png`,
-    jobTitle: "Full-Stack Web Developer",
-    // Make sure these match your actual active profiles
-    sameAs: [
-      "https://github.com/subrata-chowdhury",
-      "https://www.linkedin.com/in/your-linkedin-id", // Update this!
-      "https://twitter.com/Subrata70000",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${process.env.NEXT_PUBLIC_APP_URL}/#person`,
+        name: "Subrata Chowdhury",
+        url: `${process.env.NEXT_PUBLIC_APP_URL}`,
+        image: `${process.env.NEXT_PUBLIC_APP_URL}/logo.png`,
+        jobTitle: "Freelance Full-Stack Web Developer",
+        sameAs: [
+          "https://github.com/subrata-chowdhury",
+          "https://www.linkedin.com/in/subrata1001",
+        ],
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${process.env.NEXT_PUBLIC_APP_URL}/#service`,
+        name: "Subrata Chowdhury Web Development",
+        url: `${process.env.NEXT_PUBLIC_APP_URL}`,
+        description:
+          "Fast, modern, responsive website redesigns, landing pages, and full-stack web applications for businesses.",
+        image: `${process.env.NEXT_PUBLIC_APP_URL}/logo.png`,
+        provider: {
+          "@id": `${process.env.NEXT_PUBLIC_APP_URL}/#person`,
+        },
+        areaServed: ["US", "GB", "AU", "IN"],
+        priceRange: "$60 - $300",
+        offers: [
+          {
+            "@type": "Offer",
+            name: "Custom Landing Page",
+            description:
+              "1 Page Custom Website with free Figma mockup upfront.",
+            price: "60.00",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "UI/UX Redesign",
+            description:
+              "Up to 5 Pages with dynamic content setup and responsive mobile UI.",
+            price: "150.00",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "Web App / SaaS",
+            description:
+              "Full-stack web applications, secure APIs, and custom SaaS MVPs.",
+            price: "300.00",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+        ],
+      },
     ],
   };
 
@@ -138,7 +180,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* 2. JSON-LD Schema Injection */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
 
         {/* 3. Accessibility: Skip to Content Button */}

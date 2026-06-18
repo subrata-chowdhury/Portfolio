@@ -120,7 +120,7 @@ export default function ContactForm({
     <>
       <form
         // Remove padding if inside a modal context so it sits flush
-        className={`flex flex-col gap-5 w-full bg-white dark:bg-[#1a1a1a] relative rounded-2xl ${!isModalContext ? "" : ""}`}
+        className={`flex flex-col gap-5 w-full relative rounded-2xl ${!isModalContext ? "" : ""}`}
         onSubmit={addContactDetails}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">

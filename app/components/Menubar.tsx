@@ -18,6 +18,7 @@ export interface MenuLink {
 
 const DEFAULT_LINKS: MenuLink[] = [
   { name: "Home", link: "/" },
+  { name: "Services", link: "/services" },
   { name: "Education", link: "/#education" },
   { name: "Projects", link: "/projects" },
   { name: "Experiences", link: "/experiences" },

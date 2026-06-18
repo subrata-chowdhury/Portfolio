@@ -13,12 +13,12 @@ export default function Home() {
     <>
       <Header />
       <AboutMe />
-      <Packages />
-      <Skills />
-      <Education />
       <Projects containerStyle={{ marginTop: "0rem" }} />
-      <Internships />
       <Feedback />
+      <Packages />
+      <Education />
+      <Internships />
+      <Skills />
       <Contact />
     </>
   );

@@ -53,11 +53,6 @@ export default function Certifications() {
                 {cert.issuer}
               </span>
             </div>
-
-            {/* Sleek Action Icon */}
-            <div className="shrink-0 w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              <FiExternalLink className="text-xs md:text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </div>
           </a>
         ))}
       </div>

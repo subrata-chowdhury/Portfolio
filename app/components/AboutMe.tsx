@@ -31,20 +31,19 @@ function BioSection() {
   return (
     <article className="flex-1 text-[0.95rem] md:text-base text-gray-700 dark:text-gray-300 font-['Open_Sans']">
       <p className="mb-4 leading-relaxed">
-        I am a Full-Stack Web Developer specializing in helping small businesses
-        and e-commerce stores elevate their digital presence.
+        I am a Web Developer specializing in helping small businesses and
+        e-commerce stores elevate their digital presence.
       </p>
 
       <p className="mb-4 leading-relaxed">
         A slow, outdated, or broken website costs you customers. I replace these
-        with lightning-fast, modern, and highly responsive web experiences. By
-        handling the technical heavy lifting, I ensure your site keeps visitors
-        engaged, looks professional on every device, and ultimately drives
-        sales.
+        with fast, modern, and highly responsive web experiences. By handling
+        the technical heavy lifting, I ensure your site keeps visitors engaged,
+        looks professional on every device, and ultimately drives sales.
       </p>
 
       <p className="mb-5 leading-relaxed bg-blue-50/50 dark:bg-blue-900/10 p-4 rounded-lg border-l-2 border-blue-500">
-        To ensure we are a perfect fit with zero risk to you, I operate on a{" "}
+        I operate on a{" "}
         <strong className="text-blue-600 dark:text-blue-400 font-semibold">
           "Free-to-Fee"
         </strong>{" "}
@@ -53,7 +52,7 @@ function BioSection() {
         requested.
       </p>
 
-      <ul className="leading-relaxed mt-6 pl-5 list-disc space-y-2 text-gray-600 dark:text-gray-400">
+      {/* <ul className="leading-relaxed mt-6 pl-5 list-disc space-y-2 text-gray-600 dark:text-gray-400">
         <li>
           Delivering modern, fast-loading websites optimized to turn visitors
           into local customers.
@@ -66,7 +65,7 @@ function BioSection() {
           Transparent, asynchronous communication process to save you time—no
           unnecessary meetings required.
         </li>
-      </ul>
+      </ul> */}
     </article>
   );
 }

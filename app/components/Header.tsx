@@ -105,10 +105,10 @@ function SocialLinks() {
 }
 
 function TypingAnimation() {
-  const [text, setText] = useState("");
-  const [isErasing, setIsErasing] = useState(false);
-  const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
+  const [text, setText] = useState("Modern Websites.");
+  const [isErasing, setIsErasing] = useState(true);
+  const [wordIndex, setWordIndex] = useState(1);
+  const [charIndex, setCharIndex] = useState(16);
 
   useEffect(() => {
     const words = [

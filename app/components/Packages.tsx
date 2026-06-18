@@ -61,7 +61,7 @@ const packagesData: PackageTier[] = [
     ],
     addons: [
       { name: "Advanced SEO Setup", price: 40 },
-      { name: "Extra Pages", price: "20/ea" },
+      { name: "Extra Pages", price: 30 },
     ],
   },
   {
@@ -86,6 +86,8 @@ const packagesData: PackageTier[] = [
 ];
 
 export default function Packages() {
+  const { openContactModal } = useContactModal();
+
   return (
     <section
       className="px-6 mt-20 mb-24 max-w-7xl mx-auto w-full"
@@ -105,6 +107,29 @@ export default function Packages() {
         {packagesData.map((tier, index) => (
           <PricingCard key={tier.id} tier={tier} animationDelay={index} />
         ))}
+      </div>
+      {/* NEW: Full-Width Custom Plan Banner */}
+      <div className="w-full bg-blue-50 dark:bg-blue-900/10 mt-8 border border-blue-100 dark:border-blue-800/30 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all hover:shadow-md hover:border-blue-200 dark:hover:border-blue-700/50">
+        <div className="flex-1 text-center md:text-left">
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2">
+            Need a Custom Solution?
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+            Complex databases, unique SaaS architectures, or large-scale
+            e-commerce migrations. Let's discuss a tailored plan that strictly
+            aligns with your exact project scope.
+          </p>
+        </div>
+        <button
+          onClick={() =>
+            openContactModal(
+              "Hi Subrata, my project scope falls outside your standard packages. I'd like to discuss a custom solution regarding...",
+            )
+          }
+          className="shrink-0 bg-blue-600 text-white hover:bg-blue-700 px-8 py-3.5 rounded-xl font-semibold cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 dark:focus:ring-offset-[#1a1a1a]"
+        >
+          Discuss Custom Plan
+        </button>
       </div>
     </section>
   );
