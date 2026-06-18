@@ -25,12 +25,12 @@ function getColorForName(name: string): string {
 const feedbackData = [
   {
     id: "m-1",
-    clientName: "Michael R.",
-    company: "Local Plumbing Services",
+    clientName: "Rohan Kapoor",
+    company: "Ai4Chat",
     feedback:
-      "Subrata completely transformed our outdated website. It loads instantly and we're getting more calls. Highly recommended.",
+      "Subrata completely transformed our outdated website. It loads instantly and we're getting more clients. Highly recommended.",
     rating: 5,
-    avatarColor: getColorForName("Michael R."),
+    avatarColor: getColorForName("Rohan Kapoor"),
   },
   {
     id: "m-2",
@@ -43,12 +43,12 @@ const feedbackData = [
   },
   {
     id: "m-3",
-    clientName: "David W.",
-    company: "Apex Roofing",
+    clientName: "Sumit Khobragade",
+    company: "Whitecream",
     feedback:
       "Our old site was a mess on mobile. Subrata built a clean, modern page that works perfectly on every device.",
     rating: 5,
-    avatarColor: getColorForName("David W."),
+    avatarColor: getColorForName("Sumit Khobragade"),
   },
   {
     id: "m-4",
@@ -73,6 +73,12 @@ const feedbackData = [
       };
     }),
 ];
+
+// Calculate derived stats for the header badge
+const totalReviews = feedbackData.length;
+const averageRating = (
+  feedbackData.reduce((acc, curr) => acc + curr.rating, 0) / totalReviews
+).toFixed(1);
 
 export default function Feedback() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -146,14 +152,45 @@ export default function Feedback() {
       className="w-full max-w-7xl mx-auto px-6 mt-20 mb-24 overflow-hidden"
       id="feedback"
     >
-      <div className="flex flex-col items-center md:items-start mb-10 lg:mb-14 max-w-2xl mx-auto md:mx-0">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 mb-3 animate-[slide-right_1s_ease-out]">
-          Client Feedback
-        </h2>
-        <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base leading-relaxed text-center md:text-left animate-[slide-right_1s_ease-out_0.2s]">
-          Don&apos;t just take my word for it. Here is what my clients and
-          collaborators have to say about the results I deliver.
-        </p>
+      {/* Header Container - Adjusted to flex row for desktop */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10 lg:mb-14 w-full">
+        {/* Left Side: Heading & Text */}
+        <div className="flex flex-col items-center md:items-start max-w-2xl mx-auto md:mx-0 text-center md:text-left flex-1">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 mb-3 animate-[slide-right_1s_ease-out]">
+            Client Feedback
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base leading-relaxed animate-[slide-right_1s_ease-out_0.2s]">
+            Don&apos;t just take my word for it. Here is what my clients and
+            collaborators have to say about the results I deliver.
+          </p>
+        </div>
+
+        {/* Right Side: Average Rating Badge */}
+        <div className="flex items-center gap-4 bg-white dark:bg-[#121212] border border-gray-200/75 dark:border-white/5 px-6 py-4 rounded-2xl shadow-sm mx-auto md:mx-0 shrink-0 animate-[slide-right_1s_ease-out_0.3s]">
+          <div className="text-4xl font-black text-gray-900 dark:text-white tracking-tighter">
+            {averageRating}
+          </div>
+          <div className="flex flex-col gap-1">
+            <div
+              className="flex items-center gap-1"
+              aria-label={`Average rating ${averageRating} out of 5`}
+            >
+              {[...Array(5)].map((_, index) => (
+                <FaStar
+                  key={index}
+                  className={`text-sm ${
+                    index < Math.round(Number(averageRating))
+                      ? "text-amber-400"
+                      : "text-gray-200 dark:text-gray-800"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider">
+              Based on all reviews
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="relative w-full py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] md:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

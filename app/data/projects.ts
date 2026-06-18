@@ -112,6 +112,105 @@ const projectsData: ProjectType[] = [
         "Subrata brought LabTesto to life perfectly. Proactive communication, delivered ahead of schedule, and the system is incredibly easy to use.",
       stars: 5,
     },
+
+    challenge:
+      "The client relied on manual phone calls and disorganized spreadsheets to manage patient test bookings. They needed a streamlined, centralized digital storefront that patients could easily navigate on their mobile phones.",
+    solution:
+      "I designed and developed a custom mobile-first web application from scratch. It features a fast, intuitive booking flow for patients and an automated Telegram notification system that instantly alerts collectors of new appointments, eliminating manual data entry.",
+    outcomes: [
+      { label: "Booking Speed", value: "3x Faster" },
+      { label: "Manual Work", value: "-80%" },
+      { label: "Mobile Traffic", value: "+45%" },
+    ],
+  },
+  {
+    name: "CRM Console",
+    repoName: "crm-console",
+    liveUrl: "https://crm-console-theta.vercel.app/",
+    privateRepo: true,
+    description:
+      "A high-performance CRM featuring multi-project management, transaction tracking, and an AI-powered scraping tool. It includes automated communication with dynamic email templates and receipt generation.",
+    noOfCommits: null,
+    createdAt: null,
+    updatedAt: null,
+    clientProject: true,
+    mainSkills: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Node.js",
+      "Web Scraping",
+      "Artificial Intelligence",
+    ],
+    otherSkills: [
+      "Full Stack Development",
+      "SaaS",
+      "Frontend Development",
+      "Backend Development",
+      "REST API",
+      "Responsive Web Design",
+      "Problem Solving",
+    ],
+    previewImageSrc: "assets/CRM Console.webp",
+    previewUiImages: [
+      "/assets/CRM-Console/1.webp",
+      "/assets/CRM-Console/2.webp",
+      "/assets/CRM-Console/3.webp",
+      "/assets/CRM-Console/4.webp",
+      "/assets/CRM-Console/5.webp",
+    ],
+    ownerDetails: {
+      name: "Sourav Halder",
+      role: "Client",
+      url: null,
+      feedback:
+        "The CRM system delivered is exceptional. The AI scraping process and dynamic email templates automated our workflow perfectly, and tracking transactions has never been easier.",
+      stars: 4,
+    },
+  },
+  {
+    name: "Time Table Scheduler",
+    repoName: "Time-Table-Scheduler-ReactJS",
+    description:
+      "It's a web application UI created using React through which a Time Table can be created manually and also automatically using AI.",
+    noOfCommits: null,
+    createdAt: null,
+    updatedAt: null,
+    clientProject: true,
+    mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
+    otherSkills: [
+      "REST API",
+      "Graphic Design",
+      "Responsive Web Design",
+      "Frontend Development",
+      "Problem Solving",
+      "Teamwork",
+      "Web Development",
+      "SEO",
+    ],
+    previewImageSrc: "assets/Time_Table_Scheduler.webp",
+    previewUiImages: [
+      "/assets/Time_Table_Scheduler/1.webp",
+      "/assets/Time_Table_Scheduler/2.webp",
+      "/assets/Time_Table_Scheduler/3.webp",
+      "/assets/Time_Table_Scheduler/4.webp",
+      "/assets/Time_Table_Scheduler/5.webp",
+      "/assets/Time_Table_Scheduler/6.webp",
+      "/assets/Time_Table_Scheduler/7.webp",
+      "/assets/Time_Table_Scheduler/8.webp",
+      "/assets/Time_Table_Scheduler/9.webp",
+      "/assets/Time_Table_Scheduler/10.webp",
+      "/assets/Time_Table_Scheduler/11.webp",
+    ],
+    ownerDetails: {
+      name: "A. C. Ganguly",
+      role: "Director of BCET",
+      url: null,
+      feedback:
+        "Subrata delivered an exceptional, easy-to-use scheduling system. His problem-solving skills and dedication to deadlines made everything seamless.",
+      stars: 4,
+    },
   },
   {
     name: "ATG World",
@@ -176,49 +275,6 @@ const projectsData: ProjectType[] = [
     previewImageSrc: "assets/Scroll Effect.webp",
     previewUiImages: [],
     liveUrl: "https://scroll-effect-7000.netlify.app/",
-  },
-  {
-    name: "Time Table Scheduler",
-    repoName: "Time-Table-Scheduler-ReactJS",
-    description:
-      "It's a web application UI created using React through which a Time Table can be created manually and also automatically using AI.",
-    noOfCommits: null,
-    createdAt: null,
-    updatedAt: null,
-    clientProject: true,
-    mainSkills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
-    otherSkills: [
-      "REST API",
-      "Graphic Design",
-      "Responsive Web Design",
-      "Frontend Development",
-      "Problem Solving",
-      "Teamwork",
-      "Web Development",
-      "SEO",
-    ],
-    previewImageSrc: "assets/Time_Table_Scheduler.webp",
-    previewUiImages: [
-      "/assets/Time_Table_Scheduler/1.webp",
-      "/assets/Time_Table_Scheduler/2.webp",
-      "/assets/Time_Table_Scheduler/3.webp",
-      "/assets/Time_Table_Scheduler/4.webp",
-      "/assets/Time_Table_Scheduler/5.webp",
-      "/assets/Time_Table_Scheduler/6.webp",
-      "/assets/Time_Table_Scheduler/7.webp",
-      "/assets/Time_Table_Scheduler/8.webp",
-      "/assets/Time_Table_Scheduler/9.webp",
-      "/assets/Time_Table_Scheduler/10.webp",
-      "/assets/Time_Table_Scheduler/11.webp",
-    ],
-    ownerDetails: {
-      name: "A. C. Ganguly",
-      role: "Director of BCET",
-      url: null,
-      feedback:
-        "Subrata delivered an exceptional, easy-to-use scheduling system. His problem-solving skills and dedication to deadlines made everything seamless.",
-      stars: 4,
-    },
   },
   {
     name: "To Dos",
@@ -437,4 +493,10 @@ export type ProjectType = {
     feedback: string;
     stars?: number; // Optional property for star rating
   };
+
+  // --- NEW BUSINESS METRICS FIELDS ---
+  challenge?: string;
+  solution?: string;
+  outcomes?: { label: string; value: string }[];
+  // -----------------------------------
 };
