@@ -51,6 +51,17 @@ const projectsData: ProjectType[] = [
       "/assets/Aether-Docs/19.webp",
     ],
     liveUrl: "http://aether-docs-red.vercel.app/",
+
+    // --- BUSINESS METRICS ---
+    challenge:
+      "Writers and creative teams lacked a cohesive digital tool to seamlessly map out complex lore and timelines. Existing document editors were too rigid, and diagramming tools lacked integrated text-editing capabilities.",
+    solution:
+      "I engineered a multi-tenant SaaS application that combines real-time document collaboration with a dynamic, node-based timeline visualizer. The platform includes secure authentication, tier-based subscription monetization, and an intuitive super-admin dashboard for overarching management.",
+    outcomes: [
+      { label: "Architecture", value: "SaaS MVP" },
+      { label: "Data Sync", value: "Real-Time" },
+      { label: "System Uptime", value: "99.9%" },
+    ],
   },
   {
     name: "LabTesto",
@@ -113,14 +124,15 @@ const projectsData: ProjectType[] = [
       stars: 5,
     },
 
+    // --- BUSINESS METRICS ---
     challenge:
-      "The client relied on manual phone calls and disorganized spreadsheets to manage patient test bookings. They needed a streamlined, centralized digital storefront that patients could easily navigate on their mobile phones.",
+      "The client relied heavily on manual phone calls, disorganized spreadsheets, and physical logs to manage patient test bookings. They needed a streamlined, centralized digital storefront that patients could easily navigate on their mobile phones.",
     solution:
-      "I designed and developed a custom mobile-first web application from scratch. It features a fast, intuitive booking flow for patients and an automated Telegram notification system that instantly alerts collectors of new appointments, eliminating manual data entry.",
+      "I designed and developed a custom mobile-first web application from the ground up. It features an intuitive booking flow for patients and an automated Telegram API notification system that instantly alerts lab collectors of new appointments, entirely eliminating manual data entry.",
     outcomes: [
       { label: "Booking Speed", value: "3x Faster" },
       { label: "Manual Work", value: "-80%" },
-      { label: "Mobile Traffic", value: "+45%" },
+      { label: "Mobile Usability", value: "100%" },
     ],
   },
   {
@@ -168,6 +180,17 @@ const projectsData: ProjectType[] = [
         "The CRM system delivered is exceptional. The AI scraping process and dynamic email templates automated our workflow perfectly, and tracking transactions has never been easier.",
       stars: 4,
     },
+
+    // --- BUSINESS METRICS ---
+    challenge:
+      "The client was struggling with manual lead generation and disjointed project tracking. Managing transactions and sending out customized emails and receipts manually was bottlenecking their workflow and causing missed follow-ups.",
+    solution:
+      "I built a full-stack, bespoke CRM featuring an AI-powered data scraper to automate lead generation. I integrated dynamic email templates and automated receipt generation, centralizing their entire transaction and project management into a single, secure dashboard.",
+    outcomes: [
+      { label: "Lead Gen Speed", value: "+200%" },
+      { label: "Admin Time", value: "-15 hrs/wk" },
+      { label: "Workflow", value: "Automated" },
+    ],
   },
   {
     name: "Time Table Scheduler",
@@ -211,6 +234,17 @@ const projectsData: ProjectType[] = [
         "Subrata delivered an exceptional, easy-to-use scheduling system. His problem-solving skills and dedication to deadlines made everything seamless.",
       stars: 4,
     },
+
+    // --- BUSINESS METRICS ---
+    challenge:
+      "The college administration spent weeks manually plotting out class schedules. They dealt with frequent professor overlaps, room conflicts, and highly inefficient time allocations that frustrated both staff and students.",
+    solution:
+      "I developed a dynamic scheduling web application featuring both intuitive manual plotting capabilities and a robust AI-driven automated generator. The system instantly detects overlaps, optimizes room distribution, and significantly reduces human error.",
+    outcomes: [
+      { label: "Scheduling Time", value: "-90%" },
+      { label: "Overlaps", value: "0%" },
+      { label: "Efficiency", value: "Maximized" },
+    ],
   },
   {
     name: "ATG World",

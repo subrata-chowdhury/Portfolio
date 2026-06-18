@@ -105,6 +105,7 @@ export function Project({
   privateRepo = false,
   description = "It's a Project",
   clientProject = false,
+  outcomes = [], // Destructuring outcomes
   previewImageSrc = "",
   previewUiImages = [],
   liveUrl,
@@ -154,7 +155,7 @@ export function Project({
         </div>
 
         <div className="flex flex-col p-4 flex-1">
-          <div className="flex items-center gap-2 flex-wrap mb-1.5">
+          <div className="flex items-center gap-2 flex-wrap mb-2.5">
             <h3 className="font-bold text-[1.15rem] text-gray-900 dark:text-gray-100 leading-tight truncate max-w-full">
               {name}
             </h3>
@@ -165,9 +166,38 @@ export function Project({
             )}
           </div>
 
-          <p className="text-[0.85rem] leading-relaxed text-gray-600 dark:text-gray-400 line-clamp-2 mb-4 flex-1">
-            {description}
-          </p>
+          {/* SLEEK TAG/BADGE LAYOUT FOR OUTCOMES (LIMITED TO 2 ROWS) */}
+          {outcomes && outcomes.length > 0 ? (
+            <div className="flex flex-wrap gap-2 mb-4 flex-1 items-start content-start overflow-hidden max-h-[3.6rem]">
+              {/* Only render the first 2 outcomes to ensure we don't break heights */}
+              {outcomes.slice(0, 2).map((metric, idx) => (
+                <div
+                  key={idx}
+                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800/30"
+                >
+                  <span className="text-[0.7rem] font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap">
+                    {metric.value}
+                  </span>
+                  <span className="text-[0.65rem] font-medium text-emerald-600 dark:text-emerald-500/80 whitespace-nowrap">
+                    {metric.label}
+                  </span>
+                </div>
+              ))}
+
+              {/* If there are more than 2, show a sleek "+X more" badge */}
+              {outcomes.length > 2 && (
+                <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-gray-50 dark:bg-[#222] border border-gray-200/50 dark:border-white/5">
+                  <span className="text-[0.65rem] font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    +{outcomes.length - 2} more
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <p className="text-[0.85rem] leading-relaxed text-gray-600 dark:text-gray-400 line-clamp-2 mb-4 flex-1">
+              {description}
+            </p>
+          )}
 
           <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
             <div className="flex items-center gap-3">
@@ -203,14 +233,18 @@ export function Project({
               href={"/projects/" + repoName}
               className="inline-flex items-center gap-1.5 text-[0.8rem] font-bold text-gray-900 dark:text-white group/btn transition-colors hover:text-blue-600 dark:hover:text-blue-400"
             >
-              <span>Details</span>
+              <span>
+                {outcomes && outcomes.length > 0
+                  ? "Read Case Study"
+                  : "Details"}
+              </span>
               <FiArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Image Slider Modal (Remains Unchanged) */}
+      {/* Image Slider Modal */}
       {showImg && (
         <Model onClose={closeModel}>
           <div className="relative w-full h-[60vh] md:h-[80vh] flex justify-center items-center rounded-xl overflow-hidden bg-black/5 dark:bg-white/5">

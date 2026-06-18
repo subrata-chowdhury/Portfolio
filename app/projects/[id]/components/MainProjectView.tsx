@@ -183,18 +183,28 @@ export default function DetailedProjectView(project: ProjectType) {
             </div>
           )}
 
-          {/* Subtle Technical Footer */}
+          {/* New Tag/Badge Based "Project Highlights" Section */}
           <div className="mt-2 pt-5 border-t border-gray-200/75 dark:border-white/5">
-            <h3 className="text-[0.65rem] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2.5 flex items-center gap-1.5">
-              <FiCheckCircle className="text-xs" />
-              Technical Foundation
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+              <FiCheckCircle className="text-blue-500" aria-hidden="true" />
+              Project Highlights
             </h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-              Built for high-performance and local SEO using{" "}
-              {project.mainSkills?.slice(0, 4).join(", ") ||
-                "modern web frameworks"}
-              .
-            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 text-xs font-medium border border-emerald-100 dark:border-emerald-800/30">
+                SEO Optimized
+              </span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-xs font-medium border border-blue-100 dark:border-blue-800/30">
+                High Performance
+              </span>
+              {project.mainSkills?.slice(0, 3).map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center px-2.5 py-1 rounded-md bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 text-xs font-medium border border-gray-200/75 dark:border-white/5"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
